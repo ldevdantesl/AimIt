@@ -9,8 +9,13 @@ import Foundation
 import CoreData
 
 final class CoreDataStack {
-    static let shared = CoreDataStack()
     
+    private let modelName: String
+    
+    init(modelName: String) {
+        self.modelName = modelName
+    }
+
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "AimIt")
         container.loadPersistentStores { desc, error in
@@ -21,7 +26,15 @@ final class CoreDataStack {
         return container
     }()
     
-    lazy var context: NSManagedObjectContext = {
+    lazy var viewContext: NSManagedObjectContext = {
         persistentContainer.viewContext
     }()
+    
+    
+    func saveContext(context: NSManagedObjectContext? = nil) throws {
+        let contextToSave = context ?? viewContext
+        if contextToSave.hasChanges {
+            try contextToSave.save()
+        }
+    }
 }

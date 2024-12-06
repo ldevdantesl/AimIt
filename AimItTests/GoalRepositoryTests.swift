@@ -12,19 +12,18 @@ import CoreData
 
 final class GoalRepositoryTests: XCTestCase {
     
-    private var persistentContainer: NSPersistentContainer!
+    private var CDStack: CoreDataStack!
     private var goalRepository: GoalRepository!
     private var goals: [Goal] = []
 
     override func setUp() {
         super.setUp()
-        self.persistentContainer = PersistentContainerFactory.makeMemoryPersistentContainer(modelName: "AimIt")
-        let context = self.persistentContainer.viewContext
-        self.goalRepository = GoalRepositoryImpl(context: context)
+        self.CDStack = PersistentContainerFactory.makeInMemoryCoreDataStack(modelName: "AimIt")
+        self.goalRepository = GoalRepositoryImpl(CDstack: CDStack)
     }
     
     override func tearDown() {
-        self.persistentContainer = nil
+        self.CDStack = nil
         self.goalRepository = nil
         goals = []
         super.tearDown()

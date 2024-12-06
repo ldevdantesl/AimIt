@@ -13,20 +13,19 @@ final class MilestoneRepositoryTests: XCTestCase {
     
     private var mileRepo: MilestoneRepository!
     private var goalRepo: GoalRepository!
-    private var container: NSPersistentContainer!
+    private var CDStack: CoreDataStack!
     private var milestones: [Milestone]!
 
     override func setUp() {
         super.setUp()
-        self.container = PersistentContainerFactory.makeMemoryPersistentContainer(modelName: "AimIt")
-        let context = container.viewContext
-        self.mileRepo = MilestoneRepositoryImpl(context: context)
-        self.goalRepo = GoalRepositoryImpl(context: context)
+        self.CDStack = PersistentContainerFactory.makeInMemoryCoreDataStack(modelName: "AimIt")
+        self.mileRepo = MilestoneRepositoryImpl(CDstack: CDStack)
+        self.goalRepo = GoalRepositoryImpl(CDstack: CDStack)
         milestones = []
     }
     
     override func tearDown() {
-        self.container = nil
+        self.CDStack = nil
         self.mileRepo = nil
         self.goalRepo = nil
         milestones = []
@@ -88,4 +87,5 @@ final class MilestoneRepositoryTests: XCTestCase {
         milestones = try mileRepo.fetchMilestones(for: goal)
         XCTAssertTrue(milestones[0].isCompleted)
     }
+
 }

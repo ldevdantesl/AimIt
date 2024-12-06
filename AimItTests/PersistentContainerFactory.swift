@@ -7,19 +7,35 @@
 
 import Foundation
 import CoreData
+@testable import AimIt
 
 final class PersistentContainerFactory {
-    static func makeMemoryPersistentContainer(modelName: String) -> NSPersistentContainer {
-        let container = NSPersistentContainer(name: modelName)
+    static func makeInMemoryCoreDataStack(modelName: String) -> CoreDataStack {
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
-        container.persistentStoreDescriptions = [description]
-        
-        container.loadPersistentStores { description, error in
+
+        let coreDataStack = CoreDataStack(modelName: modelName)
+
+        // Remove any previously loaded persistent stores
+        let persistentStoreCoordinator = coreDataStack.persistentContainer.persistentStoreCoordinator
+        for store in persistentStoreCoordinator.persistentStores {
+            do {
+                try persistentStoreCoordinator.remove(store)
+            } catch {
+                fatalError("Failed to remove persistent store: \(error)")
+            }
+        }
+
+        // Add in-memory store description
+        coreDataStack.persistentContainer.persistentStoreDescriptions = [description]
+
+        // Load the new in-memory persistent store
+        coreDataStack.persistentContainer.loadPersistentStores { _, error in
             guard error == nil else {
                 fatalError("Failed to load persistent stores: \(error!)")
             }
         }
-        return container
+
+        return coreDataStack
     }
 }

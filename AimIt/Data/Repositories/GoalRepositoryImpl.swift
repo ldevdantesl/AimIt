@@ -10,10 +10,10 @@ import CoreData
 
 final class GoalRepositoryImpl: GoalRepository {
     
-    private let context: NSManagedObjectContext
+    private let CDstack: CoreDataStack
     
-    init(context: NSManagedObjectContext = CoreDataStack.shared.context) {
-        self.context = context
+    init(CDstack: CoreDataStack) {
+        self.CDstack = CDstack
     }
     
     func addGoal(
@@ -21,7 +21,7 @@ final class GoalRepositoryImpl: GoalRepository {
         desc: String?,
         deadline: Date?
     ) throws {
-        let newGoal = GoalEntity(context: context)
+        let newGoal = GoalEntity(context: CDstack.viewContext)
         newGoal.id = UUID()
         newGoal.title = title
         newGoal.desc = desc
@@ -39,7 +39,7 @@ final class GoalRepositoryImpl: GoalRepository {
         newDesc: String?,
         newDeadline: Date?
     ) throws {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: context)
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         
         goalEntity.title = newTitle ?? goalEntity.title
         goalEntity.desc = newDesc ?? goalEntity.desc
@@ -49,23 +49,23 @@ final class GoalRepositoryImpl: GoalRepository {
     }
     
     func completeGoal(_ goal: Goal) throws {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: context)
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         goalEntity.isCompleted = true
         goalEntity.completedAt = Date()
         try saveContext()
     }
     
     func uncompleteGoal(_ goal: Goal) throws {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: context)
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         goalEntity.isCompleted = false
         goalEntity.completedAt = nil
         try saveContext()
     }
     
     func deleteGoal(_ goal: Goal) throws {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: context)
-        if context == goalEntity.managedObjectContext {
-            context.delete(goalEntity)
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
+        if CDstack.viewContext == goalEntity.managedObjectContext {
+            CDstack.viewContext.delete(goalEntity)
             try saveContext()
         } else {
             throw NSError(
@@ -78,14 +78,12 @@ final class GoalRepositoryImpl: GoalRepository {
     
     func fetchGoals() throws -> [Goal] {
         let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
-        let goalEntity = try context.fetch(request)
+        let goalEntity = try CDstack.viewContext.fetch(request)
         let goalDomain = goalEntity.map { GoalMapper.mapToDomain(from: $0) }
         return goalDomain
     }
     
     private func saveContext() throws {
-        if context.hasChanges {
-            try context.save()
-        }
+        try CDstack.saveContext()
     }
 }
