@@ -6,11 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		DA3963592D0237210060D520 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA9E0D342D011CBF00E80B34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA9E0D3B2D011CBF00E80B34;
+			remoteInfo = AimIt;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		DA3963552D0237200060D520 /* AimItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AimItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA9E0D3C2D011CBF00E80B34 /* AimIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		DA3963562D0237210060D520 /* AimItTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AimItTests;
+			sourceTree = "<group>";
+		};
 		DA9E0D3E2D011CBF00E80B34 /* AimIt */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AimIt;
@@ -19,6 +35,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DA3963522D0237200060D520 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA9E0D392D011CBF00E80B34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				DA9E0D3E2D011CBF00E80B34 /* AimIt */,
+				DA3963562D0237210060D520 /* AimItTests */,
 				DA9E0D3D2D011CBF00E80B34 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				DA9E0D3C2D011CBF00E80B34 /* AimIt.app */,
+				DA3963552D0237200060D520 /* AimItTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +73,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DA3963542D0237200060D520 /* AimItTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA39635B2D0237210060D520 /* Build configuration list for PBXNativeTarget "AimItTests" */;
+			buildPhases = (
+				DA3963512D0237200060D520 /* Sources */,
+				DA3963522D0237200060D520 /* Frameworks */,
+				DA3963532D0237200060D520 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA39635A2D0237210060D520 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DA3963562D0237210060D520 /* AimItTests */,
+			);
+			name = AimItTests;
+			packageProductDependencies = (
+			);
+			productName = AimItTests;
+			productReference = DA3963552D0237200060D520 /* AimItTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DA9E0D3B2D011CBF00E80B34 /* AimIt */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA9E0D4A2D011CC100E80B34 /* Build configuration list for PBXNativeTarget "AimIt" */;
@@ -80,6 +128,10 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					DA3963542D0237200060D520 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = DA9E0D3B2D011CBF00E80B34;
+					};
 					DA9E0D3B2D011CBF00E80B34 = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -100,11 +152,19 @@
 			projectRoot = "";
 			targets = (
 				DA9E0D3B2D011CBF00E80B34 /* AimIt */,
+				DA3963542D0237200060D520 /* AimItTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DA3963532D0237200060D520 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA9E0D3A2D011CBF00E80B34 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +175,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DA3963512D0237200060D520 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA9E0D382D011CBF00E80B34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +191,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		DA39635A2D0237210060D520 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA9E0D3B2D011CBF00E80B34 /* AimIt */;
+			targetProxy = DA3963592D0237210060D520 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		DA39635C2D0237210060D520 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UJQW6TGS7Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Dantes.AimItTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AimIt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AimIt";
+			};
+			name = Debug;
+		};
+		DA39635D2D0237210060D520 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UJQW6TGS7Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Dantes.AimItTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AimIt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AimIt";
+			};
+			name = Release;
+		};
 		DA9E0D482D011CC100E80B34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -313,6 +424,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DA39635B2D0237210060D520 /* Build configuration list for PBXNativeTarget "AimItTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA39635C2D0237210060D520 /* Debug */,
+				DA39635D2D0237210060D520 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DA9E0D372D011CBF00E80B34 /* Build configuration list for PBXProject "AimIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
