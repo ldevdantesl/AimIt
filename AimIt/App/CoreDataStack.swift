@@ -15,7 +15,7 @@ final class CoreDataStack {
     init(modelName: String) {
         self.modelName = modelName
     }
-
+    
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "AimIt")
         container.loadPersistentStores { desc, error in

@@ -7,6 +7,12 @@
 
 import Foundation
 
-final class AppCoordinator {
+final class AppCoordinator: ObservableObject {
+    func makeHomeCoordinator() -> HomeCoordinator {
+        HomeCoordinator()
+    }
     
+    func makeSettingsCoordinator() -> SettingsCoordinator {
+        SettingsCoordinator()
+    }
 }

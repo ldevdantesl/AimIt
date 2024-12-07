@@ -37,6 +37,7 @@ final class GoalViewModel: ObservableObject {
     func addGoal(title: String, desc: String? = nil, deadline: Date?) {
         do {
             try addGoalUseCase.execute(title: title, desc: desc, deadline: deadline)
+            fetchGoals()
         } catch {
             errorMsg = "Error Adding Goal: \(error.localizedDescription)"
         }
@@ -45,6 +46,7 @@ final class GoalViewModel: ObservableObject {
     func deleteGoal(_ goal: Goal) {
         do {
             try deleteGoalUseCase.execute(goal)
+            fetchGoals()
         } catch {
             errorMsg = "Error deleting Goal: \(error.localizedDescription)"
         }
@@ -53,6 +55,7 @@ final class GoalViewModel: ObservableObject {
     func editGoals(_ goal: Goal, title: String, desc: String? = nil, deadline: Date?) {
         do {
             try editGoalUseCase.execute(goal, newTitle: title, newDesc: desc, newDeadline: deadline)
+            fetchGoals()
         } catch {
             errorMsg = "Error editing Goal: \(error.localizedDescription)"
         }
@@ -69,6 +72,7 @@ final class GoalViewModel: ObservableObject {
     func completeGoal(_ goal: Goal) {
         do {
             try toggleCompletionGoalUseCase.execute(goal, completing: true)
+            fetchGoals()
         } catch {
             errorMsg = "Error completing Goal: \(error.localizedDescription)"
         }
@@ -77,6 +81,7 @@ final class GoalViewModel: ObservableObject {
     func uncompleteGoal(_ goal: Goal) {
         do {
             try toggleCompletionGoalUseCase.execute(goal, completing: false)
+            fetchGoals()
         } catch {
             errorMsg = "Error uncompleting Goal: \(error.localizedDescription)"
         }

@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
-final class DIContainer {
+final class DIContainer: ObservableObject {
     
-    let CDstack = CoreDataStack(modelName: "AimIt")
+    private let CDstack = CoreDataStack(modelName: "AimIt")
     
     func makeGoalViewModel() -> GoalViewModel {
         let repository: GoalRepository = GoalRepositoryImpl(CDstack: CDstack)
@@ -34,5 +35,9 @@ final class DIContainer {
             toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCaseImpl(repository: repository),
             updateMilestoneUseCase: UpdateMilestoneUseCaseImpl(repository: repository)
         )
+    }
+    
+    func makeAppCoordinator() -> AppCoordinator {
+        return AppCoordinator()
     }
 }

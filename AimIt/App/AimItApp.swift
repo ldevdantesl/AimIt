@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct AimItApp: App {
+    @StateObject var diContainer: DIContainer = DIContainer()
+    
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(diContainer.makeAppCoordinator())
+                .environmentObject(diContainer.makeGoalViewModel())
+                .environmentObject(diContainer.makeMilestoneViewModel())
         }
     }
 }

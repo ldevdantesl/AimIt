@@ -21,10 +21,10 @@ struct Goal: Identifiable, Codable, Hashable {
 extension Goal {
     static var sample = Goal(
         id: UUID(),
-        title: "Sample goal",
-        desc: "Sample description",
+        title: "Learn UIKit",
+        desc: "Finish UIKit till next week and learn SwiftUI",
         isCompleted: false,
-        deadline: nil,
+        deadline: .now,
         createdAt: Date(),
         completedAt: nil,
         milestones: []

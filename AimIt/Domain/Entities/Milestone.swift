@@ -18,7 +18,7 @@ extension Milestone {
     static var sample = Milestone(
         id: UUID(),
         desc: "Sample milestone",
-        isCompleted: false,
+        isCompleted: true,
         goalID: Goal.sample.id
     )
 }
