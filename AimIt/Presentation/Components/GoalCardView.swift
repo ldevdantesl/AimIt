@@ -34,20 +34,20 @@ struct GoalCardView: View {
                         Text(goal.title)
                             .font(.system(.title3, design: .rounded, weight: .bold))
                             .foregroundStyle(.aiLabel)
-                            .lineLimit(2)
+                            .lineLimit(1)
                         
                         Text(goal.desc ?? "")
                             .font(.system(.caption, design: .rounded, weight: .bold))
                             .foregroundStyle(.aiSecondary)
-                            .lineLimit(3)
+                            .lineLimit(2)
                     }
                 }
                 .padding(20)
             }
             .overlay(alignment: .bottom) {
-                AIProgressBar(milestones: goal.milestones)
+                AIProgressBar(goal: goal)
                     .padding(.bottom, 10)
-                    .padding(.horizontal, 15)
+                    .padding(.horizontal, 20)
             }
     }
 }

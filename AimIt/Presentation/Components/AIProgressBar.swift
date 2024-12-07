@@ -9,14 +9,30 @@ import Foundation
 import SwiftUI
 
 struct AIProgressBar: View {
-    var milestones: [Milestone]
+    let goal: Goal?
     
-    init(milestones: [Milestone]) {
-        self.milestones = milestones
+    let initialMilestones: [Milestone]?
+    
+    init(goal: Goal) {
+        self.goal = goal
+        self.initialMilestones = nil
+    }
+    
+    init(initialMilestones: [Milestone]){
+        self.goal = nil
+        self.initialMilestones = initialMilestones
     }
     
     var segmentCount: Int {
-        milestones.isEmpty ? 1 : milestones.count
+        goal == nil ? initialMilestones?.count ?? 1 : goal?.milestones.count ?? 1
+    }
+    
+    var milestones: [Milestone] {
+        goal == nil ? initialMilestones ?? [] : goal?.milestones ?? []
+    }
+    
+    var sortedMilestones: [Milestone] {
+        milestones.sorted { $0.isCompleted && !$1.isCompleted }
     }
     
     private let spacing: CGFloat = 4.0
@@ -28,16 +44,14 @@ struct AIProgressBar: View {
             
             HStack(spacing: spacing) {
                 if milestones.isEmpty {
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.5))
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(goal?.isCompleted ?? false ? Color.green : Color.aiLightPink)
                         .frame(width: segmentWidth, height: segmentHeight)
-                        .cornerRadius(14)
                 } else {
-                    ForEach(milestones) { milestone in
-                        Rectangle()
-                            .fill(milestone.isCompleted ? Color.green : Color.gray.opacity(0.5))
+                    ForEach(sortedMilestones) { milestone in
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(milestone.isCompleted ? Color.green : Color.aiLightPink)
                             .frame(width: segmentWidth, height: segmentHeight)
-                            .cornerRadius(14)
                     }
                 }
             }
@@ -48,5 +62,5 @@ struct AIProgressBar: View {
 }
 
 #Preview {
-    AIProgressBar(milestones: [])
+    AIProgressBar(goal: .sample)
 }
