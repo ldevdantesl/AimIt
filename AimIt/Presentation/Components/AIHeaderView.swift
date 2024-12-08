@@ -16,8 +16,8 @@ struct AIHeaderView: View {
     let subtitle: String?
     
     init(
-        leftButton: AIButton,
-        rightButton: AIButton,
+        leftButton: AIButton = AIButton(image: .empty),
+        rightButton: AIButton = AIButton(image: .empty),
         title: String,
         subtitle: String? = nil
     ) {

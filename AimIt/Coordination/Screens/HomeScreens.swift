@@ -11,5 +11,6 @@ enum HomeScreens: Hashable {
     case goalDetails(Goal)
     case goalMilestones(Milestone)
     case addGoal
+    case addMilestoneToGoal(Goal)
     case editGoal(Goal)
 }

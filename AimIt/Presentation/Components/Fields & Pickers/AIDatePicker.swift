@@ -73,6 +73,7 @@ struct AIDatePicker: View {
                 }
                 .foregroundStyle(.aiOrange)
             }
+            .padding(.horizontal, 20)
             .presentationDetents([.medium])
             .presentationBackground(.aiBackground)
             .preferredColorScheme(.dark)

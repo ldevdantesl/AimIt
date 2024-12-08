@@ -13,7 +13,7 @@ struct AddGoalView: View {
     
     @State private var title: String = ""
     @State private var desc: String = ""
-    @State private var chosenDate: Date = .now
+    @State private var deadline: Date = .now
     @State private var category: String = ""
     
     var body: some View {
@@ -42,7 +42,7 @@ struct AddGoalView: View {
                     AIDatePicker(
                         titleName: "Due Date*",
                         widthSize: UIConstants.halfWidth,
-                        chosenDate: $chosenDate
+                        chosenDate: $deadline
                     )
                     
                     AITextField(
@@ -52,16 +52,27 @@ struct AddGoalView: View {
                         width: UIConstants.halfWidth
                     )
                 }
+                
             }
             .padding(.top, 10)
         }
         .background(Color.aiBackground)
         .toolbar(.hidden, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                AIButton(title: "Next") {
+                    goalVM.addGoal(title: title, desc: desc, deadline: deadline)
+                    coordinator.navigateTo(screen: .addMilestoneToGoal(goalVM.goals[0]))
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    AddGoalView()
-        .environmentObject(DIContainer().makeGoalViewModel())
-        .environmentObject(DIContainer().makeAppCoordinator().makeHomeCoordinator())
+    NavigationStack{
+        AddGoalView()
+            .environmentObject(DIContainer().makeGoalViewModel())
+            .environmentObject(DIContainer().makeAppCoordinator().makeHomeCoordinator())
+    }
 }

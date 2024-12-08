@@ -13,11 +13,17 @@ struct AIAddMilestoneField: View {
             HStack{
                 Text("Milestones")
                     .font(.system(.headline, design: .rounded, weight: .light))
-                    .foregroundStyle(.aiLabel)
+                    .foregroundStyle(.aiSecondary2)
                 Spacer()
             }
-            .padding(.leading, 10)
             
+            HStack{
+                AIButton(image: .plus, backColor: .aiOrange, foreColor: .white) {
+                    
+                }
+                
+                Spacer()
+            }
         }
         .padding(.horizontal, 20)
     }

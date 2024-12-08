@@ -29,10 +29,7 @@ struct HomeView: View {
                     )
                     AISearchBar(searchText: $searchText)
                     
-                    VStack(spacing: 20){
-                        AICardView(goal: Goal.sample)
-                        AICardView(goal: Goal.sample)
-                    }
+                    AICardList(goals: goalVM.goals)
                 }
                 .padding(.top, 10)
             }
