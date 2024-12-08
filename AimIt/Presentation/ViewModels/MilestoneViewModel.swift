@@ -35,9 +35,9 @@ final class MilestoneViewModel: ObservableObject {
         self.updateMilestoneUseCase = updateMilestoneUseCase
     }
     
-    func addMilestone(desc: String, to goal: Goal) {
+    func addMilestone(desc: String, systemImage: String,to goal: Goal) {
         do {
-            try addMilestoneUseCase.execute(desc: desc, to: goal)
+            try addMilestoneUseCase.execute(desc: desc, systemImage: systemImage, to: goal)
         } catch {
             errorMsg = "Error adding milestone: \(error.localizedDescription)"
             print("Error adding milestone: \(error.localizedDescription)")
@@ -81,9 +81,9 @@ final class MilestoneViewModel: ObservableObject {
         }
     }
 
-    func updateMilestone(_ milestone: Milestone, desc: String) {
+    func updateMilestone(_ milestone: Milestone, desc: String? = nil, systemImage: String? = nil) {
         do {
-            try updateMilestoneUseCase.execute(milestone, desc: desc)
+            try updateMilestoneUseCase.execute(milestone, desc: desc, systemImage: systemImage)
         } catch {
             errorMsg = "Error updating milestone: \(error.localizedDescription)"
             print("Error updating milestone: \(error.localizedDescription)")

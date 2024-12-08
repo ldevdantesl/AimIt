@@ -41,7 +41,7 @@ final class MilestoneRepositoryTests: XCTestCase {
     func testFetchingMilestonesForGoal() throws {
         try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil)
         let goal = try goalRepo.fetchGoals().first!
-        try mileRepo.addMilestone(desc: "New milestone", to: goal)
+        try mileRepo.addMilestone(desc: "New milestone", systemImage: "", to: goal)
         XCTAssertTrue(milestones.isEmpty)
         milestones = try mileRepo.fetchMilestones(for: goal)
         XCTAssertFalse(milestones.isEmpty)
@@ -50,14 +50,14 @@ final class MilestoneRepositoryTests: XCTestCase {
     func testUpdatingMilestone() throws {
         try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil)
         let goal = try goalRepo.fetchGoals().first!
-        try mileRepo.addMilestone(desc: "New milestone", to: goal)
+        try mileRepo.addMilestone(desc: "New milestone", systemImage: "", to: goal)
         XCTAssertTrue(milestones.isEmpty)
         milestones = try mileRepo.fetchMilestones(for: goal)
         XCTAssertFalse(milestones.isEmpty)
         
         let updatedDesc = "Updated milestone"
         XCTAssertEqual(milestones[0].desc, "New milestone")
-        try mileRepo.updateMilestone(milestones[0], desc: updatedDesc)
+        try mileRepo.updateMilestone(milestones[0], desc: updatedDesc, systemImage: nil)
         milestones = try mileRepo.fetchMilestones(for: goal)
         XCTAssertEqual(milestones[0].desc, "Updated milestone")
     }
@@ -65,7 +65,7 @@ final class MilestoneRepositoryTests: XCTestCase {
     func testDeletingMilestone() throws {
         try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil)
         let goal = try goalRepo.fetchGoals().first!
-        try mileRepo.addMilestone(desc: "New milestone", to: goal)
+        try mileRepo.addMilestone(desc: "New milestone", systemImage: "", to: goal)
         XCTAssertTrue(milestones.isEmpty)
         milestones = try mileRepo.fetchMilestones(for: goal)
         XCTAssertFalse(milestones.isEmpty)
@@ -78,7 +78,7 @@ final class MilestoneRepositoryTests: XCTestCase {
     func testToggleMilestoneCompletion() throws {
         try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil)
         let goal = try goalRepo.fetchGoals().first!
-        try mileRepo.addMilestone(desc: "New milestone", to: goal)
+        try mileRepo.addMilestone(desc: "New milestone", systemImage: "", to: goal)
         XCTAssertTrue(milestones.isEmpty)
         milestones = try mileRepo.fetchMilestones(for: goal)
         XCTAssertFalse(milestones.isEmpty)

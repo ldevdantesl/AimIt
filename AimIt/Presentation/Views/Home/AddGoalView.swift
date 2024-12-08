@@ -56,7 +56,7 @@ struct AddGoalView: View {
             .padding(.top, 10)
         }
         .background(Color.aiBackground)
-        .toolbarVisibility(.hidden, for: .navigationBar)
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol UpdateMilestoneUseCase {
-    func execute(_ milestone: Milestone, desc: String) throws
+    func execute(_ milestone: Milestone, desc: String?, systemImage: String?) throws
 }

@@ -13,6 +13,7 @@ struct MilestoneMapper {
         return Milestone(
             id: milestoneEntity.id,
             desc: milestoneEntity.desc,
+            systemImage: milestoneEntity.systemImage,
             isCompleted: milestoneEntity.isCompleted,
             goalID: milestoneEntity.goal.id
         )
@@ -28,6 +29,7 @@ struct MilestoneMapper {
             let entity = MilestoneEntity(context: context)
             entity.id = milestone.id
             entity.desc = milestone.desc
+            entity.systemImage = milestone.systemImage
             entity.isCompleted = milestone.isCompleted
             
             let goalFetchRequest: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
