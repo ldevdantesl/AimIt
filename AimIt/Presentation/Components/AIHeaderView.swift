@@ -37,10 +37,12 @@ struct AIHeaderView: View {
                     Text(title)
                         .font(.system(.subheadline, design: .rounded, weight: .light))
                         .foregroundStyle(.aiSecondary2)
+                        .lineLimit(1)
                     
                     Text(subtitle)
                         .font(.system(.headline, design: .rounded, weight: .semibold))
                         .foregroundStyle(.aiLabel)
+                        .lineLimit(1)
                 }
             } else {
                 Text(title)

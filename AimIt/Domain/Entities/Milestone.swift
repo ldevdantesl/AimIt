@@ -19,7 +19,7 @@ extension Milestone {
     static var sample = Milestone(
         id: UUID(),
         desc: "Sample milestone",
-        systemImage: "square",
+        systemImage: "bookmark.fill",
         isCompleted: true,
         goalID: Goal.sample.id
     )
@@ -30,7 +30,7 @@ extension Milestone {
         Milestone(
             id: UUID(),
             desc: "Sample milestone",
-            systemImage: "square",
+            systemImage: "bookmark.fill",
             isCompleted: false,
             goalID: Goal.sample.id
         )

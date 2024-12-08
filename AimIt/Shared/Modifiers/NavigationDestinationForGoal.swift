@@ -15,9 +15,6 @@ struct NavigationDestinationForHomeScreens: ViewModifier {
                 switch screen {
                 case .addGoal:
                     AddGoalView()
-                
-                case .addMilestoneToGoal(let goal):
-                    AddMilestoneView(goal: goal)
                     
                 default:
                     EmptyView()

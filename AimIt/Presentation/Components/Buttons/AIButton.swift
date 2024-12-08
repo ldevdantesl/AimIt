@@ -16,6 +16,7 @@ struct AIButton: View {
         case plus
         case xmark
         case empty
+        case ava
     }
 
     let title: String?
@@ -100,6 +101,8 @@ struct AIButton: View {
             return Image(systemName: "xmark")
         case .empty:
             return Image(systemName: "circle.fill")
+        case .ava:
+            return Image(systemName: "person.fill")
         }
     }
 }

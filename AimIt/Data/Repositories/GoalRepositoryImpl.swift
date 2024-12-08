@@ -19,7 +19,8 @@ final class GoalRepositoryImpl: GoalRepository {
     func addGoal(
         title: String,
         desc: String?,
-        deadline: Date?
+        deadline: Date?,
+        milestones: [Milestone]
     ) throws {
         let newGoal = GoalEntity(context: CDstack.viewContext)
         newGoal.id = UUID()
@@ -29,6 +30,18 @@ final class GoalRepositoryImpl: GoalRepository {
         newGoal.createdAt = Date()
         newGoal.isCompleted = false
         newGoal.completedAt = nil
+        
+        let milestoneEntities = milestones.map { milestone -> MilestoneEntity in
+            let milestoneEntity = MilestoneEntity(context: CDstack.viewContext)
+            milestoneEntity.id = milestone.id
+            milestoneEntity.desc = milestone.desc
+            milestoneEntity.systemImage = milestone.systemImage
+            milestoneEntity.isCompleted = milestone.isCompleted
+            milestoneEntity.goal = newGoal
+            return milestoneEntity
+        }
+        
+        newGoal.milestones = NSSet(array: milestoneEntities)
         
         try saveContext()
     }

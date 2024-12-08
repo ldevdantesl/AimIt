@@ -14,7 +14,7 @@ final class AddGoalUseCaseImpl: AddGoalUseCase {
         self.repository = repository
     }
     
-    func execute(title: String, desc: String?, deadline: Date?) throws {
-        try repository.addGoal(title: title, desc: desc, deadline: deadline)
+    func execute(title: String, desc: String?, deadline: Date?, milestones: [Milestone]) throws {
+        try repository.addGoal(title: title, desc: desc, deadline: deadline, milestones: milestones)
     }
 }

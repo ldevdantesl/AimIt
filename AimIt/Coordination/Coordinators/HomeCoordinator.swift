@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-final class HomeCoordinator: ObservableObject, HomeCoordinating {
+final class HomeCoordinator: ObservableObject, Coordinator {
     @Published var path: NavigationPath = NavigationPath()
     
     func navigateTo(screen: HomeScreens) {

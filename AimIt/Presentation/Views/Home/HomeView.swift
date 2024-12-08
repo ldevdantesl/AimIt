@@ -19,19 +19,21 @@ struct HomeView: View {
             ScrollView{
                 VStack(spacing: 20) {
                     AIHeaderView(
-                        leftButton: AIButton(image: .back),
-                        rightButton: AIButton(
+                        leftButton: AIButton (image: .ava),
+                        rightButton: AIButton (
                             image: .plus,
+                            backColor: .accentColor,
+                            foreColor: .aiLabel,
                             action: { coordinator.navigateTo(screen: .addGoal) }
                         ),
                         title: "Good morning 🌥️",
                         subtitle: "Buzurg Rahimzoda"
                     )
+                    
                     AISearchBar(searchText: $searchText)
                     
                     AICardList(goals: goalVM.goals)
                 }
-                .padding(.top, 10)
             }
             .background(UIConstants.backgroundColor)
             .setDestinationsForHomeScreen()

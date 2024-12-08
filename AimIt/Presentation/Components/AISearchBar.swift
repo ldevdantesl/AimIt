@@ -20,7 +20,7 @@ struct AISearchBar: View {
         }
         .padding(.leading, isFocused ? 15 : 50)
         .frame(maxWidth: .infinity)
-        .frame(height: 55)
+        .frame(height: 60)
         .focused($isFocused)
         .background(Color.aiSecondary, in: .rect(cornerRadius: 30))
         .overlay(alignment: .leading) {
@@ -33,7 +33,7 @@ struct AISearchBar: View {
                     .foregroundStyle(.aiLabel)
             }
         }
-        .padding(.horizontal, 15)
+        .padding(.horizontal, 20)
         .animation(.bouncy, value: isFocused)
     }
 }

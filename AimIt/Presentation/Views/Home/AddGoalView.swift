@@ -15,6 +15,7 @@ struct AddGoalView: View {
     @State private var desc: String = ""
     @State private var deadline: Date = .now
     @State private var category: String = ""
+    @State private var milestones: [Milestone] = []
     
     var body: some View {
         ScrollView {
@@ -38,7 +39,7 @@ struct AddGoalView: View {
                     axis: .vertical
                 )
                 
-                HStack{
+                HStack {
                     AIDatePicker(
                         titleName: "Due Date*",
                         widthSize: UIConstants.halfWidth,
@@ -53,16 +54,16 @@ struct AddGoalView: View {
                     )
                 }
                 
+                AIAddMilestoneView(goalTitle: title, milestones: $milestones)
             }
-            .padding(.top, 10)
+            .padding(.vertical, 10)
         }
         .background(Color.aiBackground)
         .toolbar(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Next") {
-                    goalVM.addGoal(title: title, desc: desc, deadline: deadline)
-                    coordinator.navigateTo(screen: .addMilestoneToGoal(goalVM.goals[0]))
+                AIButton(title: "Create") {
+                    goalVM.addGoal(title: title, desc: desc, deadline: deadline, milestones: milestones)
                 }
             }
         }

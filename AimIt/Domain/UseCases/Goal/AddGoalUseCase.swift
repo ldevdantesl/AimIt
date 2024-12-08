@@ -11,7 +11,8 @@ protocol AddGoalUseCase {
     func execute(
         title: String,
         desc: String?,
-        deadline: Date?
+        deadline: Date?,
+        milestones: [Milestone]
     ) throws
 }
 

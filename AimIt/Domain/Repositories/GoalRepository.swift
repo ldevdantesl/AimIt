@@ -12,7 +12,8 @@ protocol GoalRepository {
     func addGoal(
         title: String,
         desc: String?,
-        deadline: Date?
+        deadline: Date?,
+        milestones: [Milestone]
     ) throws
     
     func editGoal(

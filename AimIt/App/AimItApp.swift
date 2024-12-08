@@ -17,6 +17,8 @@ struct AimItApp: App {
                 .environmentObject(diContainer.makeAppCoordinator())
                 .environmentObject(diContainer.makeGoalViewModel())
                 .environmentObject(diContainer.makeMilestoneViewModel())
+                .preferredColorScheme(.dark)
+                .topSafeAreaContent()
         }
     }
 }

@@ -13,19 +13,11 @@ struct MainView: View {
     @EnvironmentObject var milestoneVM: MilestoneViewModel
     
     var body: some View {
-        TabView {
-            HomeView()
-                .environmentObject(appCoordinator.makeHomeCoordinator())
-                .tabItem {
-                    Label("Goals", systemImage: "house")
-                }
-            
-            SettingsView()
-                .environmentObject(appCoordinator.makeSettingsCoordinator())
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
-                }
-        }
+        HomeView()
+            .environmentObject(appCoordinator.makeHomeCoordinator())
+            .tabItem {
+                Label("Goals", systemImage: "house")
+            }
     }
 }
 
