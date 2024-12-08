@@ -10,17 +10,19 @@ import SwiftUI
 
 struct AIProgressBar: View {
     let goal: Goal?
-    
     let initialMilestones: [Milestone]?
+    let showingPercentage: Bool
     
-    init(goal: Goal) {
+    init(goal: Goal, showingPercentage: Bool = false) {
         self.goal = goal
         self.initialMilestones = nil
+        self.showingPercentage = showingPercentage
     }
     
-    init(initialMilestones: [Milestone]){
+    init(initialMilestones: [Milestone], showingPercentage: Bool = false){
         self.goal = nil
         self.initialMilestones = initialMilestones
+        self.showingPercentage = showingPercentage
     }
     
     var segmentCount: Int {
@@ -35,32 +37,43 @@ struct AIProgressBar: View {
         milestones.sorted { $0.isCompleted && !$1.isCompleted }
     }
     
-    private let spacing: CGFloat = 4.0
+    var percentage: Double {
+        sortedMilestones.reduce(0) { $0 + ($1.isCompleted ? 1 : 0) } / Double(segmentCount)
+    }
+    
+    var percentageDesc: String {
+        String((percentage * 100).description.prefix(4))
+    }
     
     var body: some View {
-        GeometryReader { geometry in
-            let segmentWidth = (geometry.size.width - (CGFloat(segmentCount - 1) * spacing)) / CGFloat(segmentCount)
-            let segmentHeight = geometry.size.height
+        HStack(spacing: 0) {
+            if showingPercentage {
+                Text("\( milestones.isEmpty ? "0" : percentageDesc)%")
+                    .foregroundStyle(.aiLabel)
+                    .frame(maxWidth: 50, alignment: .leading)
+            }
             
-            HStack(spacing: spacing) {
-                if milestones.isEmpty {
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(goal?.isCompleted ?? false ? Color.green : Color.aiLightPink)
-                        .frame(width: segmentWidth, height: segmentHeight)
-                } else {
-                    ForEach(sortedMilestones) { milestone in
+            if milestones.isEmpty {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(goal?.isCompleted ?? false ? Color.green : Color.aiLabel)
+                    .frame(maxWidth: .infinity, maxHeight: 20)
+            } else {
+                HStack(spacing: 4) {
+                    ForEach(milestones) { milestone in
                         RoundedRectangle(cornerRadius: 15)
-                            .fill(milestone.isCompleted ? Color.green : Color.aiLightPink)
-                            .frame(width: segmentWidth, height: segmentHeight)
+                            .fill(milestone.isCompleted ? Color.green : Color.aiLabel)
+                            .frame(maxWidth: .infinity, maxHeight: 20)
+                            .layoutPriority(1)
                     }
                 }
+                .frame(maxWidth: .infinity)
             }
         }
-        .frame(height: 20) // D
-        .padding(.horizontal, 20)
+        .frame(height: 20)
     }
 }
 
 #Preview {
-    AIProgressBar(goal: .sample)
+    AIProgressBar(initialMilestones: [], showingPercentage: true)
+        .preferredColorScheme(.dark)
 }

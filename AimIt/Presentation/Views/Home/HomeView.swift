@@ -17,12 +17,16 @@ struct HomeView: View {
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             ScrollView{
-                VStack(spacing: 30) {
+                VStack(spacing: 20) {
                     AIHomeHeaderView()
                     AISearchBar(searchText: $searchText)
                     
-                   
+                    VStack(spacing: 20){
+                        AICardView(goal: Goal.sample)
+                        AICardView(goal: Goal.sample)
+                    }
                 }
+                .padding(.top, 10)
             }
             .background(UIConstants.backgroundColor)
         }

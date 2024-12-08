@@ -21,4 +21,15 @@ extension Milestone {
         isCompleted: true,
         goalID: Goal.sample.id
     )
+    
+    static var sampleMilestones: [Milestone] = [
+        sample,
+        sample,
+        Milestone(
+            id: UUID(),
+            desc: "Sample milestone",
+            isCompleted: false,
+            goalID: Goal.sample.id
+        )
+    ]
 }
