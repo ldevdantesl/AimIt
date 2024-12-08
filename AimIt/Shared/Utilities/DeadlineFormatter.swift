@@ -14,4 +14,18 @@ struct DeadlineFormatter {
         let formattedDate = formatter.string(from: date)
         return formattedDate
     }
+    
+    static func formatToOnlyDay(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d"
+        let formattedDate = formatter.string(from: date)
+        return formattedDate
+    }
+    
+    static func formatToOnlyWeekday(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        let formattedDate = formatter.string(from: date)
+        return formattedDate
+    }
 }

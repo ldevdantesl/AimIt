@@ -12,17 +12,19 @@ struct HomeView: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     
+    @State private var searchText: String = ""
+    
     var body: some View {
         NavigationStack(path: $coordinator.path) {
-            List{
-                ForEach(goalVM.goals, id: \.self) { goal in
-                    Button("\(goal.title)") {
-                        coordinator.navigateTo(screen: .goalDetails(goal))
-                    }
+            ScrollView{
+                VStack(spacing: 30) {
+                    AIHomeHeaderView()
+                    AISearchBar(searchText: $searchText)
+                    
+                   
                 }
             }
-            .navigationTitle("Goals: \(goalVM.goals.count)")
-            .setDestinationForGoal()
+            .background(UIConstants.backgroundColor)
         }
     }
 }
