@@ -18,7 +18,15 @@ struct HomeView: View {
         NavigationStack(path: $coordinator.path) {
             ScrollView{
                 VStack(spacing: 20) {
-                    AIHomeHeaderView()
+                    AIHeaderView(
+                        leftButton: AIButton(image: .back),
+                        rightButton: AIButton(
+                            image: .plus,
+                            action: { coordinator.navigateTo(screen: .addGoal) }
+                        ),
+                        title: "Good morning 🌥️",
+                        subtitle: "Buzurg Rahimzoda"
+                    )
                     AISearchBar(searchText: $searchText)
                     
                     VStack(spacing: 20){
@@ -29,6 +37,7 @@ struct HomeView: View {
                 .padding(.top, 10)
             }
             .background(UIConstants.backgroundColor)
+            .setDestinationsForHomeScreen()
         }
     }
 }

@@ -8,11 +8,17 @@
 import Foundation
 import SwiftUI
 
-struct NavigationDestinationForGoal: ViewModifier {
+struct NavigationDestinationForHomeScreens: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .navigationDestination(for: Goal.self) { goal in
-                GoalDetailsView(goal: goal)
+            .navigationDestination(for: HomeScreens.self) { screen in
+                switch screen {
+                case .addGoal:
+                    AddGoalView()
+                
+                default:
+                    EmptyView()
+                }
             }
     }
 }

@@ -27,25 +27,29 @@ struct AIButton: View {
     }
     
     var body: some View {
-        ZStack {
-            Circle()
-                .fill(.aiLabel.opacity(0.4))
-                .frame(width: 52, height: 52)
-                .zIndex(1)
-            
-            Circle()
-                .fill(.aiSecondBackground)
-                .frame(width: 45, height: 45)
-                .zIndex(2)
-            
-            makeImage()
-                .resizable()
-                .scaledToFit()
-                .frame(width: 25, height: 20)
-                .zIndex(2)
-                .foregroundStyle(.aiBlack)
+        Button{
+            action?()
+        } label: {
+            ZStack {
+                Circle()
+                    .fill(.aiLabel.opacity(0.4))
+                    .frame(width: 52, height: 52)
+                    .zIndex(1)
+                
+                Circle()
+                    .fill(.aiSecondBackground)
+                    .frame(width: 45, height: 45)
+                    .zIndex(2)
+                
+                makeImage()
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 25, height: 20)
+                    .zIndex(2)
+                    .foregroundStyle(.aiBlack)
+            }
+            .frame(width: 45, height: 45)
         }
-        .frame(width: 45, height: 45)
     }
     
     
