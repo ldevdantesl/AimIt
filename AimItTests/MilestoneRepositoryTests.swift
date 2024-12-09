@@ -39,7 +39,7 @@ final class MilestoneRepositoryTests: XCTestCase {
     }
     
     func testFetchingMilestonesForGoal() throws {
-        try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil)
+        try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil, milestones: [])
         let goal = try goalRepo.fetchGoals().first!
         try mileRepo.addMilestone(desc: "New milestone", systemImage: "", to: goal)
         XCTAssertTrue(milestones.isEmpty)
@@ -48,7 +48,7 @@ final class MilestoneRepositoryTests: XCTestCase {
     }
     
     func testUpdatingMilestone() throws {
-        try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil)
+        try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil, milestones: [])
         let goal = try goalRepo.fetchGoals().first!
         try mileRepo.addMilestone(desc: "New milestone", systemImage: "", to: goal)
         XCTAssertTrue(milestones.isEmpty)
@@ -63,7 +63,7 @@ final class MilestoneRepositoryTests: XCTestCase {
     }
     
     func testDeletingMilestone() throws {
-        try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil)
+        try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil, milestones: [])
         let goal = try goalRepo.fetchGoals().first!
         try mileRepo.addMilestone(desc: "New milestone", systemImage: "", to: goal)
         XCTAssertTrue(milestones.isEmpty)
@@ -76,7 +76,7 @@ final class MilestoneRepositoryTests: XCTestCase {
     }
     
     func testToggleMilestoneCompletion() throws {
-        try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil)
+        try goalRepo.addGoal(title: "New Goal", desc: "Wow", deadline: nil, milestones: [])
         let goal = try goalRepo.fetchGoals().first!
         try mileRepo.addMilestone(desc: "New milestone", systemImage: "", to: goal)
         XCTAssertTrue(milestones.isEmpty)

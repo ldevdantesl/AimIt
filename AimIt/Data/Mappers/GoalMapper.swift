@@ -18,7 +18,11 @@ struct GoalMapper {
             deadline: goal.deadline,
             createdAt: goal.createdAt,
             completedAt: goal.completedAt,
-            milestones: (goal.milestones as? Set<MilestoneEntity>)?.map { MilestoneMapper.toDomain($0) } ?? []
+            milestones: (goal.milestones as? Set<MilestoneEntity>)?.map {
+                MilestoneMapper.toDomain($0)
+            }.sorted(by: {
+                $0.isCompleted && !$1.isCompleted
+            }) ?? []
         )
     }
     

@@ -44,6 +44,7 @@ struct AIHeaderView: View {
                         .foregroundStyle(.aiLabel)
                         .lineLimit(1)
                 }
+                .padding(.horizontal, 10)
             } else {
                 Text(title)
                     .font(.system(.title3, design: .rounded, weight: .bold))

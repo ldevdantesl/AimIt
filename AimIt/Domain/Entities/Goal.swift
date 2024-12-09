@@ -9,13 +9,13 @@ import Foundation
 
 struct Goal: Identifiable, Codable, Hashable {
     let id: UUID
-    let title: String
-    let desc: String?
-    let isCompleted: Bool
-    let deadline: Date?
-    let createdAt: Date
-    let completedAt: Date?
-    let milestones: [Milestone]
+    var title: String
+    var desc: String?
+    var isCompleted: Bool
+    var deadline: Date?
+    var createdAt: Date
+    var completedAt: Date?
+    var milestones: [Milestone]
 }
 
 extension Goal {
@@ -27,6 +27,9 @@ extension Goal {
         deadline: .now,
         createdAt: Date(),
         completedAt: nil,
-        milestones: []
+        milestones: [
+            Milestone(id: UUID(), desc: "Milestone 1", systemImage: "bookmark", isCompleted: true, goalID: UUID()),
+            Milestone(id: UUID(), desc: "Milestone 2", systemImage: "house", isCompleted: false, goalID: UUID()),
+        ]
     )
 }

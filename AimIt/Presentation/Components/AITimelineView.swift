@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AITimelineView: View {
     var body: some View {
-        VStack(spacing: 30){
+        VStack(spacing: 10){
             HStack{
                 Text("Your Timeline")
                     .font(.system(.title3, design: .rounded, weight: .bold))

@@ -72,7 +72,6 @@ final class GoalViewModel: ObservableObject {
     func completeGoal(_ goal: Goal) {
         do {
             try toggleCompletionGoalUseCase.execute(goal, completing: true)
-            fetchGoals()
         } catch {
             errorMsg = "Error completing Goal: \(error.localizedDescription)"
         }
@@ -81,7 +80,6 @@ final class GoalViewModel: ObservableObject {
     func uncompleteGoal(_ goal: Goal) {
         do {
             try toggleCompletionGoalUseCase.execute(goal, completing: false)
-            fetchGoals()
         } catch {
             errorMsg = "Error uncompleting Goal: \(error.localizedDescription)"
         }

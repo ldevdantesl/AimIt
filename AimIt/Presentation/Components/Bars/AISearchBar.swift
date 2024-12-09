@@ -23,6 +23,10 @@ struct AISearchBar: View {
         .frame(height: 60)
         .focused($isFocused)
         .background(Color.aiSecondary, in: .rect(cornerRadius: 30))
+        .submitLabel(.done)
+        .onSubmit(of: .text){
+            isFocused = false
+        }
         .overlay(alignment: .leading) {
             if !isFocused{
                 Image(systemName: "magnifyingglass")

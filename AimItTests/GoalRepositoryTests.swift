@@ -35,13 +35,13 @@ final class GoalRepositoryTests: XCTestCase {
     }
     
     func testAdding() throws {
-        try goalRepository.addGoal(title: "AddingGoal", desc: nil, deadline: .now)
+        try goalRepository.addGoal(title: "AddingGoal", desc: nil, deadline: .now, milestones: [])
         goals = try goalRepository.fetchGoals()
         XCTAssertEqual(goals.count, 1)
     }
     
     func testRemoving() throws {
-        try goalRepository.addGoal(title: "RemovingGoal", desc: nil, deadline: .now)
+        try goalRepository.addGoal(title: "RemovingGoal", desc: nil, deadline: .now, milestones: [])
         goals = try goalRepository.fetchGoals()
         try goalRepository.deleteGoal(goals[0])
         goals = try goalRepository.fetchGoals()
@@ -49,7 +49,7 @@ final class GoalRepositoryTests: XCTestCase {
     }
     
     func testCompleting() throws {
-        try goalRepository.addGoal(title: "CompletionGoal", desc: nil, deadline: .now)
+        try goalRepository.addGoal(title: "CompletionGoal", desc: nil, deadline: .now, milestones: [])
         goals = try goalRepository.fetchGoals()
         XCTAssertFalse(goals[0].isCompleted)
         XCTAssertNil(goals[0].completedAt)
@@ -60,7 +60,7 @@ final class GoalRepositoryTests: XCTestCase {
     }
     
     func testUcompleting() throws {
-        try goalRepository.addGoal(title: "CompletionGoal", desc: nil, deadline: .now)
+        try goalRepository.addGoal(title: "CompletionGoal", desc: nil, deadline: .now, milestones: [])
         goals = try goalRepository.fetchGoals()
         XCTAssertFalse(goals[0].isCompleted)
         XCTAssertNil(goals[0].completedAt)
@@ -79,7 +79,7 @@ final class GoalRepositoryTests: XCTestCase {
         let desc = "Desc"
         let deadline = Date().addingTimeInterval(60)
         
-        try goalRepository.addGoal(title: title, desc: desc, deadline: deadline)
+        try goalRepository.addGoal(title: title, desc: desc, deadline: deadline, milestones: [])
         goals = try goalRepository.fetchGoals()
         
         XCTAssertEqual(goals[0].title, title)

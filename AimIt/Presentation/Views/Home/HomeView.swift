@@ -32,11 +32,21 @@ struct HomeView: View {
                     
                     AISearchBar(searchText: $searchText)
                     
+                    AITimelineView()
+                    
+                    HStack{
+                        AIQuoteWidget(quote: "Well done is better than well said")
+                        
+                        Spacer()
+                    }
                     AICardList(goals: goalVM.goals)
                 }
             }
             .background(UIConstants.backgroundColor)
             .setDestinationsForHomeScreen()
+            .onAppear{
+                goalVM.fetchGoals()
+            }
         }
     }
 }
