@@ -12,7 +12,7 @@ struct Milestone: Codable, Hashable, Identifiable {
     let desc: String
     let systemImage: String
     var isCompleted: Bool
-    let goalID: UUID
+    let goalID: Goal.ID
 }
 
 extension Milestone {

@@ -15,18 +15,20 @@ public class GoalEntity: NSManagedObject {
         return NSFetchRequest<GoalEntity>(entityName: "GoalEntity")
     }
 
-    @NSManaged public var id: UUID
-    @NSManaged public var title: String
-    @NSManaged public var desc: String?
-    @NSManaged public var deadline: Date?
-    @NSManaged public var category: String?
-    @NSManaged public var isCompleted: Bool
-    @NSManaged public var createdAt: Date
+    @NSManaged public var category: String
     @NSManaged public var completedAt: Date?
+    @NSManaged public var createdAt: Date
+    @NSManaged public var deadline: Date?
+    @NSManaged public var desc: String?
+    @NSManaged public var id: UUID
+    @NSManaged public var isCompleted: Bool
+    @NSManaged public var title: String
     @NSManaged public var milestones: NSSet?
+    @NSManaged public var workspace: WorkspaceEntity
+
 }
 
-extension GoalEntity: Identifiable{
+extension GoalEntity: Identifiable {
 
     @objc(addMilestonesObject:)
     @NSManaged public func addToMilestones(_ value: MilestoneEntity)
@@ -39,4 +41,5 @@ extension GoalEntity: Identifiable{
 
     @objc(removeMilestones:)
     @NSManaged public func removeFromMilestones(_ values: NSSet)
+
 }

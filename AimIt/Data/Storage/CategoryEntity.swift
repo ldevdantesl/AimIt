@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(CategoryEntity)
-public class CategoryEntity: NSManagedObject {
+public class CategoryEntity: NSManagedObject, Identifiable {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CategoryEntity> {
         return NSFetchRequest<CategoryEntity>(entityName: "CategoryEntity")
@@ -18,8 +18,4 @@ public class CategoryEntity: NSManagedObject {
 
     @NSManaged public var id: UUID
     @NSManaged public var name: String
-}
-
-extension CategoryEntity: Identifiable {
-    
 }

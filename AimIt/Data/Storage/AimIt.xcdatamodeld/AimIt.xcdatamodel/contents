@@ -13,13 +13,19 @@
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isCompleted" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
-        <relationship name="milestones" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MilestoneEntity" inverseName="goal" inverseEntity="MilestoneEntity"/>
+        <relationship name="milestones" toMany="YES" deletionRule="Nullify" destinationEntity="MilestoneEntity" inverseName="goal" inverseEntity="MilestoneEntity"/>
+        <relationship name="workspace" maxCount="1" deletionRule="Nullify" destinationEntity="WorkspaceEntity" inverseName="goals" inverseEntity="WorkspaceEntity"/>
     </entity>
     <entity name="MilestoneEntity" representedClassName="MilestoneEntity" syncable="YES">
         <attribute name="desc" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isCompleted" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="systemImage" attributeType="String"/>
-        <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="milestones" inverseEntity="GoalEntity"/>
+        <relationship name="goal" maxCount="1" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="milestones" inverseEntity="GoalEntity"/>
+    </entity>
+    <entity name="WorkspaceEntity" representedClassName="WorkspaceEntity" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="goals" toMany="YES" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="workspace" inverseEntity="GoalEntity"/>
     </entity>
 </model>

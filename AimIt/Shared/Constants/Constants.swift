@@ -8,5 +8,5 @@
 import Foundation
 
 enum Constants {
-    
+    static let COREDATA_MODEL = "AimIt"
 }

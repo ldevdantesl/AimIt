@@ -10,7 +10,18 @@ import SwiftUI
 
 final class DIContainer: ObservableObject {
     
-    private let CDstack = CoreDataStack(modelName: "AimIt")
+    private let CDstack = CoreDataStack(modelName: Constants.COREDATA_MODEL)
+    
+    func makeWorkspaceViewModel() -> WorkspaceViewModel {
+        let repository: WorkspaceRepository = WorkspaceRepositoryImpl(CDStack: CDstack)
+        
+        return WorkspaceViewModel(
+            addWorkspaceUseCase: AddWorkspaceUseCaseImpl(repository: repository),
+            fetchWorkspacesUseCase: FetchWorkspacesUseCaseImpl(repository: repository),
+            editWorkspaceUseCase: EditWorkspaceUseCaseImpl(repository: repository),
+            deleteWorkspaceUseCase: DeleteWorkspaceUseCaseImpl(repository: repository)
+        )
+    }
     
     func makeGoalViewModel() -> GoalViewModel {
         let repository: GoalRepository = GoalRepositoryImpl(CDstack: CDstack)

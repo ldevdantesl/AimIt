@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(MilestoneEntity)
-public class MilestoneEntity: NSManagedObject {
+public class MilestoneEntity: NSManagedObject, Identifiable{
     @nonobjc public class func fetchRequest() -> NSFetchRequest<MilestoneEntity> {
         return NSFetchRequest<MilestoneEntity>(entityName: "MilestoneEntity")
     }
@@ -20,8 +20,4 @@ public class MilestoneEntity: NSManagedObject {
     @NSManaged public var isCompleted: Bool
     @NSManaged public var systemImage: String
     @NSManaged public var goal: GoalEntity
-}
-
-extension MilestoneEntity : Identifiable {
-
 }
