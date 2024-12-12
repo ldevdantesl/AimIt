@@ -30,6 +30,9 @@ extension Goal {
         milestones: [
             Milestone(id: UUID(), desc: "Milestone 1", systemImage: "bookmark", isCompleted: true, goalID: UUID()),
             Milestone(id: UUID(), desc: "Milestone 2", systemImage: "house", isCompleted: false, goalID: UUID()),
+            Milestone(id: UUID(), desc: "Milestone 3", systemImage: "heart", isCompleted: false, goalID: UUID()),
+            Milestone(id: UUID(), desc: "Milestone 2", systemImage: "figure", isCompleted: true, goalID: UUID()),
+            Milestone(id: UUID(), desc: "Milestone 3", systemImage: "heart", isCompleted: false, goalID: UUID()),
         ]
     )
 }

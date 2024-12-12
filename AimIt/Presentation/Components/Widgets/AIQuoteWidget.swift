@@ -16,25 +16,20 @@ struct AIQuoteWidget: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5){
-            HStack{
-                Text("Quote: ")
-                    .font(.system(.headline, design: .rounded, weight: .bold))
-                    .foregroundStyle(.aiBlack)
-                    .fontDesign(.serif)
-                
-                Spacer()
-            }
-            Text(quote)
-                .foregroundStyle(.aiBlack)
-                .font(.system(.subheadline, design: .rounded, weight: .regular))
+            Text("Quote: ")
+                .font(.system(.headline, design: .rounded, weight: .bold))
+                .foregroundStyle(.aiLabel)
+                .fontDesign(.serif)
             
-            Spacer()
+            Text(quote)
+                .foregroundStyle(.aiLabel)
+                .font(.system(.subheadline, design: .rounded, weight: .regular))
         }
-        .padding([.top,.horizontal],20)
-        .frame(maxWidth: (UIConstants.screenWidth / 2) - 20)
-        .frame(maxHeight: UIConstants.screenHeight / 6)
-        .background(Color.aiSecondBackground, in: .rect(cornerRadius: 30))
-        .padding(.leading, 20)
+        .padding(15)
+        .frame(maxWidth: UIConstants.widgetWidth, alignment: .leading)
+        .frame(maxHeight: UIConstants.widgetHeight, alignment: .top)
+        .background(Color.aiOrange, in: .rect(cornerRadius: UIConstants.widgetCornerRadius))
+        .padding(.trailing, 20)
     }
 }
 

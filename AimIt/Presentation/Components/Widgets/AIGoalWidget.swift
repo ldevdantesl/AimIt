@@ -16,22 +16,29 @@ struct AIGoalWidget: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20){
+        VStack(alignment: .leading){
             Text(goal.title)
                 .font(.system(.headline, design: .rounded, weight: .semibold))
-                .foregroundStyle(.aiLabel)
+                .foregroundStyle(.aiBlack)
          
             milestonesList()
         }
+        .padding(15)
+        .frame(maxWidth: UIConstants.widgetWidth, alignment: .topLeading)
+        .frame(maxHeight: UIConstants.widgetHeight)
+        .background(Color.aiLabel, in: .rect(cornerRadius: UIConstants.widgetCornerRadius))
+        .padding(.leading, 20)
     }
     
     @ViewBuilder
     func milestonesList() -> some View {
-        VStack{
+        ScrollView{
             ForEach(goal.milestones) { milestone in
                 milestoneRow(milestone: milestone)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .scrollIndicators(.hidden)
     }
     
     @ViewBuilder
@@ -41,7 +48,7 @@ struct AIGoalWidget: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 20, height: 20)
-                .foregroundStyle(.aiLabel)
+                .foregroundStyle(.aiBlack)
             
             Text(milestone.desc)
                 .font(.system(.subheadline, design: .rounded, weight: .light))

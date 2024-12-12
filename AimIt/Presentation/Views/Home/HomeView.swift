@@ -34,12 +34,13 @@ struct HomeView: View {
                     
                     AITimelineView()
                     
-                    HStack{
-                        AIQuoteWidget(quote: "Well done is better than well said")
+                    HStack(alignment: .top){
+                        AIGoalWidget(goal: .sample)
                         
                         Spacer()
+                        
+                        AIQuoteWidget(quote: "Well done is better than well said. - Napoleon Bonaparte")
                     }
-                    AICardList(goals: goalVM.goals)
                 }
             }
             .background(UIConstants.backgroundColor)
