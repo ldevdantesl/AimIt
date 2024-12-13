@@ -10,6 +10,7 @@ import Foundation
 protocol GoalRepository {
     
     func addGoal(
+        to workspace: Workspace,
         title: String,
         desc: String?,
         deadline: Date?,

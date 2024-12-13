@@ -34,9 +34,21 @@ final class GoalViewModel: ObservableObject {
         fetchGoals()
     }
     
-    func addGoal(title: String, desc: String? = nil, deadline: Date?, milestones: [Milestone]) {
+    func addGoal(
+        to workspace: Workspace,
+        title: String,
+        desc: String? = nil,
+        deadline: Date?,
+        milestones: [Milestone]
+    ) {
         do {
-            try addGoalUseCase.execute(title: title, desc: desc, deadline: deadline, milestones: milestones)
+            try addGoalUseCase.execute(
+                to: workspace,
+                title: title,
+                desc: desc,
+                deadline: deadline,
+                milestones: milestones
+            )
             fetchGoals()
         } catch {
             errorMsg = "Error Adding Goal: \(error.localizedDescription)"
@@ -52,7 +64,12 @@ final class GoalViewModel: ObservableObject {
         }
     }
     
-    func editGoals(_ goal: Goal, title: String, desc: String? = nil, deadline: Date?) {
+    func editGoals(
+        _ goal: Goal,
+        title: String,
+        desc: String? = nil,
+        deadline: Date?
+    ) {
         do {
             try editGoalUseCase.execute(goal, newTitle: title, newDesc: desc, newDeadline: deadline)
             fetchGoals()

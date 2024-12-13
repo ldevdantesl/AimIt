@@ -17,6 +17,7 @@ final class GoalRepositoryImpl: GoalRepository {
     }
     
     func addGoal(
+        to workspace: Workspace,
         title: String,
         desc: String?,
         deadline: Date?,
@@ -42,6 +43,10 @@ final class GoalRepositoryImpl: GoalRepository {
         }
         
         newGoal.milestones = NSSet(array: milestoneEntities)
+        
+        let workspaceEntity = WorkspaceMapper.toEntity(workspace, context: CDstack.viewContext)
+        workspaceEntity.addToGoals(newGoal)
+        newGoal.workspace = workspaceEntity
         
         try saveContext()
     }

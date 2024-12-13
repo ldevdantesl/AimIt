@@ -9,6 +9,7 @@ import Foundation
 
 protocol AddGoalUseCase {
     func execute(
+        to workspace: Workspace,
         title: String,
         desc: String?,
         deadline: Date?,

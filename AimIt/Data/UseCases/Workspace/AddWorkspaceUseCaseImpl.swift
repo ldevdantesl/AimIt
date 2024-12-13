@@ -14,7 +14,7 @@ final class AddWorkspaceUseCaseImpl: AddWorkspaceUseCase {
         self.repository = repository
     }
     
-    func execute(title: String, goals: [Goal]) throws -> Workspace {
-        try repository.addWorkspace(title: title, goals: goals)
+    func execute(title: String) throws -> Workspace {
+        try repository.addWorkspace(title: title)
     }
 }

@@ -65,7 +65,6 @@ struct AddGoalView: View {
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 AIButton(title: "Create") {
-                    goalVM.addGoal(title: title, desc: desc, deadline: deadline, milestones: milestones)
                     coordinator.goBack()
                 }
             }

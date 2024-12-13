@@ -61,3 +61,31 @@ final class CoreDataStack {
         }
     }
 }
+
+extension CoreDataStack {
+    static func makeInMemoryCoreDataStack(modelName: String) -> CoreDataStack {
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+
+        let coreDataStack = CoreDataStack(modelName: modelName)
+        
+        let persistentStoreCoordinator = coreDataStack.persistentContainer.persistentStoreCoordinator
+        for store in persistentStoreCoordinator.persistentStores {
+            do {
+                try persistentStoreCoordinator.remove(store)
+            } catch {
+                fatalError("Failed to remove persistent store: \(error)")
+            }
+        }
+
+        coreDataStack.persistentContainer.persistentStoreDescriptions = [description]
+
+        coreDataStack.persistentContainer.loadPersistentStores { _, error in
+            guard error == nil else {
+                fatalError("Failed to load persistent stores: \(error!)")
+            }
+        }
+
+        return coreDataStack
+    }
+}

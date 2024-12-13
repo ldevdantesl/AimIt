@@ -46,9 +46,9 @@ final class WorkspaceViewModel: ObservableObject {
         storageManager.setValue(workspace, for: currentWorkspaceKey)
     }
     
-    func addWorkspace(title: String, goals: [Goal] = []){
+    func addWorkspace(title: String){
         do {
-            currentWorkspace = try addWorkspaceUseCase.execute(title: title, goals: goals)
+            currentWorkspace = try addWorkspaceUseCase.execute(title: title)
         } catch {
             errorMsg = "Error creating workspace: \(error.localizedDescription)"
             print(errorMsg ?? "")
