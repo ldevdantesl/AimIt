@@ -14,7 +14,7 @@
         <attribute name="isCompleted" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <relationship name="milestones" toMany="YES" deletionRule="Nullify" destinationEntity="MilestoneEntity" inverseName="goal" inverseEntity="MilestoneEntity"/>
-        <relationship name="workspace" maxCount="1" deletionRule="Nullify" destinationEntity="WorkspaceEntity" inverseName="goals" inverseEntity="WorkspaceEntity"/>
+        <relationship name="workspace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkspaceEntity" inverseName="goals" inverseEntity="WorkspaceEntity"/>
     </entity>
     <entity name="MilestoneEntity" representedClassName="MilestoneEntity" syncable="YES">
         <attribute name="desc" attributeType="String"/>

@@ -74,6 +74,6 @@ struct AddGoalView: View {
     NavigationStack{
         AddGoalView()
             .environmentObject(DIContainer().makeGoalViewModel())
-            .environmentObject(DIContainer().makeAppCoordinator().makeHomeCoordinator())
+            .environmentObject(HomeCoordinator())
     }
 }

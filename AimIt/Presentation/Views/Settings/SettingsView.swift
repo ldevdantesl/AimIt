@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var appCoordinator: AppCoordinator
-    
     var body: some View {
         Text("Settings")
     }
@@ -18,5 +16,4 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(DIContainer().makeAppCoordinator())
 }

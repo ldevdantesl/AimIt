@@ -11,6 +11,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
+    @EnvironmentObject var workspaceVM: WorkspaceViewModel
     
     @State private var searchText: String = ""
     
@@ -24,15 +25,16 @@ struct HomeView: View {
                             image: .plus,
                             backColor: .accentColor,
                             foreColor: .aiLabel,
-                            action: { coordinator.navigateTo(screen: .addGoal) }
+                            action: { coordinator.push(to: .addGoal) }
                         ),
                         title: "Good morning 🌥️",
                         subtitle: "Buzurg Rahimzoda"
                     )
                     
-                    AISearchBar(searchText: $searchText)
-                    
-                    AITimelineView()
+                    AISearchBar(
+                        searchText: $searchText,
+                        workspaceName: workspaceVM.currentWorkspace?.title ?? "Workspaces"
+                    )
                     
                     HStack(alignment: .top){
                         AIGoalWidget(goal: .sample)
@@ -44,7 +46,9 @@ struct HomeView: View {
                 }
             }
             .background(UIConstants.backgroundColor)
-            .setDestinationsForHomeScreen()
+            .navigationDestination(for: HomeScreens.self) { screen in
+                coordinator.build(screen: screen)
+            }
             .onAppear{
                 goalVM.fetchGoals()
             }
@@ -55,7 +59,8 @@ struct HomeView: View {
 #Preview {
     NavigationStack{
         HomeView()
-            .environmentObject(DIContainer().makeAppCoordinator().makeHomeCoordinator())
+            .environmentObject(HomeCoordinator())
             .environmentObject(DIContainer().makeGoalViewModel())
+            .environmentObject(DIContainer().makeWorkspaceViewModel())
     }
 }

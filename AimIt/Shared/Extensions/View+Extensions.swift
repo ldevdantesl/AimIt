@@ -9,10 +9,6 @@ import Foundation
 import SwiftUI
 
 extension View {
-    func setDestinationsForHomeScreen() -> some View {
-        self.modifier(NavigationDestinationForHomeScreens())
-    }
-    
     func topSafeAreaContent() -> some View {
         self.modifier(TopSafeAreaOverlay())
     }

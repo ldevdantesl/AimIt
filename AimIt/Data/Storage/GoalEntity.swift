@@ -24,7 +24,7 @@ public class GoalEntity: NSManagedObject {
     @NSManaged public var isCompleted: Bool
     @NSManaged public var title: String
     @NSManaged public var milestones: NSSet?
-    @NSManaged public var workspace: WorkspaceEntity
+    @NSManaged public var workspace: WorkspaceEntity?
 
 }
 

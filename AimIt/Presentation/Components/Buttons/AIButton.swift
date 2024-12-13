@@ -82,7 +82,7 @@ struct AIButton: View {
                             .foregroundStyle(foreColor)
                     }
                 }
-                .frame(width: 45, height: 45)
+                .frame(width: 40, height: 40)
             }
         }
     }

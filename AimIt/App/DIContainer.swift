@@ -47,8 +47,4 @@ final class DIContainer: ObservableObject {
             updateMilestoneUseCase: UpdateMilestoneUseCaseImpl(repository: repository)
         )
     }
-    
-    func makeAppCoordinator() -> AppCoordinator {
-        return AppCoordinator()
-    }
 }

@@ -12,7 +12,7 @@ struct GoalMapper {
     static func mapToDomain(from goal: GoalEntity) -> Goal {
         return Goal(
             id: goal.id,
-            workspaceID: goal.workspace.id,
+            workspaceID: goal.workspace?.id ?? UUID(),
             title: goal.title,
             desc: goal.desc,
             isCompleted: goal.isCompleted,

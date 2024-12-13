@@ -9,6 +9,8 @@ import Foundation
 import Combine
 
 final class WorkspaceViewModel: ObservableObject {
+    @Published var currentWorkspace: Workspace?
+    
     @Published var workspaces: [Workspace] = []
     @Published var errorMsg: String?
     

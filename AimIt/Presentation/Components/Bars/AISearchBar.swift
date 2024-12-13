@@ -12,10 +12,13 @@ struct AISearchBar: View {
     @Binding var searchText: String
     @FocusState var isFocused: Bool
     
+    let workspaceName: String
+    
+    
     var body: some View {
         
         TextField(text: $searchText) {
-            Text("Search your goal...")
+            Text("Search in \(workspaceName)...")
                 .foregroundStyle(.aiLabel)
         }
         .padding(.leading, isFocused ? 15 : 50)
@@ -43,5 +46,5 @@ struct AISearchBar: View {
 }
 
 #Preview {
-    AISearchBar(searchText: .constant(""))
+    AISearchBar(searchText: .constant(""), workspaceName: "Sd")
 }

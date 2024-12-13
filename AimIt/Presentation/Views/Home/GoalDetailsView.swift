@@ -99,7 +99,7 @@ struct GoalDetailsView: View {
     NavigationStack{
         GoalDetailsView(goal: .sample)
             .background(Color.aiBackground)
-            .environmentObject(DIContainer().makeAppCoordinator().makeHomeCoordinator())
+            .environmentObject(HomeCoordinator())
             .environmentObject(DIContainer().makeGoalViewModel())
     }
 }

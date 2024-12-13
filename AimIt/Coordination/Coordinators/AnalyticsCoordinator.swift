@@ -8,8 +8,12 @@
 import Foundation
 import SwiftUI
 
-final class AnalyticsCoordinator: ObservableObject, AnalyticsCoordinating {
+final class AnalyticsCoordinator: ObservableObject{
     @Published var path: NavigationPath = NavigationPath()
+    
+    func start() {
+        navigateTo(screen: .someScreen)
+    }
     
     func navigateTo(screen: AnalyticsScreens) {
         path.append(screen)

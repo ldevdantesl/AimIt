@@ -18,7 +18,7 @@ struct AICardView: View {
     }
     
     var body: some View {
-        Button(action: { coordinator.navigateTo(screen: .goalDetails(goal))}) {
+        Button(action: { coordinator.push(to: .goalDetails(goal))}) {
             VStack(alignment: .leading) {
                 HStack{
                     Image(systemName: "circle")
@@ -64,5 +64,5 @@ struct AICardView: View {
 #Preview {
     AICardView(goal: .sample)
         .preferredColorScheme(.dark)
-        .environmentObject(DIContainer().makeAppCoordinator().makeHomeCoordinator())
+        .environmentObject(HomeCoordinator())
 }

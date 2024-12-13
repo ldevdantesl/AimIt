@@ -9,5 +9,10 @@ import Foundation
 import SwiftUI
 
 protocol Coordinator{
+    associatedtype RootView: View
+    
     var path: NavigationPath { get set }
+    
+    @ViewBuilder
+    func start() -> RootView
 }

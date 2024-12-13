@@ -10,16 +10,17 @@ import SwiftUI
 @main
 struct AimItApp: App {
     @StateObject var diContainer: DIContainer = DIContainer()
+    @StateObject var appCoordinator: AppCoordinator = AppCoordinator()
     
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environmentObject(diContainer.makeAppCoordinator())
+            appCoordinator.start()
                 .environmentObject(diContainer.makeGoalViewModel())
                 .environmentObject(diContainer.makeMilestoneViewModel())
                 .environmentObject(diContainer.makeWorkspaceViewModel())
                 .preferredColorScheme(.dark)
                 .topSafeAreaContent()
+                .navigationBarBackButtonHidden()
         }
     }
 }

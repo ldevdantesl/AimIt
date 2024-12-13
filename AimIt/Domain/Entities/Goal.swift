@@ -9,7 +9,7 @@ import Foundation
 
 struct Goal: Identifiable, Codable, Hashable {
     let id: UUID
-    var workspaceID: Workspace.ID
+    var workspaceID: UUID
     var title: String
     var desc: String?
     var isCompleted: Bool
@@ -22,7 +22,7 @@ struct Goal: Identifiable, Codable, Hashable {
 extension Goal {
     static var sample = Goal(
         id: UUID(),
-        workspaceID: UUID(),
+        workspaceID: Workspace.sample.id,
         title: "Learn UIKit",
         desc: "Finish UIKit till next week and learn SwiftUI",
         isCompleted: false,
