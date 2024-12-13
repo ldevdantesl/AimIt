@@ -21,15 +21,9 @@ struct AICardView: View {
         Button(action: { coordinator.push(to: .goalDetails(goal))}) {
             VStack(alignment: .leading) {
                 HStack{
-                    Image(systemName: "circle")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
-                        .foregroundStyle(.aiLabel)
-                    
                     Text(goal.title)
                         .font(.system(.title3, design: .rounded, weight: .bold))
-                        .foregroundStyle(.aiLabel)
+                        .foregroundStyle(.aiBlack)
                         .lineLimit(1)
                     
                     Spacer()
@@ -37,13 +31,13 @@ struct AICardView: View {
                     if let deadline = goal.deadline {
                         Text(DeadlineFormatter.formatToDayMonth(date: deadline))
                             .font(.system(.subheadline, design: .rounded, weight: .semibold))
-                            .foregroundStyle(.aiLabel)
+                            .foregroundStyle(.aiBlack)
                     }
                 }
                 
                 Text(goal.desc ?? "")
                     .font(.system(.caption, design: .rounded, weight: .bold))
-                    .foregroundStyle(.aiLabel.opacity(0.8))
+                    .foregroundStyle(.aiBlack.opacity(0.8))
                     .lineLimit(2)
                 
                 Spacer()
@@ -53,10 +47,10 @@ struct AICardView: View {
             }
             .padding([.horizontal, .top], 20)
             .frame(maxWidth: .infinity)
-            .frame(maxHeight: 130)
-            .background(Color.aiSecondary, in: .rect(cornerRadius: 15))
+            .frame(maxHeight: 140)
+            .background(Color.aiLabel, in: .rect(cornerRadius: 15))
             .padding(.horizontal)
-            .shadow(color: .aiLabel.opacity(0.2), radius: 2, x: 0, y: 1)
+            .shadow(color: .aiSecondary2.opacity(0.2), radius: 2, x: 0, y: 1)
         }
     }
 }

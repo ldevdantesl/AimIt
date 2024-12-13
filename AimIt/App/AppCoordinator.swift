@@ -20,16 +20,17 @@ final class AppCoordinator: ObservableObject {
     
     private var isFirstLaunchKey = ConstantKeys.isFirstLaunchKey
     
-    private var homeCoordinator: HomeCoordinator
-    private var settingsCoordinator: SettingsCoordinator
+    private lazy var homeCoordinator: HomeCoordinator = {
+        HomeCoordinator()
+    }()
+    
+    private lazy var settingsCoordinator: SettingsCoordinator = {
+        SettingsCoordinator()
+    }()
+    
     private lazy var launchCoordinator: LaunchCoordinator = {
         LaunchCoordinator(onFinish: self.finishLaunch)
     }()
-    
-    init() {
-        self.homeCoordinator = HomeCoordinator()
-        self.settingsCoordinator = SettingsCoordinator()
-    }
     
     @ViewBuilder
     func start() -> some View {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddGoalView: View {
     @EnvironmentObject var goalVM: GoalViewModel
+    @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     
     @State private var title: String = ""
@@ -19,22 +20,23 @@ struct AddGoalView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 30){
+            VStack(spacing: 20){
                 AIHeaderView(
                     leftButton: AIButton(image: .back, action: coordinator.goBack),
                     rightButton: AIButton(image: .ellipsis),
-                    title: "New Goal"
+                    title: "New Goal",
+                    subtitle: "For \(workspaceVM.currentWorkspace?.title ?? "Workspace")"
                 )
             
                 AITextField(
                     titleName: "Title*",
-                    placeholder: "Prepare for test",
+                    placeholder: "Example: Prepare for test ...",
                     text: $title
                 )
                 
                 AITextField(
                     titleName: "Description",
-                    placeholder: "Prepare for first part and ...",
+                    placeholder: "Example: Prepare for first part and ...",
                     text: $desc,
                     axis: .vertical
                 )
@@ -48,7 +50,7 @@ struct AddGoalView: View {
                     
                     AITextField(
                         titleName: "Category",
-                        placeholder: "Sport",
+                        placeholder: "Example: Study",
                         text: $category,
                         width: UIConstants.halfWidth
                     )
@@ -64,6 +66,7 @@ struct AddGoalView: View {
             ToolbarItem(placement: .bottomBar) {
                 AIButton(title: "Create") {
                     goalVM.addGoal(title: title, desc: desc, deadline: deadline, milestones: milestones)
+                    coordinator.goBack()
                 }
             }
         }
@@ -75,5 +78,6 @@ struct AddGoalView: View {
         AddGoalView()
             .environmentObject(DIContainer().makeGoalViewModel())
             .environmentObject(HomeCoordinator())
+            .environmentObject(DIContainer().makeWorkspaceViewModel())
     }
 }

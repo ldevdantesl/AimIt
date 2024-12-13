@@ -28,13 +28,16 @@ struct HomeView: View {
                             action: { coordinator.push(to: .addGoal) }
                         ),
                         title: "Good morning 🌥️",
-                        subtitle: "Buzurg Rahimzoda"
+                        subtitle: "Buzurgmehr Rahimzoda"
                     )
                     
                     AISearchBar(
                         searchText: $searchText,
                         workspaceName: workspaceVM.currentWorkspace?.title ?? "Workspaces"
                     )
+                    .padding(.bottom, 5)
+                    
+                    AIWorkspaceSelector()
                     
                     HStack(alignment: .top){
                         AIGoalWidget(goal: .sample)
@@ -43,6 +46,12 @@ struct HomeView: View {
                         
                         AIQuoteWidget(quote: "Well done is better than well said. - Napoleon Bonaparte")
                     }
+                    
+                    AICardView(goal: .sample)
+                    
+                    AICardView(goal: .sample)
+                    
+                    AICardView(goal: .sample)
                 }
             }
             .background(UIConstants.backgroundColor)

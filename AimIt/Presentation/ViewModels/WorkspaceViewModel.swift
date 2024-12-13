@@ -14,6 +14,10 @@ final class WorkspaceViewModel: ObservableObject {
     @Published var workspaces: [Workspace] = []
     @Published var errorMsg: String?
     
+    private let currentWorkspaceKey = ConstantKeys.currentWorkspaceKey
+    
+    private let storageManager: StorageManager
+    
     private let addWorkspaceUseCase: AddWorkspaceUseCase
     private let fetchWorkspacesUseCase: FetchWorkspacesUseCase
     private let editWorkspaceUseCase: EditWorkspaceUseCase
@@ -23,17 +27,28 @@ final class WorkspaceViewModel: ObservableObject {
         addWorkspaceUseCase: AddWorkspaceUseCase,
         fetchWorkspacesUseCase: FetchWorkspacesUseCase,
         editWorkspaceUseCase: EditWorkspaceUseCase,
-        deleteWorkspaceUseCase: DeleteWorkspaceUseCase
+        deleteWorkspaceUseCase: DeleteWorkspaceUseCase,
+        storageManager: StorageManager = UserDefaultsStorageManager()
     ) {
         self.addWorkspaceUseCase = addWorkspaceUseCase
         self.fetchWorkspacesUseCase = fetchWorkspacesUseCase
         self.editWorkspaceUseCase = editWorkspaceUseCase
         self.deleteWorkspaceUseCase = deleteWorkspaceUseCase
+        self.storageManager = storageManager
+        fetchWorkspaces()
+    }
+    
+    func getCurrentWorkspace() {
+        currentWorkspace = storageManager.getValue(for: currentWorkspaceKey)
+    }
+    
+    func setCurrentWorkspace(_ workspace: Workspace) {
+        storageManager.setValue(workspace, for: currentWorkspaceKey)
     }
     
     func addWorkspace(title: String, goals: [Goal] = []){
         do {
-            try addWorkspaceUseCase.execute(title: title, goals: goals)
+            currentWorkspace = try addWorkspaceUseCase.execute(title: title, goals: goals)
         } catch {
             errorMsg = "Error creating workspace: \(error.localizedDescription)"
             print(errorMsg ?? "")
@@ -43,6 +58,7 @@ final class WorkspaceViewModel: ObservableObject {
     func fetchWorkspaces(){
         do {
             self.workspaces = try fetchWorkspacesUseCase.execute()
+            getCurrentWorkspace()
         } catch {
             errorMsg = "Error fetching workspaces: \(error.localizedDescription)"
             print(errorMsg ?? "")

@@ -23,13 +23,13 @@ struct AIProgressBar: View {
         HStack(spacing: 10) {
             if goal.milestones.isEmpty {
                 RoundedRectangle(cornerRadius: 15)
-                    .fill(goal.isCompleted ? Color.aiOrange : Color.aiLabel)
+                    .fill(goal.isCompleted ? Color.accentColor : Color.aiLightPink)
                     .frame(maxWidth: .infinity, maxHeight: 20)
             } else {
                 HStack(spacing: 4) {
                     ForEach(goal.milestones) { milestone in
                         RoundedRectangle(cornerRadius: 15)
-                            .fill(milestone.isCompleted ? Color.aiOrange : Color.aiLabel)
+                            .fill(milestone.isCompleted ? Color.accentColor : Color.aiLightPink)
                             .frame(maxWidth: .infinity, maxHeight: 20)
                             .layoutPriority(1)
                     }

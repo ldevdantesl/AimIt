@@ -9,4 +9,5 @@ import Foundation
 
 enum ConstantKeys {
     static let isFirstLaunchKey = "isFirstLaunch"
+    static let currentWorkspaceKey = "currentWorkspace"
 }

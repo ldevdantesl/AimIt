@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AddWorkspaceUseCase {
-    func execute(title: String, goals: [Goal]) throws
+    func execute(title: String, goals: [Goal]) throws -> Workspace
 }

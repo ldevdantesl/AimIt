@@ -22,13 +22,15 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         return entities.map { WorkspaceMapper.toDomain($0) }
     }
     
-    func addWorkspace(title: String, goals: [Goal]) throws {
+    func addWorkspace(title: String, goals: [Goal]) throws -> Workspace{
         let newWorkspace = WorkspaceEntity(context: CDStack.viewContext)
         newWorkspace.id = UUID()
         newWorkspace.title = title
         newWorkspace.goals = NSSet(array: goals)
         
         try CDStack.saveContext()
+        
+        return WorkspaceMapper.toDomain(newWorkspace)
     }
     
     func deleteWorkspace(_ workspace: Workspace) throws {
