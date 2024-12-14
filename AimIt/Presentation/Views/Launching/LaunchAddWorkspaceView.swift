@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddWorkspaceView: View {
+struct LaunchAddWorkspaceView: View {
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     
     var onFinish: (() -> ())
@@ -17,8 +17,7 @@ struct AddWorkspaceView: View {
     var body: some View {
         ScrollView {
             AIHeaderView(
-                leftButton: AIButton(image: .back),
-                title: "Add Your",
+                title: "Add Your First",
                 subtitle: "Workspace"
             )
             
@@ -40,7 +39,7 @@ struct AddWorkspaceView: View {
 
 #Preview {
     NavigationStack{
-        AddWorkspaceView(onFinish: {})
+        LaunchAddWorkspaceView(onFinish: {})
             .environmentObject(DIContainer().makeWorkspaceViewModel())
     }
 }

@@ -18,6 +18,7 @@ final class DIContainer: ObservableObject {
         return WorkspaceViewModel(
             addWorkspaceUseCase: AddWorkspaceUseCaseImpl(repository: repository),
             fetchWorkspacesUseCase: FetchWorkspacesUseCaseImpl(repository: repository),
+            fetchCurrentWorkspaceUseCase: FetchCurrentWorkspaceUseCaseImpl(repository: repository),
             editWorkspaceUseCase: EditWorkspaceUseCaseImpl(repository: repository),
             deleteWorkspaceUseCase: DeleteWorkspaceUseCaseImpl(repository: repository)
         )

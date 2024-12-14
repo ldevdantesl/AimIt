@@ -34,11 +34,11 @@ struct GoalDetailsView: View {
                 subtitle: "\(goal.title)"
             )
             
-            Spacer(minLength: 30)
+            Spacer(minLength: 20)
             
-            AIInfoField(title: "Title", info: goal.title)
+            AIInfoField(title: "Title", info: goal.title, infoFontStyle: .headline)
             
-            Spacer(minLength: 30)
+            Spacer(minLength: 20)
             
             if let description = goal.desc, !description.isEmpty {
                 AIInfoField(
@@ -47,37 +47,22 @@ struct GoalDetailsView: View {
                     infoFontStyle: .headline,
                     infoForeColor: .aiSecondary2
                 )
-                Spacer(minLength: 30)
+                Spacer(minLength: 20)
             }
             
             
-            if let deadline = goal.deadline {
-                AIInfoField(
-                    title: "Deadline",
-                    info: DeadlineFormatter.formatToDayMonth(date: deadline)
-                )
-                Spacer(minLength: 30)
-            }
+            AIInfoField(
+                title: "Deadline",
+                info: "\(DeadlineFormatter.formatToDayMonth(goal.deadline)) - \(DeadlineFormatter.formatToDaysLeft(goal.deadline))",
+                infoFontStyle: .headline,
+                infoForeColor: DeadlineFormatter.threeDaysLeft(goal.deadline) ? .red : .aiLabel
+            )
             
-            LazyVStack(spacing: 20){
-                HStack{
-                    Text("Milestones")
-                        .font(.system(.headline, design: .rounded, weight: .light))
-                        .foregroundStyle(.aiSecondary2)
-                        
-                    Spacer()
-                    
-                    Image(systemName: "line.3.horizontal.decrease")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
-                        .foregroundStyle(.aiLabel)
-                }
-                .padding(.horizontal, 20)
-                ForEach(goal.milestones) { milestone in
-                    AIMilestonesCardView(milestone: milestone)
-                }
-            }
+            Spacer(minLength: 30)
+            
+            
+            AIGoalMilestonesList(goal: $goal)
+                .padding(.bottom, 20)
         }
         .background(Color.aiBackground)
         .toolbar(.hidden, for: .navigationBar)

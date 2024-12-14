@@ -13,7 +13,7 @@ struct Goal: Identifiable, Codable, Hashable {
     var title: String
     var desc: String?
     var isCompleted: Bool
-    var deadline: Date?
+    var deadline: Date
     var createdAt: Date
     var completedAt: Date?
     var milestones: [Milestone]

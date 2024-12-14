@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IntroView: View {
+struct LaunchIntroView: View {
     @EnvironmentObject var coordinator: LaunchCoordinator
     
     var body: some View {
@@ -38,6 +38,6 @@ struct IntroView: View {
 }
 
 #Preview {
-    IntroView()
+    LaunchIntroView()
         .environmentObject(LaunchCoordinator(onFinish: {}))
 }

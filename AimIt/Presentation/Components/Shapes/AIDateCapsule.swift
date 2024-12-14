@@ -22,10 +22,10 @@ struct AIDateCapsule: View {
                 .frame(width: 65, height: 75)
             
             VStack(alignment: .center){
-                Text(DeadlineFormatter.formatToOnlyDay(date: date))
+                Text(DeadlineFormatter.formatToOnlyDay(date))
                     .font(.system(.title3, design: .rounded, weight: .bold))
                 
-                Text(DeadlineFormatter.formatToOnlyWeekday(date: date).prefix(3))
+                Text(DeadlineFormatter.formatToOnlyWeekday(date).prefix(3))
                     .font(.system(.headline, design: .rounded, weight: .semibold))
             }
             .foregroundStyle(.aiLabel)

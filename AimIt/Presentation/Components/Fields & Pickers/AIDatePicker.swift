@@ -37,7 +37,7 @@ struct AIDatePicker: View {
             .padding(.leading, 10)
             
             HStack{
-                Text(DeadlineFormatter.formatToDayMonth(date: chosenDate))
+                Text(DeadlineFormatter.formatToDayMonth(chosenDate))
                     .foregroundStyle(.aiLabel)
                     .font(.system(.headline, design: .rounded, weight: .light))
                 
@@ -63,7 +63,7 @@ struct AIDatePicker: View {
                 DatePicker(
                     "",
                     selection: $chosenDate,
-                    in: Date()...,
+                    in: Calendar.current.date(byAdding: .day, value: 1, to: Date())!...,
                     displayedComponents: .date
                 )
                 .datePickerStyle(.graphical)

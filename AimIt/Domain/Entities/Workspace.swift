@@ -18,7 +18,7 @@ extension Workspace {
         id: UUID(),
         title: "Sample Workspace",
         goals: [
-            Goal(id: UUID(), workspaceID: UUID(), title: "Some Goal", isCompleted: false, createdAt: .now, milestones: [])
+            Goal(id: UUID(), workspaceID: UUID(), title: "Some Goal", isCompleted: false, deadline: .now, createdAt: .now, milestones: [])
         ]
     )
 }

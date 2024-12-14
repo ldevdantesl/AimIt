@@ -20,24 +20,18 @@ struct AIProgressBar: View {
     }
     
     var body: some View {
-        HStack(spacing: 10) {
-            if goal.milestones.isEmpty {
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(goal.isCompleted ? Color.accentColor : Color.aiLightPink)
-                    .frame(maxWidth: .infinity, maxHeight: 20)
-            } else {
-                HStack(spacing: 4) {
-                    ForEach(goal.milestones) { milestone in
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(milestone.isCompleted ? Color.accentColor : Color.aiLightPink)
-                            .frame(maxWidth: .infinity, maxHeight: 20)
-                            .layoutPriority(1)
-                    }
+        if !goal.milestones.isEmpty {
+            HStack(spacing: 4) {
+                ForEach(goal.milestones) { milestone in
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(milestone.isCompleted ? Color.accentColor : Color.aiLightPink)
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .layoutPriority(1)
                 }
-                .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity)
+            .frame(height: 20)
         }
-        .frame(height: 20)
     }
 }
 

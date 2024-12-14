@@ -20,7 +20,7 @@ struct AIAddMilestoneView: View {
     
     var body: some View {
         VStack{
-            HStack{
+            HStack(alignment: .bottom){
                 Text("Milestones")
                     .font(.system(.headline, design: .rounded, weight: .light))
                     .foregroundStyle(.aiSecondary2)
@@ -34,11 +34,11 @@ struct AIAddMilestoneView: View {
                 .background(Color.aiLabel)
                 .padding(.vertical, 10)
             
-            AIMilestoneList(milestones: $milestones)
+            AIMilestoneCreationList(milestones: $milestones)
         }
         .padding(.horizontal, 20)
         .sheet(isPresented: $isAddingMilestone) {
-            CreateMilestoneView(goalTitle: goalTitle, milestones: $milestones)
+            HomeCreateMilestoneView(goalTitle: goalTitle, milestones: $milestones)
         }
     }
 }

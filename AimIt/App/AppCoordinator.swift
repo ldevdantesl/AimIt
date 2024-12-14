@@ -41,8 +41,10 @@ final class AppCoordinator: ObservableObject {
                     .transition(.slide)
             case .authenticated:
                 homeCoordinator.start()
+                    .transition(.move(edge: .leading))
             case .unauthenticated:
                 launchCoordinator.start()
+                    .transition(.move(edge: .trailing))
             }
         }
         .animation(.bouncy, value: appState)
@@ -57,7 +59,8 @@ final class AppCoordinator: ObservableObject {
     
     private func checkAuthentication() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let isFirstLaunch = UserDefaults.standard.bool(forKey: self.isFirstLaunchKey)
+            let isFirstLaunch = UserDefaults.standard.object(forKey: self.isFirstLaunchKey) == nil ?
+            true : UserDefaults.standard.bool(forKey: self.isFirstLaunchKey)
             self.appState = isFirstLaunch ? .unauthenticated : .authenticated
         }
     }

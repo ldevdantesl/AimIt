@@ -19,7 +19,7 @@ final class LaunchCoordinator: ObservableObject, Coordinator {
     
     @ViewBuilder
     func start() -> some View {
-        IntroView()
+        LaunchIntroView()
             .environmentObject(self)
     }
     
@@ -27,9 +27,10 @@ final class LaunchCoordinator: ObservableObject, Coordinator {
     func build(screen: LaunchScreens) -> some View {
         switch screen {
         case .intro:
-            IntroView()
+            LaunchIntroView()
         case .addWorkspace:
-            AddWorkspaceView(onFinish: onFinish)
+            LaunchAddWorkspaceView(onFinish: onFinish)
+                .navigationBarBackButtonHidden()
         }
     }
     

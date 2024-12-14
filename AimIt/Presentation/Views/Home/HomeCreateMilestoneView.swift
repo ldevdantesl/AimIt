@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateMilestoneView: View {
+struct HomeCreateMilestoneView: View {
     @Environment(\.dismiss) var dismiss
 
     @State private var title: String = ""
@@ -72,7 +72,7 @@ struct CreateMilestoneView: View {
 
 #Preview {
     NavigationStack{
-        CreateMilestoneView(goalTitle: "Some shitty stuf likejri sdjfif jisod jfio", milestones: .constant([]))
+        HomeCreateMilestoneView(goalTitle: "Some shitty stuf likejri sdjfif jisod jfio", milestones: .constant([]))
             .background(Color.aiBackground)
             .environmentObject(DIContainer().makeMilestoneViewModel())
     }

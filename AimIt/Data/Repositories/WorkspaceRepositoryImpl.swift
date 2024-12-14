@@ -22,6 +22,17 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         return entities.map { WorkspaceMapper.toDomain($0) }
     }
     
+    func fetchCurrentWorkspace(by id: UUID) throws -> Workspace {
+        let request: NSFetchRequest<WorkspaceEntity> = WorkspaceEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        let workspaces = try CDStack.viewContext.fetch(request)
+        guard let workspace = workspaces.first else {
+            throw NSError(domain: "Workspace with this id is not found", code: -10)
+        }
+        
+        return WorkspaceMapper.toDomain(workspace)
+    }
+    
     func addWorkspace(title: String) throws -> Workspace{
         let newWorkspace = WorkspaceEntity(context: CDStack.viewContext)
         newWorkspace.id = UUID()

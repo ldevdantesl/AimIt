@@ -6,7 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
-enum HomeSheets {
-    case none
+enum HomeSheets: Identifiable {
+    case addWorkspace
+    
+    var id: UUID { UUID() }
 }

@@ -33,33 +33,34 @@ struct HomeView: View {
                     
                     AISearchBar(
                         searchText: $searchText,
-                        workspaceName: workspaceVM.currentWorkspace?.title ?? "Workspaces"
+                        workspaceName: workspaceVM.currentWorkspace.title
                     )
                     .padding(.bottom, 5)
                     
                     AIWorkspaceSelector()
                     
                     HStack(alignment: .top){
-                        AIGoalWidget(goal: .sample)
+                        AIGoalWidget(workspace: workspaceVM.currentWorkspace)
                         
                         Spacer()
                         
                         AIQuoteWidget(quote: "Well done is better than well said. - Napoleon Bonaparte")
                     }
                     
-                    AICardView(goal: .sample)
-                    
-                    AICardView(goal: .sample)
-                    
-                    AICardView(goal: .sample)
+                    AIGoalCardList(goals: workspaceVM.currentWorkspace.goals)
                 }
             }
             .background(UIConstants.backgroundColor)
+            .animation(.bouncy, value: workspaceVM.currentWorkspace)
+            .sheet(item: $coordinator.sheet) { sheet in
+                coordinator.build(sheet: sheet)
+            }
             .navigationDestination(for: HomeScreens.self) { screen in
                 coordinator.build(screen: screen)
             }
-            .onAppear{
+            .onAppear {
                 goalVM.fetchGoals()
+                workspaceVM.fetchCurrentWorkspace()
             }
         }
     }

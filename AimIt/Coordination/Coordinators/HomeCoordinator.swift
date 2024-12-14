@@ -24,7 +24,7 @@ final class HomeCoordinator: ObservableObject, Coordinator {
         switch screen {
             
         case .addGoal:
-            AddGoalView()
+            HomeAddGoalView()
             
         case .goalDetails(let goal):
             GoalDetailsView(goal: goal)
@@ -35,7 +35,16 @@ final class HomeCoordinator: ObservableObject, Coordinator {
     }
     
     @ViewBuilder
-    func build(sheet: HomeSheets) -> some View { }
+    func build(sheet: HomeSheets) -> some View {
+        NavigationStack{
+            switch sheet {
+            case .addWorkspace:
+                HomeAddWorkspaceView()
+                    .presentationDetents([.fraction(1/3), .fraction(1/2)])
+                    .presentationBackground(Color.aiBackground)
+            }
+        }
+    }
     
     func present(sheet: HomeSheets) {
         self.sheet = sheet

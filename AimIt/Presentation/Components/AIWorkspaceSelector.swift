@@ -9,51 +9,65 @@ import SwiftUI
 
 struct AIWorkspaceSelector: View {
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
+    @EnvironmentObject var coordinator: HomeCoordinator
     
     @State private var isSelecting: Bool = false
     
     var body: some View {
-        VStack(spacing: 20){
-            HStack{
-                VStack(alignment: .leading){
-                    Text("Current workspace")
-                        .font(.system(.caption, design: .rounded, weight: .light))
-                        .foregroundStyle(.aiSecondary2)
-                    
-                    Text(workspaceVM.currentWorkspace?.title ?? "Workspace")
-                        .font(.system(.title2, design: .rounded, weight: .semibold))
-                        .foregroundStyle(.aiLabel)
-                }
-                Spacer()
-                
-                Button(action: { isSelecting.toggle() }){
-                    Image(systemName: isSelecting ? "xmark" : "chevron.down")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 15, height: 20)
-                        .foregroundStyle(.aiSecondary2)
-                }
-            }
-            .animation(.easeIn, value: isSelecting)
+        VStack(spacing: 10){
+            
+            AIInfoField(
+                title: "Current workspace",
+                info: workspaceVM.currentWorkspace.title,
+                infoFontStyle: .title2,
+                buttonSystemImage: isSelecting ? "chevron.up" : "chevron.down",
+                buttonColor: .aiSecondary2,
+                buttonSize: 15,
+                buttonAction: { isSelecting.toggle() }
+            )
+            .animation(.bouncy, value: isSelecting)
             
             if isSelecting {
-                if workspaceVM.workspaces.count > 1 {
+                VStack(spacing: 20){
                     ForEach(workspaceVM.workspaces, id: \.self) { workspace in
-                        Button {
-                            workspaceVM.setCurrentWorkspace(workspace)
-                        } label: {
-                            Text(workspace.title)
+                        if workspace.title != workspaceVM.currentWorkspace.title {
+                            Button {
+                                workspaceVM.currentWorkspace = workspace
+                                isSelecting.toggle()
+                            } label: {
+                                HStack{
+                                    AIInfoField(
+                                        title: "\(workspace.goals.count) goals",
+                                        info: workspace.title,
+                                        infoFontStyle: .headline,
+                                        infoForeColor: .accentColor
+                                    )
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "arrow.right")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 15, height: 15)
+                                        .foregroundStyle(.aiSecondary2)
+                                        .padding(.horizontal, 20)
+                                }
+                            }
                         }
                     }
-                } else {
-                    Text("No other workspaces")
-                        .font(.system(.headline, design: .rounded, weight: .semibold))
-                        .foregroundStyle(.aiSecondary2)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Button {
+                        coordinator.present(sheet: .addWorkspace)
+                        isSelecting.toggle()
+                    } label: {
+                        Text("+ New Workspace")
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .font(.system(.headline, design: .rounded, weight: .semibold))
+                            .padding(.horizontal, 20)
+                    }
                 }
             }
         }
-        .padding(.horizontal, 20)
     }
 }
 
@@ -62,4 +76,5 @@ struct AIWorkspaceSelector: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
         .environmentObject(DIContainer().makeWorkspaceViewModel())
+        .environmentObject(HomeCoordinator())
 }

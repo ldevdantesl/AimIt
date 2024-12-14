@@ -20,7 +20,6 @@ struct AimItApp: App {
                 .environmentObject(diContainer.makeWorkspaceViewModel())
                 .preferredColorScheme(.dark)
                 .topSafeAreaContent()
-                .navigationBarBackButtonHidden()
         }
     }
 }

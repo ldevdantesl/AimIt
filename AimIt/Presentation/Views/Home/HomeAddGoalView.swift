@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct AddGoalView: View {
+struct HomeAddGoalView: View {
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     
     @State private var title: String = ""
     @State private var desc: String = ""
-    @State private var deadline: Date = .now
+    @State private var deadline: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
     @State private var category: String = ""
     @State private var milestones: [Milestone] = []
     
@@ -25,18 +25,18 @@ struct AddGoalView: View {
                     leftButton: AIButton(image: .back, action: coordinator.goBack),
                     rightButton: AIButton(image: .ellipsis),
                     title: "New Goal",
-                    subtitle: "For \(workspaceVM.currentWorkspace?.title ?? "Workspace")"
+                    subtitle: "For \(workspaceVM.currentWorkspace.title)"
                 )
             
                 AITextField(
                     titleName: "Title*",
-                    placeholder: "Example: Prepare for test ...",
+                    placeholder: "Prepare for test ...",
                     text: $title
                 )
                 
                 AITextField(
                     titleName: "Description",
-                    placeholder: "Example: Prepare for first part and ...",
+                    placeholder: "Prepare for first part and ...",
                     text: $desc,
                     axis: .vertical
                 )
@@ -50,7 +50,7 @@ struct AddGoalView: View {
                     
                     AITextField(
                         titleName: "Category",
-                        placeholder: "Example: Study",
+                        placeholder: "Study",
                         text: $category,
                         width: UIConstants.halfWidth
                     )
@@ -65,6 +65,14 @@ struct AddGoalView: View {
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 AIButton(title: "Create") {
+                    goalVM.addGoal(
+                        to: workspaceVM.currentWorkspace,
+                        title: title,
+                        desc: desc,
+                        deadline: deadline,
+                        milestones: milestones
+                    )
+        
                     coordinator.goBack()
                 }
             }
@@ -74,7 +82,7 @@ struct AddGoalView: View {
 
 #Preview {
     NavigationStack{
-        AddGoalView()
+        HomeAddGoalView()
             .environmentObject(DIContainer().makeGoalViewModel())
             .environmentObject(HomeCoordinator())
             .environmentObject(DIContainer().makeWorkspaceViewModel())

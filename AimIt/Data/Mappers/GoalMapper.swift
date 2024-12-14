@@ -16,7 +16,7 @@ struct GoalMapper {
             title: goal.title,
             desc: goal.desc,
             isCompleted: goal.isCompleted,
-            deadline: goal.deadline,
+            deadline: goal.deadline ?? Date(),
             createdAt: goal.createdAt,
             completedAt: goal.completedAt,
             milestones: (goal.milestones as? Set<MilestoneEntity>)?.map {

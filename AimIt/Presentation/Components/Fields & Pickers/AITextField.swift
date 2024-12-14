@@ -46,7 +46,7 @@ struct AITextField: View {
             .padding(.leading, 10)
             
             TextField(text: $text, axis: axis) {
-                Text(placeholder)
+                Text("Example: \(placeholder)")
                     .foregroundStyle(.aiSecondary2)
             }
             .padding()
