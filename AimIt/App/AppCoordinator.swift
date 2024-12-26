@@ -44,7 +44,7 @@ final class AppCoordinator: ObservableObject {
                     .transition(.move(edge: .leading))
             case .unauthenticated:
                 launchCoordinator.start()
-                    .transition(.move(edge: .trailing))
+                    .transition(.move(edge: .leading))
             }
         }
         .animation(.bouncy, value: appState)
