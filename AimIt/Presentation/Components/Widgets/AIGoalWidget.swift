@@ -15,7 +15,7 @@ struct AIGoalWidget: View {
     
     var goal: Goal? {
         return workspace.goals.max {
-            $0.milestones.filter { $0.isCompleted }.count < $1.milestones.filter { $0.isCompleted }.count
+            $0.milestones.count < $1.milestones.count
         }
     }
     
@@ -34,6 +34,7 @@ struct AIGoalWidget: View {
                         .foregroundStyle(.aiBlack)
                         .lineLimit(1)
                     milestonesList()
+                    Spacer()
                 } else {
                     Text("No goals")
                         .font(.system(.headline, design: .rounded, weight: .semibold))
@@ -56,15 +57,21 @@ struct AIGoalWidget: View {
     @ViewBuilder
     func milestonesList() -> some View {
         if let goal = goal {
-            ScrollView{
-                LazyVStack(spacing: 2){
-                    ForEach(goal.milestones) { milestone in
-                        milestoneRow(milestone: milestone)
+            if goal.milestones.isEmpty {
+                Text("No Milestones")
+                    .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                    .foregroundStyle(.aiSecondary2)
+            } else {
+                ScrollView{
+                    LazyVStack(spacing: 2){
+                        ForEach(goal.milestones) { milestone in
+                            milestoneRow(milestone: milestone)
+                        }
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .scrollIndicators(.hidden)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            .scrollIndicators(.hidden)
         }
     }
     
