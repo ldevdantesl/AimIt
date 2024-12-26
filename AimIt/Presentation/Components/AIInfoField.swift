@@ -11,6 +11,7 @@ import SwiftUI
 struct AIInfoField: View {
     let title: String
     let titleFontStyle: Font.TextStyle
+    let titleForeColor: Color
     
     let info: String
     let infoFontStyle: Font.TextStyle
@@ -24,12 +25,14 @@ struct AIInfoField: View {
     init(
         title: String,
         titleFontStyle: Font.TextStyle = .subheadline,
+        titleForeColor: Color = .aiSecondary2,
         info: String,
         infoFontStyle: Font.TextStyle = .title2,
         infoForeColor: Color = .aiLabel
     ) {
         self.title = title
         self.titleFontStyle = titleFontStyle
+        self.titleForeColor = titleForeColor
         self.info = info
         self.infoFontStyle = infoFontStyle
         self.infoForeColor = infoForeColor
@@ -42,6 +45,7 @@ struct AIInfoField: View {
     init(
         title: String,
         titleFontStyle: Font.TextStyle = .headline,
+        titleForeColor: Color = .aiSecondary2,
         info: String,
         infoFontStyle: Font.TextStyle = .title2,
         infoForeColor: Color = .aiLabel,
@@ -52,6 +56,7 @@ struct AIInfoField: View {
     ) {
         self.title = title
         self.titleFontStyle = titleFontStyle
+        self.titleForeColor = titleForeColor
         self.info = info
         self.infoFontStyle = infoFontStyle
         self.infoForeColor = infoForeColor
@@ -67,7 +72,7 @@ struct AIInfoField: View {
             VStack(alignment: .leading){
                 Text(title)
                     .font(.system(titleFontStyle, design: .rounded, weight: .light))
-                    .foregroundStyle(.aiSecondary2)
+                    .foregroundStyle(titleForeColor)
                 
                 Text("\(info)")
                     .font(.system(infoFontStyle, design: .rounded, weight: .semibold))

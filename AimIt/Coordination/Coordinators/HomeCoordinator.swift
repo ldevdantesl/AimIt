@@ -40,8 +40,12 @@ final class HomeCoordinator: ObservableObject, Coordinator {
             switch sheet {
             case .addWorkspace:
                 HomeAddWorkspaceView()
-                    .presentationDetents([.fraction(1/3), .fraction(1/2)])
-                    .presentationBackground(Color.aiBackground)
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.visible)
+            case .quote(let quoteVM):
+                AIQuoteSheet(quoteVM: quoteVM)
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.visible)
             }
         }
     }

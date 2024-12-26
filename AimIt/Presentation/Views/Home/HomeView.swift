@@ -12,6 +12,7 @@ struct HomeView: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
+    @EnvironmentObject var quoteVM: QuoteViewModel
     
     @State private var searchText: String = ""
     
@@ -44,7 +45,11 @@ struct HomeView: View {
                         
                         Spacer()
                         
-                        AIQuoteWidget(quote: "Well done is better than well said. - Napoleon Bonaparte")
+                        
+                        AIQuoteWidget(quote: quoteVM.randomQuote)
+                            .onTapGesture {
+                                coordinator.present(sheet: .quote(quoteVM))
+                            }
                     }
                     
                     AIGoalCardList(goals: workspaceVM.currentWorkspace.goals)
@@ -72,5 +77,6 @@ struct HomeView: View {
             .environmentObject(HomeCoordinator())
             .environmentObject(DIContainer().makeGoalViewModel())
             .environmentObject(DIContainer().makeWorkspaceViewModel())
+            .environmentObject(DIContainer().makeQuoteViewModel())
     }
 }

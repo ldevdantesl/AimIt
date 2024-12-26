@@ -48,4 +48,8 @@ final class DIContainer: ObservableObject {
             updateMilestoneUseCase: UpdateMilestoneUseCaseImpl(repository: repository)
         )
     }
+    
+    func makeQuoteViewModel() -> QuoteViewModel {
+        return QuoteViewModel()
+    }
 }

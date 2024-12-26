@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct AIQuoteWidget: View {
-    let quote: String
+    private let quote: Quote
     
-    init(quote: String) {
+    init(quote: Quote) {
         self.quote = quote
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5){
-            Text("Quote: ")
-                .font(.system(.headline, design: .rounded, weight: .bold))
+            Text(quote.author)
+                .font(.system(.subheadline, design: .rounded, weight: .bold))
                 .foregroundStyle(.aiLabel)
                 .fontDesign(.serif)
             
-            Text(quote)
+            Text(quote.quote)
                 .foregroundStyle(.aiLabel)
                 .font(.system(.subheadline, design: .rounded, weight: .regular))
         }
@@ -35,5 +35,6 @@ struct AIQuoteWidget: View {
 
 #Preview {
     AIQuoteWidget(
-        quote: "Some quote")
+        quote: Quote(id: 0, quote: "", author: "")
+    )
 }
