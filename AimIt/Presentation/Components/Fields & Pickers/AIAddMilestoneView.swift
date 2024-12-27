@@ -13,11 +13,6 @@ struct AIAddMilestoneView: View {
     
     let goalTitle: String
     
-    init(goalTitle: String, milestones: Binding<[Milestone]>) {
-        self.goalTitle = goalTitle
-        self._milestones = milestones
-    }
-    
     var body: some View {
         VStack{
             HStack(alignment: .bottom){
@@ -44,7 +39,7 @@ struct AIAddMilestoneView: View {
 }
 
 #Preview {
-    AIAddMilestoneView(goalTitle: "Some ", milestones: .constant(Milestone.sampleMilestones))
+    AIAddMilestoneView(milestones: .constant(Milestone.sampleMilestones), goalTitle: "Some")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
 }

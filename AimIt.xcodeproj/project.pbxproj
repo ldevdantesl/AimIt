@@ -136,6 +136,8 @@
 		DA51905C2D1E06FB00A5E896 /* SystemImageCategory.json in Resources */ = {isa = PBXBuildFile; fileRef = DA518FD12D1E06FB00A5E896 /* SystemImageCategory.json */; };
 		DA51905F2D1E07BF00A5E896 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51905E2D1E07BF00A5E896 /* QuoteViewModel.swift */; };
 		DA5190612D1E0B2300A5E896 /* AIQuoteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190602D1E0B2300A5E896 /* AIQuoteSheet.swift */; };
+		DA5190652D1E766500A5E896 /* HomeScreenCovers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190642D1E766500A5E896 /* HomeScreenCovers.swift */; };
+		DA5190692D1E76C400A5E896 /* EditGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190682D1E76C400A5E896 /* EditGoalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -269,6 +271,8 @@
 		DA518FDD2D1E06FB00A5E896 /* AimIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AimIt.xcdatamodel; sourceTree = "<group>"; };
 		DA51905E2D1E07BF00A5E896 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		DA5190602D1E0B2300A5E896 /* AIQuoteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIQuoteSheet.swift; sourceTree = "<group>"; };
+		DA5190642D1E766500A5E896 /* HomeScreenCovers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCovers.swift; sourceTree = "<group>"; };
+		DA5190682D1E76C400A5E896 /* EditGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalView.swift; sourceTree = "<group>"; };
 		DA9E0D3C2D011CBF00E80B34 /* AimIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -327,6 +331,7 @@
 		DA518F3D2D1E06FB00A5E896 /* Coordination */ = {
 			isa = PBXGroup;
 			children = (
+				DA5190632D1E765600A5E896 /* ScreenCovers */,
 				DA518F342D1E06FB00A5E896 /* Coordinators */,
 				DA518F392D1E06FB00A5E896 /* Screens */,
 				DA518F3B2D1E06FB00A5E896 /* Sheets */,
@@ -663,6 +668,7 @@
 		DA518FBA2D1E06FB00A5E896 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				DA5190672D1E76B800A5E896 /* ScreenCovers */,
 				DA5190622D1E0DA000A5E896 /* Sheets */,
 				DA518FB52D1E06FB00A5E896 /* GoalDetailsView.swift */,
 				DA518FB62D1E06FB00A5E896 /* HomeAddGoalView.swift */,
@@ -820,6 +826,22 @@
 			path = Sheets;
 			sourceTree = "<group>";
 		};
+		DA5190632D1E765600A5E896 /* ScreenCovers */ = {
+			isa = PBXGroup;
+			children = (
+				DA5190642D1E766500A5E896 /* HomeScreenCovers.swift */,
+			);
+			path = ScreenCovers;
+			sourceTree = "<group>";
+		};
+		DA5190672D1E76B800A5E896 /* ScreenCovers */ = {
+			isa = PBXGroup;
+			children = (
+				DA5190682D1E76C400A5E896 /* EditGoalView.swift */,
+			);
+			path = ScreenCovers;
+			sourceTree = "<group>";
+		};
 		DA9E0D332D011CBF00E80B34 = {
 			isa = PBXGroup;
 			children = (
@@ -933,6 +955,7 @@
 				DA518FF02D1E06FB00A5E896 /* WorkspaceEntity.swift in Sources */,
 				DA518FF12D1E06FB00A5E896 /* GoalMapper.swift in Sources */,
 				DA518FF22D1E06FB00A5E896 /* MilestoneMapper.swift in Sources */,
+				DA5190692D1E76C400A5E896 /* EditGoalView.swift in Sources */,
 				DA518FF32D1E06FB00A5E896 /* WorkspaceMapper.swift in Sources */,
 				DA518FF42D1E06FB00A5E896 /* GoalRepositoryImpl.swift in Sources */,
 				DA518FF52D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift in Sources */,
@@ -1000,6 +1023,7 @@
 				DA5190332D1E06FB00A5E896 /* AITextField.swift in Sources */,
 				DA5190342D1E06FB00A5E896 /* AIGoalCardList.swift in Sources */,
 				DA5190352D1E06FB00A5E896 /* AIGoalMilestonesList.swift in Sources */,
+				DA5190652D1E766500A5E896 /* HomeScreenCovers.swift in Sources */,
 				DA5190362D1E06FB00A5E896 /* AIMilestoneCreationList.swift in Sources */,
 				DA5190372D1E06FB00A5E896 /* AIDateCapsule.swift in Sources */,
 				DA5190382D1E06FB00A5E896 /* AIGoalWidget.swift in Sources */,

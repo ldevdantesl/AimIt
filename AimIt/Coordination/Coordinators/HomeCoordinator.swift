@@ -12,6 +12,7 @@ final class HomeCoordinator: ObservableObject, Coordinator {
     @Published var path: NavigationPath = NavigationPath()
     
     @Published var sheet: HomeSheets?
+    @Published var fullScreenCover: HomeScreenCovers?
     
     @ViewBuilder
     func start() -> some View {
@@ -26,8 +27,8 @@ final class HomeCoordinator: ObservableObject, Coordinator {
         case .addGoal:
             HomeAddGoalView()
             
-        case .goalDetails(let goal):
-            GoalDetailsView(goal: goal)
+        case .goalDetails:
+            GoalDetailsView()
             
         default:
             EmptyView()
@@ -50,12 +51,27 @@ final class HomeCoordinator: ObservableObject, Coordinator {
         }
     }
     
+    @ViewBuilder
+    func build(fullScreenCover: HomeScreenCovers) -> some View {
+        NavigationStack{
+            switch fullScreenCover {
+            case .editGoal:
+                EditGoalView()
+            }
+        }
+    }
+    
     func present(sheet: HomeSheets) {
         self.sheet = sheet
     }
     
+    func present(fullScreenCover: HomeScreenCovers) {
+        self.fullScreenCover = fullScreenCover
+    }
+    
     func dismiss() {
         self.sheet = nil
+        self.fullScreenCover = nil
     }
     
     func push(to screen: HomeScreens) {

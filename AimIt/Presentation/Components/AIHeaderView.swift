@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AIHeaderView: View {
     
-    let leftButton: AIButton
-    let rightButton: AIButton
+    private let leftButton: AIButton
+    private let rightButton: AIButton
     
-    let title: String
-    let subtitle: String?
+    private let title: String
+    private let subtitle: String?
     
     init(
         leftButton: AIButton = AIButton(image: .empty),
@@ -23,24 +23,27 @@ struct AIHeaderView: View {
     ) {
         self.leftButton = leftButton
         self.rightButton = rightButton
+    
         self.title = title
         self.subtitle = subtitle
     }
     
     var body: some View {
         HStack{
-            leftButton
-            Spacer()
+            if leftButton.image != .empty {
+                leftButton
+                Spacer()
+            }
             
             if let subtitle = subtitle {
-                VStack(alignment: .center) {
+                VStack(alignment: leftButton.image == .empty ? .leading : .center) {
                     Text(title)
                         .font(.system(.subheadline, design: .rounded, weight: .light))
                         .foregroundStyle(.aiSecondary2)
                         .lineLimit(1)
                     
                     Text(subtitle)
-                        .font(.system(.headline, design: .rounded, weight: .semibold))
+                        .font(.system(leftButton.image == .empty ? .title3 : .headline, design: .rounded, weight: .semibold))
                         .foregroundStyle(.aiLabel)
                         .lineLimit(1)
                 }
@@ -60,5 +63,5 @@ struct AIHeaderView: View {
 }
 
 #Preview {
-    AIHeaderView(leftButton: AIButton(image: .back), rightButton: AIButton(image: .plus), title: "Good morning 🌥️", subtitle: "Buzurg Rahimzoda")
+    AIHeaderView(rightButton: AIButton(image: .plus), title: "Good morning 🌥️", subtitle: "Buzurg Rahimzoda")
 }

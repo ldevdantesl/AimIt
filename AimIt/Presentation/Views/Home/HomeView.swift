@@ -60,6 +60,9 @@ struct HomeView: View {
             .sheet(item: $coordinator.sheet) { sheet in
                 coordinator.build(sheet: sheet)
             }
+            .fullScreenCover(item: $coordinator.fullScreenCover) { screen in
+                coordinator.build(fullScreenCover: screen)
+            }
             .navigationDestination(for: HomeScreens.self) { screen in
                 coordinator.build(screen: screen)
             }

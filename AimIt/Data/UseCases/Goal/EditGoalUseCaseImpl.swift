@@ -14,7 +14,12 @@ final class EditGoalUseCaseImpl: EditGoalUseCase {
         self.repository = repository
     }
 
-    func execute(_ goal: Goal, newTitle: String?, newDesc: String?, newDeadline: Date?) throws {
+    func execute(
+        _ goal: Goal,
+        newTitle: String?,
+        newDesc: String?,
+        newDeadline: Date?
+    ) throws {
         try repository.editGoal(goal, newTitle: newTitle, newDesc: newDesc, newDeadline: newDeadline)
     }
 }

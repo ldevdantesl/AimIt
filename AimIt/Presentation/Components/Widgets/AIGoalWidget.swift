@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AIGoalWidget: View {
     @EnvironmentObject var coordinator: HomeCoordinator
+    @EnvironmentObject var goalVM: GoalViewModel
     
     let workspace: Workspace
     
@@ -22,7 +23,8 @@ struct AIGoalWidget: View {
     var body: some View {
         Button {
             if let goal = goal {
-                coordinator.push(to: .goalDetails(goal))
+                goalVM.selectedGoal = goal
+                coordinator.push(to: .goalDetails)
             } else {
                 coordinator.push(to: .addGoal)
             }
@@ -100,4 +102,5 @@ struct AIGoalWidget: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
         .environmentObject(HomeCoordinator())
+        .environmentObject(DIContainer().makeGoalViewModel())
 }

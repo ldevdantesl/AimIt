@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MilestoneRepository {
-    func addMilestone(desc: String, systemImage: String, to goal: Goal) throws
+    func addMilestone(desc: String, systemImage: String, completed: Bool, to goal: Goal) throws
     func updateMilestone(_ milestone: Milestone, desc: String?, systemImage: String?) throws
     func deleteMilestone(_ milestone: Milestone) throws
     func fetchMilestones(for goal: Goal) throws -> [Milestone]

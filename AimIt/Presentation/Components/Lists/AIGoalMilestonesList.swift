@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct AIGoalMilestonesList: View {
-    @Binding var goal: Goal
+    @EnvironmentObject var goalVM: GoalViewModel
     
     @State private var sortType: (Milestone, Milestone) -> Bool = { $0.isCompleted && !$1.isCompleted }
     
     var milestonesFiltered: [Milestone] {
-        goal.milestones.sorted(by: sortType)
+        goalVM.selectedGoal.milestones.sorted(by: sortType)
     }
     
     var body: some View {
-        if !goal.milestones.isEmpty {
+        if !goalVM.selectedGoal.milestones.isEmpty {
             LazyVStack(spacing: 20){
                 HStack{
                     Text("Milestones")
@@ -47,7 +47,7 @@ struct AIGoalMilestonesList: View {
 }
 
 #Preview {
-    AIGoalMilestonesList(goal: .constant(.sample))
+    AIGoalMilestonesList()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 enum HomeScreens: Hashable {
-    case goalDetails(Goal)
+    case goalDetails
     case goalMilestones(Milestone)
     case addGoal
     case addMilestoneToGoal(Goal)

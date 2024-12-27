@@ -41,22 +41,13 @@ struct HomeAddGoalView: View {
                     axis: .vertical
                 )
                 
-                HStack {
-                    AIDatePicker(
-                        titleName: "Due Date*",
-                        widthSize: UIConstants.halfWidth,
-                        chosenDate: $deadline
-                    )
-                    
-                    AITextField(
-                        titleName: "Category",
-                        placeholder: "Study",
-                        text: $category,
-                        width: UIConstants.halfWidth
-                    )
-                }
+                AIDatePicker(
+                    titleName: "Deadline*",
+                    widthSize: UIConstants.halfWidth,
+                    chosenDate: $deadline
+                )
                 
-                AIAddMilestoneView(goalTitle: title, milestones: $milestones)
+                AIAddMilestoneView(milestones: $milestones, goalTitle: title)
             }
             .padding(.vertical, 10)
         }

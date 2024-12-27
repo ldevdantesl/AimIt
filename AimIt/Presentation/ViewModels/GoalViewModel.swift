@@ -8,9 +8,12 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 final class GoalViewModel: ObservableObject {
     @Published var goals: [Goal] = []
     @Published var errorMsg: String?
+    
+    @Published var selectedGoal: Goal = Goal.sample
     
     private let addGoalUseCase: AddGoalUseCase
     private let deleteGoalUseCase: DeleteGoalUseCase
@@ -34,50 +37,7 @@ final class GoalViewModel: ObservableObject {
         fetchGoals()
     }
     
-    func addGoal(
-        to workspace: Workspace,
-        title: String,
-        desc: String? = nil,
-        deadline: Date?,
-        milestones: [Milestone]
-    ) {
-        do {
-            try addGoalUseCase.execute(
-                to: workspace,
-                title: title,
-                desc: desc,
-                deadline: deadline,
-                milestones: milestones
-            )
-            fetchGoals()
-        } catch {
-            errorMsg = "Error Adding Goal: \(error.localizedDescription)"
-        }
-    }
-    
-    func deleteGoal(_ goal: Goal) {
-        do {
-            try deleteGoalUseCase.execute(goal)
-            fetchGoals()
-        } catch {
-            errorMsg = "Error deleting Goal: \(error.localizedDescription)"
-        }
-    }
-    
-    func editGoals(
-        _ goal: Goal,
-        title: String,
-        desc: String? = nil,
-        deadline: Date?
-    ) {
-        do {
-            try editGoalUseCase.execute(goal, newTitle: title, newDesc: desc, newDeadline: deadline)
-            fetchGoals()
-        } catch {
-            errorMsg = "Error editing Goal: \(error.localizedDescription)"
-        }
-    }
-    
+    // MARK: - FETCHING
     func fetchGoals() {
         do {
             goals = try fetchGoalsUseCase.execute()
@@ -86,19 +46,64 @@ final class GoalViewModel: ObservableObject {
         }
     }
     
+    // MARK: - ADDING
+    func addGoal(
+        to workspace: Workspace,
+        title: String,
+        desc: String? = nil,
+        deadline: Date?,
+        milestones: [Milestone]
+    ) {
+        handleUseCase(errorMessage: "Error Adding Goal", fetchAfter: true) {
+            try addGoalUseCase.execute(
+                to: workspace,
+                title: title,
+                desc: desc,
+                deadline: deadline,
+                milestones: milestones
+            )
+        }
+    }
+    
+    // MARK: - EDITING
+    func editGoals(
+        _ goal: Goal,
+        title: String,
+        desc: String? = nil,
+        deadline: Date?
+    ) {
+        handleUseCase(errorMessage: "Error editing Goal", fetchAfter: true) {
+            try editGoalUseCase.execute(goal, newTitle: title, newDesc: desc, newDeadline: deadline)
+        }
+    }
+    
+    // MARK: - DELETING
+    func deleteGoal(_ goal: Goal) {
+        handleUseCase(errorMessage: "Error deleting Goal", fetchAfter: true) {
+            try deleteGoalUseCase.execute(goal)
+        }
+    }
+    
+    // MARK: - COMPLETION
     func completeGoal(_ goal: Goal) {
-        do {
+        handleUseCase(errorMessage: "Error completing Goal:") {
             try toggleCompletionGoalUseCase.execute(goal, completing: true)
-        } catch {
-            errorMsg = "Error completing Goal: \(error.localizedDescription)"
         }
     }
     
     func uncompleteGoal(_ goal: Goal) {
-        do {
+        handleUseCase(errorMessage: "Error uncompleting Goal:") {
             try toggleCompletionGoalUseCase.execute(goal, completing: false)
-        } catch {
-            errorMsg = "Error uncompleting Goal: \(error.localizedDescription)"
+        }
+    }
+    
+    // MARK: - PRIVATE FUNCTIONS
+    private func handleUseCase(errorMessage: String, fetchAfter: Bool = false, action: () throws -> ()) {
+        do {
+            try action()
+            fetchAfter ? fetchGoals() : ()
+        } catch  {
+            self.errorMsg = "\(errorMessage): \(error.localizedDescription)"
         }
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 final class DIContainer: ObservableObject {
     
     private let CDstack = CoreDataStack(modelName: Constants.COREDATA_MODEL)

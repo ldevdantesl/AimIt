@@ -12,12 +12,6 @@ struct GoalDetailsView: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     
-    @State var goal: Goal
-    
-    init(goal: Goal) {
-        self.goal = goal
-    }
-    
     var body: some View {
         ScrollView{
             AIHeaderView(
@@ -28,19 +22,22 @@ struct GoalDetailsView: View {
                 rightButton: AIButton(
                     image: .edit,
                     backColor: .accentColor,
-                    foreColor: .aiLabel
+                    foreColor: .aiLabel,
+                    action: {
+                        coordinator.present(fullScreenCover: .editGoal)
+                    }
                 ),
                 title: "Goal",
-                subtitle: "\(goal.title)"
+                subtitle: "\(goalVM.selectedGoal.title)"
             )
             
             Spacer(minLength: 20)
             
-            AIInfoField(title: "Title", info: goal.title, infoFontStyle: .headline)
+            AIInfoField(title: "Title", info: goalVM.selectedGoal.title, infoFontStyle: .headline)
             
             Spacer(minLength: 20)
             
-            if let description = goal.desc, !description.isEmpty {
+            if let description = goalVM.selectedGoal.desc, !description.isEmpty {
                 AIInfoField(
                     title: "Description",
                     info: description,
@@ -53,24 +50,22 @@ struct GoalDetailsView: View {
             
             AIInfoField(
                 title: "Deadline",
-                info: "\(DeadlineFormatter.formatToDayMonth(goal.deadline)) - \(DeadlineFormatter.formatToDaysLeft(goal.deadline))",
+                info: "\(DeadlineFormatter.formatToDayMonth(goalVM.selectedGoal.deadline)) - \(DeadlineFormatter.formatToDaysLeft(goalVM.selectedGoal.deadline))",
                 infoFontStyle: .headline,
-                infoForeColor: DeadlineFormatter.threeDaysLeft(goal.deadline) ? .red : .aiLabel
+                infoForeColor: DeadlineFormatter.threeDaysLeft(goalVM.selectedGoal.deadline) ? .red : .aiLabel
             )
             
             Spacer(minLength: 30)
             
-            
-            AIGoalMilestonesList(goal: $goal)
+            AIGoalMilestonesList()
                 .padding(.bottom, 20)
         }
         .background(Color.aiBackground)
         .toolbar(.hidden, for: .navigationBar)
         .toolbar{
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: goal.isCompleted ? "Uncomplete" : "Complete") {
-                    goal.isCompleted ? goalVM.uncompleteGoal(goal) : goalVM.completeGoal(goal)
-                    goal.isCompleted.toggle()
+                AIButton(title: goalVM.selectedGoal.isCompleted ? "Uncomplete" : "Complete") {
+                    goalVM.selectedGoal.isCompleted ? goalVM.uncompleteGoal(goalVM.selectedGoal) : goalVM.completeGoal(goalVM.selectedGoal)
                 }
             }
         }
@@ -82,7 +77,7 @@ struct GoalDetailsView: View {
 
 #Preview {
     NavigationStack{
-        GoalDetailsView(goal: .sample)
+        GoalDetailsView()
             .background(Color.aiBackground)
             .environmentObject(HomeCoordinator())
             .environmentObject(DIContainer().makeGoalViewModel())

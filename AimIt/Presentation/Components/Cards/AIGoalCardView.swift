@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AIGoalCardView: View {
     @EnvironmentObject var coordinator: HomeCoordinator
+    @EnvironmentObject var goalVM: GoalViewModel
     
     var goal: Goal
     
@@ -18,7 +19,10 @@ struct AIGoalCardView: View {
     }
     
     var body: some View {
-        Button(action: { coordinator.push(to: .goalDetails(goal))}) {
+        Button(action: {
+            goalVM.selectedGoal = goal;
+            coordinator.push(to: .goalDetails)
+        } ) {
             VStack(alignment: .leading) {
                 HStack{
                     Text(goal.title)
@@ -58,4 +62,5 @@ struct AIGoalCardView: View {
     AIGoalCardView(goal: .sample)
         .preferredColorScheme(.dark)
         .environmentObject(HomeCoordinator())
+        .environmentObject(DIContainer().makeGoalViewModel())
 }
