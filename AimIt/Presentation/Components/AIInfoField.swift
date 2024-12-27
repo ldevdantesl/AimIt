@@ -16,6 +16,7 @@ struct AIInfoField: View {
     let info: String
     let infoFontStyle: Font.TextStyle
     let infoForeColor: Color
+    let infoFontDesign: Font.Design
     
     let buttonSystemImage: String?
     let buttonColor: Color?
@@ -28,7 +29,8 @@ struct AIInfoField: View {
         titleForeColor: Color = .aiSecondary2,
         info: String,
         infoFontStyle: Font.TextStyle = .title2,
-        infoForeColor: Color = .aiLabel
+        infoForeColor: Color = .aiLabel,
+        infoFontDesign: Font.Design = .default
     ) {
         self.title = title
         self.titleFontStyle = titleFontStyle
@@ -36,6 +38,7 @@ struct AIInfoField: View {
         self.info = info
         self.infoFontStyle = infoFontStyle
         self.infoForeColor = infoForeColor
+        self.infoFontDesign = infoFontDesign
         self.buttonSystemImage = nil
         self.buttonColor = nil
         self.buttonSize = nil
@@ -49,6 +52,7 @@ struct AIInfoField: View {
         info: String,
         infoFontStyle: Font.TextStyle = .title2,
         infoForeColor: Color = .aiLabel,
+        infoFontDesign: Font.Design = .default,
         buttonSystemImage: String,
         buttonColor: Color = .aiSecondary2,
         buttonSize: CGFloat = 20,
@@ -60,6 +64,7 @@ struct AIInfoField: View {
         self.info = info
         self.infoFontStyle = infoFontStyle
         self.infoForeColor = infoForeColor
+        self.infoFontDesign = infoFontDesign
         self.buttonSystemImage = buttonSystemImage
         self.buttonColor = buttonColor
         self.buttonSize = buttonSize
@@ -77,6 +82,7 @@ struct AIInfoField: View {
                 Text("\(info)")
                     .font(.system(infoFontStyle, design: .rounded, weight: .semibold))
                     .foregroundStyle(infoForeColor)
+                    .fontDesign(infoFontDesign)
             }
             Spacer()
             

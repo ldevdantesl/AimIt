@@ -22,6 +22,7 @@ struct AIQuoteSheet: View {
                 titleForeColor: .ailIghtPink,
                 info: quoteVM.randomQuote.author,
                 infoForeColor: .aiLabel,
+                infoFontDesign: .serif, 
                 buttonSystemImage: "arrow.triangle.2.circlepath.circle.fill",
                 buttonColor: .aiBeige,
                 buttonSize: 25,
