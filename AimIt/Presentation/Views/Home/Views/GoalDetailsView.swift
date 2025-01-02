@@ -62,7 +62,7 @@ struct GoalDetailsView: View {
         }
         .background(Color.aiBackground)
         .toolbar(.hidden, for: .navigationBar)
-        .toolbar{
+        .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 AIButton(title: goalVM.selectedGoal.isCompleted ? "Uncomplete" : "Complete") {
                     goalVM.selectedGoal.isCompleted ? goalVM.uncompleteGoal(goalVM.selectedGoal) : goalVM.completeGoal(goalVM.selectedGoal)

@@ -668,13 +668,9 @@
 		DA518FBA2D1E06FB00A5E896 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				DA5DBD932D26507800BE895B /* Views */,
 				DA5190672D1E76B800A5E896 /* ScreenCovers */,
 				DA5190622D1E0DA000A5E896 /* Sheets */,
-				DA518FB52D1E06FB00A5E896 /* GoalDetailsView.swift */,
-				DA518FB62D1E06FB00A5E896 /* HomeAddGoalView.swift */,
-				DA518FB72D1E06FB00A5E896 /* HomeAddWorkspaceView.swift */,
-				DA518FB82D1E06FB00A5E896 /* HomeCreateMilestoneView.swift */,
-				DA518FB92D1E06FB00A5E896 /* HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -840,6 +836,18 @@
 				DA5190682D1E76C400A5E896 /* EditGoalView.swift */,
 			);
 			path = ScreenCovers;
+			sourceTree = "<group>";
+		};
+		DA5DBD932D26507800BE895B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA518FB52D1E06FB00A5E896 /* GoalDetailsView.swift */,
+				DA518FB62D1E06FB00A5E896 /* HomeAddGoalView.swift */,
+				DA518FB72D1E06FB00A5E896 /* HomeAddWorkspaceView.swift */,
+				DA518FB82D1E06FB00A5E896 /* HomeCreateMilestoneView.swift */,
+				DA518FB92D1E06FB00A5E896 /* HomeView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DA9E0D332D011CBF00E80B34 = {
