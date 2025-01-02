@@ -39,11 +39,11 @@ struct AIButton: View {
         self.foreColor = foreColor
     }
     
-    init(title: String, action: (() -> ())? = nil) {
+    init(title: String, color: Color = .accentColor, action: (() -> ())? = nil) {
         self.title = title
         self.action = action
         self.image = .empty
-        self.backColor = .accent
+        self.backColor = color
         self.foreColor = .aiLabel
     }
     

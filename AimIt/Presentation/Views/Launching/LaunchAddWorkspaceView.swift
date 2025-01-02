@@ -13,6 +13,7 @@ struct LaunchAddWorkspaceView: View {
     var onFinish: (() -> ())
     
     @State private var title: String = ""
+    @State private var titleErrorMsg: String? = ""
     
     var body: some View {
         ScrollView {
@@ -23,16 +24,26 @@ struct LaunchAddWorkspaceView: View {
             
             Spacer(minLength: 25)
             
-            AITextField(titleName: "Title", placeholder: "Sport", text: $title)
+            AITextField(
+                titleName: "Title",
+                placeholder: "Sport",
+                text: $title,
+                errorMsg: $titleErrorMsg
+            )
         }
         .background(Color.aiBackground)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Create") {
-                    workspaceVM.addWorkspace(title: title)
-                    onFinish()
-                }
+                AIButton(title: "Create", action: addWorkspace)
+                    .disabled(titleErrorMsg != nil)
             }
+        }
+    }
+    
+    private func addWorkspace() {
+        if titleErrorMsg == nil {
+            workspaceVM.addWorkspace(title: title)
+            onFinish()
         }
     }
 }

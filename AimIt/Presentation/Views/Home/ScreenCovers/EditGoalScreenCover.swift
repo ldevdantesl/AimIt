@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct EditGoalView: View {
+struct EditGoalScreenCover: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var milestoneVM: MilestoneViewModel
+    
+    @State private var titleErrorMsg: String?
     
     @State private var newTitle: String = ""
     @State private var newDesc: String = ""
@@ -24,7 +26,7 @@ struct EditGoalView: View {
                     image: .xmark,
                     backColor: .aiOrange,
                     foreColor: .aiLabel,
-                    action: coordinator.dismiss
+                    action: coordinator.dismissFullScreenCover
                 ),
                 title: "Edit goal",
                 subtitle: newTitle
@@ -36,14 +38,18 @@ struct EditGoalView: View {
                 AITextField(
                     titleName: "Title*",
                     placeholder: "Prepare to ...",
-                    text: $newTitle
+                    text: $newTitle,
+                    errorMsg: $titleErrorMsg
                 )
                 
                 AITextField(
                     titleName: "Description(optional)",
                     placeholder: "Do not forget about...",
                     text: $newDesc,
-                    axis: .vertical
+                    errorMsg: .constant(nil),
+                    validationOptions: [],
+                    axis: .vertical,
+                    submitLabel: .next
                 )
                 
                 AIDatePicker(
@@ -52,7 +58,7 @@ struct EditGoalView: View {
                     chosenDate: $newDeadline
                 )
                 
-                AIAddMilestoneView(
+                CreateMilestoneView(
                     milestones: $newMilestones,
                     goalTitle: goalVM.selectedGoal.title
                 )
@@ -64,16 +70,11 @@ struct EditGoalView: View {
         .background(Color.aiBackground)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Save") {
-                    goalVM.editGoal (
-                        goalVM.selectedGoal,
-                        title: newTitle,
-                        desc: newDesc.isEmpty ? nil : newDesc,
-                        deadline: newDeadline,
-                        newMilestones: newMilestones
-                    )
-                    coordinator.dismiss()
-                }
+                AIButton(
+                    title: "Save",
+                    action: editGoal
+                )
+                .disabled(titleErrorMsg != nil)
             }
         }
         .onAppear {
@@ -82,11 +83,25 @@ struct EditGoalView: View {
             self.newDesc = goalVM.selectedGoal.desc ?? ""
             self.newDeadline = goalVM.selectedGoal.deadline
         }
+        .hideKeyboardOnTap()
+    }
+    
+    private func editGoal() {
+        if titleErrorMsg == nil {
+            goalVM.editGoal (
+                goalVM.selectedGoal,
+                title: newTitle,
+                desc: newDesc.isEmpty ? nil : newDesc,
+                deadline: newDeadline,
+                newMilestones: newMilestones
+            )
+            coordinator.dismissFullScreenCover()
+        }
     }
 }
 
 #Preview {
-    EditGoalView()
+    EditGoalScreenCover()
         .environmentObject(HomeCoordinator())
         .environmentObject(DIContainer().makeGoalViewModel())
         .environmentObject(DIContainer().makeMilestoneViewModel())

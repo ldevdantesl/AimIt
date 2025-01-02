@@ -39,7 +39,7 @@ struct AIGoalMilestonesList: View {
                 }
                 .padding(.horizontal, 20)
                 ForEach(milestonesFiltered) { milestone in
-                    AIMilestonesCardView(milestone: milestone)
+                    AIMilestoneRow(milestone: milestone)
                 }
             }
         }

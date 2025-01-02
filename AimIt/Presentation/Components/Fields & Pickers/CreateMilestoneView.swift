@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct AIAddMilestoneView: View {
-    @State private var isAddingMilestone: Bool = false
+struct CreateMilestoneView: View {
+    @EnvironmentObject var coordinator: HomeCoordinator
     @Binding var milestones: [Milestone]
     
     let goalTitle: String
@@ -22,24 +22,22 @@ struct AIAddMilestoneView: View {
                 Spacer()
                 
                 AIButton(image: .plus, backColor: .accentColor, foreColor: .aiLabel) {
-                    isAddingMilestone.toggle()
+                    coordinator.present(sheet: .addMilestoneToGoal(goalTitle, $milestones))
                 }
             }
+            .padding(.horizontal, 20)
             Divider()
                 .background(Color.aiLabel)
                 .padding(.vertical, 10)
             
             AIMilestoneCreationList(milestones: $milestones)
         }
-        .padding(.horizontal, 20)
-        .sheet(isPresented: $isAddingMilestone) {
-            HomeCreateMilestoneView(goalTitle: goalTitle, milestones: $milestones)
-        }
     }
 }
 
 #Preview {
-    AIAddMilestoneView(milestones: .constant(Milestone.sampleMilestones), goalTitle: "Some")
+    CreateMilestoneView(milestones: .constant(Milestone.sampleMilestones), goalTitle: "Some")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
+        .environmentObject(HomeCoordinator())
 }

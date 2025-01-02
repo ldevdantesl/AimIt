@@ -11,6 +11,7 @@ struct HomeAddWorkspaceView: View {
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @Environment(\.dismiss) var dismiss
     @State private var title: String = ""
+    @State private var titleErrorMsg: String?
     
     var body: some View {
         VStack{
@@ -19,7 +20,12 @@ struct HomeAddWorkspaceView: View {
                 info: "Workspace: \(title)"
             )
             
-            AITextField(titleName: "", placeholder: "Studies", text: $title)
+            AITextField(
+                titleName: "",
+                placeholder: "Studies",
+                text: $title,
+                errorMsg: $titleErrorMsg
+            )
             
             Spacer()
         }

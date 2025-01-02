@@ -87,8 +87,8 @@
 		DA51902C2D1E06FB00A5E896 /* AISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F922D1E06FB00A5E896 /* AISearchBar.swift */; };
 		DA51902D2D1E06FB00A5E896 /* AIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F942D1E06FB00A5E896 /* AIButton.swift */; };
 		DA51902E2D1E06FB00A5E896 /* AIGoalCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F962D1E06FB00A5E896 /* AIGoalCardView.swift */; };
-		DA51902F2D1E06FB00A5E896 /* AIMilestoneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F972D1E06FB00A5E896 /* AIMilestoneCardView.swift */; };
-		DA5190302D1E06FB00A5E896 /* AIAddMilestoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F992D1E06FB00A5E896 /* AIAddMilestoneView.swift */; };
+		DA51902F2D1E06FB00A5E896 /* AIMilestoneRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F972D1E06FB00A5E896 /* AIMilestoneRow.swift */; };
+		DA5190302D1E06FB00A5E896 /* CreateMilestoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F992D1E06FB00A5E896 /* CreateMilestoneView.swift */; };
 		DA5190312D1E06FB00A5E896 /* AIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F9A2D1E06FB00A5E896 /* AIDatePicker.swift */; };
 		DA5190322D1E06FB00A5E896 /* AISystemImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F9B2D1E06FB00A5E896 /* AISystemImagePicker.swift */; };
 		DA5190332D1E06FB00A5E896 /* AITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F9C2D1E06FB00A5E896 /* AITextField.swift */; };
@@ -101,7 +101,6 @@
 		DA51903A2D1E06FB00A5E896 /* AITriumphWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FA62D1E06FB00A5E896 /* AITriumphWidget.swift */; };
 		DA51903B2D1E06FB00A5E896 /* AIHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FA82D1E06FB00A5E896 /* AIHeaderView.swift */; };
 		DA51903C2D1E06FB00A5E896 /* AIInfoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FA92D1E06FB00A5E896 /* AIInfoField.swift */; };
-		DA51903D2D1E06FB00A5E896 /* AIMilestoneRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FAA2D1E06FB00A5E896 /* AIMilestoneRow.swift */; };
 		DA51903E2D1E06FB00A5E896 /* AITimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FAB2D1E06FB00A5E896 /* AITimelineView.swift */; };
 		DA51903F2D1E06FB00A5E896 /* AIWorkspaceSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FAC2D1E06FB00A5E896 /* AIWorkspaceSelector.swift */; };
 		DA5190402D1E06FB00A5E896 /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FAD2D1E06FB00A5E896 /* NotFoundView.swift */; };
@@ -112,7 +111,7 @@
 		DA5190452D1E06FB00A5E896 /* GoalDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FB52D1E06FB00A5E896 /* GoalDetailsView.swift */; };
 		DA5190462D1E06FB00A5E896 /* HomeAddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FB62D1E06FB00A5E896 /* HomeAddGoalView.swift */; };
 		DA5190472D1E06FB00A5E896 /* HomeAddWorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FB72D1E06FB00A5E896 /* HomeAddWorkspaceView.swift */; };
-		DA5190482D1E06FB00A5E896 /* HomeCreateMilestoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FB82D1E06FB00A5E896 /* HomeCreateMilestoneView.swift */; };
+		DA5190482D1E06FB00A5E896 /* CreateMilestoneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FB82D1E06FB00A5E896 /* CreateMilestoneSheet.swift */; };
 		DA5190492D1E06FB00A5E896 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FB92D1E06FB00A5E896 /* HomeView.swift */; };
 		DA51904A2D1E06FB00A5E896 /* LaunchAddWorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FBC2D1E06FB00A5E896 /* LaunchAddWorkspaceView.swift */; };
 		DA51904B2D1E06FB00A5E896 /* LaunchIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FBD2D1E06FB00A5E896 /* LaunchIntroView.swift */; };
@@ -136,8 +135,9 @@
 		DA51905F2D1E07BF00A5E896 /* QuoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA51905E2D1E07BF00A5E896 /* QuoteViewModel.swift */; };
 		DA5190612D1E0B2300A5E896 /* AIQuoteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190602D1E0B2300A5E896 /* AIQuoteSheet.swift */; };
 		DA5190652D1E766500A5E896 /* HomeScreenCovers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190642D1E766500A5E896 /* HomeScreenCovers.swift */; };
-		DA5190692D1E76C400A5E896 /* EditGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190682D1E76C400A5E896 /* EditGoalView.swift */; };
+		DA5190692D1E76C400A5E896 /* EditGoalScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190682D1E76C400A5E896 /* EditGoalScreenCover.swift */; };
 		DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */; };
+		DA5DC0252D26554F00BE895B /* FieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DC0242D26554F00BE895B /* FieldChecker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,8 +220,8 @@
 		DA518F922D1E06FB00A5E896 /* AISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISearchBar.swift; sourceTree = "<group>"; };
 		DA518F942D1E06FB00A5E896 /* AIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIButton.swift; sourceTree = "<group>"; };
 		DA518F962D1E06FB00A5E896 /* AIGoalCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGoalCardView.swift; sourceTree = "<group>"; };
-		DA518F972D1E06FB00A5E896 /* AIMilestoneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMilestoneCardView.swift; sourceTree = "<group>"; };
-		DA518F992D1E06FB00A5E896 /* AIAddMilestoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAddMilestoneView.swift; sourceTree = "<group>"; };
+		DA518F972D1E06FB00A5E896 /* AIMilestoneRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMilestoneRow.swift; sourceTree = "<group>"; };
+		DA518F992D1E06FB00A5E896 /* CreateMilestoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMilestoneView.swift; sourceTree = "<group>"; };
 		DA518F9A2D1E06FB00A5E896 /* AIDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIDatePicker.swift; sourceTree = "<group>"; };
 		DA518F9B2D1E06FB00A5E896 /* AISystemImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISystemImagePicker.swift; sourceTree = "<group>"; };
 		DA518F9C2D1E06FB00A5E896 /* AITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITextField.swift; sourceTree = "<group>"; };
@@ -234,7 +234,6 @@
 		DA518FA62D1E06FB00A5E896 /* AITriumphWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITriumphWidget.swift; sourceTree = "<group>"; };
 		DA518FA82D1E06FB00A5E896 /* AIHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHeaderView.swift; sourceTree = "<group>"; };
 		DA518FA92D1E06FB00A5E896 /* AIInfoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIInfoField.swift; sourceTree = "<group>"; };
-		DA518FAA2D1E06FB00A5E896 /* AIMilestoneRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMilestoneRow.swift; sourceTree = "<group>"; };
 		DA518FAB2D1E06FB00A5E896 /* AITimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITimelineView.swift; sourceTree = "<group>"; };
 		DA518FAC2D1E06FB00A5E896 /* AIWorkspaceSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIWorkspaceSelector.swift; sourceTree = "<group>"; };
 		DA518FAD2D1E06FB00A5E896 /* NotFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
@@ -245,7 +244,7 @@
 		DA518FB52D1E06FB00A5E896 /* GoalDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsView.swift; sourceTree = "<group>"; };
 		DA518FB62D1E06FB00A5E896 /* HomeAddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAddGoalView.swift; sourceTree = "<group>"; };
 		DA518FB72D1E06FB00A5E896 /* HomeAddWorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAddWorkspaceView.swift; sourceTree = "<group>"; };
-		DA518FB82D1E06FB00A5E896 /* HomeCreateMilestoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCreateMilestoneView.swift; sourceTree = "<group>"; };
+		DA518FB82D1E06FB00A5E896 /* CreateMilestoneSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMilestoneSheet.swift; sourceTree = "<group>"; };
 		DA518FB92D1E06FB00A5E896 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		DA518FBB2D1E06FB00A5E896 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DA518FBC2D1E06FB00A5E896 /* LaunchAddWorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAddWorkspaceView.swift; sourceTree = "<group>"; };
@@ -271,8 +270,9 @@
 		DA51905E2D1E07BF00A5E896 /* QuoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewModel.swift; sourceTree = "<group>"; };
 		DA5190602D1E0B2300A5E896 /* AIQuoteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIQuoteSheet.swift; sourceTree = "<group>"; };
 		DA5190642D1E766500A5E896 /* HomeScreenCovers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCovers.swift; sourceTree = "<group>"; };
-		DA5190682D1E76C400A5E896 /* EditGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalView.swift; sourceTree = "<group>"; };
+		DA5190682D1E76C400A5E896 /* EditGoalScreenCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalScreenCover.swift; sourceTree = "<group>"; };
 		DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		DA5DC0242D26554F00BE895B /* FieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldChecker.swift; sourceTree = "<group>"; };
 		DA9E0D3C2D011CBF00E80B34 /* AimIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -582,7 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				DA518F962D1E06FB00A5E896 /* AIGoalCardView.swift */,
-				DA518F972D1E06FB00A5E896 /* AIMilestoneCardView.swift */,
+				DA518F972D1E06FB00A5E896 /* AIMilestoneRow.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -590,7 +590,7 @@
 		DA518F9D2D1E06FB00A5E896 /* Fields & Pickers */ = {
 			isa = PBXGroup;
 			children = (
-				DA518F992D1E06FB00A5E896 /* AIAddMilestoneView.swift */,
+				DA518F992D1E06FB00A5E896 /* CreateMilestoneView.swift */,
 				DA518F9A2D1E06FB00A5E896 /* AIDatePicker.swift */,
 				DA518F9B2D1E06FB00A5E896 /* AISystemImagePicker.swift */,
 				DA518F9C2D1E06FB00A5E896 /* AITextField.swift */,
@@ -638,7 +638,6 @@
 				DA518FA72D1E06FB00A5E896 /* Widgets */,
 				DA518FA82D1E06FB00A5E896 /* AIHeaderView.swift */,
 				DA518FA92D1E06FB00A5E896 /* AIInfoField.swift */,
-				DA518FAA2D1E06FB00A5E896 /* AIMilestoneRow.swift */,
 				DA518FAB2D1E06FB00A5E896 /* AITimelineView.swift */,
 				DA518FAC2D1E06FB00A5E896 /* AIWorkspaceSelector.swift */,
 				DA518FAD2D1E06FB00A5E896 /* NotFoundView.swift */,
@@ -789,6 +788,7 @@
 		DA518FDA2D1E06FB00A5E896 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DA5DC0232D26554500BE895B /* Helpers */,
 				DA518FCC2D1E06FB00A5E896 /* Constants */,
 				DA518FCF2D1E06FB00A5E896 /* Extensions */,
 				DA518FD22D1E06FB00A5E896 /* JSON */,
@@ -818,6 +818,7 @@
 			isa = PBXGroup;
 			children = (
 				DA5190602D1E0B2300A5E896 /* AIQuoteSheet.swift */,
+				DA518FB82D1E06FB00A5E896 /* CreateMilestoneSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -833,7 +834,7 @@
 		DA5190672D1E76B800A5E896 /* ScreenCovers */ = {
 			isa = PBXGroup;
 			children = (
-				DA5190682D1E76C400A5E896 /* EditGoalView.swift */,
+				DA5190682D1E76C400A5E896 /* EditGoalScreenCover.swift */,
 			);
 			path = ScreenCovers;
 			sourceTree = "<group>";
@@ -844,10 +845,17 @@
 				DA518FB52D1E06FB00A5E896 /* GoalDetailsView.swift */,
 				DA518FB62D1E06FB00A5E896 /* HomeAddGoalView.swift */,
 				DA518FB72D1E06FB00A5E896 /* HomeAddWorkspaceView.swift */,
-				DA518FB82D1E06FB00A5E896 /* HomeCreateMilestoneView.swift */,
 				DA518FB92D1E06FB00A5E896 /* HomeView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DA5DC0232D26554500BE895B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DA5DC0242D26554F00BE895B /* FieldChecker.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		DA9E0D332D011CBF00E80B34 = {
@@ -962,7 +970,7 @@
 				DA518FF02D1E06FB00A5E896 /* WorkspaceEntity.swift in Sources */,
 				DA518FF12D1E06FB00A5E896 /* GoalMapper.swift in Sources */,
 				DA518FF22D1E06FB00A5E896 /* MilestoneMapper.swift in Sources */,
-				DA5190692D1E76C400A5E896 /* EditGoalView.swift in Sources */,
+				DA5190692D1E76C400A5E896 /* EditGoalScreenCover.swift in Sources */,
 				DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */,
 				DA518FF32D1E06FB00A5E896 /* WorkspaceMapper.swift in Sources */,
 				DA518FF42D1E06FB00A5E896 /* GoalRepositoryImpl.swift in Sources */,
@@ -1012,6 +1020,7 @@
 				DA5190202D1E06FB00A5E896 /* FetchMilestonesForGoalUseCase.swift in Sources */,
 				DA5190212D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCase.swift in Sources */,
 				DA5190222D1E06FB00A5E896 /* UpdateMilestoneUseCase.swift in Sources */,
+				DA5DC0252D26554F00BE895B /* FieldChecker.swift in Sources */,
 				DA5190232D1E06FB00A5E896 /* GetSettingsUseCase.swift in Sources */,
 				DA5190242D1E06FB00A5E896 /* RemoveSettingUseCase.swift in Sources */,
 				DA5190252D1E06FB00A5E896 /* SetSettingUseCase.swift in Sources */,
@@ -1024,8 +1033,8 @@
 				DA51902C2D1E06FB00A5E896 /* AISearchBar.swift in Sources */,
 				DA51902D2D1E06FB00A5E896 /* AIButton.swift in Sources */,
 				DA51902E2D1E06FB00A5E896 /* AIGoalCardView.swift in Sources */,
-				DA51902F2D1E06FB00A5E896 /* AIMilestoneCardView.swift in Sources */,
-				DA5190302D1E06FB00A5E896 /* AIAddMilestoneView.swift in Sources */,
+				DA51902F2D1E06FB00A5E896 /* AIMilestoneRow.swift in Sources */,
+				DA5190302D1E06FB00A5E896 /* CreateMilestoneView.swift in Sources */,
 				DA5190312D1E06FB00A5E896 /* AIDatePicker.swift in Sources */,
 				DA5190322D1E06FB00A5E896 /* AISystemImagePicker.swift in Sources */,
 				DA5190332D1E06FB00A5E896 /* AITextField.swift in Sources */,
@@ -1040,7 +1049,6 @@
 				DA51903B2D1E06FB00A5E896 /* AIHeaderView.swift in Sources */,
 				DA5190612D1E0B2300A5E896 /* AIQuoteSheet.swift in Sources */,
 				DA51903C2D1E06FB00A5E896 /* AIInfoField.swift in Sources */,
-				DA51903D2D1E06FB00A5E896 /* AIMilestoneRow.swift in Sources */,
 				DA51903E2D1E06FB00A5E896 /* AITimelineView.swift in Sources */,
 				DA51903F2D1E06FB00A5E896 /* AIWorkspaceSelector.swift in Sources */,
 				DA5190402D1E06FB00A5E896 /* NotFoundView.swift in Sources */,
@@ -1051,7 +1059,7 @@
 				DA5190452D1E06FB00A5E896 /* GoalDetailsView.swift in Sources */,
 				DA5190462D1E06FB00A5E896 /* HomeAddGoalView.swift in Sources */,
 				DA5190472D1E06FB00A5E896 /* HomeAddWorkspaceView.swift in Sources */,
-				DA5190482D1E06FB00A5E896 /* HomeCreateMilestoneView.swift in Sources */,
+				DA5190482D1E06FB00A5E896 /* CreateMilestoneSheet.swift in Sources */,
 				DA5190492D1E06FB00A5E896 /* HomeView.swift in Sources */,
 				DA51905F2D1E07BF00A5E896 /* QuoteViewModel.swift in Sources */,
 				DA51904A2D1E06FB00A5E896 /* LaunchAddWorkspaceView.swift in Sources */,

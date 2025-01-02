@@ -27,4 +27,6 @@ enum UIConstants {
     static let widgetCornerRadius: CGFloat = 25
     static let widgetHeight = screenHeight / 6
     static let widgetWidth = halfWidth
+    
+    static let textFieldCornerRadius: CGFloat = 25
 }

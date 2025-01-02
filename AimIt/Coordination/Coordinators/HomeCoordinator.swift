@@ -47,6 +47,9 @@ final class HomeCoordinator: ObservableObject, Coordinator {
                 AIQuoteSheet(quoteVM: quoteVM)
                     .presentationDetents(sheet.detents)
                     .presentationDragIndicator(.visible)
+            case .addMilestoneToGoal(let goalTitle, let milestones):
+                CreateMilestoneSheet(goalTitle: goalTitle, milestones: milestones)
+                    .presentationDetents(sheet.detents)
             }
         }
     }
@@ -56,7 +59,7 @@ final class HomeCoordinator: ObservableObject, Coordinator {
         NavigationStack{
             switch fullScreenCover {
             case .editGoal:
-                EditGoalView()
+                EditGoalScreenCover()
             }
         }
     }
@@ -69,8 +72,11 @@ final class HomeCoordinator: ObservableObject, Coordinator {
         self.fullScreenCover = fullScreenCover
     }
     
-    func dismiss() {
+    func dismissSheet() {
         self.sheet = nil
+    }
+    
+    func dismissFullScreenCover() {
         self.fullScreenCover = nil
     }
     

@@ -12,6 +12,8 @@ struct HomeAddGoalView: View {
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     
+    @State private var titleErrorMsg: String? = ""
+    
     @State private var title: String = ""
     @State private var desc: String = ""
     @State private var deadline: Date = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
@@ -31,13 +33,16 @@ struct HomeAddGoalView: View {
                 AITextField(
                     titleName: "Title*",
                     placeholder: "Prepare for test ...",
-                    text: $title
+                    text: $title,
+                    errorMsg: $titleErrorMsg
                 )
                 
                 AITextField(
                     titleName: "Description",
                     placeholder: "Prepare for first part and ...",
                     text: $desc,
+                    errorMsg: .constant(nil),
+                    validationOptions: [],
                     axis: .vertical
                 )
                 
@@ -47,7 +52,7 @@ struct HomeAddGoalView: View {
                     chosenDate: $deadline
                 )
                 
-                AIAddMilestoneView(milestones: $milestones, goalTitle: title)
+                CreateMilestoneView(milestones: $milestones, goalTitle: title)
             }
             .padding(.vertical, 10)
         }
@@ -55,18 +60,23 @@ struct HomeAddGoalView: View {
         .toolbar(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Create") {
-                    goalVM.addGoal(
-                        to: workspaceVM.currentWorkspace,
-                        title: title,
-                        desc: desc,
-                        deadline: deadline,
-                        milestones: milestones
-                    )
-        
-                    coordinator.goBack()
-                }
+                AIButton(title: "Create", action: addGoal)
+                    .disabled(titleErrorMsg != nil)
             }
+        }
+        .hideKeyboardOnTap()
+    }
+    
+    private func addGoal() {
+        if titleErrorMsg == nil {
+            goalVM.addGoal(
+                to: workspaceVM.currentWorkspace,
+                title: title,
+                desc: desc,
+                deadline: deadline,
+                milestones: milestones
+            )
+            coordinator.goBack()
         }
     }
 }
