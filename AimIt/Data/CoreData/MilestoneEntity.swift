@@ -19,5 +19,5 @@ public class MilestoneEntity: NSManagedObject, Identifiable{
     @NSManaged public var desc: String
     @NSManaged public var isCompleted: Bool
     @NSManaged public var systemImage: String
-    @NSManaged public var goal: GoalEntity
+    @NSManaged public var goal: GoalEntity?
 }

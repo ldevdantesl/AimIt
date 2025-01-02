@@ -48,43 +48,71 @@ final class GoalRepositoryImpl: GoalRepository {
         workspaceEntity.addToGoals(newGoal)
         newGoal.workspace = workspaceEntity
         
-        try saveContext()
+        saveContext()
     }
     
     func editGoal(
         _ goal: Goal,
         newTitle: String?,
         newDesc: String?,
-        newDeadline: Date?
-    ) throws {
+        newDeadline: Date?,
+        newMilestones: [Milestone]
+    ) throws -> Goal {
         let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         
         goalEntity.title = newTitle ?? goalEntity.title
         goalEntity.desc = newDesc ?? goalEntity.desc
         goalEntity.deadline = newDeadline ?? goalEntity.deadline
         
-        try saveContext()
+        let existingMilestones = goalEntity.milestones as? Set<MilestoneEntity> ?? Set()
+        
+        let newMilestoneIDs = Set(newMilestones.map { $0.id })
+        
+        let milestonesToRemove = existingMilestones.filter { !newMilestoneIDs.contains($0.id) }
+        milestonesToRemove.forEach { goalEntity.removeFromMilestones($0) }
+        
+        let updatedMilestones = newMilestones.map { milestone -> MilestoneEntity in
+            if let existingEntity = existingMilestones.first(where: { $0.id == milestone.id }) {
+                existingEntity.desc = milestone.desc
+                existingEntity.systemImage = milestone.systemImage
+                existingEntity.isCompleted = milestone.isCompleted
+                return existingEntity
+            } else {
+                let newEntity = MilestoneEntity(context: CDstack.viewContext)
+                newEntity.id = milestone.id
+                newEntity.desc = milestone.desc
+                newEntity.systemImage = milestone.systemImage
+                newEntity.isCompleted = milestone.isCompleted
+                newEntity.goal = goalEntity
+                return newEntity
+            }
+        }
+        
+        goalEntity.milestones = NSSet(array: updatedMilestones)
+        
+        saveContext()
+        return GoalMapper.mapToDomain(from: goalEntity)
     }
     
     func completeGoal(_ goal: Goal) throws {
         let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         goalEntity.isCompleted = true
         goalEntity.completedAt = Date()
-        try saveContext()
+        saveContext()
     }
     
     func uncompleteGoal(_ goal: Goal) throws {
         let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         goalEntity.isCompleted = false
         goalEntity.completedAt = nil
-        try saveContext()
+        saveContext()
     }
     
     func deleteGoal(_ goal: Goal) throws {
         let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         if CDstack.viewContext == goalEntity.managedObjectContext {
             CDstack.viewContext.delete(goalEntity)
-            try saveContext()
+            saveContext()
         } else {
             throw NSError(
                 domain: "CoreDataError",
@@ -101,7 +129,7 @@ final class GoalRepositoryImpl: GoalRepository {
         return goalDomain
     }
     
-    private func saveContext() throws {
-        try CDstack.saveContext()
+    private func saveContext() {
+        CDstack.saveContext()
     }
 }

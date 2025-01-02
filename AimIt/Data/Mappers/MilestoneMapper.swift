@@ -15,7 +15,7 @@ struct MilestoneMapper {
             desc: milestoneEntity.desc,
             systemImage: milestoneEntity.systemImage,
             isCompleted: milestoneEntity.isCompleted,
-            goalID: milestoneEntity.goal.id
+            goalID: milestoneEntity.goal?.id ?? UUID()
         )
     }
     

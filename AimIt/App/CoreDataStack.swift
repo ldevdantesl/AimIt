@@ -54,10 +54,14 @@ final class CoreDataStack {
         }
     }
     
-    func saveContext(context: NSManagedObjectContext? = nil) throws {
+    func saveContext(context: NSManagedObjectContext? = nil) {
         let contextToSave = context ?? viewContext
         if contextToSave.hasChanges {
-            try contextToSave.save()
+            do {
+                try contextToSave.save()
+            } catch {
+                print("Error saving the context: Error \(error.localizedDescription)")
+            }
         }
     }
 }

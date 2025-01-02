@@ -12,10 +12,10 @@ struct EditGoalView: View {
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var milestoneVM: MilestoneViewModel
     
-    @State private var goal: Goal = .sample
-    
+    @State private var newTitle: String = ""
     @State private var newDesc: String = ""
     @State private var newMilestones: [Milestone] = []
+    @State private var newDeadline: Date = .now
     
     var body: some View {
         ScrollView{
@@ -27,7 +27,7 @@ struct EditGoalView: View {
                     action: coordinator.dismiss
                 ),
                 title: "Edit goal",
-                subtitle: goal.title
+                subtitle: newTitle
             )
             
             Spacer(minLength: 20)
@@ -36,7 +36,7 @@ struct EditGoalView: View {
                 AITextField(
                     titleName: "Title*",
                     placeholder: "Prepare to ...",
-                    text: $goal.title
+                    text: $newTitle
                 )
                 
                 AITextField(
@@ -49,12 +49,12 @@ struct EditGoalView: View {
                 AIDatePicker(
                     titleName: "Select a Deadline",
                     widthSize: UIConstants.halfWidth,
-                    chosenDate: $goal.deadline
+                    chosenDate: $newDeadline
                 )
                 
                 AIAddMilestoneView(
                     milestones: $newMilestones,
-                    goalTitle: goal.title
+                    goalTitle: goalVM.selectedGoal.title
                 )
                 
                 Spacer(minLength: 20)
@@ -65,37 +65,23 @@ struct EditGoalView: View {
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 AIButton(title: "Save") {
-                    goalVM.editGoals (
-                        goal,
-                        title: goal.title,
+                    goalVM.editGoal (
+                        goalVM.selectedGoal,
+                        title: newTitle,
                         desc: newDesc.isEmpty ? nil : newDesc,
-                        deadline: goal.deadline
+                        deadline: newDeadline,
+                        newMilestones: newMilestones
                     )
-                    saveGoal()
+                    coordinator.dismiss()
                 }
             }
         }
         .onAppear {
-            self.goal = goalVM.selectedGoal
-            self.newMilestones = goal.milestones
-            goal.milestones.forEach { milestoneVM.deleteMilestone($0) }
-            self.newDesc = goal.desc ?? ""
+            self.newTitle = goalVM.selectedGoal.title
+            self.newMilestones = goalVM.selectedGoal.milestones
+            self.newDesc = goalVM.selectedGoal.desc ?? ""
+            self.newDeadline = goalVM.selectedGoal.deadline
         }
-    }
-    
-    private func saveGoal() {
-        newMilestones.forEach {
-            milestoneVM.addMilestone(
-                desc: $0.desc,
-                systemImage: $0.systemImage,
-                completed: $0.isCompleted,
-                to: goal
-            )
-        }
-        goal.milestones = newMilestones
-        goal.desc = newDesc
-        goalVM.selectedGoal = goal
-        coordinator.dismiss()
     }
 }
 

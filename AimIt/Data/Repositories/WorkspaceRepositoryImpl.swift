@@ -39,7 +39,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         newWorkspace.title = title
         newWorkspace.goals = []
         
-        try CDStack.saveContext()
+        CDStack.saveContext()
         
         return WorkspaceMapper.toDomain(newWorkspace)
     }
@@ -49,7 +49,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         
         if CDStack.viewContext == entity.managedObjectContext {
             CDStack.viewContext.delete(entity)
-            try CDStack.saveContext()
+            CDStack.saveContext()
         } else {
             throw NSError(
                 domain: "CoreDataError",
@@ -63,6 +63,6 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         let entity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
         entity.title = newTitle
         entity.goals = NSSet(array: newGoals)
-        try CDStack.saveContext()
+        CDStack.saveContext()
     }
 }

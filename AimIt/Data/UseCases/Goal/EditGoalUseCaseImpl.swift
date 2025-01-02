@@ -18,8 +18,9 @@ final class EditGoalUseCaseImpl: EditGoalUseCase {
         _ goal: Goal,
         newTitle: String?,
         newDesc: String?,
-        newDeadline: Date?
-    ) throws {
-        try repository.editGoal(goal, newTitle: newTitle, newDesc: newDesc, newDeadline: newDeadline)
+        newDeadline: Date?,
+        newMilestones: [Milestone]
+    ) throws -> Goal {
+        return try repository.editGoal(goal, newTitle: newTitle, newDesc: newDesc, newDeadline: newDeadline, newMilestones: newMilestones)
     }
 }

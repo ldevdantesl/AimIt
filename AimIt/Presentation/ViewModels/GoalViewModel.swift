@@ -66,14 +66,21 @@ final class GoalViewModel: ObservableObject {
     }
     
     // MARK: - EDITING
-    func editGoals(
+    func editGoal(
         _ goal: Goal,
         title: String,
         desc: String? = nil,
-        deadline: Date?
+        deadline: Date?,
+        newMilestones: [Milestone]
     ) {
         handleUseCase(errorMessage: "Error editing Goal", fetchAfter: true) {
-            try editGoalUseCase.execute(goal, newTitle: title, newDesc: desc, newDeadline: deadline)
+            selectedGoal = try editGoalUseCase.execute(
+                goal,
+                newTitle: title,
+                newDesc: desc,
+                newDeadline: deadline,
+                newMilestones: newMilestones
+            )
         }
     }
     

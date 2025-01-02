@@ -23,7 +23,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         newMilestone.systemImage = systemImage
         newMilestone.goal = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         
-        try saveContext()
+        saveContext()
     }
     
     func updateMilestone(_ milestone: Milestone, desc: String?, systemImage: String?) throws {
@@ -31,13 +31,13 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         milestoneEntity.desc = desc ?? milestoneEntity.desc
         milestoneEntity.systemImage = systemImage ?? milestoneEntity.systemImage
         
-        try saveContext()
+        saveContext()
     }
     
     func deleteMilestone(_ milestone: Milestone) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         CDstack.viewContext.delete(milestoneEntity)
-        try saveContext()
+        saveContext()
     }
     
     func fetchMilestones(for goal: Goal) throws -> [Milestone] {
@@ -54,11 +54,11 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
     
     func toggleMilestoneCompletion(_ milestone: Milestone) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
-        milestoneEntity.isCompleted = milestoneEntity.isCompleted ? false : true
-        try saveContext()
+        milestoneEntity.isCompleted.toggle()
+        saveContext()
     }
     
-    private func saveContext() throws {
-        try CDstack.saveContext()
+    private func saveContext() {
+        CDstack.saveContext()
     }
 }

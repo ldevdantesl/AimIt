@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		DA518FDE2D1E06FB00A5E896 /* AimItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F2B2D1E06FB00A5E896 /* AimItApp.swift */; };
 		DA518FDF2D1E06FB00A5E896 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F2C2D1E06FB00A5E896 /* AppCoordinator.swift */; };
-		DA518FE02D1E06FB00A5E896 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F2D2D1E06FB00A5E896 /* CoreDataStack.swift */; };
 		DA518FE12D1E06FB00A5E896 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F2E2D1E06FB00A5E896 /* DIContainer.swift */; };
 		DA518FE22D1E06FB00A5E896 /* AnalyticsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F302D1E06FB00A5E896 /* AnalyticsCoordinator.swift */; };
 		DA518FE32D1E06FB00A5E896 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F312D1E06FB00A5E896 /* HomeCoordinator.swift */; };
@@ -138,12 +137,12 @@
 		DA5190612D1E0B2300A5E896 /* AIQuoteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190602D1E0B2300A5E896 /* AIQuoteSheet.swift */; };
 		DA5190652D1E766500A5E896 /* HomeScreenCovers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190642D1E766500A5E896 /* HomeScreenCovers.swift */; };
 		DA5190692D1E76C400A5E896 /* EditGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190682D1E76C400A5E896 /* EditGoalView.swift */; };
+		DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DA518F2B2D1E06FB00A5E896 /* AimItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimItApp.swift; sourceTree = "<group>"; };
 		DA518F2C2D1E06FB00A5E896 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		DA518F2D2D1E06FB00A5E896 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DA518F2E2D1E06FB00A5E896 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		DA518F302D1E06FB00A5E896 /* AnalyticsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCoordinator.swift; sourceTree = "<group>"; };
 		DA518F312D1E06FB00A5E896 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
@@ -273,6 +272,7 @@
 		DA5190602D1E0B2300A5E896 /* AIQuoteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIQuoteSheet.swift; sourceTree = "<group>"; };
 		DA5190642D1E766500A5E896 /* HomeScreenCovers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCovers.swift; sourceTree = "<group>"; };
 		DA5190682D1E76C400A5E896 /* EditGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalView.swift; sourceTree = "<group>"; };
+		DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DA9E0D3C2D011CBF00E80B34 /* AimIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -290,9 +290,9 @@
 		DA518F2F2D1E06FB00A5E896 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */,
 				DA518F2B2D1E06FB00A5E896 /* AimItApp.swift */,
 				DA518F2C2D1E06FB00A5E896 /* AppCoordinator.swift */,
-				DA518F2D2D1E06FB00A5E896 /* CoreDataStack.swift */,
 				DA518F2E2D1E06FB00A5E896 /* DIContainer.swift */,
 			);
 			path = App;
@@ -936,7 +936,6 @@
 			files = (
 				DA518FDE2D1E06FB00A5E896 /* AimItApp.swift in Sources */,
 				DA518FDF2D1E06FB00A5E896 /* AppCoordinator.swift in Sources */,
-				DA518FE02D1E06FB00A5E896 /* CoreDataStack.swift in Sources */,
 				DA518FE12D1E06FB00A5E896 /* DIContainer.swift in Sources */,
 				DA518FE22D1E06FB00A5E896 /* AnalyticsCoordinator.swift in Sources */,
 				DA518FE32D1E06FB00A5E896 /* HomeCoordinator.swift in Sources */,
@@ -956,6 +955,7 @@
 				DA518FF12D1E06FB00A5E896 /* GoalMapper.swift in Sources */,
 				DA518FF22D1E06FB00A5E896 /* MilestoneMapper.swift in Sources */,
 				DA5190692D1E76C400A5E896 /* EditGoalView.swift in Sources */,
+				DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */,
 				DA518FF32D1E06FB00A5E896 /* WorkspaceMapper.swift in Sources */,
 				DA518FF42D1E06FB00A5E896 /* GoalRepositoryImpl.swift in Sources */,
 				DA518FF52D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift in Sources */,

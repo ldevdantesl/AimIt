@@ -21,8 +21,9 @@ protocol GoalRepository {
         _ goal: Goal,
         newTitle: String?,
         newDesc: String?,
-        newDeadline: Date?
-    ) throws
+        newDeadline: Date?,
+        newMilestones: [Milestone]
+    ) throws -> Goal
     
     func completeGoal(_ goal: Goal) throws
     
