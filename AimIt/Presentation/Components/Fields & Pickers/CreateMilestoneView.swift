@@ -13,6 +13,8 @@ struct CreateMilestoneView: View {
     
     let goalTitle: String
     
+    @State private var onSheet: Bool = false
+    
     var body: some View {
         VStack{
             HStack(alignment: .bottom){
@@ -21,9 +23,12 @@ struct CreateMilestoneView: View {
                     .foregroundStyle(.aiSecondary2)
                 Spacer()
                 
-                AIButton(image: .plus, backColor: .accentColor, foreColor: .aiLabel) {
-                    coordinator.present(sheet: .addMilestoneToGoal(goalTitle, $milestones))
-                }
+                AIButton(
+                    image: .plus,
+                    backColor: .accentColor,
+                    foreColor: .aiLabel,
+                    action: { onSheet.toggle() }
+                )
             }
             .padding(.horizontal, 20)
             Divider()
@@ -31,6 +36,9 @@ struct CreateMilestoneView: View {
                 .padding(.vertical, 10)
             
             AIMilestoneCreationList(milestones: $milestones)
+        }
+        .sheet(isPresented: $onSheet) {
+            CreateMilestoneSheet(goalTitle: goalTitle, milestones: $milestones)
         }
     }
 }

@@ -47,9 +47,6 @@ final class HomeCoordinator: ObservableObject, Coordinator {
                 AIQuoteSheet(quoteVM: quoteVM)
                     .presentationDetents(sheet.detents)
                     .presentationDragIndicator(.visible)
-            case .addMilestoneToGoal(let goalTitle, let milestones):
-                CreateMilestoneSheet(goalTitle: goalTitle, milestones: milestones)
-                    .presentationDetents(sheet.detents)
             }
         }
     }
