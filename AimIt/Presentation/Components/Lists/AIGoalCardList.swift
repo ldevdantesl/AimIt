@@ -24,27 +24,41 @@ struct AIGoalCardList: View {
         } else {
             LazyVStack(spacing: 20) {
                 ForEach(workspaceVM.currentWorkspace.goals, id: \.self) { goal in
-                    AIGoalCard(goal: goal)
-                        .contextMenu {
-                            Button(
-                                "Prioritize",
-                                systemImage: "exclamationmark",
-                                action: {}
-                            )
-                            Button(
-                                "Delete",
-                                systemImage: "trash.fill",
-                                role:.destructive
-                            ) {
-                                DispatchQueue.main.async {
-                                    withAnimation {
-                                        goalVM.deleteGoal(goal)
-                                        workspaceVM.fetchCurrentWorkspace()
-                                    }
-                                }
+                    if goal != workspaceVM.currentWorkspace.prioritizedGoal {
+                        AIGoalCard(goal: goal)
+                            .contextMenu {
+                                Button(
+                                    "Prioritize",
+                                    systemImage: "exclamationmark",
+                                    action: { prioritizeGoal(goal: goal) }
+                                )
+                                Button(
+                                    "Delete",
+                                    systemImage: "trash.fill",
+                                    role:.destructive,
+                                    action: { deleteGoal(goal: goal)}
+                                )
                             }
-                        }
+                            .transition(.move(edge: .top))
+                    }
                 }
+            }
+        }
+    }
+    
+    private func prioritizeGoal(goal: Goal) {
+        DispatchQueue.main.async {
+            withAnimation(.bouncy) {
+                workspaceVM.prioritizeGoal(workspaceVM.currentWorkspace, goal: goal)
+            }
+        }
+    }
+    
+    private func deleteGoal(goal: Goal) {
+        DispatchQueue.main.async {
+            withAnimation {
+                goalVM.deleteGoal(goal)
+                workspaceVM.fetchCurrentWorkspace()
             }
         }
     }

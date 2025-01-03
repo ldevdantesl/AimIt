@@ -13,4 +13,6 @@ protocol WorkspaceRepository {
     func addWorkspace(title: String) throws -> Workspace
     func deleteWorkspace(_ workspace: Workspace) throws
     func editWorkspace(workspace: Workspace, newTitle: String, newGoals: [Goal]) throws
+    func prioritizeGoal(in workspace: Workspace, goal: Goal) throws
+    func unprioritizeGoal(in workspace: Workspace) throws
 }

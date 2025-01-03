@@ -15,7 +15,8 @@ struct WorkspaceMapper {
             title: workspace.title,
             goals: (workspace.goals as? Set<GoalEntity>)?.map {
                 GoalMapper.mapToDomain(from: $0)
-            } ?? []
+            } ?? [],
+            prioritizedGoal: workspace.prioritizedGoal != nil ? GoalMapper.mapToDomain(from: workspace.prioritizedGoal!) : nil
         )
     }
     
@@ -30,6 +31,7 @@ struct WorkspaceMapper {
             newEntity.id = workspace.id
             newEntity.title = workspace.title
             newEntity.goals = NSSet(array: workspace.goals)
+            newEntity.prioritizedGoal = workspace.prioritizedGoal != nil ? GoalMapper.toEntity(from: workspace.prioritizedGoal!, context: context) : nil
             return newEntity
         }
     }

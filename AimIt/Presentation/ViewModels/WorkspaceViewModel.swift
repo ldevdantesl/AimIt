@@ -25,6 +25,8 @@ final class WorkspaceViewModel: ObservableObject {
     private let fetchCurrentWorkspaceUseCase: FetchCurrentWorkspaceUseCase
     private let editWorkspaceUseCase: EditWorkspaceUseCase
     private let deleteWorkspaceUseCase: DeleteWorkspaceUseCase
+    private let prioritizeGoalUseCase: PrioritizeGoalUseCase
+    private let unprioritizeGoalUseCase: UnprioritizeGoalUseCase
     
     init(
         addWorkspaceUseCase: AddWorkspaceUseCase,
@@ -32,6 +34,8 @@ final class WorkspaceViewModel: ObservableObject {
         fetchCurrentWorkspaceUseCase: FetchCurrentWorkspaceUseCase,
         editWorkspaceUseCase: EditWorkspaceUseCase,
         deleteWorkspaceUseCase: DeleteWorkspaceUseCase,
+        prioritizeGoalUseCase: PrioritizeGoalUseCase,
+        unprioritizeGoalUseCase: UnprioritizeGoalUseCase,
         storageManager: StorageManager = UserDefaultsStorageManager()
     ) {
         self.addWorkspaceUseCase = addWorkspaceUseCase
@@ -41,6 +45,8 @@ final class WorkspaceViewModel: ObservableObject {
         self.deleteWorkspaceUseCase = deleteWorkspaceUseCase
         self.storageManager = storageManager
         self.currentWorkspace = storageManager.getValue(for: currentWorkspaceKey) ?? Workspace(id: UUID(), title: "Goals", goals: [])
+        self.prioritizeGoalUseCase = prioritizeGoalUseCase
+        self.unprioritizeGoalUseCase = unprioritizeGoalUseCase
         fetchWorkspaces()
     }
     
@@ -80,7 +86,7 @@ final class WorkspaceViewModel: ObservableObject {
     func editWorkspace(_ workspace: Workspace, newTitle: String, newGoals: [Goal]) {
         do {
             try editWorkspaceUseCase.execute(workspace, newTitle: newTitle, newGoals: newGoals)
-            fetchWorkspaces()
+            fetchCurrentWorkspace()
         } catch {
             errorMsg = "Error editing workspace: \(error.localizedDescription)"
             print(errorMsg ?? "")
@@ -90,10 +96,36 @@ final class WorkspaceViewModel: ObservableObject {
     func deleteWorkspace(_ workspace: Workspace) {
         do {
             try deleteWorkspaceUseCase.execute(workspace)
-            fetchWorkspaces()
+            fetchCurrentWorkspace()
         } catch {
             errorMsg = "Error deleting workspace: \(error.localizedDescription)"
             print(errorMsg ?? "")
         }
+    }
+    
+    func prioritizeGoal(_ workspace: Workspace, goal: Goal) {
+        do {
+            try prioritizeGoalUseCase.execute(in: workspace, goal: goal)
+            fetchCurrentWorkspace()
+        } catch {
+            errorMsg = "Error prioritizing goal: \(error.localizedDescription)"
+            print(errorMsg ?? "")
+        }
+    }
+    
+    func unprioritizeGoal(in workspace: Workspace) {
+        do {
+            try unprioritizeGoalUseCase.execute(in: workspace)
+            fetchCurrentWorkspace()
+        } catch {
+            errorMsg = "Error unprioritizing goal: \(error.localizedDescription)"
+            print(errorMsg ?? "")
+        }
+    }
+    
+    func reprioritizeGoal(in workspace: Workspace, newGoal: Goal) {
+        unprioritizeGoal(in: workspace)
+        prioritizeGoal(workspace, goal: newGoal)
+        fetchCurrentWorkspace()
     }
 }

@@ -25,7 +25,7 @@ public class GoalEntity: NSManagedObject {
     @NSManaged public var title: String
     @NSManaged public var milestones: NSSet?
     @NSManaged public var workspace: WorkspaceEntity?
-
+    @NSManaged public var workspaceForPrioritizedGoal: WorkspaceEntity?
 }
 
 extension GoalEntity: Identifiable {

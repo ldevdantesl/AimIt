@@ -147,6 +147,11 @@
 		DADBE5902D27A0A30024D18B /* SettingsSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE58F2D27A0A30024D18B /* SettingsSheets.swift */; };
 		DADBE5922D27A0C30024D18B /* AnalyticsScreenCovers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5912D27A0C30024D18B /* AnalyticsScreenCovers.swift */; };
 		DADBE5942D27A0D40024D18B /* SettingsScreenCovers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5932D27A0D40024D18B /* SettingsScreenCovers.swift */; };
+		DADBE5A22D27C0D50024D18B /* PrioritizeGoalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5A12D27C0D50024D18B /* PrioritizeGoalUseCase.swift */; };
+		DADBE5A42D27C0F60024D18B /* PrioritizeGoalUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5A32D27C0F60024D18B /* PrioritizeGoalUseCaseImpl.swift */; };
+		DADBE5A62D27C5A50024D18B /* UnprioritizeGoalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5A52D27C5A50024D18B /* UnprioritizeGoalUseCase.swift */; };
+		DADBE5A82D27C60E0024D18B /* UnprioritizeGoalUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5A72D27C60E0024D18B /* UnprioritizeGoalUseCaseImpl.swift */; };
+		DADBE5AA2D27C6DE0024D18B /* AIPrioritizedGoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5A92D27C6DE0024D18B /* AIPrioritizedGoalCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -292,6 +297,11 @@
 		DADBE58F2D27A0A30024D18B /* SettingsSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSheets.swift; sourceTree = "<group>"; };
 		DADBE5912D27A0C30024D18B /* AnalyticsScreenCovers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenCovers.swift; sourceTree = "<group>"; };
 		DADBE5932D27A0D40024D18B /* SettingsScreenCovers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenCovers.swift; sourceTree = "<group>"; };
+		DADBE5A12D27C0D50024D18B /* PrioritizeGoalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrioritizeGoalUseCase.swift; sourceTree = "<group>"; };
+		DADBE5A32D27C0F60024D18B /* PrioritizeGoalUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrioritizeGoalUseCaseImpl.swift; sourceTree = "<group>"; };
+		DADBE5A52D27C5A50024D18B /* UnprioritizeGoalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnprioritizeGoalUseCase.swift; sourceTree = "<group>"; };
+		DADBE5A72D27C60E0024D18B /* UnprioritizeGoalUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnprioritizeGoalUseCaseImpl.swift; sourceTree = "<group>"; };
+		DADBE5A92D27C6DE0024D18B /* AIPrioritizedGoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPrioritizedGoalCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,6 +465,8 @@
 				DA518F652D1E06FB00A5E896 /* EditWorkspaceUseCaseImpl.swift */,
 				DA518F662D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCaseImpl.swift */,
 				DA518F672D1E06FB00A5E896 /* FetchWorkspacesUseCaseImpl.swift */,
+				DADBE5A32D27C0F60024D18B /* PrioritizeGoalUseCaseImpl.swift */,
+				DADBE5A72D27C60E0024D18B /* UnprioritizeGoalUseCaseImpl.swift */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -557,6 +569,8 @@
 				DA518F8B2D1E06FB00A5E896 /* EditWorkspaceUseCase.swift */,
 				DA518F8C2D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCase.swift */,
 				DA518F8D2D1E06FB00A5E896 /* FetchWorkspacesUseCase.swift */,
+				DADBE5A12D27C0D50024D18B /* PrioritizeGoalUseCase.swift */,
+				DADBE5A52D27C5A50024D18B /* UnprioritizeGoalUseCase.swift */,
 			);
 			path = Workspace;
 			sourceTree = "<group>";
@@ -606,6 +620,7 @@
 			children = (
 				DA518F962D1E06FB00A5E896 /* AIGoalCard.swift */,
 				DA518F972D1E06FB00A5E896 /* AIMilestoneRow.swift */,
+				DADBE5A92D27C6DE0024D18B /* AIPrioritizedGoalCard.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -1031,6 +1046,7 @@
 				DA518FF72D1E06FB00A5E896 /* WorkspaceRepositoryImpl.swift in Sources */,
 				DA518FF82D1E06FB00A5E896 /* NotificationServiceImpl.swift in Sources */,
 				DA518FF92D1E06FB00A5E896 /* StorageManager.swift in Sources */,
+				DADBE5A42D27C0F60024D18B /* PrioritizeGoalUseCaseImpl.swift in Sources */,
 				DA518FFA2D1E06FB00A5E896 /* UserDefaultsStorageManager.swift in Sources */,
 				DA518FFB2D1E06FB00A5E896 /* AddGoalUseCaseImpl.swift in Sources */,
 				DA518FFC2D1E06FB00A5E896 /* DeleteGoalUseCaseImpl.swift in Sources */,
@@ -1042,6 +1058,8 @@
 				DA5190022D1E06FB00A5E896 /* FetchAllMilestonesUseCaseImpl.swift in Sources */,
 				DADBE5942D27A0D40024D18B /* SettingsScreenCovers.swift in Sources */,
 				DA5190032D1E06FB00A5E896 /* FetchMilestonesForGoalUseCaseImpl.swift in Sources */,
+				DADBE5AA2D27C6DE0024D18B /* AIPrioritizedGoalCard.swift in Sources */,
+				DADBE5A62D27C5A50024D18B /* UnprioritizeGoalUseCase.swift in Sources */,
 				DA5190042D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCaseImpl.swift in Sources */,
 				DA5190052D1E06FB00A5E896 /* UpdateMilestoneUseCaseImpl.swift in Sources */,
 				DA5190062D1E06FB00A5E896 /* GetSettingUseCaseImpl.swift in Sources */,
@@ -1100,6 +1118,7 @@
 				DA5190652D1E766500A5E896 /* HomeScreenCovers.swift in Sources */,
 				DA5190362D1E06FB00A5E896 /* AIMilestoneCreationList.swift in Sources */,
 				DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */,
+				DADBE5A22D27C0D50024D18B /* PrioritizeGoalUseCase.swift in Sources */,
 				DA5190372D1E06FB00A5E896 /* AIDateCapsule.swift in Sources */,
 				DA5190382D1E06FB00A5E896 /* AIGoalWidget.swift in Sources */,
 				DA5190392D1E06FB00A5E896 /* AIQuoteWidget.swift in Sources */,
@@ -1122,6 +1141,7 @@
 				DA5190492D1E06FB00A5E896 /* HomeView.swift in Sources */,
 				DA51905F2D1E07BF00A5E896 /* QuoteViewModel.swift in Sources */,
 				DA51904A2D1E06FB00A5E896 /* LaunchAddWorkspaceView.swift in Sources */,
+				DADBE5A82D27C60E0024D18B /* UnprioritizeGoalUseCaseImpl.swift in Sources */,
 				DA51904B2D1E06FB00A5E896 /* LaunchIntroView.swift in Sources */,
 				DA51904C2D1E06FB00A5E896 /* SplashScreen.swift in Sources */,
 				DA51904D2D1E06FB00A5E896 /* SettingsView.swift in Sources */,

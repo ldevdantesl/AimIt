@@ -21,7 +21,9 @@ final class DIContainer: ObservableObject {
             fetchWorkspacesUseCase: FetchWorkspacesUseCaseImpl(repository: repository),
             fetchCurrentWorkspaceUseCase: FetchCurrentWorkspaceUseCaseImpl(repository: repository),
             editWorkspaceUseCase: EditWorkspaceUseCaseImpl(repository: repository),
-            deleteWorkspaceUseCase: DeleteWorkspaceUseCaseImpl(repository: repository)
+            deleteWorkspaceUseCase: DeleteWorkspaceUseCaseImpl(repository: repository),
+            prioritizeGoalUseCase: PrioritizeGoalUseCaseImpl(repository: repository),
+            unprioritizeGoalUseCase: UnprioritizeGoalUseCaseImpl(repository: repository)
         )
     }
     

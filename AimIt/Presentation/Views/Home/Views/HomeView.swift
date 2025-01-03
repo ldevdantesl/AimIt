@@ -41,6 +41,8 @@ struct HomeView: View {
                     
                     AIWorkspaceSelector()
                     
+                    AIPrioritizedGoalCard(in: workspaceVM.currentWorkspace)
+                    
                     HStack(alignment: .top) {
                         AIGoalWidget(workspace: workspaceVM.currentWorkspace)
                         

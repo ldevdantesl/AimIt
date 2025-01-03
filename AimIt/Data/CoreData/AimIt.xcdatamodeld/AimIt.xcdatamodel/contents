@@ -15,6 +15,7 @@
         <attribute name="title" attributeType="String"/>
         <relationship name="milestones" toMany="YES" deletionRule="Nullify" destinationEntity="MilestoneEntity" inverseName="goal" inverseEntity="MilestoneEntity"/>
         <relationship name="workspace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkspaceEntity" inverseName="goals" inverseEntity="WorkspaceEntity"/>
+        <relationship name="workspaceForPrioritizedGoal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkspaceEntity" inverseName="prioritizedGoal" inverseEntity="WorkspaceEntity"/>
     </entity>
     <entity name="MilestoneEntity" representedClassName="MilestoneEntity" syncable="YES">
         <attribute name="desc" attributeType="String"/>
@@ -27,5 +28,6 @@
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
         <relationship name="goals" toMany="YES" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="workspace" inverseEntity="GoalEntity"/>
+        <relationship name="prioritizedGoal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="workspaceForPrioritizedGoal" inverseEntity="GoalEntity"/>
     </entity>
 </model>

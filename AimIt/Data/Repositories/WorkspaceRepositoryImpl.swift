@@ -16,6 +16,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         self.CDStack = CDStack
     }
     
+    // MARK: - FETCH
     func fetchWorkspaces() throws -> [Workspace] {
         let request: NSFetchRequest<WorkspaceEntity> = WorkspaceEntity.fetchRequest()
         let entities = try CDStack.viewContext.fetch(request)
@@ -33,6 +34,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         return WorkspaceMapper.toDomain(workspace)
     }
     
+    // MARK: - ADD
     func addWorkspace(title: String) throws -> Workspace{
         let newWorkspace = WorkspaceEntity(context: CDStack.viewContext)
         newWorkspace.id = UUID()
@@ -44,6 +46,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         return WorkspaceMapper.toDomain(newWorkspace)
     }
     
+    // MARK: - DELETE
     func deleteWorkspace(_ workspace: Workspace) throws {
         let entity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
         
@@ -59,10 +62,27 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         }
     }
     
+    // MARK: - EDIT
     func editWorkspace(workspace: Workspace, newTitle: String, newGoals: [Goal]) throws {
         let entity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
         entity.title = newTitle
         entity.goals = NSSet(array: newGoals)
+        CDStack.saveContext()
+    }
+    
+    // MARK: - PRIORITIZE
+    func prioritizeGoal(in workspace: Workspace, goal: Goal) throws {
+        let entity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
+        if entity.prioritizedGoal != nil {
+            try unprioritizeGoal(in: workspace)
+        }
+        entity.prioritizedGoal = GoalMapper.toEntity(from: goal, context: CDStack.viewContext)
+        CDStack.saveContext()
+    }
+    
+    func unprioritizeGoal(in workspace: Workspace) throws {
+        let entity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
+        entity.prioritizedGoal = nil
         CDStack.saveContext()
     }
 }
