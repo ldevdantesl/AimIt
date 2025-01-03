@@ -1,19 +1,18 @@
 //
-//  SettingsView.swift
+//  AnalyticsView.swift
 //  AimIt
 //
-//  Created by Buzurg Rakhimzoda on 6.12.2024.
+//  Created by Buzurg Rakhimzoda on 2.01.2025.
 //
 
-import Foundation
 import SwiftUI
 
-struct SettingsView: View {
-    @EnvironmentObject var coordinator: SettingsCoordinator
+struct AnalyticsView: View {
+    @EnvironmentObject var coordinator: AnalyticsCoordinator
     var body: some View {
         NavigationStack(path: $coordinator.path){
             ScrollView{
-                Text("Settings View")
+                Text("Analytics View")
                     .foregroundStyle(.aiLabel)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -24,7 +23,7 @@ struct SettingsView: View {
             .fullScreenCover(item: $coordinator.fullScreenCover) { screenCover in
                 coordinator.build(screenCovers: screenCover)
             }
-            .navigationDestination(for: SettingsScreens.self) { screen in
+            .navigationDestination(for: AnalyticsScreens.self) { screen in
                 coordinator.build(screen: screen)
             }
             .safeAreaInset(edge: .bottom) {
@@ -35,6 +34,6 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
-        .environmentObject(SettingsCoordinator())
+    AnalyticsView()
+        .environmentObject(AnalyticsCoordinator())
 }

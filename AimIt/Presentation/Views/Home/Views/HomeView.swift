@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var tabCoordinator: TabCoordinator
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
@@ -40,7 +41,7 @@ struct HomeView: View {
                     
                     AIWorkspaceSelector()
                     
-                    HStack(alignment: .top){
+                    HStack(alignment: .top) {
                         AIGoalWidget(workspace: workspaceVM.currentWorkspace)
                         
                         Spacer()
@@ -69,6 +70,9 @@ struct HomeView: View {
             .onAppear {
                 goalVM.fetchGoals()
                 workspaceVM.fetchCurrentWorkspace()
+            }
+            .safeAreaInset(edge: .bottom) {
+                FloatingTabBar(action: { coordinator.push(to: .addGoal) })
             }
         }
     }

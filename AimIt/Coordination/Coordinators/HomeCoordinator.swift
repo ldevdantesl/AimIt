@@ -23,15 +23,8 @@ final class HomeCoordinator: ObservableObject, Coordinator {
     @ViewBuilder
     func build(screen: HomeScreens) -> some View {
         switch screen {
-            
-        case .addGoal:
-            HomeAddGoalView()
-            
-        case .goalDetails:
-            GoalDetailsView()
-            
-        default:
-            EmptyView()
+        case .addGoal: HomeAddGoalView()
+        case .goalDetails: GoalDetailsView()
         }
     }
     

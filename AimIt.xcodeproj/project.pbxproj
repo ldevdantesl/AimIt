@@ -19,7 +19,6 @@
 		DA518FE82D1E06FB00A5E896 /* LaunchScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F372D1E06FB00A5E896 /* LaunchScreens.swift */; };
 		DA518FE92D1E06FB00A5E896 /* SettingsScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F382D1E06FB00A5E896 /* SettingsScreens.swift */; };
 		DA518FEA2D1E06FB00A5E896 /* HomeSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F3A2D1E06FB00A5E896 /* HomeSheets.swift */; };
-		DA518FEB2D1E06FB00A5E896 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F3C2D1E06FB00A5E896 /* Coordinator.swift */; };
 		DA518FEC2D1E06FB00A5E896 /* AimIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA518F3E2D1E06FB00A5E896 /* AimIt.xcdatamodeld */; };
 		DA518FED2D1E06FB00A5E896 /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F3F2D1E06FB00A5E896 /* CategoryEntity.swift */; };
 		DA518FEE2D1E06FB00A5E896 /* GoalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F402D1E06FB00A5E896 /* GoalEntity.swift */; };
@@ -138,6 +137,16 @@
 		DA5190692D1E76C400A5E896 /* EditGoalScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190682D1E76C400A5E896 /* EditGoalScreenCover.swift */; };
 		DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */; };
 		DA5DC0252D26554F00BE895B /* FieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DC0242D26554F00BE895B /* FieldChecker.swift */; };
+		DADBE5802D2788390024D18B /* FloatingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE57F2D2788390024D18B /* FloatingTabBar.swift */; };
+		DADBE5822D2796870024D18B /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5812D2796870024D18B /* TabCoordinator.swift */; };
+		DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5842D2796D30024D18B /* CustomTab.swift */; };
+		DADBE5872D279B1D0024D18B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5862D279B1D0024D18B /* Coordinator.swift */; };
+		DADBE5892D279F380024D18B /* CoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5882D279F380024D18B /* CoreView.swift */; };
+		DADBE58C2D279FF80024D18B /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE58B2D279FF80024D18B /* AnalyticsView.swift */; };
+		DADBE58E2D27A0940024D18B /* AnalyticsSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE58D2D27A0940024D18B /* AnalyticsSheets.swift */; };
+		DADBE5902D27A0A30024D18B /* SettingsSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE58F2D27A0A30024D18B /* SettingsSheets.swift */; };
+		DADBE5922D27A0C30024D18B /* AnalyticsScreenCovers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5912D27A0C30024D18B /* AnalyticsScreenCovers.swift */; };
+		DADBE5942D27A0D40024D18B /* SettingsScreenCovers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5932D27A0D40024D18B /* SettingsScreenCovers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,7 +162,6 @@
 		DA518F372D1E06FB00A5E896 /* LaunchScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreens.swift; sourceTree = "<group>"; };
 		DA518F382D1E06FB00A5E896 /* SettingsScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreens.swift; sourceTree = "<group>"; };
 		DA518F3A2D1E06FB00A5E896 /* HomeSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSheets.swift; sourceTree = "<group>"; };
-		DA518F3C2D1E06FB00A5E896 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DA518F3F2D1E06FB00A5E896 /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
 		DA518F402D1E06FB00A5E896 /* GoalEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEntity.swift; sourceTree = "<group>"; };
 		DA518F412D1E06FB00A5E896 /* MilestoneEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneEntity.swift; sourceTree = "<group>"; };
@@ -274,6 +282,16 @@
 		DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DA5DC0242D26554F00BE895B /* FieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldChecker.swift; sourceTree = "<group>"; };
 		DA9E0D3C2D011CBF00E80B34 /* AimIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DADBE57F2D2788390024D18B /* FloatingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBar.swift; sourceTree = "<group>"; };
+		DADBE5812D2796870024D18B /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		DADBE5842D2796D30024D18B /* CustomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTab.swift; sourceTree = "<group>"; };
+		DADBE5862D279B1D0024D18B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DADBE5882D279F380024D18B /* CoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreView.swift; sourceTree = "<group>"; };
+		DADBE58B2D279FF80024D18B /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		DADBE58D2D27A0940024D18B /* AnalyticsSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsSheets.swift; sourceTree = "<group>"; };
+		DADBE58F2D27A0A30024D18B /* SettingsSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSheets.swift; sourceTree = "<group>"; };
+		DADBE5912D27A0C30024D18B /* AnalyticsScreenCovers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenCovers.swift; sourceTree = "<group>"; };
+		DADBE5932D27A0D40024D18B /* SettingsScreenCovers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenCovers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +323,7 @@
 				DA518F312D1E06FB00A5E896 /* HomeCoordinator.swift */,
 				DA518F322D1E06FB00A5E896 /* LaunchCoordinator.swift */,
 				DA518F332D1E06FB00A5E896 /* SettingsCoordinator.swift */,
+				DADBE5812D2796870024D18B /* TabCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -324,6 +343,8 @@
 			isa = PBXGroup;
 			children = (
 				DA518F3A2D1E06FB00A5E896 /* HomeSheets.swift */,
+				DADBE58D2D27A0940024D18B /* AnalyticsSheets.swift */,
+				DADBE58F2D27A0A30024D18B /* SettingsSheets.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -331,11 +352,12 @@
 		DA518F3D2D1E06FB00A5E896 /* Coordination */ = {
 			isa = PBXGroup;
 			children = (
+				DADBE5832D2796BD0024D18B /* Tabs */,
 				DA5190632D1E765600A5E896 /* ScreenCovers */,
 				DA518F342D1E06FB00A5E896 /* Coordinators */,
 				DA518F392D1E06FB00A5E896 /* Screens */,
 				DA518F3B2D1E06FB00A5E896 /* Sheets */,
-				DA518F3C2D1E06FB00A5E896 /* Coordinator.swift */,
+				DADBE5862D279B1D0024D18B /* Coordinator.swift */,
 			);
 			path = Coordination;
 			sourceTree = "<group>";
@@ -566,6 +588,7 @@
 			children = (
 				DA518F912D1E06FB00A5E896 /* AIProgressBar.swift */,
 				DA518F922D1E06FB00A5E896 /* AISearchBar.swift */,
+				DADBE57F2D2788390024D18B /* FloatingTabBar.swift */,
 			);
 			path = Bars;
 			sourceTree = "<group>";
@@ -594,6 +617,8 @@
 				DA518F9A2D1E06FB00A5E896 /* AIDatePicker.swift */,
 				DA518F9B2D1E06FB00A5E896 /* AISystemImagePicker.swift */,
 				DA518F9C2D1E06FB00A5E896 /* AITextField.swift */,
+				DA518FA92D1E06FB00A5E896 /* AIInfoField.swift */,
+				DA518FAC2D1E06FB00A5E896 /* AIWorkspaceSelector.swift */,
 			);
 			path = "Fields & Pickers";
 			sourceTree = "<group>";
@@ -629,6 +654,7 @@
 		DA518FAE2D1E06FB00A5E896 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DADBE57E2D2788220024D18B /* Other */,
 				DA518F932D1E06FB00A5E896 /* Bars */,
 				DA518F952D1E06FB00A5E896 /* Buttons */,
 				DA518F982D1E06FB00A5E896 /* Cards */,
@@ -636,11 +662,6 @@
 				DA518FA12D1E06FB00A5E896 /* Lists */,
 				DA518FA32D1E06FB00A5E896 /* Shapes */,
 				DA518FA72D1E06FB00A5E896 /* Widgets */,
-				DA518FA82D1E06FB00A5E896 /* AIHeaderView.swift */,
-				DA518FA92D1E06FB00A5E896 /* AIInfoField.swift */,
-				DA518FAB2D1E06FB00A5E896 /* AITimelineView.swift */,
-				DA518FAC2D1E06FB00A5E896 /* AIWorkspaceSelector.swift */,
-				DA518FAD2D1E06FB00A5E896 /* NotFoundView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -696,9 +717,11 @@
 		DA518FC22D1E06FB00A5E896 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DADBE58A2D279FEF0024D18B /* Analytics */,
 				DA518FBA2D1E06FB00A5E896 /* Home */,
 				DA518FBF2D1E06FB00A5E896 /* Launching */,
 				DA518FC12D1E06FB00A5E896 /* Settings */,
+				DADBE5882D279F380024D18B /* CoreView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -827,6 +850,8 @@
 			isa = PBXGroup;
 			children = (
 				DA5190642D1E766500A5E896 /* HomeScreenCovers.swift */,
+				DADBE5912D27A0C30024D18B /* AnalyticsScreenCovers.swift */,
+				DADBE5932D27A0D40024D18B /* SettingsScreenCovers.swift */,
 			);
 			path = ScreenCovers;
 			sourceTree = "<group>";
@@ -872,6 +897,32 @@
 				DA9E0D3C2D011CBF00E80B34 /* AimIt.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DADBE57E2D2788220024D18B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				DA518FA82D1E06FB00A5E896 /* AIHeaderView.swift */,
+				DA518FAB2D1E06FB00A5E896 /* AITimelineView.swift */,
+				DA518FAD2D1E06FB00A5E896 /* NotFoundView.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		DADBE5832D2796BD0024D18B /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				DADBE5842D2796D30024D18B /* CustomTab.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		DADBE58A2D279FEF0024D18B /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				DADBE58B2D279FF80024D18B /* AnalyticsView.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -952,17 +1003,18 @@
 			files = (
 				DA518FDE2D1E06FB00A5E896 /* AimItApp.swift in Sources */,
 				DA518FDF2D1E06FB00A5E896 /* AppCoordinator.swift in Sources */,
+				DADBE5872D279B1D0024D18B /* Coordinator.swift in Sources */,
 				DA518FE12D1E06FB00A5E896 /* DIContainer.swift in Sources */,
 				DA518FE22D1E06FB00A5E896 /* AnalyticsCoordinator.swift in Sources */,
 				DA518FE32D1E06FB00A5E896 /* HomeCoordinator.swift in Sources */,
 				DA518FE42D1E06FB00A5E896 /* LaunchCoordinator.swift in Sources */,
 				DA518FE52D1E06FB00A5E896 /* SettingsCoordinator.swift in Sources */,
+				DADBE5922D27A0C30024D18B /* AnalyticsScreenCovers.swift in Sources */,
 				DA518FE62D1E06FB00A5E896 /* AnalyticsScreens.swift in Sources */,
 				DA518FE72D1E06FB00A5E896 /* HomeScreens.swift in Sources */,
 				DA518FE82D1E06FB00A5E896 /* LaunchScreens.swift in Sources */,
 				DA518FE92D1E06FB00A5E896 /* SettingsScreens.swift in Sources */,
 				DA518FEA2D1E06FB00A5E896 /* HomeSheets.swift in Sources */,
-				DA518FEB2D1E06FB00A5E896 /* Coordinator.swift in Sources */,
 				DA518FEC2D1E06FB00A5E896 /* AimIt.xcdatamodeld in Sources */,
 				DA518FED2D1E06FB00A5E896 /* CategoryEntity.swift in Sources */,
 				DA518FEE2D1E06FB00A5E896 /* GoalEntity.swift in Sources */,
@@ -988,6 +1040,7 @@
 				DA5190002D1E06FB00A5E896 /* AddMilestoneUseCaseImpl.swift in Sources */,
 				DA5190012D1E06FB00A5E896 /* DeleteMilestoneUseCaseImpl.swift in Sources */,
 				DA5190022D1E06FB00A5E896 /* FetchAllMilestonesUseCaseImpl.swift in Sources */,
+				DADBE5942D27A0D40024D18B /* SettingsScreenCovers.swift in Sources */,
 				DA5190032D1E06FB00A5E896 /* FetchMilestonesForGoalUseCaseImpl.swift in Sources */,
 				DA5190042D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCaseImpl.swift in Sources */,
 				DA5190052D1E06FB00A5E896 /* UpdateMilestoneUseCaseImpl.swift in Sources */,
@@ -997,6 +1050,7 @@
 				DA5190092D1E06FB00A5E896 /* AddWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900A2D1E06FB00A5E896 /* DeleteWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900B2D1E06FB00A5E896 /* EditWorkspaceUseCaseImpl.swift in Sources */,
+				DADBE5892D279F380024D18B /* CoreView.swift in Sources */,
 				DA51900C2D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900D2D1E06FB00A5E896 /* FetchWorkspacesUseCaseImpl.swift in Sources */,
 				DA51900E2D1E06FB00A5E896 /* Category.swift in Sources */,
@@ -1016,6 +1070,7 @@
 				DA51901C2D1E06FB00A5E896 /* ToggleCompletionGoalUseCase.swift in Sources */,
 				DA51901D2D1E06FB00A5E896 /* AddMilestoneUseCase.swift in Sources */,
 				DA51901E2D1E06FB00A5E896 /* DeleteMilestoneUseCase.swift in Sources */,
+				DADBE58C2D279FF80024D18B /* AnalyticsView.swift in Sources */,
 				DA51901F2D1E06FB00A5E896 /* FetchAllMilestonesUseCase.swift in Sources */,
 				DA5190202D1E06FB00A5E896 /* FetchMilestonesForGoalUseCase.swift in Sources */,
 				DA5190212D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCase.swift in Sources */,
@@ -1036,12 +1091,15 @@
 				DA51902F2D1E06FB00A5E896 /* AIMilestoneRow.swift in Sources */,
 				DA5190302D1E06FB00A5E896 /* CreateMilestoneView.swift in Sources */,
 				DA5190312D1E06FB00A5E896 /* AIDatePicker.swift in Sources */,
+				DADBE58E2D27A0940024D18B /* AnalyticsSheets.swift in Sources */,
 				DA5190322D1E06FB00A5E896 /* AISystemImagePicker.swift in Sources */,
 				DA5190332D1E06FB00A5E896 /* AITextField.swift in Sources */,
+				DADBE5802D2788390024D18B /* FloatingTabBar.swift in Sources */,
 				DA5190342D1E06FB00A5E896 /* AIGoalCardList.swift in Sources */,
 				DA5190352D1E06FB00A5E896 /* AIGoalMilestonesList.swift in Sources */,
 				DA5190652D1E766500A5E896 /* HomeScreenCovers.swift in Sources */,
 				DA5190362D1E06FB00A5E896 /* AIMilestoneCreationList.swift in Sources */,
+				DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */,
 				DA5190372D1E06FB00A5E896 /* AIDateCapsule.swift in Sources */,
 				DA5190382D1E06FB00A5E896 /* AIGoalWidget.swift in Sources */,
 				DA5190392D1E06FB00A5E896 /* AIQuoteWidget.swift in Sources */,
@@ -1051,6 +1109,7 @@
 				DA51903C2D1E06FB00A5E896 /* AIInfoField.swift in Sources */,
 				DA51903E2D1E06FB00A5E896 /* AITimelineView.swift in Sources */,
 				DA51903F2D1E06FB00A5E896 /* AIWorkspaceSelector.swift in Sources */,
+				DADBE5902D27A0A30024D18B /* SettingsSheets.swift in Sources */,
 				DA5190402D1E06FB00A5E896 /* NotFoundView.swift in Sources */,
 				DA5190412D1E06FB00A5E896 /* VideoPlayerView.swift in Sources */,
 				DA5190422D1E06FB00A5E896 /* GoalViewModel.swift in Sources */,
@@ -1070,6 +1129,7 @@
 				DA51904F2D1E06FB00A5E896 /* Constants.swift in Sources */,
 				DA5190502D1E06FB00A5E896 /* ImageNames.swift in Sources */,
 				DA5190512D1E06FB00A5E896 /* UIConstants.swift in Sources */,
+				DADBE5822D2796870024D18B /* TabCoordinator.swift in Sources */,
 				DA5190522D1E06FB00A5E896 /* Bundle+Extensions.swift in Sources */,
 				DA5190532D1E06FB00A5E896 /* View+Extensions.swift in Sources */,
 				DA5190542D1E06FB00A5E896 /* MockSettingsRepository.swift in Sources */,

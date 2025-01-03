@@ -20,12 +20,8 @@ final class AppCoordinator: ObservableObject {
     
     private var isFirstLaunchKey = ConstantKeys.isFirstLaunchKey
     
-    private lazy var homeCoordinator: HomeCoordinator = {
-        HomeCoordinator()
-    }()
-    
-    private lazy var settingsCoordinator: SettingsCoordinator = {
-        SettingsCoordinator()
+    private lazy var tabCoordinator: TabCoordinator = {
+        TabCoordinator()
     }()
     
     private lazy var launchCoordinator: LaunchCoordinator = {
@@ -34,13 +30,13 @@ final class AppCoordinator: ObservableObject {
     
     @ViewBuilder
     func start() -> some View {
-        ZStack{
+        Group{
             switch appState {
             case .splash:
                 SplashScreen(onFinish: checkAuthentication)
                     .transition(.slide)
             case .authenticated:
-                homeCoordinator.start()
+                tabCoordinator.start()
                     .transition(.move(edge: .leading))
             case .unauthenticated:
                 launchCoordinator.start()
