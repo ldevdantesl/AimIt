@@ -9,14 +9,11 @@ import SwiftUI
 
 struct AIGoalCardList: View {
     @EnvironmentObject var coordinator: HomeCoordinator
-    var goals: [Goal] = []
-    
-    var workspaceGoals: [Goal] {
-        goals.sorted { $0.milestones.count < $1.milestones.count }
-    }
+    @EnvironmentObject var workspaceVM: WorkspaceViewModel
+    @EnvironmentObject var goalVM: GoalViewModel
     
     var body: some View {
-        if workspaceGoals.isEmpty {
+        if workspaceVM.currentWorkspace.goals.isEmpty {
             NotFoundView(
                 imageName: ImageNames.noGoals,
                 title: "No goals yet",
@@ -26,8 +23,27 @@ struct AIGoalCardList: View {
             )
         } else {
             LazyVStack(spacing: 20) {
-                ForEach(goals, id: \.self) { goal in
-                    AIGoalCardView(goal: goal)
+                ForEach(workspaceVM.currentWorkspace.goals, id: \.self) { goal in
+                    AIGoalCard(goal: goal)
+                        .contextMenu {
+                            Button(
+                                "Prioritize",
+                                systemImage: "exclamationmark",
+                                action: {}
+                            )
+                            Button(
+                                "Delete",
+                                systemImage: "trash.fill",
+                                role:.destructive
+                            ) {
+                                DispatchQueue.main.async {
+                                    withAnimation {
+                                        goalVM.deleteGoal(goal)
+                                        workspaceVM.fetchCurrentWorkspace()
+                                    }
+                                }
+                            }
+                        }
                 }
             }
         }
@@ -39,6 +55,8 @@ struct AIGoalCardList: View {
 }
 
 #Preview {
-    AIGoalCardList(goals: [])
+    AIGoalCardList()
         .environmentObject(HomeCoordinator())
+        .environmentObject(DIContainer().makeWorkspaceViewModel())
+        .environmentObject(DIContainer().makeGoalViewModel())
 }

@@ -53,7 +53,7 @@ struct HomeView: View {
                             }
                     }
                     
-                    AIGoalCardList(goals: workspaceVM.currentWorkspace.goals)
+                    AIGoalCardList()
                 }
             }
             .background(UIConstants.backgroundColor)

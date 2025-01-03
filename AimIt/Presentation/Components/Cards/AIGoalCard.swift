@@ -8,14 +8,16 @@
 import Foundation
 import SwiftUI
 
-struct AIGoalCardView: View {
+struct AIGoalCard: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     
-    var goal: Goal
+    @State private var goal: Goal
+    private var prioritized: Bool
     
-    init(goal: Goal) {
+    init(goal: Goal, prioritized: Bool = false) {
         self.goal = goal
+        self.prioritized = prioritized
     }
     
     var body: some View {
@@ -38,13 +40,13 @@ struct AIGoalCardView: View {
                 }
                 
                 if let desc = goal.desc{
-                    Text(desc)
+                    Text(desc.isEmpty ? "No description for this goal" : desc)
                         .font(.system(.caption, design: .rounded, weight: .bold))
                         .foregroundStyle(.aiBlack.opacity(0.8))
                         .lineLimit(1)
                         .padding(.bottom, 20)
                 }
-                
+            
                 AIProgressBar(goal: goal)
                     .padding(.bottom, 10)
             }
@@ -54,12 +56,22 @@ struct AIGoalCardView: View {
             .background(Color.aiLabel, in: .rect(cornerRadius: 25))
             .padding(.horizontal)
             .shadow(color: .aiSecondary2.opacity(0.2), radius: 2, x: 0, y: 1)
+            .overlay(alignment: .topTrailing) {
+                if prioritized {
+                    Image(.pin)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 30)
+                        .padding(.trailing, 10)
+                        .offset(y: -10)
+                }
+            }
         }
     }
 }
 
 #Preview {
-    AIGoalCardView(goal: .sample)
+    AIGoalCard(goal: .sample, prioritized: true)
         .preferredColorScheme(.dark)
         .environmentObject(HomeCoordinator())
         .environmentObject(DIContainer().makeGoalViewModel())
