@@ -20,7 +20,7 @@ struct AIPrioritizedGoalCard: View {
     
     var body: some View {
         if let goal = workspace.prioritizedGoal {
-            AIGoalCard(goal: goal, prioritized: true)
+            AIGoalCard(prioritizedGoal: goal)
                 .contextMenu {
                     Button(
                         "Unprioritize",
@@ -28,15 +28,13 @@ struct AIPrioritizedGoalCard: View {
                         action: unprioritize
                     )
                 }
-                .transition(.move(edge: .bottom))
+                .id(workspace.prioritizedGoal?.id)
         }
     }
     
     private func unprioritize() {
         DispatchQueue.main.async {
-            withAnimation(.bouncy) {
-                workspaceVM.unprioritizeGoal(in: workspace)
-            }
+            workspaceVM.unprioritizeGoal(in: workspace)
         }
     }
 }

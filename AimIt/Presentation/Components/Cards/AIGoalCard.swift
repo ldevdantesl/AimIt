@@ -15,9 +15,14 @@ struct AIGoalCard: View {
     @State private var goal: Goal
     private var prioritized: Bool
     
-    init(goal: Goal, prioritized: Bool = false) {
+    init(goal: Goal) {
         self.goal = goal
-        self.prioritized = prioritized
+        self.prioritized = false
+    }
+    
+    init(prioritizedGoal: Goal) {
+        self.goal = prioritizedGoal
+        self.prioritized = true
     }
     
     var body: some View {
@@ -71,7 +76,7 @@ struct AIGoalCard: View {
 }
 
 #Preview {
-    AIGoalCard(goal: .sample, prioritized: true)
+    AIGoalCard(goal: .sample)
         .preferredColorScheme(.dark)
         .environmentObject(HomeCoordinator())
         .environmentObject(DIContainer().makeGoalViewModel())

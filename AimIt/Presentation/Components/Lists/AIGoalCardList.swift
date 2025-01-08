@@ -27,11 +27,13 @@ struct AIGoalCardList: View {
                     if goal != workspaceVM.currentWorkspace.prioritizedGoal {
                         AIGoalCard(goal: goal)
                             .contextMenu {
-                                Button(
-                                    "Prioritize",
-                                    systemImage: "exclamationmark",
-                                    action: { prioritizeGoal(goal: goal) }
-                                )
+                                if workspaceVM.currentWorkspace.prioritizedGoal == nil {
+                                    Button(
+                                        "Prioritize",
+                                        systemImage: "exclamationmark",
+                                        action: { prioritizeGoal(goal: goal) }
+                                    )
+                                }
                                 Button(
                                     "Delete",
                                     systemImage: "trash.fill",
@@ -39,7 +41,6 @@ struct AIGoalCardList: View {
                                     action: { deleteGoal(goal: goal)}
                                 )
                             }
-                            .transition(.move(edge: .top))
                     }
                 }
             }
@@ -48,7 +49,7 @@ struct AIGoalCardList: View {
     
     private func prioritizeGoal(goal: Goal) {
         DispatchQueue.main.async {
-            withAnimation(.bouncy) {
+            withAnimation {
                 workspaceVM.prioritizeGoal(workspaceVM.currentWorkspace, goal: goal)
             }
         }
