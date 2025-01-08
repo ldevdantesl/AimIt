@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AIGoalMilestonesList: View {
     @EnvironmentObject var goalVM: GoalViewModel
+    @EnvironmentObject var coordinator: HomeCoordinator
     
     @State private var sortType: (Milestone, Milestone) -> Bool = { $0.isCompleted && !$1.isCompleted }
     
@@ -39,10 +40,17 @@ struct AIGoalMilestonesList: View {
                 }
                 .padding(.horizontal, 20)
                 ForEach(milestonesFiltered) { milestone in
-                    AIMilestoneRow(milestone: milestone)
+                    AIMilestoneRow(
+                        milestone: milestone,
+                        onTap: onMilestoneTap
+                    )
                 }
             }
         }
+    }
+    
+    private func onMilestoneTap(milestone: Milestone) {
+        coordinator.present(sheet: .milestoneDetails(milestone))
     }
 }
 

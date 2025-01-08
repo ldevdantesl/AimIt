@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AIMilestoneCreationList: View {
+    @EnvironmentObject var coordinator: HomeCoordinator
     @Binding var milestones: [Milestone]
     
     var body: some View {
@@ -22,19 +23,24 @@ struct AIMilestoneCreationList: View {
         } else {
             LazyVStack(spacing: 12){
                 ForEach(milestones, id: \.self) { milestone in
-                    AIMilestoneRow(milestone: milestone, onDelete: { onDelete(milestone: milestone) })
+                    AIMilestoneRow(
+                        milestone: milestone,
+                        onDelete: onDelete
+                    )
                 }
             }
             .animation(.bouncy, value: milestones)
         }
     }
     
-    func onDelete(milestone: Milestone) {
+    private func onDelete(milestone: Milestone) {
         milestones.removeAll { $0.id == milestone.id }
     }
 }
 
 #Preview {
     AIMilestoneCreationList(milestones: .constant(Milestone.sampleMilestones))
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
+        .environmentObject(HomeCoordinator())
 }

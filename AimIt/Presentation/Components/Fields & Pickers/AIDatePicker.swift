@@ -27,14 +27,11 @@ struct AIDatePicker: View {
     
     var body: some View {
         VStack(alignment:.leading){
-            HStack{
-                Text(titleName)
-                    .font(.system(.headline, design: .rounded, weight: .light))
-                    .foregroundStyle(.aiSecondary2)
-                
-                Spacer()
-            }
-            .padding(.leading, 10)
+            Text(titleName)
+                .font(.system(.headline, design: .rounded, weight: .light))
+                .foregroundStyle(.aiSecondary2)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 10)
             
             HStack{
                 Text(DeadlineFormatter.formatToDayMonth(chosenDate))
@@ -67,13 +64,12 @@ struct AIDatePicker: View {
                     displayedComponents: .date
                 )
                 .datePickerStyle(.graphical)
+                .padding(.horizontal, 20)
                 
-                Button("Done"){
+                AIButton(title: "Done"){
                     showSheet.toggle()
                 }
-                .foregroundStyle(.aiOrange)
             }
-            .padding(.horizontal, 20)
             .presentationDetents([.medium])
             .presentationBackground(.aiBackground)
             .preferredColorScheme(.dark)

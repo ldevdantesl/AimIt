@@ -26,6 +26,7 @@ struct AIButton: View {
     let backColor: Color
     let foreColor: Color
     
+    ///Default Initializer. Used for presenting button in a circle using *ImageType*\n
     init(
         image: ImageType,
         backColor: Color = .aiSecondBackground,
@@ -39,6 +40,7 @@ struct AIButton: View {
         self.foreColor = foreColor
     }
     
+    ///Initializer used for presenting a button filled throughout the whole screenwidth.\n Use it in a bottom toolbar positions.
     init(title: String, color: Color = .accentColor, action: (() -> ())? = nil) {
         self.title = title
         self.action = action
@@ -88,7 +90,7 @@ struct AIButton: View {
     }
     
     
-    func makeImage() -> Image {
+    private func makeImage() -> Image {
         switch image {
         case .back:
             return Image(systemName: "chevron.left")

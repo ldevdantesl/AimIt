@@ -13,9 +13,9 @@ struct NotFoundView: View {
     private let title: String
     private let topPadding: CGFloat
     private let subtitle: String?
-    private let action: (() -> ())
+    private let action: (() -> ())?
     
-    init(imageName: String, title: String, topPadding: CGFloat = 20, subtitle: String?, action: @escaping () -> Void) {
+    init(imageName: String, title: String, topPadding: CGFloat = 20, subtitle: String?, action: (() -> Void)?) {
         self.imageName = imageName
         self.title = title
         self.topPadding = topPadding
@@ -25,7 +25,7 @@ struct NotFoundView: View {
     
     
     var body: some View {
-        Button(action: action) {
+        Button(action: { action?() }) {
             VStack{
                 Image(imageName)
                     .resizable()

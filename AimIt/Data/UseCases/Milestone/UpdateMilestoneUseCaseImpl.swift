@@ -14,7 +14,7 @@ final class UpdateMilestoneUseCaseImpl: UpdateMilestoneUseCase {
         self.repository = repository
     }
     
-    func execute(_ milestone: Milestone, desc: String?, systemImage: String?) throws {
-        try repository.updateMilestone(milestone, desc: desc, systemImage: systemImage)
+    func execute(_ milestone: Milestone, desc: String?, systemImage: String?, dueDate: Date?) throws {
+        try repository.updateMilestone(milestone, desc: desc, systemImage: systemImage, dueDate: dueDate)
     }
 }

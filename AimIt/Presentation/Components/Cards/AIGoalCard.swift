@@ -52,7 +52,7 @@ struct AIGoalCard: View {
                         .padding(.bottom, 20)
                 }
             
-                AIProgressBar(goal: goal)
+                AIGoalProgressBar(goal: goal)
                     .padding(.bottom, 10)
             }
             .padding([.horizontal, .top], 20)

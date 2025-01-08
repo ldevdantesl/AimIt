@@ -14,6 +14,7 @@ struct MilestoneMapper {
             id: milestoneEntity.id,
             desc: milestoneEntity.desc,
             systemImage: milestoneEntity.systemImage,
+            dueDate: milestoneEntity.dueDate,
             isCompleted: milestoneEntity.isCompleted,
             goalID: milestoneEntity.goal?.id ?? UUID()
         )
@@ -30,6 +31,7 @@ struct MilestoneMapper {
             entity.id = milestone.id
             entity.desc = milestone.desc
             entity.systemImage = milestone.systemImage
+            entity.dueDate = milestone.dueDate
             entity.isCompleted = milestone.isCompleted
             
             let goalFetchRequest: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()

@@ -13,6 +13,7 @@ struct CreateMilestoneSheet: View {
     @State private var title: String = ""
     @State private var titleErrorMsg: String? = ""
     @State private var systemImage: String = "folder"
+    @State private var dueDate: Date? = nil
     
     @Binding var milestones: [Milestone]
     let goalTitle: String
@@ -44,8 +45,11 @@ struct CreateMilestoneSheet: View {
                         errorMsg: $titleErrorMsg
                     )
                     
-                    Spacer()
-                        .frame(height: 10)
+                    AIOptionalDatePicker(
+                        titleName: "Due to: (optional)",
+                        widthSize: UIConstants.screenWidth,
+                        chosenDate: $dueDate
+                    )
                     
                     AISystemImagePicker(selectedImage: $systemImage)
                     
@@ -59,6 +63,7 @@ struct CreateMilestoneSheet: View {
                                     id: UUID(),
                                     desc: title,
                                     systemImage: systemImage,
+                                    dueDate: dueDate,
                                     isCompleted: false,
                                     goalID: UUID()
                                 )
@@ -71,6 +76,7 @@ struct CreateMilestoneSheet: View {
                 .padding(.top, 10)
             }
             .background(Color.aiBackground)
+            .toolbarBackground(Color.black, for: .bottomBar)
         }
     }
 }
@@ -82,4 +88,5 @@ struct CreateMilestoneSheet: View {
             .environmentObject(DIContainer().makeMilestoneViewModel())
             .environmentObject(HomeCoordinator())
     }
+    .scrollContentBackground(.hidden)
 }

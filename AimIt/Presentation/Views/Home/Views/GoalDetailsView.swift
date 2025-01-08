@@ -47,18 +47,25 @@ struct GoalDetailsView: View {
                 Spacer(minLength: 20)
             }
             
-            
-            AIInfoField(
-                title: "Deadline",
-                info: "\(DeadlineFormatter.formatToDayMonth(goalVM.selectedGoal.deadline)) - \(DeadlineFormatter.formatToDaysLeft(goalVM.selectedGoal.deadline))",
-                infoFontStyle: .headline,
-                infoForeColor: DeadlineFormatter.threeDaysLeft(goalVM.selectedGoal.deadline) ? .red : .aiLabel
+            AIDateCard(
+                createdDate: goalVM.selectedGoal.createdAt,
+                date: goalVM.selectedGoal.deadline
             )
             
             Spacer(minLength: 30)
             
-            AIGoalMilestonesList()
-                .padding(.bottom, 20)
+            if goalVM.selectedGoal.milestones.isEmpty {
+                NotFoundView(
+                    imageName: ImageNames.noMilestones,
+                    title: "Oops...",
+                    topPadding: 100,
+                    subtitle: "You have no milestones",
+                    action: nil
+                )
+            } else {
+                AIGoalMilestonesList()
+                    .padding(.bottom, 20)
+            }
         }
         .background(Color.aiBackground)
         .toolbar(.hidden, for: .navigationBar)

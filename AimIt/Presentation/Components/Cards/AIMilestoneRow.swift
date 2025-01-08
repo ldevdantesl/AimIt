@@ -17,26 +17,32 @@ struct AIMilestoneRow: View {
     }
     
     private let rowType: RowType
-    private let onDelete: (() -> Void)
-    private let onTap: (() -> Void)?
+    private let onDelete: ((Milestone) -> Void)?
+    private let onTap: ((Milestone) -> Void)?
     
-    init(milestone: Milestone) {
-        self.milestone = milestone
-        self.rowType = .toggling
-        self.onDelete = {}
-        self.onTap = nil
-    }
-    
+    ///Initializer for removing. Used in a *AIMilestoneCreationList*
+    ///Use when removing is option
     init(
         milestone: Milestone,
-        rowType: RowType = .removing,
-        onTap: (() -> Void)? = {},
-        onDelete: @escaping (() -> Void)
+        onTap: ((Milestone) -> Void)? = nil,
+        onDelete: ((Milestone) -> Void)? = nil
     ){
         self.milestone = milestone
-        self.rowType = rowType
+        self.rowType = .removing
         self.onDelete = onDelete
         self.onTap = onTap
+    }
+    
+    ///Initializer for toggling. Used in a *AIGoalMilestoneList*
+    ///Use when toggling is option
+    init(
+        milestone: Milestone,
+        onTap: ((Milestone) -> Void)? = nil
+    ){
+        self.milestone = milestone
+        self.rowType = .toggling
+        self.onTap = onTap
+        self.onDelete = nil
     }
     
     var body: some View {
@@ -47,18 +53,27 @@ struct AIMilestoneRow: View {
                     .scaledToFit()
                     .frame(width: 25, height: 25)
                 
-                Text(milestone.desc)
-                    .font(.system(.headline, design: .rounded, weight: .semibold))
-                    .lineLimit(1)
-                
+                VStack(alignment: .leading){
+                    Text(milestone.desc)
+                        .font(.system(.headline, design: .rounded, weight: .semibold))
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if let dueDate = milestone.dueDate {
+                        Text("Due: \(DeadlineFormatter.formatToDayMonth(dueDate))")
+                            .font(.system(.subheadline, design: .rounded, weight: .light))
+                    }
+                }
                 Spacer()
             }
             .padding(.horizontal, 10)
             .foregroundStyle(milestone.isCompleted ? .aiLabel : .aiSecondary2)
             .frame(maxWidth: .infinity)
-            .frame(height: 50)
+            .frame(height: milestone.dueDate != nil ? 60 : 50)
             .background(milestone.isCompleted ? .green : .aiSecondary, in: .rect(cornerRadius: 15))
-            .onTapGesture(perform: onTap ?? {})
+            .onTapGesture {
+                onTap?(milestone)
+            }
             
             if rowType == .toggling {
                 Button{
@@ -78,7 +93,7 @@ struct AIMilestoneRow: View {
                 }
             } else {
                 Button{
-                    onDelete()
+                    onDelete?(milestone)
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(.accent)
@@ -101,7 +116,7 @@ struct AIMilestoneRow: View {
 }
 
 #Preview {
-    AIMilestoneRow(milestone: Milestone.sample, rowType: .removing, onDelete: {})
+    AIMilestoneRow(milestone: Milestone.sample, onDelete: {_ in})
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
         .environmentObject(DIContainer().makeMilestoneViewModel())

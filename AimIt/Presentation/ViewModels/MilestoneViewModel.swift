@@ -35,25 +35,7 @@ final class MilestoneViewModel: ObservableObject {
         self.updateMilestoneUseCase = updateMilestoneUseCase
     }
     
-    func addMilestone(desc: String, systemImage: String, completed: Bool = true, to goal: Goal) {
-        do {
-            try addMilestoneUseCase.execute(desc: desc, systemImage: systemImage, completed: completed, to: goal)
-            fetchMilestonesForGoal(goal)
-        } catch {
-            errorMsg = "Error adding milestone: \(error.localizedDescription)"
-            print("Error adding milestone: \(error.localizedDescription)")
-        }
-    }
-    
-    func deleteMilestone(_ milestone: Milestone) {
-        do {
-            try deleteMilestoneUseCase.execute(milestone)
-        } catch {
-            errorMsg = "Error deleting milestone: \(error.localizedDescription)"
-            print("Error deleting milestone: \(error.localizedDescription)")
-        }
-    }
-    
+    // MARK: - FETCHING
     func fetchAllMilestones() -> [Milestone] {
         do {
             return try fetchAllMilestonesUseCase.execute()
@@ -73,6 +55,54 @@ final class MilestoneViewModel: ObservableObject {
         }
     }
     
+    // MARK: - ADDING
+    func addMilestone(desc: String, systemImage: String, dueDate: Date?, completed: Bool = false, to goal: Goal) {
+        do {
+            try addMilestoneUseCase.execute(
+                desc: desc,
+                systemImage: systemImage,
+                dueDate: dueDate,
+                completed: completed,
+                to: goal
+            )
+            fetchMilestonesForGoal(goal)
+        } catch {
+            errorMsg = "Error adding milestone: \(error.localizedDescription)"
+            print("Error adding milestone: \(error.localizedDescription)")
+        }
+    }
+    
+    // MARK: - EDITING
+    func updateMilestone(
+        _ milestone: Milestone,
+        desc: String? = nil,
+        systemImage: String? = nil,
+        dueDate: Date? = nil
+    ) {
+        do {
+            try updateMilestoneUseCase.execute(
+                milestone,
+                desc: desc,
+                systemImage: systemImage,
+                dueDate: dueDate
+            )
+        } catch {
+            errorMsg = "Error updating milestone: \(error.localizedDescription)"
+            print("Error updating milestone: \(error.localizedDescription)")
+        }
+    }
+    
+    // MARK: - DELETING
+    func deleteMilestone(_ milestone: Milestone) {
+        do {
+            try deleteMilestoneUseCase.execute(milestone)
+        } catch {
+            errorMsg = "Error deleting milestone: \(error.localizedDescription)"
+            print("Error deleting milestone: \(error.localizedDescription)")
+        }
+    }
+    
+    // MARK: - COMPLETION
     func toggleMilestoneCompletion(_ milestone: Milestone) {
         do {
             try toggleMilestoneCompletionUseCase.execute(milestone)
@@ -82,12 +112,4 @@ final class MilestoneViewModel: ObservableObject {
         }
     }
 
-    func updateMilestone(_ milestone: Milestone, desc: String? = nil, systemImage: String? = nil) {
-        do {
-            try updateMilestoneUseCase.execute(milestone, desc: desc, systemImage: systemImage)
-        } catch {
-            errorMsg = "Error updating milestone: \(error.localizedDescription)"
-            print("Error updating milestone: \(error.localizedDescription)")
-        }
-    }
 }

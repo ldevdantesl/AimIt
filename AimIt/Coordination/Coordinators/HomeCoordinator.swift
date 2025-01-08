@@ -40,6 +40,10 @@ final class HomeCoordinator: ObservableObject, Coordinator {
                 AIQuoteSheet(quoteVM: quoteVM)
                     .presentationDetents(sheet.detents)
                     .presentationDragIndicator(.visible)
+            case .milestoneDetails(let milestone):
+                MilestoneDetailsSheet(milestone: milestone)
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.visible)
             }
         }
     }

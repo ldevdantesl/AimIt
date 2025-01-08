@@ -15,20 +15,22 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         self.CDstack = CDstack
     }
     
-    func addMilestone(desc: String, systemImage: String, completed: Bool, to goal: Goal) throws {
+    func addMilestone(desc: String, systemImage: String, dueDate: Date?, completed: Bool, to goal: Goal) throws {
         let newMilestone = MilestoneEntity(context: CDstack.viewContext)
         newMilestone.id = UUID()
         newMilestone.desc = desc
         newMilestone.isCompleted = completed
         newMilestone.systemImage = systemImage
+        newMilestone.dueDate = dueDate
         newMilestone.goal = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         
         saveContext()
     }
     
-    func updateMilestone(_ milestone: Milestone, desc: String?, systemImage: String?) throws {
+    func updateMilestone(_ milestone: Milestone, desc: String?, systemImage: String?, dueDate: Date?) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         milestoneEntity.desc = desc ?? milestoneEntity.desc
+        milestoneEntity.dueDate = dueDate ?? milestoneEntity.dueDate
         milestoneEntity.systemImage = systemImage ?? milestoneEntity.systemImage
         
         saveContext()

@@ -9,20 +9,21 @@ import Foundation
 import SwiftUI
 
 struct AIInfoField: View {
-    let title: String
-    let titleFontStyle: Font.TextStyle
-    let titleForeColor: Color
+    private let title: String
+    private let titleFontStyle: Font.TextStyle
+    private let titleForeColor: Color
+
+    private let info: String
+    private let infoFontStyle: Font.TextStyle
+    private let infoForeColor: Color
+    private let infoFontDesign: Font.Design
     
-    let info: String
-    let infoFontStyle: Font.TextStyle
-    let infoForeColor: Color
-    let infoFontDesign: Font.Design
+    private let buttonSystemImage: String?
+    private let buttonColor: Color?
+    private let buttonSize: CGFloat?
+    private let buttonAction: (() -> ())
     
-    let buttonSystemImage: String?
-    let buttonColor: Color?
-    let buttonSize: CGFloat?
-    let buttonAction: (() -> ())
-    
+    /// Default Initiializer without button in the trailing.
     init(
         title: String,
         titleFontStyle: Font.TextStyle = .subheadline,
@@ -45,6 +46,7 @@ struct AIInfoField: View {
         self.buttonAction = {}
     }
     
+    /// Initializer with the trailing button and action on it.
     init(
         title: String,
         titleFontStyle: Font.TextStyle = .headline,

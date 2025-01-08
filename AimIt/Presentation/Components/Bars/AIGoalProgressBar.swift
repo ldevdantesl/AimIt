@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct AIProgressBar: View {
+struct AIGoalProgressBar: View {
     let goal: Goal
     
     init(goal: Goal) {
@@ -36,6 +36,6 @@ struct AIProgressBar: View {
 }
 
 #Preview {
-    AIProgressBar(goal: .sample)
+    AIGoalProgressBar(goal: .sample)
         .preferredColorScheme(.dark)
 }

@@ -17,11 +17,11 @@ struct DeadlineFormatter {
         }
         
         if daysLeft < 0 {
-            return "Deadline passed"
+            return "Deadline passed ⏰"
         } else if daysLeft == 0 {
-            return "Today"
+            return "Today is day to finish"
         } else {
-            return "\(daysLeft) days left"
+            return "\(daysLeft) days left to finish"
         }
     }
     
