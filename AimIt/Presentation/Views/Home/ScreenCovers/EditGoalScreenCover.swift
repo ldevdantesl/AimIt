@@ -12,6 +12,12 @@ struct EditGoalScreenCover: View {
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var milestoneVM: MilestoneViewModel
     
+    @Binding private var goal: Goal
+    
+    init(goal: Binding<Goal>) {
+        self._goal = goal
+    }
+    
     @State private var titleErrorMsg: String?
     
     @State private var newTitle: String = ""
@@ -59,8 +65,8 @@ struct EditGoalScreenCover: View {
                 )
                 
                 CreateMilestoneView(
-                    milestones: $newMilestones,
-                    goalTitle: goalVM.selectedGoal.title
+                    goal: goal,
+                    milestones: $newMilestones
                 )
                 
                 Spacer(minLength: 20)
@@ -78,30 +84,30 @@ struct EditGoalScreenCover: View {
             }
         }
         .onAppear {
-            self.newTitle = goalVM.selectedGoal.title
-            self.newMilestones = goalVM.selectedGoal.milestones
-            self.newDesc = goalVM.selectedGoal.desc ?? ""
-            self.newDeadline = goalVM.selectedGoal.deadline
+            self.newTitle = goal.title
+            self.newMilestones = goal.milestones
+            self.newDesc = goal.desc ?? ""
+            self.newDeadline = goal.deadline
         }
         .hideKeyboardOnTap()
     }
     
     private func editGoal() {
         if titleErrorMsg == nil {
-            goalVM.editGoal (
-                goalVM.selectedGoal,
+            if let goal = goalVM.editGoal (
+                goal,
                 title: newTitle,
                 desc: newDesc.isEmpty ? nil : newDesc,
                 deadline: newDeadline,
                 newMilestones: newMilestones
-            )
+            ) { self.goal = goal }
             coordinator.dismissFullScreenCover()
         }
     }
 }
 
 #Preview {
-    EditGoalScreenCover()
+    EditGoalScreenCover(goal: .constant(.sample))
         .environmentObject(HomeCoordinator())
         .environmentObject(DIContainer().makeGoalViewModel())
         .environmentObject(DIContainer().makeMilestoneViewModel())

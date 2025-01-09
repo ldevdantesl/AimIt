@@ -24,7 +24,7 @@ final class HomeCoordinator: ObservableObject, Coordinator {
     func build(screen: HomeScreens) -> some View {
         switch screen {
         case .addGoal: HomeAddGoalView()
-        case .goalDetails: GoalDetailsView()
+        case .goalDetails(let goal): GoalDetailsView(goal: goal)
         }
     }
     
@@ -52,8 +52,8 @@ final class HomeCoordinator: ObservableObject, Coordinator {
     func build(fullScreenCover: HomeScreenCovers) -> some View {
         NavigationStack{
             switch fullScreenCover {
-            case .editGoal:
-                EditGoalScreenCover()
+            case .editGoal(let goal):
+                EditGoalScreenCover(goal: goal)
             }
         }
     }

@@ -17,6 +17,7 @@ final class MilestoneViewModel: ObservableObject {
     private let fetchAllMilestonesUseCase: FetchAllMilestonesUseCase
     private let fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCase
     private let toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCase
+    private let createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCase
     private let updateMilestoneUseCase: UpdateMilestoneUseCase
     
     init(
@@ -25,7 +26,8 @@ final class MilestoneViewModel: ObservableObject {
         fetchAllMilestonesUseCase: FetchAllMilestonesUseCase,
         fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCase,
         toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCase,
-        updateMilestoneUseCase: UpdateMilestoneUseCase
+        updateMilestoneUseCase: UpdateMilestoneUseCase,
+        createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCase
     ) {
         self.addMilestoneUseCase = addMilestoneUseCase
         self.deleteMilestoneUseCase = deleteMilestoneUseCase
@@ -33,6 +35,7 @@ final class MilestoneViewModel: ObservableObject {
         self.fetchMilestonesForGoalUseCase = fetchMilestonesForGoalUseCase
         self.toggleMilestoneCompletionUseCase = toggleMilestoneCompletionUseCase
         self.updateMilestoneUseCase = updateMilestoneUseCase
+        self.createSeperateMilestoneUseCase = createSeperateMilestoneUseCase
     }
     
     // MARK: - FETCHING
@@ -112,4 +115,24 @@ final class MilestoneViewModel: ObservableObject {
         }
     }
 
+    // MARK: - OTHER
+    func createSeperateMilestone(
+        desc: String,
+        systemImage: String,
+        dueDate: Date?,
+        completed: Bool = false
+    ) -> Milestone? {
+        do {
+            return try createSeperateMilestoneUseCase.execute(
+                desc: desc,
+                systemImage: systemImage,
+                dueDate: dueDate,
+                completed: completed
+            )
+        } catch {
+            errorMsg = "Error creating seperate milestone: \(error.localizedDescription)"
+            print(errorMsg ?? "")
+            return nil
+        }
+    }
 }

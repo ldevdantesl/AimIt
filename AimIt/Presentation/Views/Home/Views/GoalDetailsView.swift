@@ -12,6 +12,12 @@ struct GoalDetailsView: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     
+    @Binding private var goal: Goal
+    
+    init(goal: Binding<Goal>) {
+        self._goal = goal
+    }
+    
     var body: some View {
         ScrollView{
             AIHeaderView(
@@ -24,20 +30,24 @@ struct GoalDetailsView: View {
                     backColor: .accentColor,
                     foreColor: .aiLabel,
                     action: {
-                        coordinator.present(fullScreenCover: .editGoal)
+                        coordinator.present(fullScreenCover: .editGoal($goal))
                     }
                 ),
                 title: "Goal",
-                subtitle: "\(goalVM.selectedGoal.title)"
+                subtitle: "\(goal.title)"
             )
             
             Spacer(minLength: 20)
             
-            AIInfoField(title: "Title", info: goalVM.selectedGoal.title, infoFontStyle: .headline)
+            AIInfoField(
+                title: "Title",
+                info: goal.title,
+                infoFontStyle: .headline
+            )
             
             Spacer(minLength: 20)
             
-            if let description = goalVM.selectedGoal.desc, !description.isEmpty {
+            if let description = goal.desc, !description.isEmpty {
                 AIInfoField(
                     title: "Description",
                     info: description,
@@ -48,13 +58,13 @@ struct GoalDetailsView: View {
             }
             
             AIDateCard(
-                createdDate: goalVM.selectedGoal.createdAt,
-                date: goalVM.selectedGoal.deadline
+                createdDate: goal.createdAt,
+                date: goal.deadline
             )
             
             Spacer(minLength: 30)
             
-            if goalVM.selectedGoal.milestones.isEmpty {
+            if goal.milestones.isEmpty {
                 NotFoundView(
                     imageName: ImageNames.noMilestones,
                     title: "Oops...",
@@ -63,7 +73,7 @@ struct GoalDetailsView: View {
                     action: nil
                 )
             } else {
-                AIGoalMilestonesList()
+                AIGoalMilestonesList(goalMilestones: $goal.milestones)
                     .padding(.bottom, 20)
             }
         }
@@ -71,8 +81,8 @@ struct GoalDetailsView: View {
         .toolbar(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: goalVM.selectedGoal.isCompleted ? "Uncomplete" : "Complete") {
-                    goalVM.selectedGoal.isCompleted ? goalVM.uncompleteGoal(goalVM.selectedGoal) : goalVM.completeGoal(goalVM.selectedGoal)
+                AIButton(title: goal.isCompleted ? "Uncomplete" : "Complete") {
+                    goal.isCompleted ? goalVM.uncompleteGoal(goal) : goalVM.completeGoal(goal)
                 }
             }
         }
@@ -84,7 +94,7 @@ struct GoalDetailsView: View {
 
 #Preview {
     NavigationStack{
-        GoalDetailsView()
+        GoalDetailsView(goal: .constant(.sample))
             .background(Color.aiBackground)
             .environmentObject(HomeCoordinator())
             .environmentObject(DIContainer().makeGoalViewModel())

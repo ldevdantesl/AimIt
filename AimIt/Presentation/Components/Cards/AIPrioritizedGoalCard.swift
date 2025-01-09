@@ -28,7 +28,7 @@ struct AIPrioritizedGoalCard: View {
                         action: unprioritize
                     )
                 }
-                .id(workspace.prioritizedGoal?.id)
+                .id(workspace.prioritizedGoal)
         }
     }
     

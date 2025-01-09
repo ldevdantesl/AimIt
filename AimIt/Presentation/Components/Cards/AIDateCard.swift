@@ -17,12 +17,11 @@ struct AIDateCard: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading){
-            Text("Deadline")
+        VStack(alignment: .leading, spacing: 0){
+            Text("Deadline: \(DeadlineFormatter.formatToDayMonth(date))")
                 .font(.system(.subheadline, design: .rounded, weight: .light))
-                .foregroundStyle(.aiSecondary2)
-                .padding(.bottom, 5)
-            
+                .foregroundColor(.aiSecondary2)
+                .padding(.bottom, 3)
             HStack{
                 Text("\(DeadlineFormatter.formatToDaysLeft(date))")
                     .font(.system(.headline, design: .rounded, weight: .semibold))

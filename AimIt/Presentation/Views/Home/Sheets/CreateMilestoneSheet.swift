@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateMilestoneSheet: View {
+    @EnvironmentObject var milestoneVM: MilestoneViewModel
     @Environment(\.dismiss) var dismiss
     
     @State private var title: String = ""
@@ -16,11 +17,24 @@ struct CreateMilestoneSheet: View {
     @State private var dueDate: Date? = nil
     
     @Binding var milestones: [Milestone]
-    let goalTitle: String
+    private let goal: Goal?
+    private let goalTitle: String
+    private let goalDeadline: Date
     
-    init(goalTitle: String, milestones: Binding<[Milestone]>) {
-        self.goalTitle = goalTitle
+    ///Default initializer used for creating milestone for existing goal
+    init(goal: Goal, milestones: Binding<[Milestone]>) {
+        self.goal = goal
         self._milestones = milestones
+        self.goalTitle = goal.title
+        self.goalDeadline = goal.deadline
+    }
+    
+    ///Default initializer used for creating milestone for existing goal
+    init(goalTitle: String, goalDeadline: Date, milestones: Binding<[Milestone]>) {
+        self.goalTitle = goalTitle
+        self.goalDeadline = goalDeadline
+        self._milestones = milestones
+        self.goal = nil
     }
     
     var body: some View {
@@ -48,7 +62,8 @@ struct CreateMilestoneSheet: View {
                     AIOptionalDatePicker(
                         titleName: "Due to: (optional)",
                         widthSize: UIConstants.screenWidth,
-                        chosenDate: $dueDate
+                        chosenDate: $dueDate,
+                        dateUntil: goalDeadline
                     )
                     
                     AISystemImagePicker(selectedImage: $systemImage)
@@ -58,16 +73,13 @@ struct CreateMilestoneSheet: View {
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
                         AIButton(title: "Create") {
-                            milestones.append(
-                                Milestone(
-                                    id: UUID(),
-                                    desc: title,
-                                    systemImage: systemImage,
-                                    dueDate: dueDate,
-                                    isCompleted: false,
-                                    goalID: UUID()
-                                )
-                            )
+                            if let milestone = milestoneVM.createSeperateMilestone(
+                                desc: title,
+                                systemImage: systemImage,
+                                dueDate: dueDate
+                            ) {
+                                milestones.append(milestone)
+                            }
                             dismiss()
                         }
                         .disabled(titleErrorMsg != nil)
@@ -83,7 +95,7 @@ struct CreateMilestoneSheet: View {
 
 #Preview {
     NavigationStack {
-        CreateMilestoneSheet(goalTitle: "Some shitty stuff", milestones: .constant([]))
+        CreateMilestoneSheet(goal:.sample, milestones: .constant([]))
             .background(Color.aiBackground)
             .environmentObject(DIContainer().makeMilestoneViewModel())
             .environmentObject(HomeCoordinator())

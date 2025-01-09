@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum HomeScreenCovers: Identifiable {
-    case editGoal
+    case editGoal(Binding<Goal>)
     
     var id: UUID { UUID() }
 }

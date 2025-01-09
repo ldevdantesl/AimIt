@@ -52,7 +52,11 @@ struct HomeAddGoalView: View {
                     chosenDate: $deadline
                 )
                 
-                CreateMilestoneView(milestones: $milestones, goalTitle: title)
+                CreateMilestoneView (
+                    goalTitle: title,
+                    goalDeadline: deadline,
+                    milestones: $milestones
+                )
             }
             .padding(.vertical, 10)
         }

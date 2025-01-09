@@ -27,8 +27,7 @@ struct AIGoalCard: View {
     
     var body: some View {
         Button(action: {
-            goalVM.selectedGoal = goal;
-            coordinator.push(to: .goalDetails)
+            coordinator.push(to: .goalDetails($goal))
         } ) {
             VStack(alignment: .leading) {
                 HStack{

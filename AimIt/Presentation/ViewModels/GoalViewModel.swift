@@ -13,8 +13,6 @@ final class GoalViewModel: ObservableObject {
     @Published var goals: [Goal] = []
     @Published var errorMsg: String?
     
-    @Published var selectedGoal: Goal = Goal.sample
-    
     private let addGoalUseCase: AddGoalUseCase
     private let deleteGoalUseCase: DeleteGoalUseCase
     private let editGoalUseCase: EditGoalUseCase
@@ -72,15 +70,19 @@ final class GoalViewModel: ObservableObject {
         desc: String? = nil,
         deadline: Date?,
         newMilestones: [Milestone]
-    ) {
-        handleUseCase(errorMessage: "Error editing Goal", fetchAfter: true) {
-            selectedGoal = try editGoalUseCase.execute(
+    ) -> Goal? {
+        do {
+            return try editGoalUseCase.execute(
                 goal,
                 newTitle: title,
                 newDesc: desc,
                 newDeadline: deadline,
                 newMilestones: newMilestones
             )
+        } catch {
+            errorMsg = "Erorr editing Goal: \(error.localizedDescription)"
+            print(errorMsg ?? "")
+            return nil
         }
     }
     

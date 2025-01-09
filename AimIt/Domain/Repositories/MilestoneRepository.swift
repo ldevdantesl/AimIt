@@ -14,4 +14,5 @@ protocol MilestoneRepository {
     func fetchMilestones(for goal: Goal) throws -> [Milestone]
     func fetchAllMilestones() throws -> [Milestone]
     func toggleMilestoneCompletion(_ milestone: Milestone) throws
+    func createSeparateMilestone(desc: String, systemImage: String, dueDate: Date?, completed: Bool) throws -> Milestone
 }

@@ -13,7 +13,7 @@ final class EditGoalUseCaseImpl: EditGoalUseCase {
     init(repository: GoalRepository) {
         self.repository = repository
     }
-
+    
     func execute(
         _ goal: Goal,
         newTitle: String?,

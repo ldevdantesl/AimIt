@@ -11,9 +11,10 @@ struct Milestone: Codable, Hashable, Identifiable {
     let id: UUID
     let desc: String
     let systemImage: String
-    var dueDate: Date?
+    let creationDate: Date
+    let dueDate: Date?
     var isCompleted: Bool
-    let goalID: Goal.ID
+    let goalID: Goal.ID?
 }
 
 extension Milestone {
@@ -21,6 +22,7 @@ extension Milestone {
         id: UUID(),
         desc: "Sample milestone",
         systemImage: "bookmark.fill",
+        creationDate: .now,
         dueDate: Date(),
         isCompleted: false,
         goalID: Goal.sample.id
@@ -33,6 +35,7 @@ extension Milestone {
             id: UUID(),
             desc: "Sample milestone",
             systemImage: "bookmark.fill",
+            creationDate: .now,
             dueDate: nil,
             isCompleted: false,
             goalID: Goal.sample.id

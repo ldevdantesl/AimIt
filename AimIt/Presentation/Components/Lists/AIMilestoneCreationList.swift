@@ -22,7 +22,7 @@ struct AIMilestoneCreationList: View {
             )
         } else {
             LazyVStack(spacing: 12){
-                ForEach(milestones, id: \.self) { milestone in
+                ForEach($milestones, id: \.self) { milestone in
                     AIMilestoneRow(
                         milestone: milestone,
                         onDelete: onDelete

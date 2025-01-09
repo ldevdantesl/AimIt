@@ -15,19 +15,31 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         self.CDstack = CDstack
     }
     
-    func addMilestone(desc: String, systemImage: String, dueDate: Date?, completed: Bool, to goal: Goal) throws {
+    func addMilestone(
+        desc: String,
+        systemImage: String,
+        dueDate: Date?,
+        completed: Bool,
+        to goal: Goal
+    ) throws {
         let newMilestone = MilestoneEntity(context: CDstack.viewContext)
         newMilestone.id = UUID()
         newMilestone.desc = desc
         newMilestone.isCompleted = completed
         newMilestone.systemImage = systemImage
+        newMilestone.createdDate = Date()
         newMilestone.dueDate = dueDate
         newMilestone.goal = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         
         saveContext()
     }
     
-    func updateMilestone(_ milestone: Milestone, desc: String?, systemImage: String?, dueDate: Date?) throws {
+    func updateMilestone(
+        _ milestone: Milestone,
+        desc: String?,
+        systemImage: String?,
+        dueDate: Date?
+    ) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         milestoneEntity.desc = desc ?? milestoneEntity.desc
         milestoneEntity.dueDate = dueDate ?? milestoneEntity.dueDate
@@ -58,6 +70,23 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         milestoneEntity.isCompleted.toggle()
         saveContext()
+    }
+    
+    func createSeparateMilestone(
+        desc: String,
+        systemImage: String,
+        dueDate: Date?,
+        completed: Bool
+    ) throws -> Milestone {
+        return Milestone(
+            id: UUID(),
+            desc: desc,
+            systemImage: systemImage,
+            creationDate: .now,
+            dueDate: dueDate,
+            isCompleted: completed,
+            goalID: nil
+        )
     }
     
     private func saveContext() {

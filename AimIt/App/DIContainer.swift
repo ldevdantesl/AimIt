@@ -48,7 +48,8 @@ final class DIContainer: ObservableObject {
             fetchAllMilestonesUseCase: FetchAllMilestonesUseCaseImpl(repository: repository),
             fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCaseImpl(repository: repository),
             toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCaseImpl(repository: repository),
-            updateMilestoneUseCase: UpdateMilestoneUseCaseImpl(repository: repository)
+            updateMilestoneUseCase: UpdateMilestoneUseCaseImpl(repository: repository),
+            createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCaseImpl(repository: repository)
         )
     }
     

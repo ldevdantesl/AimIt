@@ -16,22 +16,28 @@ struct MilestoneDetailsSheet: View {
     }
     
     var body: some View {
-        ZStack{
-            VStack{
-                AIInfoField(
-                    title: "Description",
-                    info: milestone.desc
+        VStack(spacing: 10){
+            AIInfoField(
+                title: "Description",
+                info: milestone.desc
+            )
+            
+            if let dueDate = milestone.dueDate {
+                AIDateCard(
+                    createdDate: milestone.creationDate,
+                    date: dueDate
                 )
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.aiBackground)
-            .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    AIButton(title: "Complete")
-                }
-            }
-            .toolbarBackground(Color.aiBackground, for: .bottomBar)
+            
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.aiBackground)
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                AIButton(title: "Complete")
+            }
+        }
+        .toolbarBackground(Color.aiBackground, for: .bottomBar)
     }
 }
 

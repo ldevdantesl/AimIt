@@ -20,7 +20,7 @@ extension Workspace {
         title: "Sample Workspace",
         goals: [
             Goal(id: UUID(), workspaceID: UUID(), title: "Some Goal", isCompleted: false, deadline: .now, createdAt: .now, milestones: [
-                Milestone(id: UUID(), desc: "", systemImage: "", isCompleted: false, goalID: UUID())
+                Milestone(id: UUID(), desc: "", systemImage: "", creationDate: .now, dueDate: .now, isCompleted: false, goalID: UUID())
             ])
         ]
     )

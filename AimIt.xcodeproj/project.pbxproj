@@ -156,6 +156,8 @@
 		DADBE5AE2D2E5F150024D18B /* MilestoneDetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5AD2D2E5F150024D18B /* MilestoneDetailsSheet.swift */; };
 		DADBE5B02D2E63950024D18B /* AIDateCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5AF2D2E63950024D18B /* AIDateCard.swift */; };
 		DADBE5B22D2E6A6B0024D18B /* AITimeProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5B12D2E6A6B0024D18B /* AITimeProgressBar.swift */; };
+		DADBE5B42D2FA3270024D18B /* CreateSeparateMilestoneUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5B32D2FA3270024D18B /* CreateSeparateMilestoneUseCase.swift */; };
+		DADBE5B62D2FA40E0024D18B /* CreateSeparateMilestoneUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5B52D2FA40E0024D18B /* CreateSeparateMilestoneUseCaseImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -310,6 +312,8 @@
 		DADBE5AD2D2E5F150024D18B /* MilestoneDetailsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneDetailsSheet.swift; sourceTree = "<group>"; };
 		DADBE5AF2D2E63950024D18B /* AIDateCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIDateCard.swift; sourceTree = "<group>"; };
 		DADBE5B12D2E6A6B0024D18B /* AITimeProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITimeProgressBar.swift; sourceTree = "<group>"; };
+		DADBE5B32D2FA3270024D18B /* CreateSeparateMilestoneUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSeparateMilestoneUseCase.swift; sourceTree = "<group>"; };
+		DADBE5B52D2FA40E0024D18B /* CreateSeparateMilestoneUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSeparateMilestoneUseCaseImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,6 +455,7 @@
 				DA518F5B2D1E06FB00A5E896 /* FetchMilestonesForGoalUseCaseImpl.swift */,
 				DA518F5C2D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCaseImpl.swift */,
 				DA518F5D2D1E06FB00A5E896 /* UpdateMilestoneUseCaseImpl.swift */,
+				DADBE5B52D2FA40E0024D18B /* CreateSeparateMilestoneUseCaseImpl.swift */,
 			);
 			path = Milestone;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				DA518F812D1E06FB00A5E896 /* FetchMilestonesForGoalUseCase.swift */,
 				DA518F822D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCase.swift */,
 				DA518F832D1E06FB00A5E896 /* UpdateMilestoneUseCase.swift */,
+				DADBE5B32D2FA3270024D18B /* CreateSeparateMilestoneUseCase.swift */,
 			);
 			path = Milestone;
 			sourceTree = "<group>";
@@ -1129,6 +1135,7 @@
 				DA5190342D1E06FB00A5E896 /* AIGoalCardList.swift in Sources */,
 				DA5190352D1E06FB00A5E896 /* AIGoalMilestonesList.swift in Sources */,
 				DA5190652D1E766500A5E896 /* HomeScreenCovers.swift in Sources */,
+				DADBE5B62D2FA40E0024D18B /* CreateSeparateMilestoneUseCaseImpl.swift in Sources */,
 				DA5190362D1E06FB00A5E896 /* AIMilestoneCreationList.swift in Sources */,
 				DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */,
 				DADBE5A22D27C0D50024D18B /* PrioritizeGoalUseCase.swift in Sources */,
@@ -1146,6 +1153,7 @@
 				DA5190412D1E06FB00A5E896 /* VideoPlayerView.swift in Sources */,
 				DA5190422D1E06FB00A5E896 /* GoalViewModel.swift in Sources */,
 				DADBE5B22D2E6A6B0024D18B /* AITimeProgressBar.swift in Sources */,
+				DADBE5B42D2FA3270024D18B /* CreateSeparateMilestoneUseCase.swift in Sources */,
 				DA5190432D1E06FB00A5E896 /* MilestoneViewModel.swift in Sources */,
 				DADBE5AC2D2E51450024D18B /* AIOptionalDatePicker.swift in Sources */,
 				DA5190442D1E06FB00A5E896 /* WorkspaceViewModel.swift in Sources */,

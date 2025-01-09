@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AIMilestoneRow: View {
     @EnvironmentObject var milestoneVM: MilestoneViewModel
-    @State var milestone: Milestone
+    @Binding private var milestone: Milestone
     
     enum RowType {
         case toggling, removing
@@ -23,11 +23,11 @@ struct AIMilestoneRow: View {
     ///Initializer for removing. Used in a *AIMilestoneCreationList*
     ///Use when removing is option
     init(
-        milestone: Milestone,
+        milestone: Binding<Milestone>,
         onTap: ((Milestone) -> Void)? = nil,
         onDelete: ((Milestone) -> Void)? = nil
     ){
-        self.milestone = milestone
+        self._milestone = milestone
         self.rowType = .removing
         self.onDelete = onDelete
         self.onTap = onTap
@@ -36,10 +36,10 @@ struct AIMilestoneRow: View {
     ///Initializer for toggling. Used in a *AIGoalMilestoneList*
     ///Use when toggling is option
     init(
-        milestone: Milestone,
+        milestone: Binding<Milestone>,
         onTap: ((Milestone) -> Void)? = nil
     ){
-        self.milestone = milestone
+        self._milestone = milestone
         self.rowType = .toggling
         self.onTap = onTap
         self.onDelete = nil
@@ -55,13 +55,13 @@ struct AIMilestoneRow: View {
                 
                 VStack(alignment: .leading){
                     Text(milestone.desc)
-                        .font(.system(.headline, design: .rounded, weight: .semibold))
+                        .font(.system(milestone.dueDate != nil ? .subheadline : .headline, design: .rounded, weight: .semibold))
                         .lineLimit(1)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     if let dueDate = milestone.dueDate {
                         Text("Due: \(DeadlineFormatter.formatToDayMonth(dueDate))")
-                            .font(.system(.subheadline, design: .rounded, weight: .light))
+                            .font(.system(.caption, design: .rounded, weight: .light))
                     }
                 }
                 Spacer()
@@ -69,7 +69,7 @@ struct AIMilestoneRow: View {
             .padding(.horizontal, 10)
             .foregroundStyle(milestone.isCompleted ? .aiLabel : .aiSecondary2)
             .frame(maxWidth: .infinity)
-            .frame(height: milestone.dueDate != nil ? 60 : 50)
+            .frame(height: 50)
             .background(milestone.isCompleted ? .green : .aiSecondary, in: .rect(cornerRadius: 15))
             .onTapGesture {
                 onTap?(milestone)
@@ -116,7 +116,7 @@ struct AIMilestoneRow: View {
 }
 
 #Preview {
-    AIMilestoneRow(milestone: Milestone.sample, onDelete: {_ in})
+    AIMilestoneRow(milestone: .constant(.sample), onDelete: {_ in})
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
         .environmentObject(DIContainer().makeMilestoneViewModel())

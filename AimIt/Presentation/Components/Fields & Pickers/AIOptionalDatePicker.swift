@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct AIOptionalDatePicker: View {
-    let titleName: String
-    let widthSize: CGFloat
+    private let titleName: String
+    private let widthSize: CGFloat
+    private let dateUntil: Date?
     
     @Binding private var chosenDate: Date?
     
@@ -19,11 +20,13 @@ struct AIOptionalDatePicker: View {
     init(
         titleName: String,
         widthSize: CGFloat,
-        chosenDate: Binding<Date?>
+        chosenDate: Binding<Date?>,
+        dateUntil: Date? = nil
     ) {
         self.titleName = titleName
         self.widthSize = widthSize
         self._chosenDate = chosenDate
+        self.dateUntil = dateUntil
     }
     
     var body: some View {
@@ -83,7 +86,7 @@ struct AIOptionalDatePicker: View {
                 DatePicker(
                     "",
                     selection: $choosingDate,
-                    in: Calendar.current.date(byAdding: .day, value: 1, to: Date())!...,
+                    in: Date()...(dateUntil ?? .distantFuture),
                     displayedComponents: .date
                 )
                 .datePickerStyle(.graphical)

@@ -12,19 +12,22 @@ struct AIGoalWidget: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     
-    let workspace: Workspace
+    private let workspace: Workspace
     
-    var goal: Goal? {
-        return workspace.goals.max {
+    init(workspace: Workspace) {
+        self.workspace = workspace
+        self.goal = workspace.goals.max {
             $0.milestones.count < $1.milestones.count
         }
     }
     
+    @State private var goal: Goal?
+    
     var body: some View {
         Button {
-            if let goal = goal {
-                goalVM.selectedGoal = goal
-                coordinator.push(to: .goalDetails)
+            if let goal {
+                let bindingGoal = Binding(get: { goal }, set: { self.goal = $0 })
+                coordinator.push(to: .goalDetails(bindingGoal))
             } else {
                 coordinator.push(to: .addGoal)
             }

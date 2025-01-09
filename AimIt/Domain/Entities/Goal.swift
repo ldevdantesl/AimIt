@@ -29,12 +29,16 @@ extension Goal {
         deadline: .now,
         createdAt: Date(),
         completedAt: nil,
-        milestones: [
-            Milestone(id: UUID(), desc: "Milestone 1", systemImage: "bookmark", isCompleted: true, goalID: UUID()),
-            Milestone(id: UUID(), desc: "Milestone 2", systemImage: "house", isCompleted: false, goalID: UUID()),
-            Milestone(id: UUID(), desc: "Milestone 3", systemImage: "heart", isCompleted: false, goalID: UUID()),
-            Milestone(id: UUID(), desc: "Milestone 2", systemImage: "figure", isCompleted: true, goalID: UUID()),
-            Milestone(id: UUID(), desc: "Milestone 3", systemImage: "heart", isCompleted: false, goalID: UUID()),
-        ]
+        milestones: Array(
+            repeating: Milestone(
+                id: UUID(),
+                desc: "some description",
+                systemImage: "folder",
+                creationDate: .now,
+                dueDate: .now,
+                isCompleted: false,
+                goalID: UUID()
+            ),
+            count: 3)
     )
 }

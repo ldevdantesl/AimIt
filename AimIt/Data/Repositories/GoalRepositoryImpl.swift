@@ -38,6 +38,8 @@ final class GoalRepositoryImpl: GoalRepository {
             milestoneEntity.desc = milestone.desc
             milestoneEntity.systemImage = milestone.systemImage
             milestoneEntity.isCompleted = milestone.isCompleted
+            milestoneEntity.dueDate = milestone.dueDate
+            milestoneEntity.createdDate = milestone.creationDate
             milestoneEntity.goal = newGoal
             return milestoneEntity
         }
@@ -58,31 +60,36 @@ final class GoalRepositoryImpl: GoalRepository {
         newDeadline: Date?,
         newMilestones: [Milestone]
     ) throws -> Goal {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
+        let context = CDstack.viewContext
+        let goalEntity = GoalMapper.toEntity(from: goal, context: context)
         
         goalEntity.title = newTitle ?? goalEntity.title
         goalEntity.desc = newDesc ?? goalEntity.desc
         goalEntity.deadline = newDeadline ?? goalEntity.deadline
         
         let existingMilestones = goalEntity.milestones as? Set<MilestoneEntity> ?? Set()
-        
         let newMilestoneIDs = Set(newMilestones.map { $0.id })
         
         let milestonesToRemove = existingMilestones.filter { !newMilestoneIDs.contains($0.id) }
-        milestonesToRemove.forEach { goalEntity.removeFromMilestones($0) }
+        milestonesToRemove.forEach { milestoneEntity in
+            goalEntity.removeFromMilestones(milestoneEntity)
+            context.delete(milestoneEntity)
+        }
         
         let updatedMilestones = newMilestones.map { milestone -> MilestoneEntity in
             if let existingEntity = existingMilestones.first(where: { $0.id == milestone.id }) {
                 existingEntity.desc = milestone.desc
                 existingEntity.systemImage = milestone.systemImage
                 existingEntity.isCompleted = milestone.isCompleted
+                existingEntity.dueDate = milestone.dueDate
                 return existingEntity
             } else {
-                let newEntity = MilestoneEntity(context: CDstack.viewContext)
+                let newEntity = MilestoneEntity(context: context)
                 newEntity.id = milestone.id
                 newEntity.desc = milestone.desc
                 newEntity.systemImage = milestone.systemImage
                 newEntity.isCompleted = milestone.isCompleted
+                newEntity.dueDate = milestone.dueDate
                 newEntity.goal = goalEntity
                 return newEntity
             }

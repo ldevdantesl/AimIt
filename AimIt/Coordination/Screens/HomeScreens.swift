@@ -6,8 +6,19 @@
 //
 
 import Foundation
+import SwiftUI
 
-enum HomeScreens: Hashable {
-    case goalDetails
+enum HomeScreens: Identifiable, Hashable {
+    case goalDetails(Binding<Goal>)
     case addGoal
+    
+    var id: UUID { UUID() }
+    
+    static func ==(lhs: HomeScreens, rhs: HomeScreens) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
