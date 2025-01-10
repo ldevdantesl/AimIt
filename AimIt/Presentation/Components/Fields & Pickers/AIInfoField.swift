@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AIInfoField: View {
-    private let title: String
+    private let title: String?
     private let titleFontStyle: Font.TextStyle
     private let titleForeColor: Color
 
@@ -25,7 +25,7 @@ struct AIInfoField: View {
     
     /// Default Initiializer without button in the trailing.
     init(
-        title: String,
+        title: String?,
         titleFontStyle: Font.TextStyle = .subheadline,
         titleForeColor: Color = .aiSecondary2,
         info: String,
@@ -48,7 +48,7 @@ struct AIInfoField: View {
     
     /// Initializer with the trailing button and action on it.
     init(
-        title: String,
+        title: String?,
         titleFontStyle: Font.TextStyle = .headline,
         titleForeColor: Color = .aiSecondary2,
         info: String,
@@ -77,10 +77,12 @@ struct AIInfoField: View {
     var body: some View {
         HStack{
             VStack(alignment: .leading){
-                Text(title)
-                    .font(.system(titleFontStyle, design: .rounded, weight: .light))
-                    .foregroundStyle(titleForeColor)
-                
+                if let title {
+                    Text(title)
+                        .font(.system(titleFontStyle, design: .rounded, weight: .light))
+                        .foregroundStyle(titleForeColor)
+                }
+                    
                 Text("\(info)")
                     .font(.system(infoFontStyle, design: .rounded, weight: .semibold))
                     .foregroundStyle(infoForeColor)

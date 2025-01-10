@@ -13,6 +13,7 @@ protocol MilestoneRepository {
     func deleteMilestone(_ milestone: Milestone) throws
     func fetchMilestones(for goal: Goal) throws -> [Milestone]
     func fetchAllMilestones() throws -> [Milestone]
+    func fetchTodayMilestonesForWorkspace(for workspace: Workspace, date: Date) throws -> [Milestone]
     func toggleMilestoneCompletion(_ milestone: Milestone) throws
     func createSeparateMilestone(desc: String, systemImage: String, dueDate: Date?, completed: Bool) throws -> Milestone
 }

@@ -17,6 +17,7 @@ final class GoalViewModel: ObservableObject {
     private let deleteGoalUseCase: DeleteGoalUseCase
     private let editGoalUseCase: EditGoalUseCase
     private let fetchGoalsUseCase: FetchGoalsUseCase
+    private let fetchGoalByID: FetchGoalByIDUseCase
     private let toggleCompletionGoalUseCase: ToggleCompletionGoalUseCase
     
     init(
@@ -24,12 +25,14 @@ final class GoalViewModel: ObservableObject {
         deleteGoalUseCase: DeleteGoalUseCase,
         editGoalUseCase: EditGoalUseCase,
         fetchGoalsUseCase: FetchGoalsUseCase,
+        fetchGoalByID: FetchGoalByIDUseCase,
         toggleCompletionGoalUseCase: ToggleCompletionGoalUseCase
     ) {
         self.addGoalUseCase = addGoalUseCase
         self.deleteGoalUseCase = deleteGoalUseCase
         self.editGoalUseCase = editGoalUseCase
         self.fetchGoalsUseCase = fetchGoalsUseCase
+        self.fetchGoalByID = fetchGoalByID
         self.toggleCompletionGoalUseCase = toggleCompletionGoalUseCase
         
         fetchGoals()
@@ -41,6 +44,15 @@ final class GoalViewModel: ObservableObject {
             goals = try fetchGoalsUseCase.execute()
         } catch {
             errorMsg = "Error fetching Goals: \(error.localizedDescription)"
+        }
+    }
+    
+    func fetchGoalByID(id: UUID) -> Goal? {
+        do {
+            return try fetchGoalByID.execute(id: id)
+        } catch {
+            errorMsg = "Error fetching goal by id: \(error.localizedDescription)"
+            return nil
         }
     }
     

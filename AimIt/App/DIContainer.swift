@@ -35,6 +35,7 @@ final class DIContainer: ObservableObject {
             deleteGoalUseCase: DeleteGoalUseCaseImpl(repository: repository),
             editGoalUseCase: EditGoalUseCaseImpl(repository: repository),
             fetchGoalsUseCase: FetchGoalsUseCaseImpl(repository: repository),
+            fetchGoalByID: FetchGoalByIDUseCaseImpl(repository: repository),
             toggleCompletionGoalUseCase: ToggleCompletionGoalUseCaseImpl(repository: repository)
         )
     }
@@ -47,6 +48,7 @@ final class DIContainer: ObservableObject {
             deleteMilestoneUseCase: DeleteMilestoneUseCaseImpl(repository: repository),
             fetchAllMilestonesUseCase: FetchAllMilestonesUseCaseImpl(repository: repository),
             fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCaseImpl(repository: repository),
+            fetchTodayMilestonesForWorkspaceUseCase: FetchTodayMilestonesForWorkspaceUseCaseImpl(repository: repository),
             toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCaseImpl(repository: repository),
             updateMilestoneUseCase: UpdateMilestoneUseCaseImpl(repository: repository),
             createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCaseImpl(repository: repository)

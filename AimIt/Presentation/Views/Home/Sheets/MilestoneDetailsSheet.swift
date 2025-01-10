@@ -8,40 +8,78 @@
 import SwiftUI
 
 struct MilestoneDetailsSheet: View {
-    @EnvironmentObject var goalVM: GoalViewModel
-    private let milestone: Milestone
+    @EnvironmentObject var milestoneVM: MilestoneViewModel
+    @EnvironmentObject var coordinator: HomeCoordinator
+    @Binding var milestone: Milestone
     
-    init(milestone: Milestone) {
-        self.milestone = milestone
+    init(milestone: Binding<Milestone>) {
+        self._milestone = milestone
     }
     
     var body: some View {
-        VStack(spacing: 10){
-            AIInfoField(
-                title: "Description",
-                info: milestone.desc
+        ScrollView{
+            HStack{
+                Image(systemName: milestone.systemImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, height: 30)
+                    .foregroundStyle(Color.aiBeige)
+                
+                Text(milestone.isCompleted ? "Completed" : "Not Completed")
+                    .font(.system(.title3, design: .rounded, weight: .bold))
+                    .foregroundStyle(.aiBeige)
+                    .lineLimit(1)
+                
+                Spacer()
+                
+                if let deadline = milestone.dueDate {
+                    Text(DeadlineFormatter.formatToDayMonth(deadline))
+                        .font(.system(.title3, design: .rounded, weight: .bold))
+                        .foregroundStyle(.aiBeige)
+                        .lineLimit(1)
+                }
+            }
+            .padding(.horizontal, 20)
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+            .background(
+                Color.accentColor,
+                in:.rect(cornerRadii: .init(bottomLeading: 15, bottomTrailing: 15))
             )
             
-            if let dueDate = milestone.dueDate {
-                AIDateCard(
-                    createdDate: milestone.creationDate,
-                    date: dueDate
-                )
-            }
+            Spacer(minLength: 20)
             
+            HStack{
+                Button{
+                    withAnimation {
+                        milestone.isCompleted.toggle()
+                        milestoneVM.toggleMilestoneCompletion(milestone)
+                        coordinator.dismissSheet()
+                    }
+                } label:{
+                    Image(systemName: milestone.isCompleted ? "checkmark.circle" : "circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                        .foregroundStyle(milestone.isCompleted ? Color.accentColor : Color.aiSecondary2)
+                }
+                
+                Text(milestone.desc)
+                    .foregroundStyle(.aiLabel)
+                    .font(.system(.title3, design: .rounded, weight: .semibold))
+                
+                Spacer()
+            }
+            .padding(.horizontal, 20)
         }
+        .ignoresSafeArea(.container, edges: .top)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
-        .toolbar {
-            ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Complete")
-            }
-        }
-        .toolbarBackground(Color.aiBackground, for: .bottomBar)
     }
 }
 
 #Preview {
-    MilestoneDetailsSheet(milestone: .sample)
-        .environmentObject(DIContainer().makeGoalViewModel())
+    MilestoneDetailsSheet(milestone: .constant(.sample))
+        .environmentObject(DIContainer().makeMilestoneViewModel())
+        .environmentObject(HomeCoordinator())
 }

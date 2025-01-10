@@ -18,13 +18,13 @@ struct AIMilestoneRow: View {
     
     private let rowType: RowType
     private let onDelete: ((Milestone) -> Void)?
-    private let onTap: ((Milestone) -> Void)?
+    private let onTap: ((Binding<Milestone>) -> Void)?
     
     ///Initializer for removing. Used in a *AIMilestoneCreationList*
     ///Use when removing is option
     init(
         milestone: Binding<Milestone>,
-        onTap: ((Milestone) -> Void)? = nil,
+        onTap: ((Binding<Milestone>) -> Void)? = nil,
         onDelete: ((Milestone) -> Void)? = nil
     ){
         self._milestone = milestone
@@ -37,7 +37,7 @@ struct AIMilestoneRow: View {
     ///Use when toggling is option
     init(
         milestone: Binding<Milestone>,
-        onTap: ((Milestone) -> Void)? = nil
+        onTap: ((Binding<Milestone>) -> Void)? = nil
     ){
         self._milestone = milestone
         self.rowType = .toggling
@@ -72,7 +72,7 @@ struct AIMilestoneRow: View {
             .frame(height: 50)
             .background(milestone.isCompleted ? .green : .aiSecondary, in: .rect(cornerRadius: 15))
             .onTapGesture {
-                onTap?(milestone)
+                onTap?($milestone)
             }
             
             if rowType == .toggling {

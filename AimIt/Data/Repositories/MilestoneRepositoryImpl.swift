@@ -15,6 +15,53 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         self.CDstack = CDstack
     }
     
+    // MARK: - FETCHING
+    func fetchAllMilestones() throws -> [Milestone] {
+        let fetchRequest: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
+        return try CDstack.viewContext.fetch(fetchRequest).map(MilestoneMapper.toDomain)
+    }
+
+    func fetchMilestones(for goal: Goal) throws -> [Milestone] {
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
+        let fetchRequest: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "goal == %@", goalEntity)
+        return try CDstack.viewContext.fetch(fetchRequest).map(MilestoneMapper.toDomain)
+    }
+
+    func fetchTodayMilestonesForWorkspace(
+        for workspace: Workspace,
+        date: Date
+    ) throws -> [Milestone] {
+        let fetchRequest: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
+        
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)?.addingTimeInterval(-1) ?? Date()
+    
+        let workspacePredicate = NSPredicate(format: "goal.workspace.id == %@", workspace.id as CVarArg)
+        
+        var prioritizedGoalPredicate: NSPredicate? = nil
+        if let prioritizedGoalID = workspace.prioritizedGoal?.id {
+            prioritizedGoalPredicate = NSPredicate(format: "goal.id == %@", prioritizedGoalID as CVarArg)
+        }
+        
+        let completedPredicate = NSPredicate(format: "isCompleted == false")
+        let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", startOfDay as NSDate, endOfDay as NSDate)
+        
+        var predicates: [NSPredicate] = [completedPredicate, datePredicate]
+        if let prioritizedPredicate = prioritizedGoalPredicate {
+            let combinedWorkspacePredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [workspacePredicate, prioritizedPredicate])
+            predicates.append(combinedWorkspacePredicate)
+        } else {
+            predicates.append(workspacePredicate)
+        }
+        
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        
+        return try CDstack.viewContext.fetch(fetchRequest).map(MilestoneMapper.toDomain)
+    }
+    
+    // MARK: - ADDING
     func addMilestone(
         desc: String,
         systemImage: String,
@@ -34,6 +81,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         saveContext()
     }
     
+    // MARK: - EDITING
     func updateMilestone(
         _ milestone: Milestone,
         desc: String?,
@@ -48,30 +96,21 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         saveContext()
     }
     
+    // MARK: - DELETING
     func deleteMilestone(_ milestone: Milestone) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         CDstack.viewContext.delete(milestoneEntity)
         saveContext()
     }
-    
-    func fetchMilestones(for goal: Goal) throws -> [Milestone] {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
-        let fetchRequest: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "goal == %@", goalEntity)
-        return try CDstack.viewContext.fetch(fetchRequest).map { MilestoneMapper.toDomain($0) }
-    }
-    
-    func fetchAllMilestones() throws -> [Milestone] {
-        let fetchRequest: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
-        return try CDstack.viewContext.fetch(fetchRequest).map { MilestoneMapper.toDomain($0) }
-    }
-    
+
+    // MARK: - COMPLETION
     func toggleMilestoneCompletion(_ milestone: Milestone) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         milestoneEntity.isCompleted.toggle()
         saveContext()
     }
     
+    // MARK: - OTHER
     func createSeparateMilestone(
         desc: String,
         systemImage: String,

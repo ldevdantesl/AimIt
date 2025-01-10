@@ -14,7 +14,6 @@ struct AISearchBar: View {
     
     let workspaceName: String
     
-    
     var body: some View {
         
         TextField(text: $searchText) {

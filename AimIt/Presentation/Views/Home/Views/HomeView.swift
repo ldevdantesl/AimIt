@@ -55,8 +55,11 @@ struct HomeView: View {
                             }
                     }
                     
-                    AIGoalCardList()
+                    AIGoalCardList(in: workspaceVM.currentWorkspace)
+
+                    AITodayMilestones(workspace: workspaceVM.currentWorkspace)
                 }
+                .padding(.bottom, 20)
             }
             .background(UIConstants.backgroundColor)
             .animation(.bouncy, value: workspaceVM.currentWorkspace)
@@ -87,5 +90,6 @@ struct HomeView: View {
             .environmentObject(DIContainer().makeGoalViewModel())
             .environmentObject(DIContainer().makeWorkspaceViewModel())
             .environmentObject(DIContainer().makeQuoteViewModel())
+            .environmentObject(TabCoordinator())
     }
 }

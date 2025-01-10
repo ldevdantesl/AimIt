@@ -10,7 +10,7 @@ import Foundation
 struct Workspace: Identifiable, Hashable, Codable {
     let id: UUID
     let title: String
-    let goals: [Goal]
+    var goals: [Goal]
     var prioritizedGoal: Goal?
 }
 

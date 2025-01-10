@@ -32,4 +32,6 @@ protocol GoalRepository {
     func deleteGoal(_ goal: Goal) throws
     
     func fetchGoals() throws -> [Goal]
+    
+    func fetchGoalByID(id: UUID) throws -> Goal
 }

@@ -15,16 +15,19 @@ final class MilestoneViewModel: ObservableObject {
     private let addMilestoneUseCase: AddMilestoneUseCase
     private let deleteMilestoneUseCase: DeleteMilestoneUseCase
     private let fetchAllMilestonesUseCase: FetchAllMilestonesUseCase
+    private let updateMilestoneUseCase: UpdateMilestoneUseCase
+    
     private let fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCase
+    private let fetchTodayMilestonesForWorkspaceUseCase: FetchTodayMilestonesForWorkspaceUseCase
     private let toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCase
     private let createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCase
-    private let updateMilestoneUseCase: UpdateMilestoneUseCase
     
     init(
         addMilestoneUseCase: AddMilestoneUseCase,
         deleteMilestoneUseCase: DeleteMilestoneUseCase,
         fetchAllMilestonesUseCase: FetchAllMilestonesUseCase,
         fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCase,
+        fetchTodayMilestonesForWorkspaceUseCase: FetchTodayMilestonesForWorkspaceUseCase,
         toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCase,
         updateMilestoneUseCase: UpdateMilestoneUseCase,
         createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCase
@@ -33,6 +36,7 @@ final class MilestoneViewModel: ObservableObject {
         self.deleteMilestoneUseCase = deleteMilestoneUseCase
         self.fetchAllMilestonesUseCase = fetchAllMilestonesUseCase
         self.fetchMilestonesForGoalUseCase = fetchMilestonesForGoalUseCase
+        self.fetchTodayMilestonesForWorkspaceUseCase = fetchTodayMilestonesForWorkspaceUseCase
         self.toggleMilestoneCompletionUseCase = toggleMilestoneCompletionUseCase
         self.updateMilestoneUseCase = updateMilestoneUseCase
         self.createSeperateMilestoneUseCase = createSeperateMilestoneUseCase
@@ -55,6 +59,16 @@ final class MilestoneViewModel: ObservableObject {
         } catch {
             errorMsg = "Error fetching milestones for goal: \(error.localizedDescription)"
             print("Error fetching milestones for goal: \(error.localizedDescription)")
+        }
+    }
+    
+    func fetchTodayMilestonesForWorkspace(for workspace: Workspace, date: Date = .now) -> [Milestone] {
+        do {
+            return try fetchTodayMilestonesForWorkspaceUseCase.execute(for: workspace, date: date)
+        } catch {
+            errorMsg = "Error fetching milestones for goal: \(error.localizedDescription)"
+            print(errorMsg ?? "")
+            return []
         }
     }
     

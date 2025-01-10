@@ -8,6 +8,17 @@
 import Foundation
 import CoreData
 
+enum GoalRepositoryError: Error {
+    case goalNotFound
+    
+    var localizedDescription: String {
+        switch self {
+        case .goalNotFound:
+            return "Goal with specific id is not found"
+        }
+    }
+}
+
 final class GoalRepositoryImpl: GoalRepository {
     
     private let CDstack: CoreDataStack
@@ -16,6 +27,23 @@ final class GoalRepositoryImpl: GoalRepository {
         self.CDstack = CDstack
     }
     
+    // MARK: - FETCHING
+    func fetchGoals() throws -> [Goal] {
+        let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
+        let goalEntity = try CDstack.viewContext.fetch(request)
+        let goalDomain = goalEntity.map { GoalMapper.mapToDomain(from: $0) }
+        return goalDomain
+    }
+    
+    func fetchGoalByID(id: UUID) throws -> Goal {
+        let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
+        let entity = try CDstack.viewContext.fetch(request)
+        guard let goal = entity.first else { throw GoalRepositoryError.goalNotFound }
+        return GoalMapper.mapToDomain(from: goal)
+    }
+    
+    // MARK: - ADDING
     func addGoal(
         to workspace: Workspace,
         title: String,
@@ -53,6 +81,7 @@ final class GoalRepositoryImpl: GoalRepository {
         saveContext()
     }
     
+    // MARK: - EDITING
     func editGoal(
         _ goal: Goal,
         newTitle: String?,
@@ -101,20 +130,7 @@ final class GoalRepositoryImpl: GoalRepository {
         return GoalMapper.mapToDomain(from: goalEntity)
     }
     
-    func completeGoal(_ goal: Goal) throws {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
-        goalEntity.isCompleted = true
-        goalEntity.completedAt = Date()
-        saveContext()
-    }
-    
-    func uncompleteGoal(_ goal: Goal) throws {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
-        goalEntity.isCompleted = false
-        goalEntity.completedAt = nil
-        saveContext()
-    }
-    
+    // MARK: - DELETING
     func deleteGoal(_ goal: Goal) throws {
         let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         if CDstack.viewContext == goalEntity.managedObjectContext {
@@ -129,13 +145,22 @@ final class GoalRepositoryImpl: GoalRepository {
         }
     }
     
-    func fetchGoals() throws -> [Goal] {
-        let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
-        let goalEntity = try CDstack.viewContext.fetch(request)
-        let goalDomain = goalEntity.map { GoalMapper.mapToDomain(from: $0) }
-        return goalDomain
+    // MARK: - COMPLETION
+    func completeGoal(_ goal: Goal) throws {
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
+        goalEntity.isCompleted = true
+        goalEntity.completedAt = Date()
+        saveContext()
     }
     
+    func uncompleteGoal(_ goal: Goal) throws {
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
+        goalEntity.isCompleted = false
+        goalEntity.completedAt = nil
+        saveContext()
+    }
+    
+    // MARK: - OTHER
     private func saveContext() {
         CDstack.saveContext()
     }

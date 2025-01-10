@@ -29,12 +29,25 @@ struct AIGoalMilestonesList: View {
                 Spacer()
                 
                 Menu {
+                    Text("Sort By")
                     Button("First Done") {
                         sortType = { $0.isCompleted && !$1.isCompleted }
                         goalMilestones.sort(by: sortType)
                     }
                     Button("First Undone") {
                         sortType = { !$0.isCompleted && $1.isCompleted }
+                        goalMilestones.sort(by: sortType)
+                    }
+                    Button("Deadline") {
+                        sortType = {
+                            if let firstDate = $0.dueDate, let secondDate = $1.dueDate {
+                                return firstDate < secondDate
+                            } else if $0.dueDate == nil && $1.dueDate == nil {
+                                return false
+                            } else {
+                                return $0.dueDate == nil
+                            }
+                        }
                         goalMilestones.sort(by: sortType)
                     }
                 } label: {
@@ -55,7 +68,7 @@ struct AIGoalMilestonesList: View {
         }
     }
     
-    private func onMilestoneTap(milestone: Milestone) {
+    private func onMilestoneTap(milestone: Binding<Milestone>) {
         coordinator.present(sheet: .milestoneDetails(milestone))
     }
 }

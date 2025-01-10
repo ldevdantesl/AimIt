@@ -51,7 +51,9 @@ struct AIButton: View {
     
     var body: some View {
         Button{
-            action?()
+            withAnimation {
+                action?()
+            }
         } label: {
             if let title = title {
                 Text(title)

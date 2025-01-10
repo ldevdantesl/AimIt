@@ -9,13 +9,19 @@ import SwiftUI
 
 struct NotFoundView: View {
     
-    private let imageName: String
+    private let imageName: String?
     private let title: String
     private let topPadding: CGFloat
     private let subtitle: String?
     private let action: (() -> ())?
     
-    init(imageName: String, title: String, topPadding: CGFloat = 20, subtitle: String?, action: (() -> Void)?) {
+    init(
+        imageName: String? = nil,
+        title: String,
+        topPadding: CGFloat = 20,
+        subtitle: String?,
+        action: (() -> Void)?
+    ) {
         self.imageName = imageName
         self.title = title
         self.topPadding = topPadding
@@ -27,10 +33,12 @@ struct NotFoundView: View {
     var body: some View {
         Button(action: { action?() }) {
             VStack{
-                Image(imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 90, height: 90)
+                if let imageName {
+                    Image(imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 90, height: 90)
+                }
                 
                 Text(title)
                     .font(.system(.title2, design: .rounded, weight: .semibold))

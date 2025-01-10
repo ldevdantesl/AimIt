@@ -12,7 +12,7 @@ struct AIPrioritizedGoalCard: View {
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     
-    private var workspace: Workspace
+    private let workspace: Workspace
     
     init(in workspace: Workspace) {
         self.workspace = workspace

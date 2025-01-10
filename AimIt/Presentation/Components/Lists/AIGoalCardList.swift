@@ -12,8 +12,14 @@ struct AIGoalCardList: View {
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var goalVM: GoalViewModel
     
+    private let workspace: Workspace
+    
+    init(in workspace: Workspace) {
+        self.workspace = workspace
+    }
+    
     var body: some View {
-        if workspaceVM.currentWorkspace.goals.isEmpty {
+        if workspace.goals.isEmpty && workspace.prioritizedGoal == nil {
             NotFoundView(
                 imageName: ImageNames.noGoals,
                 title: "No goals yet",
@@ -23,25 +29,23 @@ struct AIGoalCardList: View {
             )
         } else {
             LazyVStack(spacing: 20) {
-                ForEach(workspaceVM.currentWorkspace.goals, id: \.self) { goal in
-                    if goal != workspaceVM.currentWorkspace.prioritizedGoal {
-                        AIGoalCard(goal: goal)
-                            .contextMenu {
-                                if workspaceVM.currentWorkspace.prioritizedGoal == nil {
-                                    Button(
-                                        "Prioritize",
-                                        systemImage: "exclamationmark",
-                                        action: { prioritizeGoal(goal: goal) }
-                                    )
-                                }
+                ForEach(workspace.goals, id: \.self) { goal in
+                    AIGoalCard(goal: goal)
+                        .contextMenu {
+                            if workspace.prioritizedGoal == nil {
                                 Button(
-                                    "Delete",
-                                    systemImage: "trash.fill",
-                                    role:.destructive,
-                                    action: { deleteGoal(goal: goal)}
+                                    "Prioritize",
+                                    systemImage: "exclamationmark",
+                                    action: { prioritizeGoal(goal: goal) }
                                 )
                             }
-                    }
+                            Button(
+                                "Delete",
+                                systemImage: "trash.fill",
+                                role:.destructive,
+                                action: { deleteGoal(goal: goal)}
+                            )
+                        }
                 }
             }
         }
@@ -50,7 +54,7 @@ struct AIGoalCardList: View {
     private func prioritizeGoal(goal: Goal) {
         DispatchQueue.main.async {
             withAnimation {
-                workspaceVM.prioritizeGoal(workspaceVM.currentWorkspace, goal: goal)
+                workspaceVM.prioritizeGoal(workspace, goal: goal)
             }
         }
     }
@@ -70,7 +74,7 @@ struct AIGoalCardList: View {
 }
 
 #Preview {
-    AIGoalCardList()
+    AIGoalCardList(in: .sample)
         .environmentObject(HomeCoordinator())
         .environmentObject(DIContainer().makeWorkspaceViewModel())
         .environmentObject(DIContainer().makeGoalViewModel())
