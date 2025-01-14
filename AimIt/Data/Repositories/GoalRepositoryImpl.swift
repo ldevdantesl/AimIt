@@ -30,6 +30,7 @@ final class GoalRepositoryImpl: GoalRepository {
     // MARK: - FETCHING
     func fetchGoals() throws -> [Goal] {
         let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "deadline", ascending: true)]
         let goalEntity = try CDstack.viewContext.fetch(request)
         let goalDomain = goalEntity.map { GoalMapper.mapToDomain(from: $0) }
         return goalDomain
@@ -83,7 +84,7 @@ final class GoalRepositoryImpl: GoalRepository {
         newGoal.id = UUID()
         newGoal.title = title
         newGoal.desc = desc
-        newGoal.deadline = deadline.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
+        newGoal.deadline = deadline.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) } ?? Date()
         newGoal.createdAt = Date()
         newGoal.isCompleted = false
         newGoal.completedAt = nil

@@ -78,7 +78,6 @@ struct HomeView: View {
                 coordinator.build(screen: screen)
             }
             .onAppear {
-                goalVM.fetchGoals()
                 workspaceVM.fetchCurrentWorkspace()
             }
             .toolbar {

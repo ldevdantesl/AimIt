@@ -11,6 +11,7 @@ import SwiftUI
 struct GoalDetailsView: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
+    @EnvironmentObject var workspaceVM: WorkspaceViewModel
     
     @Binding private var goal: Goal
     
@@ -87,9 +88,6 @@ struct GoalDetailsView: View {
                 .disabled(!isCompleteDisabled)
             }
         }
-        .onDisappear {
-            goalVM.fetchGoals()
-        }
     }
     
     private func coordinateToEditGoal() {
@@ -107,5 +105,6 @@ struct GoalDetailsView: View {
             .background(Color.aiBackground)
             .environmentObject(HomeCoordinator())
             .environmentObject(DIContainer().makeGoalViewModel())
+            .environmentObject(DIContainer().makeWorkspaceViewModel())
     }
 }

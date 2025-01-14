@@ -15,8 +15,11 @@ struct AIMilestoneCard: View {
     @State var milestone: Milestone
     @State private var milestoneGoal: Goal? = nil
     
-    init(milestone: Milestone) {
+    private let isTogglable: Bool
+    
+    init(milestone: Milestone, isTogglable: Bool = true) {
         self.milestone = milestone
+        self.isTogglable = isTogglable
     }
     
     var body: some View {
@@ -42,13 +45,7 @@ struct AIMilestoneCard: View {
             
             Spacer()
             
-            Button{
-                withAnimation {
-                    milestone.isCompleted.toggle()
-                    milestoneVM.toggleMilestoneCompletion(milestone)
-                    workspaceVM.fetchCurrentWorkspace()
-                }
-            } label:{
+            Button(action: toggle) {
                 Image(systemName: milestone.isCompleted ? "checkmark.circle.fill" : "circle")
                     .resizable()
                     .scaledToFit()
@@ -63,6 +60,18 @@ struct AIMilestoneCard: View {
         .onAppear {
             if let goalID = milestone.goalID {
                 milestoneGoal = goalVM.fetchGoalByID(id: goalID)
+            }
+        }
+    }
+    
+    private func toggle() {
+        if isTogglable {
+            DispatchQueue.main.async {
+                withAnimation {
+                    milestone.isCompleted.toggle()
+                    milestoneVM.toggleMilestoneCompletion(milestone)
+                    workspaceVM.fetchCurrentWorkspace()
+                }
             }
         }
     }

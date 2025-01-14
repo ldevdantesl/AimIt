@@ -63,7 +63,7 @@ struct CreateMilestoneSheet: View {
                         titleName: "Due to: (optional)",
                         widthSize: UIConstants.screenWidth,
                         chosenDate: $dueDate,
-                        dateUntil: goalDeadline
+                        dateUntil: deadline
                     )
                     
                     AISystemImagePicker(selectedImage: $systemImage)
@@ -89,6 +89,17 @@ struct CreateMilestoneSheet: View {
             }
             .background(Color.aiBackground)
             .toolbarBackground(Color.black, for: .bottomBar)
+        }
+        
+    }
+    
+    private var deadline: Date? {
+        if Calendar.current.isDateInToday(goalDeadline) {
+            return nil
+        } else if DeadlineFormatter.isDayPassed(goalDeadline) {
+            return nil
+        } else {
+            return goalDeadline
         }
     }
 }

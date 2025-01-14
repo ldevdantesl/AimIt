@@ -10,7 +10,6 @@ import SwiftUI
 
 @MainActor
 final class GoalViewModel: ObservableObject {
-    @Published var goals: [Goal] = []
     @Published var errorMsg: String?
     
     private let addGoalUseCase: AddGoalUseCase
@@ -37,16 +36,16 @@ final class GoalViewModel: ObservableObject {
         self.fetchGoalByIDUseCase = fetchGoalByIDUseCase
         self.fetchGoalsByPromptUseCase = fetchGoalsByPromptUseCase
         self.toggleCompletionGoalUseCase = toggleCompletionGoalUseCase
-        
-        fetchGoals()
     }
     
     // MARK: - FETCHING
-    func fetchGoals() {
+    func fetchGoals() -> [Goal] {
         do {
-            goals = try fetchGoalsUseCase.execute()
+            return try fetchGoalsUseCase.execute()
         } catch {
             errorMsg = "Error fetching Goals: \(error.localizedDescription)"
+            print(errorMsg ?? "")
+            return []
         }
     }
     
@@ -77,7 +76,7 @@ final class GoalViewModel: ObservableObject {
         deadline: Date?,
         milestones: [Milestone]
     ) {
-        handleUseCase(errorMessage: "Error Adding Goal", fetchAfter: true) {
+        handleUseCase(errorMessage: "Error Adding Goal") {
             try addGoalUseCase.execute(
                 to: workspace,
                 title: title,
@@ -113,7 +112,7 @@ final class GoalViewModel: ObservableObject {
     
     // MARK: - DELETING
     func deleteGoal(_ goal: Goal) {
-        handleUseCase(errorMessage: "Error deleting Goal", fetchAfter: true) {
+        handleUseCase(errorMessage: "Error deleting Goal") {
             try deleteGoalUseCase.execute(goal)
         }
     }
@@ -132,10 +131,9 @@ final class GoalViewModel: ObservableObject {
     }
     
     // MARK: - PRIVATE FUNCTIONS
-    private func handleUseCase(errorMessage: String, fetchAfter: Bool = false, action: () throws -> ()) {
+    private func handleUseCase(errorMessage: String, action: () throws -> ()) {
         do {
             try action()
-            fetchAfter ? fetchGoals() : ()
         } catch  {
             self.errorMsg = "\(errorMessage): \(error.localizedDescription)"
         }

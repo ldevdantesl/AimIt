@@ -18,7 +18,7 @@ public class GoalEntity: NSManagedObject {
     @NSManaged public var category: String
     @NSManaged public var completedAt: Date?
     @NSManaged public var createdAt: Date
-    @NSManaged public var deadline: Date?
+    @NSManaged public var deadline: Date
     @NSManaged public var desc: String?
     @NSManaged public var id: UUID
     @NSManaged public var isCompleted: Bool

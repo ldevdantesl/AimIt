@@ -8,6 +8,11 @@
 import Foundation
 import CoreData
 
+enum WorkspaceRepositoryErrors: Error {
+    case workspaceNotFound
+    case workspaceGoalsNotFound
+}
+
 final class WorkspaceRepositoryImpl: WorkspaceRepository {
     
     private let CDStack: CoreDataStack
@@ -31,7 +36,19 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
             throw NSError(domain: "Workspace with this id is not found", code: -10)
         }
         
-        return WorkspaceMapper.toDomain(workspace)
+        let sortedGoals: [Goal]
+        if let goalSet = workspace.goals as? Set<GoalEntity>, !goalSet.isEmpty {
+            sortedGoals = goalSet
+                .sorted { $0.deadline < $1.deadline }
+                .map { GoalMapper.mapToDomain(from: $0) }
+        } else {
+            sortedGoals = []
+        }
+        
+        var workspaceDomain = WorkspaceMapper.toDomain(workspace)
+        workspaceDomain.goals = sortedGoals
+        
+        return workspaceDomain
     }
     
     // MARK: - ADD

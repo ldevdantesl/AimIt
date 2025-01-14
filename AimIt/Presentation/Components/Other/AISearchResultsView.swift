@@ -50,7 +50,7 @@ struct AISearchResultsView: View {
                         .padding(.horizontal, 20)
                     
                     ForEach(milestones) { milestone in
-                        AIMilestoneCard(milestone: milestone)
+                        AIMilestoneCard(milestone: milestone, isTogglable: false)
                             .padding(.horizontal, 20)
                     }
                 }

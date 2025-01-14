@@ -43,6 +43,7 @@ struct AITimeProgressBar: View {
                         }
                     }
                 }
+                .animation(.easeInOut(duration: 1.0), value: progressWidth)
             
             Capsule()
                 .fill(Color.aiSecondary)
@@ -52,7 +53,7 @@ struct AITimeProgressBar: View {
         .onAppear {
             let screenWidth = UIConstants.screenWidth - 40
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 withAnimation(.linear) {
                     self.progressWidth = screenWidth * CGFloat(timeGone / totalTime)
                 }

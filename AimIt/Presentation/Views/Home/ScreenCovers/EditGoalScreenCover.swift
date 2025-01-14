@@ -83,6 +83,7 @@ struct EditGoalScreenCover: View {
                 .disabled(titleErrorMsg != nil)
             }
         }
+        .toolbarBackground(.clear, for: .bottomBar)
         .onAppear {
             self.newTitle = goal.title
             self.newMilestones = goal.milestones
