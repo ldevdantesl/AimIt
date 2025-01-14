@@ -79,6 +79,8 @@ struct AIMilestoneRow: View {
                 Button{
                     milestone.isCompleted.toggle()
                     milestoneVM.toggleMilestoneCompletion(milestone)
+            
+                    AIHaptics.shared.generate(with: .medium)
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(milestone.isCompleted ? .green : .aiSecondary)
@@ -94,6 +96,7 @@ struct AIMilestoneRow: View {
             } else {
                 Button{
                     onDelete?(milestone)
+                    AIHaptics.shared.generate(with: .light)
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(.accent)

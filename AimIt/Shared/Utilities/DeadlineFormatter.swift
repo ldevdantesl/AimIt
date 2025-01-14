@@ -8,20 +8,26 @@
 import Foundation
 
 struct DeadlineFormatter {
-    static func formatToDaysLeft(_ date: Date) -> String {
-        let currentDate = Date()
+    static func formatToTheEndOfTheDay(_ date: Date) -> Date? {
+        let startOfDay = Calendar.current.startOfDay(for: date)
+        return Calendar.current.date(byAdding: DateComponents(day: 1, second: -1), to: startOfDay)
+    }
+    
+    static func formatToDaysLeftDescription(_ date: Date) -> String {
+        let currentDate = Calendar.current.startOfDay(for: Date())
+        let targetDate = Calendar.current.startOfDay(for: date)
         let calendar = Calendar.current
         
-        guard let daysLeft = calendar.dateComponents([.day], from: currentDate, to: date).day else {
+        guard let daysLeft = calendar.dateComponents([.day], from: currentDate, to: targetDate).day else {
             return "Invalid date"
         }
         
         if daysLeft < 0 {
             return "Deadline passed ⏰"
         } else if daysLeft == 0 {
-            return "Today is day to finish"
+            return "Deadline is today ❕"
         } else {
-            return "\(daysLeft) days left to finish"
+            return "\(daysLeft) day(s) left"
         }
     }
     
@@ -55,5 +61,12 @@ struct DeadlineFormatter {
         }
         
         return daysLeft <= 3 && daysLeft >= 0
+    }
+    
+    static func isDayPassed(_ date: Date) -> Bool {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let dueDay = calendar.startOfDay(for: date)
+        return dueDay < today
     }
 }

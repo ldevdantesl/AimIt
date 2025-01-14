@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AIOptionalDatePicker: View {
+struct AIOptionalDateField: View {
     private let titleName: String
     private let widthSize: CGFloat
     private let dateUntil: Date?
@@ -108,7 +108,7 @@ struct AIOptionalDatePicker: View {
 }
 
 #Preview {
-    AIOptionalDatePicker(
+    AIOptionalDateField(
         titleName: "Due Date",
         widthSize: UIConstants.screenWidth / 2 - 20,
         chosenDate: .constant(nil)

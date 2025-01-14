@@ -10,42 +10,70 @@ import SwiftUI
 struct AITimeProgressBar: View {
     private var createdDate: Date
     private var dueDate: Date
+    private var datePassedAction: (() -> ())?
     
-    init(createdDate: Date, dueDate: Date) {
+    @State private var progressWidth: CGFloat = 0
+    
+    init(
+        createdDate: Date,
+        dueDate: Date,
+        datePassedAction: (() -> ())? = nil
+    ) {
         self.createdDate = createdDate
         self.dueDate = dueDate
+        self.datePassedAction = datePassedAction
     }
     
     var body: some View {
-        HStack(spacing: 2) {
-            RoundedRectangle(cornerRadius: 15)
+        ZStack(alignment:.leading) {
+            Capsule()
                 .fill(Color.accentColor)
-                .frame(width: progressWidth, height: 20)
+                .frame(width: max(progressWidth, minCapsuleWidth), height: 20)
+                .zIndex(2)
+                .overlay {
+                    if isDayPassed {
+                        Button{
+                            datePassedAction?()
+                            AIHaptics.shared.generate(with: .light)
+                        } label:{
+                            Text("Change Deadline")
+                                .font(.system(.subheadline, design: .rounded, weight: .bold))
+                                .foregroundStyle(.aiLabel)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
+                    }
+                }
             
-            RoundedRectangle(cornerRadius: 15)
+            Capsule()
                 .fill(Color.aiSecondary)
                 .frame(height: 20)
+                .zIndex(1)
+        }
+        .onAppear {
+            let screenWidth = UIConstants.screenWidth - 40
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                withAnimation(.linear) {
+                    self.progressWidth = screenWidth * CGFloat(timeGone / totalTime)
+                }
+            }
         }
     }
+    
+    // MARK: - Constants
+    private let minCapsuleWidth: CGFloat = 10
+    
     // MARK: - Calculations
-    private var totalDays: Int {
-        // Calculate total number of days between creation and due date
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: createdDate, to: dueDate)
-        return max(components.day ?? 0, 1) // Ensure at least 1 day
+    private var totalTime: TimeInterval {
+        return max(dueDate.timeIntervalSince(createdDate), 1)
     }
     
-    private var daysGone: Int {
-        // Calculate how many days have passed since the creation date
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: createdDate, to: Date())
-        return min(max(components.day ?? 0, 1), totalDays) // Clamp between 0 and totalDays
+    private var isDayPassed: Bool {
+        DeadlineFormatter.isDayPassed(dueDate)
     }
     
-    private var progressWidth: CGFloat {
-        // Calculate the width of the filled portion of the bar
-        let screenWidth = UIConstants.screenWidth - 40 // 20 padding on each side
-        return screenWidth * CGFloat(daysGone) / CGFloat(totalDays)
+    private var timeGone: TimeInterval {
+        return max(min(Date().timeIntervalSince(createdDate), totalTime), 0)
     }
 }
 

@@ -28,6 +28,36 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         return try CDstack.viewContext.fetch(fetchRequest).map(MilestoneMapper.toDomain)
     }
 
+    func fetchMilestonesByPrompt(with prompt: String, in workspace: Workspace) throws -> [Milestone] {
+        let fetchRequest: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
+        
+        // Predicate for matching milestones with the prompt in description
+        let promptPredicate = NSPredicate(format: "desc CONTAINS[c] %@", prompt)
+        
+        // Predicate for milestones in the workspace
+        let workspacePredicate = NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString)
+        
+        // Check if there's a prioritized goal
+        var prioritizedGoalPredicate: NSPredicate? = nil
+        if let prioritizedGoalID = workspace.prioritizedGoal?.id {
+            prioritizedGoalPredicate = NSPredicate(format: "goal.id == %@", prioritizedGoalID.uuidString)
+        }
+        
+        // Combine predicates
+        var predicates: [NSPredicate] = [promptPredicate]
+        if let prioritizedPredicate = prioritizedGoalPredicate {
+            let workspaceOrPrioritizedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [workspacePredicate, prioritizedPredicate])
+            predicates.append(workspaceOrPrioritizedPredicate)
+        } else {
+            predicates.append(workspacePredicate)
+        }
+        
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        
+        // Execute the fetch and map the results
+        return try CDstack.viewContext.fetch(fetchRequest).map { MilestoneMapper.toDomain($0) }
+    }
+    
     func fetchTodayMilestonesForWorkspace(
         for workspace: Workspace,
         date: Date
@@ -38,11 +68,11 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         let startOfDay = calendar.startOfDay(for: date)
         let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)?.addingTimeInterval(-1) ?? Date()
     
-        let workspacePredicate = NSPredicate(format: "goal.workspace.id == %@", workspace.id as CVarArg)
+        let workspacePredicate = NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString)
         
         var prioritizedGoalPredicate: NSPredicate? = nil
         if let prioritizedGoalID = workspace.prioritizedGoal?.id {
-            prioritizedGoalPredicate = NSPredicate(format: "goal.id == %@", prioritizedGoalID as CVarArg)
+            prioritizedGoalPredicate = NSPredicate(format: "goal.id == %@", prioritizedGoalID.uuidString)
         }
         
         let completedPredicate = NSPredicate(format: "isCompleted == false")
@@ -75,7 +105,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         newMilestone.isCompleted = completed
         newMilestone.systemImage = systemImage
         newMilestone.createdDate = Date()
-        newMilestone.dueDate = dueDate
+        newMilestone.dueDate = dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
         newMilestone.goal = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         
         saveContext()
@@ -90,7 +120,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
     ) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         milestoneEntity.desc = desc ?? milestoneEntity.desc
-        milestoneEntity.dueDate = dueDate ?? milestoneEntity.dueDate
+        milestoneEntity.dueDate = dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) } ?? milestoneEntity.dueDate
         milestoneEntity.systemImage = systemImage ?? milestoneEntity.systemImage
         
         saveContext()
@@ -122,7 +152,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
             desc: desc,
             systemImage: systemImage,
             creationDate: .now,
-            dueDate: dueDate,
+            dueDate: dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) },
             isCompleted: completed,
             goalID: nil
         )

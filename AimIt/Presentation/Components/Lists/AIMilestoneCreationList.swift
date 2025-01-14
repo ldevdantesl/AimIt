@@ -16,7 +16,7 @@ struct AIMilestoneCreationList: View {
             NotFoundView(
                 imageName: ImageNames.noMilestones,
                 title: "No Milestones",
-                topPadding: 40,
+                verticalPadding: 40,
                 subtitle: "Tap to add new milestone to you goal",
                 action: {}
             )

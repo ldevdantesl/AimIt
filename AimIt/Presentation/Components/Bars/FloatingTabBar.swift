@@ -78,7 +78,6 @@ struct FloatingTabBar: View {
                     .background(Color.accentColor, in: .circle)
             }
         }
-        .padding(.horizontal, 20)
         .shadow(color: .aiBlack.opacity(0.4), radius: 5, x: 0, y: 5)
     }
 }

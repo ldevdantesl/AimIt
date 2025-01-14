@@ -8,8 +8,11 @@
 import Foundation
 
 enum ImageNames {
+    static let noTodayMilestones = "NoTodayMilestones"
+    static let noFound = "NoFound"
     static let noGoals = "NoGoals"
     static let noMilestones = "NoMilestones"
+    
     static let intro1 = "Intro1"
     static let splashImage = "SplashImage"
     static let pin = "pin"

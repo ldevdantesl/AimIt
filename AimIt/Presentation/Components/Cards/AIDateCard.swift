@@ -8,24 +8,30 @@
 import SwiftUI
 
 struct AIDateCard: View {
-    private let createdDate: Date
-    private let date: Date
+    @EnvironmentObject var coordinator: HomeCoordinator
     
-    init(createdDate: Date, date: Date) {
-        self.createdDate = createdDate
-        self.date = date
+    @Binding var goal: Goal
+    
+    init(goal: Binding<Goal>) {
+        self._goal = goal
+    }
+    
+    private var isDayPassed: Bool {
+        DeadlineFormatter.isDayPassed(goal.deadline)
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
-            Text("Deadline: \(DeadlineFormatter.formatToDayMonth(date))")
+            
+            Text("Deadline: \(DeadlineFormatter.formatToDayMonth(goal.deadline))")
                 .font(.system(.subheadline, design: .rounded, weight: .light))
                 .foregroundColor(.aiSecondary2)
                 .padding(.bottom, 3)
+            
             HStack{
-                Text("\(DeadlineFormatter.formatToDaysLeft(date))")
-                    .font(.system(.headline, design: .rounded, weight: .semibold))
-                    .foregroundStyle(.aiSecondary2)
+                Text("\(DeadlineFormatter.formatToDaysLeftDescription(goal.deadline))")
+                    .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                    .foregroundStyle(.aiLabel)
                 
                 Spacer()
                 
@@ -34,37 +40,49 @@ struct AIDateCard: View {
                     .scaledToFit()
                     .frame(width: 25, height: 25)
                 
-                Text("\(daysGone)/\(totalDays)")
-                    .font(.system(.headline, design: .rounded, weight: .semibold))
+                Text("\(daysGone)/\(totalDays) day(s)")
+                    .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundStyle(.aiSecondary2)
             }
             .padding(.bottom, 15)
             
-            AITimeProgressBar(createdDate: createdDate, dueDate: date)
-                .padding(.bottom, 10)
+            AITimeProgressBar(
+                createdDate: goal.createdAt,
+                dueDate: goal.deadline,
+                datePassedAction: coordinateToEditDate
+            )
+            .padding(.bottom, 10)
+            
+            AIFooterNote(text: "If deadline is passed you won't be able to manipulate the goal unless you change the deadline. Tap to change it",
+                         condition: isDayPassed)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 20)
     }
     
+    private func coordinateToEditDate() {
+        coordinator.present(sheet: .changeDeadline($goal))
+    }
+    
     private var totalDays: Int {
         // Calculate total number of days between creation and due date
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: createdDate, to: date)
+        let components = calendar.dateComponents([.day], from: goal.createdAt, to: goal.deadline)
         return max(components.day ?? 0, 1) // Ensure it's non-negative
     }
     
     private var daysGone: Int {
         // Calculate how many days have passed since the creation date
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: createdDate, to: Date())
+        let components = calendar.dateComponents([.day], from: goal.createdAt, to: Date())
         return max(components.day ?? 0, 1) // Ensure it's non-negative
     }
     
 }
 
 #Preview {
-    AIDateCard(createdDate: .now, date: .now)
+    AIDateCard(goal: .constant(.sample))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
+        .environmentObject(HomeCoordinator())
 }

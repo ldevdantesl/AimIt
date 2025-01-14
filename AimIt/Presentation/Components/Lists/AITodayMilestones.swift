@@ -32,7 +32,9 @@ struct AITodayMilestones: View {
             
             if milestones.isEmpty {
                 NotFoundView(
+                    imageName: ImageNames.noGoals,
                     title: "No milestones for today",
+                    verticalPadding: 60,
                     subtitle: "Great.. You have nothing to do for today.",
                     action: nil
                 )

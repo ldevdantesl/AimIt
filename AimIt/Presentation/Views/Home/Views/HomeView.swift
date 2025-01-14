@@ -39,30 +39,35 @@ struct HomeView: View {
                     )
                     .padding(.bottom, 5)
                     
-                    AIWorkspaceSelector()
-                    
-                    AIPrioritizedGoalCard(in: workspaceVM.currentWorkspace)
-                    
-                    HStack(alignment: .top) {
-                        AIGoalWidget(workspace: workspaceVM.currentWorkspace)
+                    if searchText.isEmpty {
+                        AIWorkspaceSelector()
                         
-                        Spacer()
+                        AIPrioritizedGoalCard(in: workspaceVM.currentWorkspace)
                         
+                        HStack(alignment: .top) {
+                            AIGoalWidget(workspace: workspaceVM.currentWorkspace)
+                            
+                            Spacer()
+                            
+                            
+                            AIQuoteWidget(quote: quoteVM.randomQuote)
+                                .onTapGesture {
+                                    coordinator.present(sheet: .quote(quoteVM))
+                                }
+                        }
                         
-                        AIQuoteWidget(quote: quoteVM.randomQuote)
-                            .onTapGesture {
-                                coordinator.present(sheet: .quote(quoteVM))
-                            }
+                        AIGoalCardList(in: workspaceVM.currentWorkspace)
+                        
+                        AITodayMilestones(workspace: workspaceVM.currentWorkspace)
+                    } else {
+                        AISearchResultsView(searchText: $searchText, in: workspaceVM.currentWorkspace)
                     }
-                    
-                    AIGoalCardList(in: workspaceVM.currentWorkspace)
-
-                    AITodayMilestones(workspace: workspaceVM.currentWorkspace)
                 }
                 .padding(.bottom, 20)
             }
             .background(UIConstants.backgroundColor)
             .animation(.bouncy, value: workspaceVM.currentWorkspace)
+            .animation(.bouncy, value: searchText)
             .sheet(item: $coordinator.sheet) { sheet in
                 coordinator.build(sheet: sheet)
             }
@@ -76,9 +81,13 @@ struct HomeView: View {
                 goalVM.fetchGoals()
                 workspaceVM.fetchCurrentWorkspace()
             }
-            .safeAreaInset(edge: .bottom) {
-                FloatingTabBar(action: { coordinator.push(to: .addGoal) })
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    FloatingTabBar(action: { coordinator.push(to: .addGoal) })
+                        .frame(maxWidth: .infinity)
+                }
             }
+            .toolbarBackground(.clear, for: .bottomBar)
         }
     }
 }

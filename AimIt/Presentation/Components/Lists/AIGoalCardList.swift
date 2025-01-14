@@ -23,7 +23,7 @@ struct AIGoalCardList: View {
             NotFoundView(
                 imageName: ImageNames.noGoals,
                 title: "No goals yet",
-                topPadding: 40,
+                verticalPadding: 60,
                 subtitle: "Tap once to add new goal",
                 action: addOneGoal
             )

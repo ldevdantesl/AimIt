@@ -19,6 +19,8 @@ final class MilestoneViewModel: ObservableObject {
     
     private let fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCase
     private let fetchTodayMilestonesForWorkspaceUseCase: FetchTodayMilestonesForWorkspaceUseCase
+    private let fetchMilestonesByPromptUseCase: FetchMilestonesByPromptUseCase
+    
     private let toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCase
     private let createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCase
     
@@ -28,6 +30,7 @@ final class MilestoneViewModel: ObservableObject {
         fetchAllMilestonesUseCase: FetchAllMilestonesUseCase,
         fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCase,
         fetchTodayMilestonesForWorkspaceUseCase: FetchTodayMilestonesForWorkspaceUseCase,
+        fetchMilestonesByPromptUseCase: FetchMilestonesByPromptUseCase,
         toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCase,
         updateMilestoneUseCase: UpdateMilestoneUseCase,
         createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCase
@@ -37,6 +40,7 @@ final class MilestoneViewModel: ObservableObject {
         self.fetchAllMilestonesUseCase = fetchAllMilestonesUseCase
         self.fetchMilestonesForGoalUseCase = fetchMilestonesForGoalUseCase
         self.fetchTodayMilestonesForWorkspaceUseCase = fetchTodayMilestonesForWorkspaceUseCase
+        self.fetchMilestonesByPromptUseCase = fetchMilestonesByPromptUseCase
         self.toggleMilestoneCompletionUseCase = toggleMilestoneCompletionUseCase
         self.updateMilestoneUseCase = updateMilestoneUseCase
         self.createSeperateMilestoneUseCase = createSeperateMilestoneUseCase
@@ -67,6 +71,16 @@ final class MilestoneViewModel: ObservableObject {
             return try fetchTodayMilestonesForWorkspaceUseCase.execute(for: workspace, date: date)
         } catch {
             errorMsg = "Error fetching milestones for goal: \(error.localizedDescription)"
+            print(errorMsg ?? "")
+            return []
+        }
+    }
+    
+    func fetchMilestonesByPrompt(with prompt: String, in workspace: Workspace) -> [Milestone] {
+        do {
+            return try fetchMilestonesByPromptUseCase.execute(with: prompt, in: workspace)
+        } catch {
+            errorMsg = "Error fetching milestones for prompt: \(error.localizedDescription)"
             print(errorMsg ?? "")
             return []
         }

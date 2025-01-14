@@ -136,6 +136,7 @@ struct AITextField: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation(.interpolatingSpring(stiffness: 20, damping: 5)) {
                 self.offset = 0
+                AIHaptics.shared.generate(with: .heavy)
             }
         }
     }

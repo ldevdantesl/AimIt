@@ -43,6 +43,34 @@ final class GoalRepositoryImpl: GoalRepository {
         return GoalMapper.mapToDomain(from: goal)
     }
     
+    func fetchGoalsByPrompt(with prompt: String, in workspace: Workspace) throws -> [Goal] {
+        let fetchRequest: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
+        
+        // Create predicates for filtering
+        let promptPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR desc CONTAINS[c] %@", prompt, prompt)
+        let workspacePredicate = NSPredicate(format: "workspace.id == %@", workspace.id.uuidString)
+        
+        // Check if there's a prioritized goal
+        var prioritizedGoalPredicate: NSPredicate? = nil
+        if let prioritizedGoalID = workspace.prioritizedGoal?.id {
+            prioritizedGoalPredicate = NSPredicate(format: "id == %@", prioritizedGoalID.uuidString)
+        }
+        
+        // Combine predicates
+        var predicates: [NSPredicate] = [promptPredicate]
+        if let prioritizedPredicate = prioritizedGoalPredicate {
+            let workspaceOrPrioritizedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [workspacePredicate, prioritizedPredicate])
+            predicates.append(workspaceOrPrioritizedPredicate)
+        } else {
+            predicates.append(workspacePredicate)
+        }
+        
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        
+        // Execute the fetch and map the results
+        return try CDstack.viewContext.fetch(fetchRequest).map(GoalMapper.mapToDomain)
+    }
+    
     // MARK: - ADDING
     func addGoal(
         to workspace: Workspace,
@@ -55,7 +83,7 @@ final class GoalRepositoryImpl: GoalRepository {
         newGoal.id = UUID()
         newGoal.title = title
         newGoal.desc = desc
-        newGoal.deadline = deadline
+        newGoal.deadline = deadline.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
         newGoal.createdAt = Date()
         newGoal.isCompleted = false
         newGoal.completedAt = nil
@@ -66,7 +94,7 @@ final class GoalRepositoryImpl: GoalRepository {
             milestoneEntity.desc = milestone.desc
             milestoneEntity.systemImage = milestone.systemImage
             milestoneEntity.isCompleted = milestone.isCompleted
-            milestoneEntity.dueDate = milestone.dueDate
+            milestoneEntity.dueDate = milestone.dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
             milestoneEntity.createdDate = milestone.creationDate
             milestoneEntity.goal = newGoal
             return milestoneEntity
@@ -94,7 +122,7 @@ final class GoalRepositoryImpl: GoalRepository {
         
         goalEntity.title = newTitle ?? goalEntity.title
         goalEntity.desc = newDesc ?? goalEntity.desc
-        goalEntity.deadline = newDeadline ?? goalEntity.deadline
+        goalEntity.deadline = newDeadline.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) } ?? goalEntity.deadline
         
         let existingMilestones = goalEntity.milestones as? Set<MilestoneEntity> ?? Set()
         let newMilestoneIDs = Set(newMilestones.map { $0.id })
@@ -118,7 +146,7 @@ final class GoalRepositoryImpl: GoalRepository {
                 newEntity.desc = milestone.desc
                 newEntity.systemImage = milestone.systemImage
                 newEntity.isCompleted = milestone.isCompleted
-                newEntity.dueDate = milestone.dueDate
+                newEntity.dueDate = milestone.dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
                 newEntity.goal = goalEntity
                 return newEntity
             }

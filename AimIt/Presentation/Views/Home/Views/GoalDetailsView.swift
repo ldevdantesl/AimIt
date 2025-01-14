@@ -18,6 +18,10 @@ struct GoalDetailsView: View {
         self._goal = goal
     }
     
+    private var isDeadlinePassed: Bool {
+        DeadlineFormatter.isDayPassed(goal.deadline)
+    }
+    
     var body: some View {
         ScrollView{
             AIHeaderView(
@@ -27,11 +31,9 @@ struct GoalDetailsView: View {
                 ),
                 rightButton: AIButton(
                     image: .edit,
-                    backColor: .accentColor,
-                    foreColor: .aiLabel,
-                    action: {
-                        coordinator.present(fullScreenCover: .editGoal($goal))
-                    }
+                    backColor: isDeadlinePassed ? .aiSecondary : .accentColor,
+                    foreColor: isDeadlinePassed ? .aiSecondary2 : .aiLabel,
+                    action: coordinateToEditGoal
                 ),
                 title: "Goal",
                 subtitle: "\(goal.title)"
@@ -57,10 +59,7 @@ struct GoalDetailsView: View {
                 Spacer(minLength: 20)
             }
             
-            AIDateCard(
-                createdDate: goal.createdAt,
-                date: goal.deadline
-            )
+            AIDateCard(goal: $goal)
             
             Spacer(minLength: 30)
             
@@ -68,9 +67,8 @@ struct GoalDetailsView: View {
                 NotFoundView(
                     imageName: ImageNames.noMilestones,
                     title: "Oops...",
-                    topPadding: 100,
-                    subtitle: "You have no milestones",
-                    action: nil
+                    subtitle: "No Milestones. Tap to edit",
+                    action: coordinateToEditGoal
                 )
             } else {
                 AIGoalMilestonesList(goalMilestones: $goal.milestones)
@@ -83,12 +81,23 @@ struct GoalDetailsView: View {
             ToolbarItem(placement: .bottomBar) {
                 AIButton(title: goal.isCompleted ? "Uncomplete" : "Complete") {
                     goal.isCompleted ? goalVM.uncompleteGoal(goal) : goalVM.completeGoal(goal)
+                    goal.isCompleted.toggle()
+                    coordinator.goBack()
                 }
+                .disabled(!isCompleteDisabled)
             }
         }
         .onDisappear {
             goalVM.fetchGoals()
         }
+    }
+    
+    private func coordinateToEditGoal() {
+        isDeadlinePassed ? () : coordinator.present(fullScreenCover: .editGoal($goal))
+    }
+    
+    private var isCompleteDisabled: Bool {
+        return goal.milestones.allSatisfy { $0.isCompleted } && !DeadlineFormatter.isDayPassed(goal.deadline)
     }
 }
 

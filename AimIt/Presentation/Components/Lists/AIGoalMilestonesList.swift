@@ -65,11 +65,18 @@ struct AIGoalMilestonesList: View {
                     onTap: onMilestoneTap
                 )
             }
+            
+            AIFooterNote(text: "Complete all milestones to be able to complete the goal", condition: !areAllMilestonesCompleted)
+                .frame(maxWidth: UIConstants.screenWidth - 40, alignment: .leading)
         }
     }
     
     private func onMilestoneTap(milestone: Binding<Milestone>) {
         coordinator.present(sheet: .milestoneDetails(milestone))
+    }
+    
+    private var areAllMilestonesCompleted: Bool {
+        goalMilestones.allSatisfy { $0.isCompleted }
     }
 }
 

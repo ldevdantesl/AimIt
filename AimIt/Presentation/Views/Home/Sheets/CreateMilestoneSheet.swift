@@ -59,7 +59,7 @@ struct CreateMilestoneSheet: View {
                         errorMsg: $titleErrorMsg
                     )
                     
-                    AIOptionalDatePicker(
+                    AIOptionalDateField(
                         titleName: "Due to: (optional)",
                         widthSize: UIConstants.screenWidth,
                         chosenDate: $dueDate,

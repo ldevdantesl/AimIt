@@ -53,6 +53,7 @@ struct AIButton: View {
         Button{
             withAnimation {
                 action?()
+                AIHaptics.shared.generate()
             }
         } label: {
             if let title = title {

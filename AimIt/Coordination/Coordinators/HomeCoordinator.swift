@@ -44,6 +44,10 @@ final class HomeCoordinator: ObservableObject, Coordinator {
                 MilestoneDetailsSheet(milestone: milestone)
                     .presentationDetents(sheet.detents)
                     .presentationDragIndicator(.visible)
+            case .changeDeadline(let goal):
+                AIDatePicker(chosenDate: goal.deadline)
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.visible)
             }
         }
     }

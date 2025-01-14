@@ -12,6 +12,7 @@ enum HomeSheets: Identifiable {
     case addWorkspace
     case quote(QuoteViewModel)
     case milestoneDetails(Binding<Milestone>)
+    case changeDeadline(Binding<Goal>)
     
     var id: UUID { UUID() }
     
@@ -23,6 +24,8 @@ enum HomeSheets: Identifiable {
             return [.fraction(1/6), .fraction(1/5)]
         case .milestoneDetails:
             return [.fraction(1/6), .fraction(1/4)]
+        case .changeDeadline:
+            return [.medium, .large]
         }
     }
 }

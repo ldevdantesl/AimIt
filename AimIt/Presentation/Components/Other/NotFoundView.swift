@@ -11,20 +11,20 @@ struct NotFoundView: View {
     
     private let imageName: String?
     private let title: String
-    private let topPadding: CGFloat
+    private let verticalPadding: CGFloat
     private let subtitle: String?
     private let action: (() -> ())?
     
     init(
         imageName: String? = nil,
         title: String,
-        topPadding: CGFloat = 20,
+        verticalPadding: CGFloat = 60,
         subtitle: String?,
         action: (() -> Void)?
     ) {
         self.imageName = imageName
         self.title = title
-        self.topPadding = topPadding
+        self.verticalPadding = verticalPadding
         self.subtitle = subtitle
         self.action = action
     }
@@ -41,17 +41,17 @@ struct NotFoundView: View {
                 }
                 
                 Text(title)
-                    .font(.system(.title2, design: .rounded, weight: .semibold))
+                    .font(.system(.title3, design: .rounded, weight: .semibold))
                     .foregroundStyle(.aiLabel)
                 
                 if let subtitle {
                     Text(subtitle)
-                        .font(.system(.headline, design: .rounded, weight: .semibold))
+                        .font(.system(.subheadline, design: .rounded, weight: .semibold))
                         .foregroundStyle(.aiSecondary2)
                 }
             }
         }
-        .padding(.top, topPadding)
+        .padding(.vertical, verticalPadding)
     }
 }
 

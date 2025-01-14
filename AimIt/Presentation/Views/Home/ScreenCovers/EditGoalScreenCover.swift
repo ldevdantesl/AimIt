@@ -58,7 +58,7 @@ struct EditGoalScreenCover: View {
                     submitLabel: .next
                 )
                 
-                AIDatePicker(
+                AIDateField(
                     titleName: "Select a Deadline",
                     widthSize: UIConstants.halfWidth,
                     chosenDate: $newDeadline

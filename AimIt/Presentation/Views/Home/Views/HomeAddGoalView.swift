@@ -46,7 +46,7 @@ struct HomeAddGoalView: View {
                     axis: .vertical
                 )
                 
-                AIDatePicker(
+                AIDateField(
                     titleName: "Deadline*",
                     widthSize: UIConstants.halfWidth,
                     chosenDate: $deadline
