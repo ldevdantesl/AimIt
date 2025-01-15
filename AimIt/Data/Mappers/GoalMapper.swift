@@ -40,6 +40,10 @@ struct GoalMapper {
             newEntity.title = goal.title
             newEntity.desc = goal.desc
             newEntity.deadline = goal.deadline
+            newEntity.completedAt = goal.completedAt
+            newEntity.isCompleted = goal.isCompleted
+            newEntity.createdAt = goal.createdAt
+            newEntity.milestones = NSSet(array: goal.milestones)
             return newEntity
         }
     }

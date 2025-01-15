@@ -5,7 +5,6 @@
         <attribute name="name" attributeType="String"/>
     </entity>
     <entity name="GoalEntity" representedClassName="GoalEntity" syncable="YES">
-        <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="completedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="deadline" attributeType="Date" usesScalarValueType="NO"/>
@@ -18,6 +17,7 @@
         <relationship name="workspaceForPrioritizedGoal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkspaceEntity" inverseName="prioritizedGoal" inverseEntity="WorkspaceEntity"/>
     </entity>
     <entity name="MilestoneEntity" representedClassName="MilestoneEntity" syncable="YES">
+        <attribute name="completedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="desc" attributeType="String"/>
         <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

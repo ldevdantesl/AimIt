@@ -15,7 +15,6 @@ public class GoalEntity: NSManagedObject {
         return NSFetchRequest<GoalEntity>(entityName: "GoalEntity")
     }
 
-    @NSManaged public var category: String
     @NSManaged public var completedAt: Date?
     @NSManaged public var createdAt: Date
     @NSManaged public var deadline: Date

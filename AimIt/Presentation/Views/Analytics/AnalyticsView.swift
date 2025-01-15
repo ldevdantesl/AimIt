@@ -9,11 +9,24 @@ import SwiftUI
 
 struct AnalyticsView: View {
     @EnvironmentObject var coordinator: AnalyticsCoordinator
+    @EnvironmentObject var tabCoordinator: TabCoordinator
+    
+    
     var body: some View {
         NavigationStack(path: $coordinator.path){
             ScrollView{
-                Text("Analytics View")
-                    .foregroundStyle(.aiLabel)
+                AIHeaderView(
+                    rightButton: AIButton(
+                        image: .ellipsis,
+                        backColor: .accent,
+                        foreColor: .aiLabel,
+                        action: nil
+                    ),
+                    title: "Track your progress",
+                    subtitle: "Analytics"
+                )
+                
+             
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.aiBackground)
@@ -26,8 +39,10 @@ struct AnalyticsView: View {
             .navigationDestination(for: AnalyticsScreens.self) { screen in
                 coordinator.build(screen: screen)
             }
-            .safeAreaInset(edge: .bottom) {
-                FloatingTabBar()
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    FloatingTabBar()
+                }
             }
         }
     }
@@ -36,4 +51,5 @@ struct AnalyticsView: View {
 #Preview {
     AnalyticsView()
         .environmentObject(AnalyticsCoordinator())
+        .environmentObject(TabCoordinator())
 }

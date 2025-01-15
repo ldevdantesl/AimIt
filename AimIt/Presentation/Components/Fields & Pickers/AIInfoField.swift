@@ -13,7 +13,7 @@ struct AIInfoField: View {
     private let titleFontStyle: Font.TextStyle
     private let titleForeColor: Color
 
-    private let info: String
+    private let info: String?
     private let infoFontStyle: Font.TextStyle
     private let infoForeColor: Color
     private let infoFontDesign: Font.Design
@@ -28,7 +28,7 @@ struct AIInfoField: View {
         title: String?,
         titleFontStyle: Font.TextStyle = .subheadline,
         titleForeColor: Color = .aiSecondary2,
-        info: String,
+        info: String?,
         infoFontStyle: Font.TextStyle = .title2,
         infoForeColor: Color = .aiLabel,
         infoFontDesign: Font.Design = .default
@@ -51,7 +51,7 @@ struct AIInfoField: View {
         title: String?,
         titleFontStyle: Font.TextStyle = .headline,
         titleForeColor: Color = .aiSecondary2,
-        info: String,
+        info: String?,
         infoFontStyle: Font.TextStyle = .title2,
         infoForeColor: Color = .aiLabel,
         infoFontDesign: Font.Design = .default,
@@ -83,10 +83,12 @@ struct AIInfoField: View {
                         .foregroundStyle(titleForeColor)
                 }
                     
-                Text("\(info)")
-                    .font(.system(infoFontStyle, design: .rounded, weight: .semibold))
-                    .foregroundStyle(infoForeColor)
-                    .fontDesign(infoFontDesign)
+                if let info {
+                    Text(info)
+                        .font(.system(infoFontStyle, design: .rounded, weight: .semibold))
+                        .foregroundStyle(infoForeColor)
+                        .fontDesign(infoFontDesign)
+                }
             }
             Spacer()
             

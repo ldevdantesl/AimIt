@@ -12,7 +12,8 @@ struct Milestone: Codable, Hashable, Identifiable {
     let desc: String
     let systemImage: String
     let creationDate: Date
-    let dueDate: Date?
+    var completionDate: Date?
+    var dueDate: Date?
     var isCompleted: Bool
     let goalID: Goal.ID?
 }

@@ -15,6 +15,7 @@ struct MilestoneMapper {
             desc: milestoneEntity.desc,
             systemImage: milestoneEntity.systemImage,
             creationDate: milestoneEntity.createdDate ?? .now,
+            completionDate: milestoneEntity.completedDate, 
             dueDate: milestoneEntity.dueDate,
             isCompleted: milestoneEntity.isCompleted,
             goalID: milestoneEntity.goal?.id ?? UUID()
@@ -33,6 +34,7 @@ struct MilestoneMapper {
             entity.desc = milestone.desc
             entity.systemImage = milestone.systemImage
             entity.createdDate = milestone.creationDate
+            entity.completedDate = milestone.completionDate
             entity.dueDate = milestone.dueDate
             entity.isCompleted = milestone.isCompleted
             
