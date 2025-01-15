@@ -50,13 +50,7 @@ struct MilestoneDetailsSheet: View {
             Spacer(minLength: 20)
             
             HStack{
-                Button{
-                    withAnimation {
-                        milestone.isCompleted.toggle()
-                        milestoneVM.toggleMilestoneCompletion(milestone)
-                        coordinator.dismissSheet()
-                    }
-                } label:{
+                Button(action: toggleMilestone){
                     Image(systemName: milestone.isCompleted ? "checkmark.circle" : "circle")
                         .resizable()
                         .scaledToFit()
@@ -75,6 +69,17 @@ struct MilestoneDetailsSheet: View {
         .ignoresSafeArea(.container, edges: .top)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
+    }
+    
+    private func toggleMilestone() {
+        DispatchQueue.main.async {
+            withAnimation {
+                milestone.isCompleted.toggle()
+                milestone.completionDate = milestone.isCompleted ? Date() : nil
+                milestoneVM.toggleMilestoneCompletion(milestone)
+                coordinator.dismissSheet()
+            }
+        }
     }
 }
 

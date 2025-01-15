@@ -17,6 +17,7 @@ struct GoalMapper {
             desc: goal.desc,
             isCompleted: goal.isCompleted,
             deadline: goal.deadline,
+            deadlineChanges: Int(goal.deadlineChanges),
             createdAt: goal.createdAt,
             completedAt: goal.completedAt,
             milestones: (goal.milestones as? Set<MilestoneEntity>)?.map {
@@ -40,6 +41,7 @@ struct GoalMapper {
             newEntity.title = goal.title
             newEntity.desc = goal.desc
             newEntity.deadline = goal.deadline
+            newEntity.deadlineChanges = Int16(goal.deadlineChanges)
             newEntity.completedAt = goal.completedAt
             newEntity.isCompleted = goal.isCompleted
             newEntity.createdAt = goal.createdAt

@@ -85,6 +85,7 @@ final class GoalRepositoryImpl: GoalRepository {
         newGoal.title = title
         newGoal.desc = desc
         newGoal.deadline = deadline.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) } ?? Date()
+        newGoal.deadlineChanges = 0
         newGoal.createdAt = Date()
         newGoal.isCompleted = false
         newGoal.completedAt = nil
@@ -97,6 +98,7 @@ final class GoalRepositoryImpl: GoalRepository {
             milestoneEntity.isCompleted = milestone.isCompleted
             milestoneEntity.dueDate = milestone.dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
             milestoneEntity.createdDate = milestone.creationDate
+            milestoneEntity.completedDate = nil
             milestoneEntity.goal = newGoal
             return milestoneEntity
         }
@@ -123,7 +125,11 @@ final class GoalRepositoryImpl: GoalRepository {
         
         goalEntity.title = newTitle ?? goalEntity.title
         goalEntity.desc = newDesc ?? goalEntity.desc
-        goalEntity.deadline = newDeadline.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) } ?? goalEntity.deadline
+        
+        if let newDeadline = newDeadline {
+            goalEntity.deadline = DeadlineFormatter.formatToTheEndOfTheDay(newDeadline) ?? goalEntity.deadline
+            goalEntity.deadlineChanges += 1
+        }
         
         let existingMilestones = goalEntity.milestones as? Set<MilestoneEntity> ?? Set()
         let newMilestoneIDs = Set(newMilestones.map { $0.id })
@@ -178,7 +184,7 @@ final class GoalRepositoryImpl: GoalRepository {
     func completeGoal(_ goal: Goal) throws {
         let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         goalEntity.isCompleted = true
-        goalEntity.completedAt = Date()
+        goalEntity.completedAt = DeadlineFormatter.formatToTheEndOfTheDay(Date())
         saveContext()
     }
     

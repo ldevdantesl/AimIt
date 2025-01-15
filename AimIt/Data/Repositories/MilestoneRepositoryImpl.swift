@@ -133,7 +133,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
     func toggleMilestoneCompletion(_ milestone: Milestone) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         milestoneEntity.isCompleted.toggle()
-        milestoneEntity.completedDate = Date()
+        milestoneEntity.completedDate = milestoneEntity.isCompleted ? DeadlineFormatter.formatToTheEndOfTheDay(Date()) : nil
         saveContext()
     }
     

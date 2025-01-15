@@ -80,13 +80,21 @@ struct GoalDetailsView: View {
         .toolbar(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: goal.isCompleted ? "Uncomplete" : "Complete") {
-                    goal.isCompleted ? goalVM.uncompleteGoal(goal) : goalVM.completeGoal(goal)
-                    goal.isCompleted.toggle()
-                    coordinator.goBack()
-                }
+                AIButton (
+                    title: goal.isCompleted ? "Uncomplete" : "Complete",
+                    action: toggleCompletion
+                )
                 .disabled(!isCompleteDisabled)
             }
+        }
+    }
+    
+    private func toggleCompletion() {
+        DispatchQueue.main.async {
+            goal.isCompleted ? goalVM.uncompleteGoal(goal) : goalVM.completeGoal(goal)
+            goal.isCompleted.toggle()
+            goal.completedAt = goal.isCompleted ? Date() : nil
+            coordinator.goBack()
         }
     }
     

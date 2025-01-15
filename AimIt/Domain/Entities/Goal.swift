@@ -14,6 +14,7 @@ struct Goal: Identifiable, Codable, Hashable {
     var desc: String?
     var isCompleted: Bool
     var deadline: Date
+    var deadlineChanges: Int
     var createdAt: Date
     var completedAt: Date?
     var milestones: [Milestone]
@@ -27,6 +28,7 @@ extension Goal {
         desc: "Finish UIKit till next week and learn SwiftUI",
         isCompleted: false,
         deadline: .now,
+        deadlineChanges: 0,
         createdAt: Date(),
         completedAt: nil,
         milestones: Array(
