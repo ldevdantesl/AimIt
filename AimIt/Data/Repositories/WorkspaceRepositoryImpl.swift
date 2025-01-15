@@ -95,36 +95,13 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
     // MARK: - PRIORITIZE
     func prioritizeGoal(in workspace: Workspace, goal: Goal) throws {
         let entity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
-        
-        var goals = workspace.goals
-        goals.removeAll{ $0.id == goal.id }
-        
-        if let prioritizedGoal = entity.prioritizedGoal {
-            goals.append(GoalMapper.mapToDomain(from: prioritizedGoal))
-        }
-        
-        let entityGoals = goals.map { GoalMapper.toEntity(from: $0, context: CDStack.viewContext)}
-        
-        var prioritizedGoal = goal
-        prioritizedGoal.workspaceID = workspace.id
-        
-        entity.goals = NSSet(array: entityGoals)
-        entity.prioritizedGoal = GoalMapper.toEntity(from: prioritizedGoal, context: CDStack.viewContext)
+        entity.prioritizedGoal = GoalMapper.toEntity(from: goal, context: CDStack.viewContext)
         
         CDStack.saveContext()
     }
     
     func unprioritizeGoal(in workspace: Workspace) throws {
         let entity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
-        
-        var goals = workspace.goals
-        
-        guard let prioritizedGoal = workspace.prioritizedGoal else { return }
-        goals.append(prioritizedGoal)
-        
-        let goalEntities = goals.map { GoalMapper.toEntity(from: $0, context: CDStack.viewContext) }
-        
-        entity.goals = NSSet(array: goalEntities)
         entity.prioritizedGoal = nil
         CDStack.saveContext()
     }

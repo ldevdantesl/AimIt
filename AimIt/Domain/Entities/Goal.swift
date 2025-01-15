@@ -10,7 +10,6 @@ import Foundation
 struct Goal: Identifiable, Codable, Hashable {
     let id: UUID
     var workspaceID: UUID
-    var workspaceIDForPrioritizedGoalID: UUID?
     var title: String
     var desc: String?
     var isCompleted: Bool

@@ -46,29 +46,11 @@ final class GoalRepositoryImpl: GoalRepository {
     
     func fetchGoalsByPrompt(with prompt: String, in workspace: Workspace) throws -> [Goal] {
         let fetchRequest: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
-        
-        // Create predicates for filtering
         let promptPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR desc CONTAINS[c] %@", prompt, prompt)
         let workspacePredicate = NSPredicate(format: "workspace.id == %@", workspace.id.uuidString)
         
-        // Check if there's a prioritized goal
-        var prioritizedGoalPredicate: NSPredicate? = nil
-        if let prioritizedGoalID = workspace.prioritizedGoal?.id {
-            prioritizedGoalPredicate = NSPredicate(format: "id == %@", prioritizedGoalID.uuidString)
-        }
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [promptPredicate, workspacePredicate])
         
-        // Combine predicates
-        var predicates: [NSPredicate] = [promptPredicate]
-        if let prioritizedPredicate = prioritizedGoalPredicate {
-            let workspaceOrPrioritizedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [workspacePredicate, prioritizedPredicate])
-            predicates.append(workspaceOrPrioritizedPredicate)
-        } else {
-            predicates.append(workspacePredicate)
-        }
-        
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        
-        // Execute the fetch and map the results
         return try CDstack.viewContext.fetch(fetchRequest).map(GoalMapper.mapToDomain)
     }
     
@@ -146,6 +128,8 @@ final class GoalRepositoryImpl: GoalRepository {
                 existingEntity.systemImage = milestone.systemImage
                 existingEntity.isCompleted = milestone.isCompleted
                 existingEntity.dueDate = milestone.dueDate
+                existingEntity.createdAt = milestone.createdAt
+                existingEntity.goal = goalEntity
                 return existingEntity
             } else {
                 let newEntity = MilestoneEntity(context: context)
@@ -172,11 +156,7 @@ final class GoalRepositoryImpl: GoalRepository {
             CDstack.viewContext.delete(goalEntity)
             saveContext()
         } else {
-            throw NSError(
-                domain: "CoreDataError",
-                code: 0,
-                userInfo: [NSLocalizedDescriptionKey: "Object is not managed by the current context"]
-            )
+            throw CoreDataErrors.failedToDeleteFromContext
         }
     }
     

@@ -16,21 +16,30 @@ struct AnalyticsView: View {
     var body: some View {
         NavigationStack(path: $coordinator.path){
             ScrollView{
-                AIHeaderView(
-                    rightButton: AIButton(
-                        image: .ellipsis,
-                        backColor: .accent,
-                        foreColor: .aiLabel,
-                        action: nil
-                    ),
-                    title: "Track your progress",
-                    subtitle: "Analytics"
-                )
-                
-                AICompletedAnalytics(
-                    analyticsVM: analyticsVM,
-                    in: workspaceVM.currentWorkspace
-                )
+                VStack(spacing: 15){
+                    AIHeaderView(
+                        rightButton: AIButton(
+                            image: .ellipsis,
+                            backColor: .accent,
+                            foreColor: .aiLabel,
+                            action: nil
+                        ),
+                        title: "Track your progress",
+                        subtitle: "Analytics"
+                    )
+                    
+                    AIGrowthIllustration()
+                    
+                    AICompletedAnalytics(
+                        analyticsVM: analyticsVM,
+                        in: workspaceVM.currentWorkspace
+                    )
+                    
+                    AIMonthChart(
+                        analyticsVM: analyticsVM,
+                        workspace: workspaceVM.currentWorkspace
+                    )
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.aiBackground)
@@ -48,6 +57,7 @@ struct AnalyticsView: View {
                     FloatingTabBar()
                 }
             }
+            .toolbarBackground(.aiBackground, for: .bottomBar)
         }
     }
 }

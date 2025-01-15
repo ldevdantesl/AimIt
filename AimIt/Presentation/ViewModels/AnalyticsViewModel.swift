@@ -27,6 +27,9 @@ final class AnalyticsViewModel: ObservableObject {
     private let fetchGoalsCompletedWithinMonthUseCase: AnalyticsFetchGoalsCompletedWithinMonthUseCase
     private let fetchMilestonesCompletedWithinWeek: AnalyticsFetchCompletedMilestonesWithinWeekUseCase
     
+    private let calculateMonthlyDataForGoalsUseCase: AnalyticsCalculateMonthlyDataForGoalsUseCase
+    private let calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCase
+    
     init(
         averageGoalCompletionTimeUseCase: AnalyticsAverageGoalCompletionTimeUseCase,
         averageMilestoneCompletionTimeUseCase: AnalyticsAverageMilestoneCompletionTimeUseCase,
@@ -37,7 +40,9 @@ final class AnalyticsViewModel: ObservableObject {
         fetchCompletedMilestonesUseCase: AnalyticsFetchCompletedMilestonesUseCase,
         fetchUncompletedMilestonesUseCase: AnalyticsFetchUncompletedMilestonesUseCase,
         fetchGoalsCompletedWithinMonthUseCase: AnalyticsFetchGoalsCompletedWithinMonthUseCase,
-        fetchMilestonesCompletedWithinWeek: AnalyticsFetchCompletedMilestonesWithinWeekUseCase
+        fetchMilestonesCompletedWithinWeek: AnalyticsFetchCompletedMilestonesWithinWeekUseCase,
+        calculateMonthlyDataForGoalsUseCase: AnalyticsCalculateMonthlyDataForGoalsUseCase,
+        calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCase
     ) {
         self.averageGoalCompletionTimeUseCase = averageGoalCompletionTimeUseCase
         self.averageMilestoneCompletionTimeUseCase = averageMilestoneCompletionTimeUseCase
@@ -49,6 +54,8 @@ final class AnalyticsViewModel: ObservableObject {
         self.fetchUncompletedMilestonesUseCase = fetchUncompletedMilestonesUseCase
         self.fetchGoalsCompletedWithinMonthUseCase = fetchGoalsCompletedWithinMonthUseCase
         self.fetchMilestonesCompletedWithinWeek = fetchMilestonesCompletedWithinWeek
+        self.calculateMonthlyDataForGoalsUseCase = calculateMonthlyDataForGoalsUseCase
+        self.calculateMonthlyDataForMilestonesUseCase = calculateMonthlyDataForMilestonesUseCase
     }
     
     // MARK: - TOTAL COUNT FUNCTIONS
@@ -141,6 +148,25 @@ final class AnalyticsViewModel: ObservableObject {
             return try fetchMilestonesCompletedWithinWeek.execute(in: workspace)
         } catch {
             errorMsg = "Error fetching completed milestones within week: \(error.localizedDescription)"
+            return []
+        }
+    }
+    
+    // MARK: - MONTHLY DATA
+    public func calculateMonthlyDataForGoals(in workspace: Workspace) -> [AnalyticsMonthlyData] {
+        do {
+            return try calculateMonthlyDataForGoalsUseCase.execute(in: workspace)
+        } catch {
+            errorMsg = "Error calculating monthly data for goals: \(error.localizedDescription)"
+            return []
+        }
+    }
+    
+    public func calculateMonthlyDataForMilestones(in workspace: Workspace) -> [AnalyticsMonthlyData] {
+        do {
+            return try calculateMonthlyDataForMilestonesUseCase.execute(in: workspace)
+        } catch {
+            errorMsg = "Error calculating monthly data for milestones: \(error.localizedDescription)"
             return []
         }
     }

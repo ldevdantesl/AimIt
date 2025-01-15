@@ -24,14 +24,15 @@ struct AICompletedAnalytics: View {
     @State private var completedGoals: Double = 0
     @State private var completedMilestones: Double = 0
     
+    @State private var targetGoals: Double = 0
+    @State private var targetMilestones: Double = 0
+    
     var body: some View {
-        VStack(spacing: 20){
+        VStack(spacing: 10){
             AIInfoField(
-                title: "Completed",
+                title: "Completed Goals & Milestones",
                 titleFontStyle: .subheadline,
-                info: "Goals & Milestones",
-                infoFontStyle: .headline,
-                swappedPostions: true
+                info: nil
             )
             
             HStack{
@@ -59,15 +60,6 @@ struct AICompletedAnalytics: View {
                 Spacer()
                 
                 VStack{
-                    Gauge(value: completedMilestones, in: 0...totalMilestones) { } currentValueLabel: {
-                        Text(Int(completedMilestones).description)
-                            .foregroundStyle(.aiLabel)
-                    }
-                    .gaugeStyle(AccessoryCircularCapacityGaugeStyle())
-                    .frame(width: 120, height: 120)
-                    .scaleEffect(2)
-                    .tint(.accent)
-                    
                     VStack(alignment: .trailing) {
                         Text("Milestones")
                             .font(.system(.headline, design: .rounded, weight: .semibold))
@@ -77,20 +69,52 @@ struct AICompletedAnalytics: View {
                             .font(.system(.subheadline, design: .rounded, weight: .semibold))
                             .foregroundStyle(.aiSecondary2)
                     }
+                    
+                    Gauge(value: completedMilestones, in: 0...totalMilestones) { } currentValueLabel: {
+                        Text(Int(completedMilestones).description)
+                            .foregroundStyle(.aiLabel)
+                    }
+                    .gaugeStyle(AccessoryCircularCapacityGaugeStyle())
+                    .frame(width: 120, height: 120)
+                    .scaleEffect(2)
+                    .tint(.accent)
                 }
             }
             .padding(.horizontal, 20)
         }
         .onAppear(perform: setup)
-        .animation(.linear(duration: 1), value: completedGoals)
-        .animation(.linear(duration: 1), value: completedMilestones)
+        .animation(.linear, value: completedGoals)
+        .animation(.linear, value: completedMilestones)
     }
     
     private func setup() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            withAnimation {
-                self.completedGoals = Double(analyticsVM.fetchCompletedGoals(in: workspace).count)
-                self.completedMilestones = Double(analyticsVM.fetchCompletedMilestones(in: workspace).count)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
+            let fetchedGoals = Double(analyticsVM.fetchCompletedGoals(in: workspace).count)
+            let fetchedMilestones = Double(analyticsVM.fetchCompletedMilestones(in: workspace).count)
+            
+            targetGoals = fetchedGoals
+            targetMilestones = fetchedMilestones
+            
+            Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
+                let step = 0.15
+                var goalsDone = false
+                var milestonesDone = false
+                
+                if completedGoals < targetGoals {
+                    completedGoals = min(completedGoals + step, targetGoals)
+                } else {
+                    goalsDone = true
+                }
+                
+                if completedMilestones < targetMilestones {
+                    completedMilestones = min(completedMilestones + step, targetMilestones)
+                } else {
+                    milestonesDone = true
+                }
+                
+                if goalsDone && milestonesDone {
+                    timer.invalidate()
+                }
             }
         }
     }

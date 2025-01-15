@@ -14,7 +14,7 @@ struct MilestoneMapper {
             id: milestoneEntity.id,
             desc: milestoneEntity.desc,
             systemImage: milestoneEntity.systemImage,
-            createdAt: milestoneEntity.createdAt ?? .now,
+            createdAt: milestoneEntity.createdAt,
             completedAt: milestoneEntity.completedAt,
             dueDate: milestoneEntity.dueDate,
             isCompleted: milestoneEntity.isCompleted,

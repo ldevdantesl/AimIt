@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct AIAnalyticsTotalCounts: View {
+struct AITotalCountsAnalytics: View {
     private let analyticsVM: AnalyticsViewModel
     private let workspace: Workspace
     
@@ -78,7 +78,7 @@ struct AIAnalyticsTotalCounts: View {
 }
 
 #Preview {
-    AIAnalyticsTotalCounts(analyticsVM: DIContainer().makeAnalyticsViewModel(), in: .sample)
+    AITotalCountsAnalytics(analyticsVM: DIContainer().makeAnalyticsViewModel(), in: .sample)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
         .environmentObject(DIContainer().makeMilestoneViewModel())

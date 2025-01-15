@@ -42,4 +42,12 @@ protocol AnalyticsRepository {
     
     /// Fetch the average time taken to complete milestones in a workspace.
     func averageMilestoneCompletionTime(in workspace: Workspace) throws -> TimeInterval
+    
+    // MARK: - CHARTS
+    
+    /// Calculate monthly data for goals in a workspace for specific year
+    func calculateMonthlyDataForGoals(in workspace: Workspace) throws -> [AnalyticsMonthlyData]
+    
+    /// Calculate monthly data for milestones in a workspace for specific year
+    func calculateMonthlyDataForMilestones(in workspace: Workspace) throws -> [AnalyticsMonthlyData]
 }

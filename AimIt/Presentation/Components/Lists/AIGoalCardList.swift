@@ -30,22 +30,24 @@ struct AIGoalCardList: View {
         } else {
             LazyVStack(spacing: 20) {
                 ForEach(workspace.goals, id: \.self) { goal in
-                    AIGoalCard(goal: goal)
-                        .contextMenu {
-                            if workspace.prioritizedGoal == nil {
+                    if goal.id != workspace.prioritizedGoal?.id {
+                        AIGoalCard(goal: goal)
+                            .contextMenu {
+                                if workspace.prioritizedGoal == nil {
+                                    Button(
+                                        "Prioritize",
+                                        systemImage: "exclamationmark",
+                                        action: { prioritizeGoal(goal: goal) }
+                                    )
+                                }
                                 Button(
-                                    "Prioritize",
-                                    systemImage: "exclamationmark",
-                                    action: { prioritizeGoal(goal: goal) }
+                                    "Delete",
+                                    systemImage: "trash.fill",
+                                    role:.destructive,
+                                    action: { deleteGoal(goal: goal)}
                                 )
                             }
-                            Button(
-                                "Delete",
-                                systemImage: "trash.fill",
-                                role:.destructive,
-                                action: { deleteGoal(goal: goal)}
-                            )
-                        }
+                    }
                 }
             }
         }

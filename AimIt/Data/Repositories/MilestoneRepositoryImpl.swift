@@ -30,25 +30,9 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
 
     func fetchMilestonesByPrompt(with prompt: String, in workspace: Workspace) throws -> [Milestone] {
         let fetchRequest: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
-        
         let promptPredicate = NSPredicate(format: "desc CONTAINS[c] %@", prompt)
-        
         let workspacePredicate = NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString)
-        
-        var prioritizedGoalPredicate: NSPredicate? = nil
-        if let prioritizedGoalID = workspace.prioritizedGoal?.id {
-            prioritizedGoalPredicate = NSPredicate(format: "goal.id == %@", prioritizedGoalID.uuidString)
-        }
-        
-        var predicates: [NSPredicate] = [promptPredicate]
-        if let prioritizedPredicate = prioritizedGoalPredicate {
-            let workspaceOrPrioritizedPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [workspacePredicate, prioritizedPredicate])
-            predicates.append(workspaceOrPrioritizedPredicate)
-        } else {
-            predicates.append(workspacePredicate)
-        }
-        
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [promptPredicate, workspacePredicate])
         
         return try CDstack.viewContext.fetch(fetchRequest).map { MilestoneMapper.toDomain($0) }
     }
@@ -64,24 +48,12 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)?.addingTimeInterval(-1) ?? Date()
     
         let workspacePredicate = NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString)
-        
-        var prioritizedGoalPredicate: NSPredicate? = nil
-        if let prioritizedGoalID = workspace.prioritizedGoal?.id {
-            prioritizedGoalPredicate = NSPredicate(format: "goal.id == %@", prioritizedGoalID.uuidString)
-        }
-        
         let completedPredicate = NSPredicate(format: "isCompleted == false")
         let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", startOfDay as NSDate, endOfDay as NSDate)
-        
-        var predicates: [NSPredicate] = [completedPredicate, datePredicate]
-        if let prioritizedPredicate = prioritizedGoalPredicate {
-            let combinedWorkspacePredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [workspacePredicate, prioritizedPredicate])
-            predicates.append(combinedWorkspacePredicate)
-        } else {
-            predicates.append(workspacePredicate)
-        }
-        
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+
+        fetchRequest.predicate = NSCompoundPredicate(
+            andPredicateWithSubpredicates: [workspacePredicate, completedPredicate, datePredicate]
+        )
         
         return try CDstack.viewContext.fetch(fetchRequest).map(MilestoneMapper.toDomain)
     }

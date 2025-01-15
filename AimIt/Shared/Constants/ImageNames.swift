@@ -8,13 +8,18 @@
 import Foundation
 
 enum ImageNames {
+    // MARK: - Not found
     static let noTodayMilestones = "NoTodayMilestones"
     static let noFound = "NoFound"
     static let noGoals = "NoGoals"
     static let noMilestones = "NoMilestones"
     
+    // MARK: - INTRO & SPLASH
     static let intro1 = "Intro1"
     static let splashImage = "SplashImage"
     static let pin = "pin"
     static let clock = "clock"
+    
+    // MARK: - OTHER
+    static let growth = "growth"
 }
