@@ -46,6 +46,16 @@ struct GoalMapper {
             newEntity.isCompleted = goal.isCompleted
             newEntity.createdAt = goal.createdAt
             newEntity.milestones = NSSet(array: goal.milestones)
+
+            let request: NSFetchRequest<WorkspaceEntity> = WorkspaceEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %@", goal.workspaceID.uuidString)
+            
+            guard let workspaceEntity = try? context.fetch(request).first else {
+                fatalError("Workspace is not found for the provided workspaceID")
+            }
+            
+            newEntity.workspace = workspaceEntity
+            newEntity.workspaceForPrioritizedGoal = workspaceEntity
             return newEntity
         }
     }

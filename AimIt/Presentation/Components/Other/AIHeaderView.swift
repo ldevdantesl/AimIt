@@ -57,7 +57,8 @@ struct AIHeaderView: View {
             Spacer()
             rightButton
         }
-        .padding(.horizontal, 20)
+        .padding(.trailing, rightButton.image == .empty ? 10 : 20)
+        .padding(.leading, leftButton.image == .empty ? 10 : 20)
         .padding(.top, 10)
     }
 }

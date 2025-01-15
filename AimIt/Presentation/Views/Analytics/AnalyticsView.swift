@@ -10,7 +10,8 @@ import SwiftUI
 struct AnalyticsView: View {
     @EnvironmentObject var coordinator: AnalyticsCoordinator
     @EnvironmentObject var tabCoordinator: TabCoordinator
-    
+    @EnvironmentObject var analyticsVM: AnalyticsViewModel
+    @EnvironmentObject var workspaceVM: WorkspaceViewModel
     
     var body: some View {
         NavigationStack(path: $coordinator.path){
@@ -26,7 +27,10 @@ struct AnalyticsView: View {
                     subtitle: "Analytics"
                 )
                 
-             
+                AICompletedAnalytics(
+                    analyticsVM: analyticsVM,
+                    in: workspaceVM.currentWorkspace
+                )
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.aiBackground)
@@ -52,4 +56,6 @@ struct AnalyticsView: View {
     AnalyticsView()
         .environmentObject(AnalyticsCoordinator())
         .environmentObject(TabCoordinator())
+        .environmentObject(DIContainer().makeWorkspaceViewModel())
+        .environmentObject(DIContainer().makeAnalyticsViewModel())
 }

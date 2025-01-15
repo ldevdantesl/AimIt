@@ -67,8 +67,8 @@ struct AIButton: View {
                     .shadow(color: Color.aiBlack.opacity(0.2), radius: 30, x: 0, y: 0) //
                     .padding(.horizontal, 20)
             } else {
-                ZStack {
-                    if image != .empty{
+                if image != .empty{
+                    ZStack {
                         Circle()
                             .fill(backColor.opacity(0.4))
                             .frame(width: 52, height: 52)
@@ -86,8 +86,8 @@ struct AIButton: View {
                             .zIndex(2)
                             .foregroundStyle(foreColor)
                     }
+                    .frame(width: 40, height: 40)
                 }
-                .frame(width: 40, height: 40)
             }
         }
     }

@@ -15,7 +15,7 @@
 		DA4299152D362BFD0046ABBA /* FetchMilestonesByPromptUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4299142D362BFD0046ABBA /* FetchMilestonesByPromptUseCase.swift */; };
 		DA4299172D362F1E0046ABBA /* FetchGoalsByPromptUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4299162D362F1E0046ABBA /* FetchGoalsByPromptUseCaseImpl.swift */; };
 		DA4299192D362F510046ABBA /* FetchMilestonesByPromptUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4299182D362F510046ABBA /* FetchMilestonesByPromptUseCaseImpl.swift */; };
-		DA42991C2D36533B0046ABBA /* AITotalMilestones.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42991B2D36533B0046ABBA /* AITotalMilestones.swift */; };
+		DA42991C2D36533B0046ABBA /* AIAnalyticsTotalCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42991B2D36533B0046ABBA /* AIAnalyticsTotalCounts.swift */; };
 		DA42991E2D373C770046ABBA /* AnalyticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42991D2D373C770046ABBA /* AnalyticsRepository.swift */; };
 		DA4299212D3748A80046ABBA /* AnalyticsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4299202D3748A80046ABBA /* AnalyticsRepositoryImpl.swift */; };
 		DA518FDE2D1E06FB00A5E896 /* AimItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F2B2D1E06FB00A5E896 /* AimItApp.swift */; };
@@ -64,7 +64,6 @@
 		DA51900B2D1E06FB00A5E896 /* EditWorkspaceUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F652D1E06FB00A5E896 /* EditWorkspaceUseCaseImpl.swift */; };
 		DA51900C2D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F662D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCaseImpl.swift */; };
 		DA51900D2D1E06FB00A5E896 /* FetchWorkspacesUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F672D1E06FB00A5E896 /* FetchWorkspacesUseCaseImpl.swift */; };
-		DA51900E2D1E06FB00A5E896 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F6B2D1E06FB00A5E896 /* Category.swift */; };
 		DA51900F2D1E06FB00A5E896 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F6C2D1E06FB00A5E896 /* Goal.swift */; };
 		DA5190102D1E06FB00A5E896 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F6D2D1E06FB00A5E896 /* Milestone.swift */; };
 		DA5190112D1E06FB00A5E896 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F6E2D1E06FB00A5E896 /* Quote.swift */; };
@@ -169,6 +168,7 @@
 		DAB9067C2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9067B2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift */; };
 		DAB9067E2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9067D2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift */; };
 		DAB906802D37592700269935 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9067F2D37592700269935 /* AnalyticsViewModel.swift */; };
+		DAB906822D3765A000269935 /* AICompletedAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906812D3765A000269935 /* AICompletedAnalytics.swift */; };
 		DADBE5802D2788390024D18B /* FloatingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE57F2D2788390024D18B /* FloatingTabBar.swift */; };
 		DADBE5822D2796870024D18B /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5812D2796870024D18B /* TabCoordinator.swift */; };
 		DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5842D2796D30024D18B /* CustomTab.swift */; };
@@ -208,7 +208,7 @@
 		DA4299142D362BFD0046ABBA /* FetchMilestonesByPromptUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMilestonesByPromptUseCase.swift; sourceTree = "<group>"; };
 		DA4299162D362F1E0046ABBA /* FetchGoalsByPromptUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGoalsByPromptUseCaseImpl.swift; sourceTree = "<group>"; };
 		DA4299182D362F510046ABBA /* FetchMilestonesByPromptUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMilestonesByPromptUseCaseImpl.swift; sourceTree = "<group>"; };
-		DA42991B2D36533B0046ABBA /* AITotalMilestones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITotalMilestones.swift; sourceTree = "<group>"; };
+		DA42991B2D36533B0046ABBA /* AIAnalyticsTotalCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAnalyticsTotalCounts.swift; sourceTree = "<group>"; };
 		DA42991D2D373C770046ABBA /* AnalyticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRepository.swift; sourceTree = "<group>"; };
 		DA4299202D3748A80046ABBA /* AnalyticsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRepositoryImpl.swift; sourceTree = "<group>"; };
 		DA518F2B2D1E06FB00A5E896 /* AimItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimItApp.swift; sourceTree = "<group>"; };
@@ -256,7 +256,6 @@
 		DA518F652D1E06FB00A5E896 /* EditWorkspaceUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkspaceUseCaseImpl.swift; sourceTree = "<group>"; };
 		DA518F662D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCurrentWorkspaceUseCaseImpl.swift; sourceTree = "<group>"; };
 		DA518F672D1E06FB00A5E896 /* FetchWorkspacesUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchWorkspacesUseCaseImpl.swift; sourceTree = "<group>"; };
-		DA518F6B2D1E06FB00A5E896 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		DA518F6C2D1E06FB00A5E896 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		DA518F6D2D1E06FB00A5E896 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
 		DA518F6E2D1E06FB00A5E896 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
@@ -364,6 +363,7 @@
 		DAB9067B2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift; sourceTree = "<group>"; };
 		DAB9067D2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift; sourceTree = "<group>"; };
 		DAB9067F2D37592700269935 /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
+		DAB906812D3765A000269935 /* AICompletedAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICompletedAnalytics.swift; sourceTree = "<group>"; };
 		DADBE57F2D2788390024D18B /* FloatingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBar.swift; sourceTree = "<group>"; };
 		DADBE5812D2796870024D18B /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		DADBE5842D2796D30024D18B /* CustomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTab.swift; sourceTree = "<group>"; };
@@ -408,7 +408,8 @@
 		DA42991A2D36531F0046ABBA /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				DA42991B2D36533B0046ABBA /* AITotalMilestones.swift */,
+				DA42991B2D36533B0046ABBA /* AIAnalyticsTotalCounts.swift */,
+				DAB906812D3765A000269935 /* AICompletedAnalytics.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -612,7 +613,6 @@
 		DA518F702D1E06FB00A5E896 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				DA518F6B2D1E06FB00A5E896 /* Category.swift */,
 				DA518F6C2D1E06FB00A5E896 /* Goal.swift */,
 				DA518F6D2D1E06FB00A5E896 /* Milestone.swift */,
 				DA518F6E2D1E06FB00A5E896 /* Quote.swift */,
@@ -1277,14 +1277,13 @@
 				DA5190062D1E06FB00A5E896 /* GetSettingUseCaseImpl.swift in Sources */,
 				DA5190072D1E06FB00A5E896 /* RemoveSettingUseCaseImpl.swift in Sources */,
 				DA5190082D1E06FB00A5E896 /* SetSettingUseCaseImpl.swift in Sources */,
-				DA42991C2D36533B0046ABBA /* AITotalMilestones.swift in Sources */,
+				DA42991C2D36533B0046ABBA /* AIAnalyticsTotalCounts.swift in Sources */,
 				DA5190092D1E06FB00A5E896 /* AddWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900A2D1E06FB00A5E896 /* DeleteWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900B2D1E06FB00A5E896 /* EditWorkspaceUseCaseImpl.swift in Sources */,
 				DADBE5892D279F380024D18B /* CoreView.swift in Sources */,
 				DA51900C2D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900D2D1E06FB00A5E896 /* FetchWorkspacesUseCaseImpl.swift in Sources */,
-				DA51900E2D1E06FB00A5E896 /* Category.swift in Sources */,
 				DA51900F2D1E06FB00A5E896 /* Goal.swift in Sources */,
 				DA5190102D1E06FB00A5E896 /* Milestone.swift in Sources */,
 				DA5190112D1E06FB00A5E896 /* Quote.swift in Sources */,
@@ -1377,6 +1376,7 @@
 				DA51905F2D1E07BF00A5E896 /* QuoteViewModel.swift in Sources */,
 				DA51904A2D1E06FB00A5E896 /* LaunchAddWorkspaceView.swift in Sources */,
 				DADBE5A82D27C60E0024D18B /* UnprioritizeGoalUseCaseImpl.swift in Sources */,
+				DAB906822D3765A000269935 /* AICompletedAnalytics.swift in Sources */,
 				DA51904B2D1E06FB00A5E896 /* LaunchIntroView.swift in Sources */,
 				DA51904C2D1E06FB00A5E896 /* SplashScreen.swift in Sources */,
 				DA51904D2D1E06FB00A5E896 /* SettingsView.swift in Sources */,

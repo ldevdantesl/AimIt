@@ -15,6 +15,7 @@ struct AimItApp: App {
     var body: some Scene {
         WindowGroup {
             appCoordinator.start()
+                .environmentObject(diContainer.makeAnalyticsViewModel())
                 .environmentObject(diContainer.makeGoalViewModel())
                 .environmentObject(diContainer.makeMilestoneViewModel())
                 .environmentObject(diContainer.makeWorkspaceViewModel())

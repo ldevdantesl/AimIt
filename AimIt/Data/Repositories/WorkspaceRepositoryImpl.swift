@@ -105,8 +105,11 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         
         let entityGoals = goals.map { GoalMapper.toEntity(from: $0, context: CDStack.viewContext)}
         
+        var prioritizedGoal = goal
+        prioritizedGoal.workspaceID = workspace.id
+        
         entity.goals = NSSet(array: entityGoals)
-        entity.prioritizedGoal = GoalMapper.toEntity(from: goal, context: CDStack.viewContext)
+        entity.prioritizedGoal = GoalMapper.toEntity(from: prioritizedGoal, context: CDStack.viewContext)
         
         CDStack.saveContext()
     }

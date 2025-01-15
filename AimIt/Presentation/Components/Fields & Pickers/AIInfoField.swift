@@ -23,6 +23,8 @@ struct AIInfoField: View {
     private let buttonSize: CGFloat?
     private let buttonAction: (() -> ())
     
+    private let swappedPostions: Bool
+    
     /// Default Initiializer without button in the trailing.
     init(
         title: String?,
@@ -31,7 +33,8 @@ struct AIInfoField: View {
         info: String?,
         infoFontStyle: Font.TextStyle = .title2,
         infoForeColor: Color = .aiLabel,
-        infoFontDesign: Font.Design = .default
+        infoFontDesign: Font.Design = .default,
+        swappedPostions: Bool = false
     ) {
         self.title = title
         self.titleFontStyle = titleFontStyle
@@ -40,6 +43,7 @@ struct AIInfoField: View {
         self.infoFontStyle = infoFontStyle
         self.infoForeColor = infoForeColor
         self.infoFontDesign = infoFontDesign
+        self.swappedPostions = swappedPostions
         self.buttonSystemImage = nil
         self.buttonColor = nil
         self.buttonSize = nil
@@ -48,6 +52,7 @@ struct AIInfoField: View {
     
     /// Initializer with the trailing button and action on it.
     init(
+        swappedPostions: Bool = false,
         title: String?,
         titleFontStyle: Font.TextStyle = .headline,
         titleForeColor: Color = .aiSecondary2,
@@ -60,6 +65,7 @@ struct AIInfoField: View {
         buttonSize: CGFloat = 20,
         buttonAction: @escaping (() -> ()) = {}
     ) {
+        self.swappedPostions = swappedPostions
         self.title = title
         self.titleFontStyle = titleFontStyle
         self.titleForeColor = titleForeColor
@@ -79,14 +85,22 @@ struct AIInfoField: View {
             VStack(alignment: .leading){
                 if let title {
                     Text(title)
-                        .font(.system(titleFontStyle, design: .rounded, weight: .light))
-                        .foregroundStyle(titleForeColor)
+                        .font(.system(
+                            swappedPostions ? infoFontStyle : titleFontStyle,
+                            design: .rounded,
+                            weight: swappedPostions ? .semibold : .light)
+                        )
+                        .foregroundStyle(swappedPostions ? infoForeColor : titleForeColor)
                 }
                     
                 if let info {
                     Text(info)
-                        .font(.system(infoFontStyle, design: .rounded, weight: .semibold))
-                        .foregroundStyle(infoForeColor)
+                        .font(.system(
+                            swappedPostions ? titleFontStyle : infoFontStyle,
+                            design: .rounded,
+                            weight: swappedPostions ? .light : .semibold)
+                        )
+                        .foregroundStyle(swappedPostions ? titleForeColor : infoForeColor)
                         .fontDesign(infoFontDesign)
                 }
             }
@@ -110,7 +124,7 @@ struct AIInfoField: View {
 }
 
 #Preview {
-    AIInfoField(title: "Title", info: "Some info")
+    AIInfoField(title: "Title", info: "Some info", swappedPostions: true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
 }
