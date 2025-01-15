@@ -60,4 +60,21 @@ final class DIContainer: ObservableObject {
     func makeQuoteViewModel() -> QuoteViewModel {
         return QuoteViewModel()
     }
+    
+    func makeAnalyticsViewModel() -> AnalyticsViewModel {
+        let repository: AnalyticsRepository = AnalyticsRepositoryImpl(CDStack: CDstack)
+        
+        return AnalyticsViewModel(
+            averageGoalCompletionTimeUseCase: AnalyticsAverageGoalCompletionTimeUseCaseImpl(repository: repository),
+            averageMilestoneCompletionTimeUseCase: AnalyticsAverageMilestoneCompletionTimeUseCaseImpl(repository: repository),
+            fetchTotalGoalsUseCase: AnalyticsFetchTotalGoalsUseCaseImpl(repository: repository),
+            fetchTotalMilestonesUseCase: AnalyticsFetchTotalMilestonesUseCaseImpl(repository: repository),
+            fetchCompletedGoalsUseCase: AnalyticsFetchCompletedGoalsUseCaseImpl(repository: repository),
+            fetchUncompletedGoalsUseCase: AnalyticsFetchUncompletedGoalsUseCaseImpl(repository: repository),
+            fetchCompletedMilestonesUseCase: AnalyticsFetchCompletedMilestonesUseCaseImpl(repository: repository),
+            fetchUncompletedMilestonesUseCase: AnalyticsFetchUncompletedMilestonesUseCaseImpl(repository: repository),
+            fetchGoalsCompletedWithinMonthUseCase: AnalyticsFetchGoalsCompletedWithinMonthUseCaseImpl(repository: repository),
+            fetchMilestonesCompletedWithinWeek: AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl(repository: repository)
+        )
+    }
 }

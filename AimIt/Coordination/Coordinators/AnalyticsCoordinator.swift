@@ -21,19 +21,13 @@ final class AnalyticsCoordinator: ObservableObject, Coordinator {
     }
     
     @ViewBuilder
-    func build(screen: AnalyticsScreens) -> some View {
-        
-    }
+    func build(screen: AnalyticsScreens) -> some View { }
     
     @ViewBuilder
-    func build(sheet: AnalyticsSheets) -> some View {
-        
-    }
+    func build(sheet: AnalyticsSheets) -> some View { }
     
     @ViewBuilder
-    func build(screenCovers: AnalyticsScreenCovers) -> some View {
-        
-    }
+    func build(screenCovers: AnalyticsScreenCovers) -> some View { }
     
     func present(sheet: AnalyticsSheets) {
         self.sheet = sheet

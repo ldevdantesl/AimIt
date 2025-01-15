@@ -148,6 +148,27 @@
 		DA5190692D1E76C400A5E896 /* EditGoalScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190682D1E76C400A5E896 /* EditGoalScreenCover.swift */; };
 		DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */; };
 		DA5DC0252D26554F00BE895B /* FieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DC0242D26554F00BE895B /* FieldChecker.swift */; };
+		DAB906592D37562800269935 /* AnalyticsAverageGoalCompletionTimeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906532D37562800269935 /* AnalyticsAverageGoalCompletionTimeUseCase.swift */; };
+		DAB9065A2D37562800269935 /* AnalyticsFetchCompletedGoalsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906542D37562800269935 /* AnalyticsFetchCompletedGoalsUseCase.swift */; };
+		DAB9065B2D37562800269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906552D37562800269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCase.swift */; };
+		DAB9065C2D37562800269935 /* AnalyticsFetchTotalGoalsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906562D37562800269935 /* AnalyticsFetchTotalGoalsUseCase.swift */; };
+		DAB9065D2D37562800269935 /* AnalyticsFetchUncompletedGoalsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906572D37562800269935 /* AnalyticsFetchUncompletedGoalsUseCase.swift */; };
+		DAB9065F2D37563A00269935 /* AnalyticsFetchTotalMilestonesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9065E2D37563A00269935 /* AnalyticsFetchTotalMilestonesUseCase.swift */; };
+		DAB906612D37565F00269935 /* AnalyticsFetchCompletedMilestonesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906602D37565F00269935 /* AnalyticsFetchCompletedMilestonesUseCase.swift */; };
+		DAB906632D37568300269935 /* AnalyticsFetchUncompletedMilestonesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906622D37568300269935 /* AnalyticsFetchUncompletedMilestonesUseCase.swift */; };
+		DAB906652D3756A700269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906642D3756A700269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCase.swift */; };
+		DAB906672D3756C900269935 /* AnalyticsAverageMilestoneCompletionTimeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906662D3756C900269935 /* AnalyticsAverageMilestoneCompletionTimeUseCase.swift */; };
+		DAB9066C2D37570700269935 /* AnalyticsAverageGoalCompletionTimeUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9066B2D37570700269935 /* AnalyticsAverageGoalCompletionTimeUseCaseImpl.swift */; };
+		DAB9066E2D37574E00269935 /* AnalyticsFetchCompletedGoalsUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9066D2D37574E00269935 /* AnalyticsFetchCompletedGoalsUseCaseImpl.swift */; };
+		DAB906702D37578400269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9066F2D37578400269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCaseImpl.swift */; };
+		DAB906722D3757D500269935 /* AnalyticsFetchTotalGoalsUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906712D3757D500269935 /* AnalyticsFetchTotalGoalsUseCaseImpl.swift */; };
+		DAB906742D37580900269935 /* AnalyticsFetchUncompletedGoalsUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906732D37580900269935 /* AnalyticsFetchUncompletedGoalsUseCaseImpl.swift */; };
+		DAB906762D37584D00269935 /* AnalyticsFetchTotalMilestonesUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906752D37584D00269935 /* AnalyticsFetchTotalMilestonesUseCaseImpl.swift */; };
+		DAB906782D37587800269935 /* AnalyticsFetchCompletedMilestonesUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906772D37587800269935 /* AnalyticsFetchCompletedMilestonesUseCaseImpl.swift */; };
+		DAB9067A2D3758B000269935 /* AnalyticsFetchUncompletedMilestonesUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906792D3758B000269935 /* AnalyticsFetchUncompletedMilestonesUseCaseImpl.swift */; };
+		DAB9067C2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9067B2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift */; };
+		DAB9067E2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9067D2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift */; };
+		DAB906802D37592700269935 /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9067F2D37592700269935 /* AnalyticsViewModel.swift */; };
 		DADBE5802D2788390024D18B /* FloatingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE57F2D2788390024D18B /* FloatingTabBar.swift */; };
 		DADBE5822D2796870024D18B /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5812D2796870024D18B /* TabCoordinator.swift */; };
 		DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5842D2796D30024D18B /* CustomTab.swift */; };
@@ -322,6 +343,27 @@
 		DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DA5DC0242D26554F00BE895B /* FieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldChecker.swift; sourceTree = "<group>"; };
 		DA9E0D3C2D011CBF00E80B34 /* AimIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAB906532D37562800269935 /* AnalyticsAverageGoalCompletionTimeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAverageGoalCompletionTimeUseCase.swift; sourceTree = "<group>"; };
+		DAB906542D37562800269935 /* AnalyticsFetchCompletedGoalsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchCompletedGoalsUseCase.swift; sourceTree = "<group>"; };
+		DAB906552D37562800269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchGoalsCompletedWithinMonthUseCase.swift; sourceTree = "<group>"; };
+		DAB906562D37562800269935 /* AnalyticsFetchTotalGoalsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchTotalGoalsUseCase.swift; sourceTree = "<group>"; };
+		DAB906572D37562800269935 /* AnalyticsFetchUncompletedGoalsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchUncompletedGoalsUseCase.swift; sourceTree = "<group>"; };
+		DAB9065E2D37563A00269935 /* AnalyticsFetchTotalMilestonesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchTotalMilestonesUseCase.swift; sourceTree = "<group>"; };
+		DAB906602D37565F00269935 /* AnalyticsFetchCompletedMilestonesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchCompletedMilestonesUseCase.swift; sourceTree = "<group>"; };
+		DAB906622D37568300269935 /* AnalyticsFetchUncompletedMilestonesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchUncompletedMilestonesUseCase.swift; sourceTree = "<group>"; };
+		DAB906642D3756A700269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchCompletedMilestonesWithinWeekUseCase.swift; sourceTree = "<group>"; };
+		DAB906662D3756C900269935 /* AnalyticsAverageMilestoneCompletionTimeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAverageMilestoneCompletionTimeUseCase.swift; sourceTree = "<group>"; };
+		DAB9066B2D37570700269935 /* AnalyticsAverageGoalCompletionTimeUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAverageGoalCompletionTimeUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB9066D2D37574E00269935 /* AnalyticsFetchCompletedGoalsUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchCompletedGoalsUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB9066F2D37578400269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchGoalsCompletedWithinMonthUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB906712D3757D500269935 /* AnalyticsFetchTotalGoalsUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchTotalGoalsUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB906732D37580900269935 /* AnalyticsFetchUncompletedGoalsUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchUncompletedGoalsUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB906752D37584D00269935 /* AnalyticsFetchTotalMilestonesUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchTotalMilestonesUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB906772D37587800269935 /* AnalyticsFetchCompletedMilestonesUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchCompletedMilestonesUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB906792D3758B000269935 /* AnalyticsFetchUncompletedMilestonesUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchUncompletedMilestonesUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB9067B2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB9067D2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB9067F2D37592700269935 /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
 		DADBE57F2D2788390024D18B /* FloatingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBar.swift; sourceTree = "<group>"; };
 		DADBE5812D2796870024D18B /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		DADBE5842D2796D30024D18B /* CustomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTab.swift; sourceTree = "<group>"; };
@@ -374,6 +416,8 @@
 		DA42991F2D3748930046ABBA /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				DAB906582D37562800269935 /* Goals */,
+				DAB906522D37562200269935 /* Milestones */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -543,6 +587,7 @@
 		DA518F692D1E06FB00A5E896 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				DAB906682D3756EC00269935 /* Analytics */,
 				DA518F572D1E06FB00A5E896 /* Goal */,
 				DA518F5E2D1E06FB00A5E896 /* Milestone */,
 				DA518F622D1E06FB00A5E896 /* Settings */,
@@ -778,6 +823,7 @@
 				DA518FB22D1E06FB00A5E896 /* MilestoneViewModel.swift */,
 				DA518FB32D1E06FB00A5E896 /* WorkspaceViewModel.swift */,
 				DA51905E2D1E07BF00A5E896 /* QuoteViewModel.swift */,
+				DAB9067F2D37592700269935 /* AnalyticsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -999,6 +1045,63 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DAB906522D37562200269935 /* Milestones */ = {
+			isa = PBXGroup;
+			children = (
+				DAB9065E2D37563A00269935 /* AnalyticsFetchTotalMilestonesUseCase.swift */,
+				DAB906602D37565F00269935 /* AnalyticsFetchCompletedMilestonesUseCase.swift */,
+				DAB906622D37568300269935 /* AnalyticsFetchUncompletedMilestonesUseCase.swift */,
+				DAB906642D3756A700269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCase.swift */,
+				DAB906662D3756C900269935 /* AnalyticsAverageMilestoneCompletionTimeUseCase.swift */,
+			);
+			path = Milestones;
+			sourceTree = "<group>";
+		};
+		DAB906582D37562800269935 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				DAB906532D37562800269935 /* AnalyticsAverageGoalCompletionTimeUseCase.swift */,
+				DAB906542D37562800269935 /* AnalyticsFetchCompletedGoalsUseCase.swift */,
+				DAB906552D37562800269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCase.swift */,
+				DAB906562D37562800269935 /* AnalyticsFetchTotalGoalsUseCase.swift */,
+				DAB906572D37562800269935 /* AnalyticsFetchUncompletedGoalsUseCase.swift */,
+			);
+			path = Goals;
+			sourceTree = "<group>";
+		};
+		DAB906682D3756EC00269935 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				DAB9066A2D3756F600269935 /* Goals */,
+				DAB906692D3756F200269935 /* Milestones */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		DAB906692D3756F200269935 /* Milestones */ = {
+			isa = PBXGroup;
+			children = (
+				DAB906752D37584D00269935 /* AnalyticsFetchTotalMilestonesUseCaseImpl.swift */,
+				DAB906772D37587800269935 /* AnalyticsFetchCompletedMilestonesUseCaseImpl.swift */,
+				DAB906792D3758B000269935 /* AnalyticsFetchUncompletedMilestonesUseCaseImpl.swift */,
+				DAB9067B2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift */,
+				DAB9067D2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift */,
+			);
+			path = Milestones;
+			sourceTree = "<group>";
+		};
+		DAB9066A2D3756F600269935 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				DAB9066B2D37570700269935 /* AnalyticsAverageGoalCompletionTimeUseCaseImpl.swift */,
+				DAB9066D2D37574E00269935 /* AnalyticsFetchCompletedGoalsUseCaseImpl.swift */,
+				DAB9066F2D37578400269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCaseImpl.swift */,
+				DAB906712D3757D500269935 /* AnalyticsFetchTotalGoalsUseCaseImpl.swift */,
+				DAB906732D37580900269935 /* AnalyticsFetchUncompletedGoalsUseCaseImpl.swift */,
+			);
+			path = Goals;
+			sourceTree = "<group>";
+		};
 		DADBE57E2D2788220024D18B /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -1118,7 +1221,14 @@
 				DA518FE42D1E06FB00A5E896 /* LaunchCoordinator.swift in Sources */,
 				DA518FE52D1E06FB00A5E896 /* SettingsCoordinator.swift in Sources */,
 				DADBE5922D27A0C30024D18B /* AnalyticsScreenCovers.swift in Sources */,
+				DAB906802D37592700269935 /* AnalyticsViewModel.swift in Sources */,
 				DADBE5C82D30FDCB0024D18B /* FetchGoalByIDUseCase.swift in Sources */,
+				DAB906592D37562800269935 /* AnalyticsAverageGoalCompletionTimeUseCase.swift in Sources */,
+				DAB9065A2D37562800269935 /* AnalyticsFetchCompletedGoalsUseCase.swift in Sources */,
+				DAB906762D37584D00269935 /* AnalyticsFetchTotalMilestonesUseCaseImpl.swift in Sources */,
+				DAB9065B2D37562800269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCase.swift in Sources */,
+				DAB9065C2D37562800269935 /* AnalyticsFetchTotalGoalsUseCase.swift in Sources */,
+				DAB9065D2D37562800269935 /* AnalyticsFetchUncompletedGoalsUseCase.swift in Sources */,
 				DA518FE62D1E06FB00A5E896 /* AnalyticsScreens.swift in Sources */,
 				DA518FE72D1E06FB00A5E896 /* HomeScreens.swift in Sources */,
 				DA518FE82D1E06FB00A5E896 /* LaunchScreens.swift in Sources */,
@@ -1132,24 +1242,29 @@
 				DA518FF02D1E06FB00A5E896 /* WorkspaceEntity.swift in Sources */,
 				DA518FF12D1E06FB00A5E896 /* GoalMapper.swift in Sources */,
 				DA518FF22D1E06FB00A5E896 /* MilestoneMapper.swift in Sources */,
+				DAB906632D37568300269935 /* AnalyticsFetchUncompletedMilestonesUseCase.swift in Sources */,
+				DAB906672D3756C900269935 /* AnalyticsAverageMilestoneCompletionTimeUseCase.swift in Sources */,
 				DA5190692D1E76C400A5E896 /* EditGoalScreenCover.swift in Sources */,
 				DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */,
 				DA518FF32D1E06FB00A5E896 /* WorkspaceMapper.swift in Sources */,
 				DA518FF42D1E06FB00A5E896 /* GoalRepositoryImpl.swift in Sources */,
 				DA518FF52D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift in Sources */,
 				DA518FF62D1E06FB00A5E896 /* SettingsRepositoryImpl.swift in Sources */,
+				DAB9067E2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift in Sources */,
 				DA4299152D362BFD0046ABBA /* FetchMilestonesByPromptUseCase.swift in Sources */,
 				DA518FF72D1E06FB00A5E896 /* WorkspaceRepositoryImpl.swift in Sources */,
 				DA518FF82D1E06FB00A5E896 /* NotificationServiceImpl.swift in Sources */,
 				DA518FF92D1E06FB00A5E896 /* StorageManager.swift in Sources */,
 				DADBE5A42D27C0F60024D18B /* PrioritizeGoalUseCaseImpl.swift in Sources */,
 				DA518FFA2D1E06FB00A5E896 /* UserDefaultsStorageManager.swift in Sources */,
+				DAB906612D37565F00269935 /* AnalyticsFetchCompletedMilestonesUseCase.swift in Sources */,
 				DA518FFB2D1E06FB00A5E896 /* AddGoalUseCaseImpl.swift in Sources */,
 				DA518FFC2D1E06FB00A5E896 /* DeleteGoalUseCaseImpl.swift in Sources */,
 				DA42991E2D373C770046ABBA /* AnalyticsRepository.swift in Sources */,
 				DA518FFD2D1E06FB00A5E896 /* EditGoalUseCaseImpl.swift in Sources */,
 				DA518FFE2D1E06FB00A5E896 /* FetchGoalsUseCaseImpl.swift in Sources */,
 				DA518FFF2D1E06FB00A5E896 /* ToggleCompletionGoalUseCaseImpl.swift in Sources */,
+				DAB9065F2D37563A00269935 /* AnalyticsFetchTotalMilestonesUseCase.swift in Sources */,
 				DA5190002D1E06FB00A5E896 /* AddMilestoneUseCaseImpl.swift in Sources */,
 				DA5190012D1E06FB00A5E896 /* DeleteMilestoneUseCaseImpl.swift in Sources */,
 				DA5190022D1E06FB00A5E896 /* FetchAllMilestonesUseCaseImpl.swift in Sources */,
@@ -1193,23 +1308,28 @@
 				DA42990B2D3610ED0046ABBA /* AIHaptics.swift in Sources */,
 				DA51901F2D1E06FB00A5E896 /* FetchAllMilestonesUseCase.swift in Sources */,
 				DA5190202D1E06FB00A5E896 /* FetchMilestonesForGoalUseCase.swift in Sources */,
+				DAB9066E2D37574E00269935 /* AnalyticsFetchCompletedGoalsUseCaseImpl.swift in Sources */,
 				DA5190212D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCase.swift in Sources */,
 				DA5190222D1E06FB00A5E896 /* UpdateMilestoneUseCase.swift in Sources */,
 				DA5DC0252D26554F00BE895B /* FieldChecker.swift in Sources */,
 				DA5190232D1E06FB00A5E896 /* GetSettingsUseCase.swift in Sources */,
 				DA5190242D1E06FB00A5E896 /* RemoveSettingUseCase.swift in Sources */,
 				DA5190252D1E06FB00A5E896 /* SetSettingUseCase.swift in Sources */,
+				DAB906782D37587800269935 /* AnalyticsFetchCompletedMilestonesUseCaseImpl.swift in Sources */,
 				DA5190262D1E06FB00A5E896 /* AddWorkspaceUseCase.swift in Sources */,
 				DA5190272D1E06FB00A5E896 /* DeleteWorkspaceUseCase.swift in Sources */,
 				DA4299112D362B720046ABBA /* AISearchResultsView.swift in Sources */,
 				DA5190282D1E06FB00A5E896 /* EditWorkspaceUseCase.swift in Sources */,
 				DA5190292D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCase.swift in Sources */,
 				DA51902A2D1E06FB00A5E896 /* FetchWorkspacesUseCase.swift in Sources */,
+				DAB9066C2D37570700269935 /* AnalyticsAverageGoalCompletionTimeUseCaseImpl.swift in Sources */,
 				DA51902B2D1E06FB00A5E896 /* AIGoalProgressBar.swift in Sources */,
 				DA51902C2D1E06FB00A5E896 /* AISearchBar.swift in Sources */,
 				DA51902D2D1E06FB00A5E896 /* AIButton.swift in Sources */,
 				DA51902E2D1E06FB00A5E896 /* AIGoalCard.swift in Sources */,
+				DAB906652D3756A700269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCase.swift in Sources */,
 				DA51902F2D1E06FB00A5E896 /* AIMilestoneRow.swift in Sources */,
+				DAB906742D37580900269935 /* AnalyticsFetchUncompletedGoalsUseCaseImpl.swift in Sources */,
 				DA5190302D1E06FB00A5E896 /* CreateMilestoneView.swift in Sources */,
 				DA5190312D1E06FB00A5E896 /* AIDateField.swift in Sources */,
 				DADBE58E2D27A0940024D18B /* AnalyticsSheets.swift in Sources */,
@@ -1226,11 +1346,14 @@
 				DA5190372D1E06FB00A5E896 /* AIDateCapsule.swift in Sources */,
 				DA5190382D1E06FB00A5E896 /* AIGoalWidget.swift in Sources */,
 				DA5190392D1E06FB00A5E896 /* AIQuoteWidget.swift in Sources */,
+				DAB9067C2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift in Sources */,
 				DA51903A2D1E06FB00A5E896 /* AITriumphWidget.swift in Sources */,
 				DA51903B2D1E06FB00A5E896 /* AIHeaderView.swift in Sources */,
+				DAB9067A2D3758B000269935 /* AnalyticsFetchUncompletedMilestonesUseCaseImpl.swift in Sources */,
 				DA5190612D1E0B2300A5E896 /* AIQuoteSheet.swift in Sources */,
 				DADBE5BE2D30DB620024D18B /* AITodayMilestones.swift in Sources */,
 				DA4299212D3748A80046ABBA /* AnalyticsRepositoryImpl.swift in Sources */,
+				DAB906722D3757D500269935 /* AnalyticsFetchTotalGoalsUseCaseImpl.swift in Sources */,
 				DA51903C2D1E06FB00A5E896 /* AIInfoField.swift in Sources */,
 				DA51903E2D1E06FB00A5E896 /* AITimelineView.swift in Sources */,
 				DA51903F2D1E06FB00A5E896 /* AIWorkspaceSelector.swift in Sources */,
@@ -1245,6 +1368,7 @@
 				DADBE5AC2D2E51450024D18B /* AIOptionalDateField.swift in Sources */,
 				DA5190442D1E06FB00A5E896 /* WorkspaceViewModel.swift in Sources */,
 				DA5190452D1E06FB00A5E896 /* GoalDetailsView.swift in Sources */,
+				DAB906702D37578400269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCaseImpl.swift in Sources */,
 				DA5190462D1E06FB00A5E896 /* HomeAddGoalView.swift in Sources */,
 				DA5190472D1E06FB00A5E896 /* HomeAddWorkspaceView.swift in Sources */,
 				DA5190482D1E06FB00A5E896 /* CreateMilestoneSheet.swift in Sources */,
