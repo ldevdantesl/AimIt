@@ -75,7 +75,7 @@ struct MilestoneDetailsSheet: View {
         DispatchQueue.main.async {
             withAnimation {
                 milestone.isCompleted.toggle()
-                milestone.completionDate = milestone.isCompleted ? Date() : nil
+                milestone.completedAt = milestone.isCompleted ? Date() : nil
                 milestoneVM.toggleMilestoneCompletion(milestone)
                 coordinator.dismissSheet()
             }

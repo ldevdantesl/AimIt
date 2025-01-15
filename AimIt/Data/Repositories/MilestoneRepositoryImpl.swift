@@ -99,8 +99,8 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         newMilestone.desc = desc
         newMilestone.isCompleted = completed
         newMilestone.systemImage = systemImage
-        newMilestone.createdDate = Date()
-        newMilestone.completedDate = nil
+        newMilestone.createdAt = Date()
+        newMilestone.completedAt = nil
         newMilestone.dueDate = dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
         newMilestone.goal = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         
@@ -133,7 +133,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
     func toggleMilestoneCompletion(_ milestone: Milestone) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         milestoneEntity.isCompleted.toggle()
-        milestoneEntity.completedDate = milestoneEntity.isCompleted ? DeadlineFormatter.formatToTheEndOfTheDay(Date()) : nil
+        milestoneEntity.completedAt = milestoneEntity.isCompleted ? DeadlineFormatter.formatToTheEndOfTheDay(Date()) : nil
         saveContext()
     }
     
@@ -148,8 +148,8 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
             id: UUID(),
             desc: desc,
             systemImage: systemImage,
-            creationDate: .now,
-            completionDate: nil,
+            createdAt: .now,
+            completedAt: nil,
             dueDate: dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) },
             isCompleted: completed,
             goalID: nil

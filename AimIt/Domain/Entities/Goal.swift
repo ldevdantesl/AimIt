@@ -36,7 +36,7 @@ extension Goal {
                 id: UUID(),
                 desc: "some description",
                 systemImage: "folder",
-                creationDate: .now,
+                createdAt: .now,
                 dueDate: .now,
                 isCompleted: false,
                 goalID: UUID()

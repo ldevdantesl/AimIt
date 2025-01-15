@@ -11,6 +11,15 @@ import CoreData
 enum WorkspaceRepositoryErrors: Error {
     case workspaceNotFound
     case workspaceGoalsNotFound
+    
+    var localizedDescription: String {
+        switch self {
+        case .workspaceNotFound:
+            return "Workspace with this id is not found"
+        case .workspaceGoalsNotFound:
+            return "Workspace goals with this id is not found"
+        }
+    }
 }
 
 final class WorkspaceRepositoryImpl: WorkspaceRepository {
@@ -33,7 +42,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         let workspaces = try CDStack.viewContext.fetch(request)
         guard let workspace = workspaces.first else {
-            throw NSError(domain: "Workspace with this id is not found", code: -10)
+            throw WorkspaceRepositoryErrors.workspaceNotFound
         }
         
         let sortedGoals: [Goal]
@@ -71,11 +80,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
             CDStack.viewContext.delete(entity)
             CDStack.saveContext()
         } else {
-            throw NSError(
-                domain: "CoreDataError",
-                code: 0,
-                userInfo: [NSLocalizedDescriptionKey: "Object is not managed by the current context"]
-            )
+            throw CoreDataErrors.failedToDeleteFromContext
         }
     }
     

@@ -8,6 +8,18 @@
 import Foundation
 import CoreData
 
+enum CoreDataErrors: Error {
+    case failedToCreateManagedObjectContext
+    case failedToDeleteFromContext
+    
+    var localizedDescription: String {
+        switch self {
+        case .failedToCreateManagedObjectContext: "Failed to create managed object context."
+        case .failedToDeleteFromContext: "Object is not managed by the current context"
+        }
+    }
+}
+
 final class CoreDataStack {
     
     private let modelName: String

@@ -17,6 +17,7 @@
 		DA4299192D362F510046ABBA /* FetchMilestonesByPromptUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4299182D362F510046ABBA /* FetchMilestonesByPromptUseCaseImpl.swift */; };
 		DA42991C2D36533B0046ABBA /* AITotalMilestones.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42991B2D36533B0046ABBA /* AITotalMilestones.swift */; };
 		DA42991E2D373C770046ABBA /* AnalyticsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42991D2D373C770046ABBA /* AnalyticsRepository.swift */; };
+		DA4299212D3748A80046ABBA /* AnalyticsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4299202D3748A80046ABBA /* AnalyticsRepositoryImpl.swift */; };
 		DA518FDE2D1E06FB00A5E896 /* AimItApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F2B2D1E06FB00A5E896 /* AimItApp.swift */; };
 		DA518FDF2D1E06FB00A5E896 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F2C2D1E06FB00A5E896 /* AppCoordinator.swift */; };
 		DA518FE12D1E06FB00A5E896 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F2E2D1E06FB00A5E896 /* DIContainer.swift */; };
@@ -188,6 +189,7 @@
 		DA4299182D362F510046ABBA /* FetchMilestonesByPromptUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMilestonesByPromptUseCaseImpl.swift; sourceTree = "<group>"; };
 		DA42991B2D36533B0046ABBA /* AITotalMilestones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITotalMilestones.swift; sourceTree = "<group>"; };
 		DA42991D2D373C770046ABBA /* AnalyticsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRepository.swift; sourceTree = "<group>"; };
+		DA4299202D3748A80046ABBA /* AnalyticsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsRepositoryImpl.swift; sourceTree = "<group>"; };
 		DA518F2B2D1E06FB00A5E896 /* AimItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AimItApp.swift; sourceTree = "<group>"; };
 		DA518F2C2D1E06FB00A5E896 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		DA518F2E2D1E06FB00A5E896 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
@@ -369,6 +371,13 @@
 			path = Analytics;
 			sourceTree = "<group>";
 		};
+		DA42991F2D3748930046ABBA /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		DA518F2F2D1E06FB00A5E896 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +464,7 @@
 				DA518F492D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift */,
 				DA518F4A2D1E06FB00A5E896 /* SettingsRepositoryImpl.swift */,
 				DA518F4B2D1E06FB00A5E896 /* WorkspaceRepositoryImpl.swift */,
+				DA4299202D3748A80046ABBA /* AnalyticsRepositoryImpl.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -643,6 +653,7 @@
 		DA518F8F2D1E06FB00A5E896 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				DA42991F2D3748930046ABBA /* Analytics */,
 				DA518F7D2D1E06FB00A5E896 /* Goal */,
 				DA518F842D1E06FB00A5E896 /* Milestone */,
 				DA518F882D1E06FB00A5E896 /* Settings */,
@@ -1219,6 +1230,7 @@
 				DA51903B2D1E06FB00A5E896 /* AIHeaderView.swift in Sources */,
 				DA5190612D1E0B2300A5E896 /* AIQuoteSheet.swift in Sources */,
 				DADBE5BE2D30DB620024D18B /* AITodayMilestones.swift in Sources */,
+				DA4299212D3748A80046ABBA /* AnalyticsRepositoryImpl.swift in Sources */,
 				DA51903C2D1E06FB00A5E896 /* AIInfoField.swift in Sources */,
 				DA51903E2D1E06FB00A5E896 /* AITimelineView.swift in Sources */,
 				DA51903F2D1E06FB00A5E896 /* AIWorkspaceSelector.swift in Sources */,

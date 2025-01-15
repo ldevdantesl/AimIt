@@ -24,7 +24,7 @@ protocol AnalyticsRepository {
     func fetchGoalsCompletedWithinMonth(in workspace: Workspace) throws -> [Goal]
     
     /// Fetch the average time taken to complete goals in a workspace.
-    func averageGoalCompletionTime(in workspace: Workspace) -> TimeInterval
+    func averageGoalCompletionTime(in workspace: Workspace) throws -> TimeInterval
     
     // MARK: - MILESTONES
     
@@ -41,5 +41,5 @@ protocol AnalyticsRepository {
     func fetchCompletedMilestonesWithinWeek(in workspace: Workspace) throws -> [Milestone]
     
     /// Fetch the average time taken to complete milestones in a workspace.
-    func averageMilestoneCompletionTime(in workspace: Workspace) -> TimeInterval
+    func averageMilestoneCompletionTime(in workspace: Workspace) throws -> TimeInterval
 }
