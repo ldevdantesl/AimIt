@@ -29,6 +29,7 @@ final class AnalyticsViewModel: ObservableObject {
     
     private let calculateMonthlyDataForGoalsUseCase: AnalyticsCalculateMonthlyDataForGoalsUseCase
     private let calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCase
+    private let calculateMonthlyDataForCompletedGoalsUseCase: AnalyticsCalculateMonthlyDataForCompletedGoalsUseCase
     
     init(
         averageGoalCompletionTimeUseCase: AnalyticsAverageGoalCompletionTimeUseCase,
@@ -42,7 +43,8 @@ final class AnalyticsViewModel: ObservableObject {
         fetchGoalsCompletedWithinMonthUseCase: AnalyticsFetchGoalsCompletedWithinMonthUseCase,
         fetchMilestonesCompletedWithinWeek: AnalyticsFetchCompletedMilestonesWithinWeekUseCase,
         calculateMonthlyDataForGoalsUseCase: AnalyticsCalculateMonthlyDataForGoalsUseCase,
-        calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCase
+        calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCase,
+        calculateMonthlyDataForCompletedGoalsUseCase: AnalyticsCalculateMonthlyDataForCompletedGoalsUseCase
     ) {
         self.averageGoalCompletionTimeUseCase = averageGoalCompletionTimeUseCase
         self.averageMilestoneCompletionTimeUseCase = averageMilestoneCompletionTimeUseCase
@@ -56,118 +58,74 @@ final class AnalyticsViewModel: ObservableObject {
         self.fetchMilestonesCompletedWithinWeek = fetchMilestonesCompletedWithinWeek
         self.calculateMonthlyDataForGoalsUseCase = calculateMonthlyDataForGoalsUseCase
         self.calculateMonthlyDataForMilestonesUseCase = calculateMonthlyDataForMilestonesUseCase
+        self.calculateMonthlyDataForCompletedGoalsUseCase = calculateMonthlyDataForCompletedGoalsUseCase
     }
     
     // MARK: - TOTAL COUNT FUNCTIONS
     public func fetchTotalGoals(in workspace: Workspace) -> Int {
-        do {
-            return try fetchTotalGoalsUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching total goals: \(error.localizedDescription)"
-            return 0
-        }
+        handleUseCase(in: workspace, defaultValue: 0, action: fetchTotalGoalsUseCase.execute)
     }
     
     public func fetchTotalMilestones(in workspace: Workspace) -> Int {
-        do {
-            return try fetchTotalMilestonesUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching total milestones: \(error.localizedDescription)"
-            return 0
-        }
+        handleUseCase(in: workspace, defaultValue: 0, action: fetchTotalMilestonesUseCase.execute)
     }
     
     // MARK: - COMPLETED & UNCOMPLETED FUNCTIONS
     public func fetchCompletedGoals(in workspace: Workspace) -> [Goal] {
-        do {
-            return try fetchCompletedGoalsUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching completed goals: \(error.localizedDescription)"
-            return []
-        }
+        handleUseCase(in: workspace, defaultValue: [], action: fetchCompletedGoalsUseCase.execute)
     }
     
     public func fetchUncompletedGoals(in workspace: Workspace) -> [Goal] {
-        do {
-            return try fetchUncompletedGoalsUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching uncompleted goals: \(error.localizedDescription)"
-            return []
-        }
+        handleUseCase(in: workspace, defaultValue: [], action: fetchUncompletedGoalsUseCase.execute)
     }
     
     public func fetchCompletedMilestones(in workspace: Workspace) -> [Milestone] {
-        do {
-            return try fetchCompletedMilestonesUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching completed milestones: \(error.localizedDescription)"
-            return []
-        }
+        handleUseCase(in: workspace, defaultValue: [], action: fetchCompletedMilestonesUseCase.execute)
     }
     
     public func fetchUncompletedMilestones(in workspace: Workspace) -> [Milestone] {
-        do {
-            return try fetchUncompletedMilestonesUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching uncompleted milestones: \(error.localizedDescription)"
-            return []
-        }
+        handleUseCase(in: workspace, defaultValue: [], action: fetchUncompletedMilestonesUseCase.execute)
     }
     
     // MARK: - AVERAGE FUNCTIONS
     public func averageGoalCompletionTime(in workspace: Workspace) -> TimeInterval {
-        do {
-            return try averageGoalCompletionTimeUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching average goal completion time: \(error.localizedDescription)"
-            return .zero
-        }
+        handleUseCase(in: workspace, defaultValue: .zero, action: averageGoalCompletionTimeUseCase.execute)
     }
     
     public func averageMilestoneCompletionTime(in workspace: Workspace) -> TimeInterval {
-        do {
-            return try averageMilestoneCompletionTimeUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching average milestone completion time: \(error.localizedDescription)"
-            return .zero
-        }
+        handleUseCase(in: workspace, defaultValue: .zero, action: averageMilestoneCompletionTimeUseCase.execute)
     }
     
     // MARK: - TIMEBASED FUNCTIONS
     public func fetchGoalsCompletedWithinMonth(in workspace: Workspace) -> [Goal] {
-        do {
-            return try fetchGoalsCompletedWithinMonthUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching completed goals within month: \(error.localizedDescription)"
-            return []
-        }
+        handleUseCase(in: workspace, defaultValue: [], action: fetchGoalsCompletedWithinMonthUseCase.execute)
     }
     
     public func fetchMilestonesCompletedWithinWeek(in workspace: Workspace) -> [Milestone] {
-        do {
-            return try fetchMilestonesCompletedWithinWeek.execute(in: workspace)
-        } catch {
-            errorMsg = "Error fetching completed milestones within week: \(error.localizedDescription)"
-            return []
-        }
+        handleUseCase(in: workspace, defaultValue: [], action: fetchMilestonesCompletedWithinWeek.execute)
     }
     
     // MARK: - MONTHLY DATA
     public func calculateMonthlyDataForGoals(in workspace: Workspace) -> [AnalyticsMonthlyData] {
-        do {
-            return try calculateMonthlyDataForGoalsUseCase.execute(in: workspace)
-        } catch {
-            errorMsg = "Error calculating monthly data for goals: \(error.localizedDescription)"
-            return []
-        }
+        handleUseCase(in: workspace, defaultValue: [], action: calculateMonthlyDataForGoalsUseCase.execute)
     }
     
     public func calculateMonthlyDataForMilestones(in workspace: Workspace) -> [AnalyticsMonthlyData] {
+        handleUseCase(in: workspace, defaultValue: [], action: calculateMonthlyDataForMilestonesUseCase.execute)
+    }
+    
+    public func calculateMonthlyDataForCompletedGoals(in workspace: Workspace) -> [AnalyticsMonthlyData] {
+        handleUseCase(in: workspace, defaultValue: [], action: calculateMonthlyDataForCompletedGoalsUseCase.execute)
+    }
+    
+    // MARK: - PRIVATE FUNCTIONS
+    private func handleUseCase<T>(in workspace: Workspace, defaultValue: T, action: (Workspace) throws -> T) -> T {
         do {
-            return try calculateMonthlyDataForMilestonesUseCase.execute(in: workspace)
+            return try action(workspace)
         } catch {
-            errorMsg = "Error calculating monthly data for milestones: \(error.localizedDescription)"
-            return []
+            errorMsg = "Error occurred: \(error.localizedDescription)"
+            print(errorMsg ?? "")
+            return defaultValue
         }
     }
 }

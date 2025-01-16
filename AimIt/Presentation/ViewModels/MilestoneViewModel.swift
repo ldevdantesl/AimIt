@@ -48,47 +48,30 @@ final class MilestoneViewModel: ObservableObject {
     
     // MARK: - FETCHING
     func fetchAllMilestones() -> [Milestone] {
-        do {
-            return try fetchAllMilestonesUseCase.execute()
-        } catch {
-            errorMsg = "Error fetching milestones: \(error.localizedDescription)"
-            print("Error fetching milestones: \(error.localizedDescription)")
-            return []
-        }
+        handleUseCase(errorMessage: "Error fetching milestones", defaultValue: [], action: fetchAllMilestonesUseCase.execute)
     }
     
     func fetchMilestonesForGoal(_ goal: Goal) {
-        do {
-            milestones = try fetchMilestonesForGoalUseCase.execute(for: goal)
-        } catch {
-            errorMsg = "Error fetching milestones for goal: \(error.localizedDescription)"
-            print("Error fetching milestones for goal: \(error.localizedDescription)")
+        handleUseCase(errorMessage: "Error fetching milestones for goal") {
+            self.milestones = try fetchMilestonesForGoalUseCase.execute(for: goal)
         }
     }
     
     func fetchTodayMilestonesForWorkspace(for workspace: Workspace, date: Date = .now) -> [Milestone] {
-        do {
-            return try fetchTodayMilestonesForWorkspaceUseCase.execute(for: workspace, date: date)
-        } catch {
-            errorMsg = "Error fetching milestones for goal: \(error.localizedDescription)"
-            print(errorMsg ?? "")
-            return []
+        handleUseCase(errorMessage: "Error fetching milestones for goal", defaultValue: []) {
+            try fetchTodayMilestonesForWorkspaceUseCase.execute(for: workspace, date: date)
         }
     }
     
     func fetchMilestonesByPrompt(with prompt: String, in workspace: Workspace) -> [Milestone] {
-        do {
-            return try fetchMilestonesByPromptUseCase.execute(with: prompt, in: workspace)
-        } catch {
-            errorMsg = "Error fetching milestones for prompt: \(error.localizedDescription)"
-            print(errorMsg ?? "")
-            return []
+        handleUseCase(errorMessage: "Error fetching milestones for prompt", defaultValue: []) {
+            try fetchMilestonesByPromptUseCase.execute(with: prompt, in: workspace)
         }
     }
     
     // MARK: - ADDING
     func addMilestone(desc: String, systemImage: String, dueDate: Date?, completed: Bool = false, to goal: Goal) {
-        do {
+        handleUseCase(errorMessage: "Error adding milestone") {
             try addMilestoneUseCase.execute(
                 desc: desc,
                 systemImage: systemImage,
@@ -97,9 +80,6 @@ final class MilestoneViewModel: ObservableObject {
                 to: goal
             )
             fetchMilestonesForGoal(goal)
-        } catch {
-            errorMsg = "Error adding milestone: \(error.localizedDescription)"
-            print("Error adding milestone: \(error.localizedDescription)")
         }
     }
     
@@ -110,36 +90,27 @@ final class MilestoneViewModel: ObservableObject {
         systemImage: String? = nil,
         dueDate: Date? = nil
     ) {
-        do {
+        handleUseCase(errorMessage: "Error updating milestone") {
             try updateMilestoneUseCase.execute(
                 milestone,
                 desc: desc,
                 systemImage: systemImage,
                 dueDate: dueDate
             )
-        } catch {
-            errorMsg = "Error updating milestone: \(error.localizedDescription)"
-            print("Error updating milestone: \(error.localizedDescription)")
         }
     }
     
     // MARK: - DELETING
     func deleteMilestone(_ milestone: Milestone) {
-        do {
+        handleUseCase(errorMessage: "Error deleting milestone") {
             try deleteMilestoneUseCase.execute(milestone)
-        } catch {
-            errorMsg = "Error deleting milestone: \(error.localizedDescription)"
-            print("Error deleting milestone: \(error.localizedDescription)")
         }
     }
     
     // MARK: - COMPLETION
     func toggleMilestoneCompletion(_ milestone: Milestone) {
-        do {
+        handleUseCase(errorMessage: "Error toggling milestone completion") {
             try toggleMilestoneCompletionUseCase.execute(milestone)
-        } catch {
-            errorMsg = "Error toggling milestone completion: \(error.localizedDescription)"
-            print("Error toggling milestone completion: \(error.localizedDescription)")
         }
     }
 
@@ -150,17 +121,33 @@ final class MilestoneViewModel: ObservableObject {
         dueDate: Date?,
         completed: Bool = false
     ) -> Milestone? {
-        do {
-            return try createSeperateMilestoneUseCase.execute(
+        handleUseCase(errorMessage: "Error creating seperate milestone", defaultValue: nil) {
+            try createSeperateMilestoneUseCase.execute(
                 desc: desc,
                 systemImage: systemImage,
                 dueDate: dueDate,
                 completed: completed
             )
-        } catch {
-            errorMsg = "Error creating seperate milestone: \(error.localizedDescription)"
+        }
+    }
+    
+    // MARK: - PRIVATE FUNCTIONS
+    private func handleUseCase(errorMessage: String, action: () throws -> ()) {
+        do {
+            try action()
+        } catch  {
+            self.errorMsg = "\(errorMessage): \(error.localizedDescription)"
             print(errorMsg ?? "")
-            return nil
+        }
+    }
+    
+    private func handleUseCase<T>(errorMessage: String, defaultValue: T, action: () throws -> T) -> T {
+        do {
+            return try action()
+        } catch  {
+            self.errorMsg = "\(errorMessage): \(error.localizedDescription)"
+            print(errorMsg ?? "")
+            return defaultValue
         }
     }
 }

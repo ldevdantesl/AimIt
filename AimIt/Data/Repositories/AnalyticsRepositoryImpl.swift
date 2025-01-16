@@ -182,68 +182,92 @@ final class AnalyticsRepositoryImpl: AnalyticsRepository {
     
     // MARK: - MONTHLY CHART
     func calculateMonthlyDataForGoals(in workspace: Workspace) throws -> [AnalyticsMonthlyData] {
-        let request = NSFetchRequest<GoalEntity>(entityName: "GoalEntity")
+        let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
         let calendar = Calendar.current
 
-        // Get the current year
         let currentYear = calendar.component(.year, from: Date())
         guard let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1)),
               let endOfYear = calendar.date(from: DateComponents(year: currentYear + 1, month: 1, day: 1)) else {
             throw AnalyticsRepositoryErrors.dateError
         }
 
-        // Apply predicates for filtering
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(format: "workspace.id == %@", workspace.id.uuidString),
             NSPredicate(format: "createdAt >= %@ AND createdAt < %@", startOfYear as NSDate, endOfYear as NSDate)
         ])
 
-        // Fetch all matching GoalEntity objects
         let goals = try CDStack.viewContext.fetch(request)
-
-        // Group goals by month and count them
+        
         let groupedGoals = Dictionary(grouping: goals, by: { goal -> Date in
-            let components = calendar.dateComponents([.year, .month], from: goal.createdAt)
+            let components = calendar.dateComponents([.year, .month], from: goal.deadline)
             return calendar.date(from: components) ?? Date()
         })
 
-        // Convert grouped data to AnalyticsMonthlyData
-        return groupedGoals.map { (monthDate, goals) in
+        let result = groupedGoals.map { (monthDate, goals) in
             AnalyticsMonthlyData(date: monthDate, count: goals.count)
         }
         .sorted(by: { $0.date < $1.date })
+
+        return result
     }
     
     func calculateMonthlyDataForMilestones(in workspace: Workspace) throws -> [AnalyticsMonthlyData] {
-        let request = NSFetchRequest<MilestoneEntity>(entityName: "MilestoneEntity")
+        let request: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
         let calendar = Calendar.current
 
-        // Get the current year
         let currentYear = calendar.component(.year, from: Date())
         guard let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1)),
               let endOfYear = calendar.date(from: DateComponents(year: currentYear + 1, month: 1, day: 1)) else {
             throw AnalyticsRepositoryErrors.dateError
         }
 
-        // Apply predicates for filtering
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString),
             NSPredicate(format: "createdAt >= %@ AND createdAt < %@", startOfYear as NSDate, endOfYear as NSDate)
         ])
 
-        // Fetch all matching MilestoneEntity objects
         let milestones = try CDStack.viewContext.fetch(request)
 
-        // Group milestones by month and count them
         let groupedMilestones = Dictionary(grouping: milestones, by: { milestone -> Date in
             let components = calendar.dateComponents([.year, .month], from: milestone.createdAt)
             return calendar.date(from: components) ?? Date()
         })
 
-        // Convert grouped data to AnalyticsMonthlyData
         return groupedMilestones.map { (monthDate, milestones) in
             AnalyticsMonthlyData(date: monthDate, count: milestones.count)
         }
         .sorted(by: { $0.date < $1.date })
+    }
+    
+    func calculateMonthlyDataForCompletedGoals(in workspace: Workspace) throws -> [AnalyticsMonthlyData] {
+        let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
+        let calendar = Calendar.current
+        
+        let currentYear = calendar.component(.year, from: Date())
+        guard let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1)),
+              let endOfYear = calendar.date(from: DateComponents(year: currentYear + 1, month: 1, day: 1)) else {
+            throw AnalyticsRepositoryErrors.dateError
+        }
+        
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "workspace.id == %@", workspace.id.uuidString),
+            NSPredicate(format: "createdAt >= %@ AND createdAt < %@", startOfYear as NSDate, endOfYear as NSDate)
+        ])
+        
+        let goals = try CDStack.viewContext.fetch(request)
+        
+        let completedGoals = goals.filter { $0.completedAt != nil }
+        
+        let groupedGoals = Dictionary(grouping: completedGoals, by: { goal -> Date in
+            let components = calendar.dateComponents([.year, .month], from: goal.completedAt!)
+            return calendar.date(from: components) ?? Date()
+        })
+
+        let result = groupedGoals.map { (monthDate, goals) in
+            AnalyticsMonthlyData(date: monthDate, count: goals.count)
+        }
+        .sorted(by: { $0.date < $1.date })
+
+        return result
     }
 }

@@ -40,31 +40,18 @@ final class GoalViewModel: ObservableObject {
     
     // MARK: - FETCHING
     func fetchGoals() -> [Goal] {
-        do {
-            return try fetchGoalsUseCase.execute()
-        } catch {
-            errorMsg = "Error fetching Goals: \(error.localizedDescription)"
-            print(errorMsg ?? "")
-            return []
-        }
+        handleUseCase(errorMessage: "Error fetching Goals", defaultValue: [], action: fetchGoalsUseCase.execute)
     }
     
     func fetchGoalByID(id: UUID) -> Goal? {
-        do {
-            return try fetchGoalByIDUseCase.execute(id: id)
-        } catch {
-            errorMsg = "Error fetching goal by id: \(error.localizedDescription)"
-            return nil
+        handleUseCase(errorMessage: "Error fetching goal by id", defaultValue: nil) {
+            try fetchGoalByIDUseCase.execute(id: id)
         }
     }
     
     func fetchGoalByPrompt(with prompt: String, in workspace: Workspace) -> [Goal] {
-        do {
-            return try fetchGoalsByPromptUseCase.execute(with: prompt, in: workspace)
-        } catch {
-            errorMsg = "Error fetching goal by prompt: \(error.localizedDescription)"
-            print(errorMsg ?? "")
-            return []
+        handleUseCase(errorMessage: "Error fetching goal by prompt", defaultValue: []) {
+            try fetchGoalsByPromptUseCase.execute(with: prompt, in: workspace)
         }
     }
     
@@ -95,18 +82,14 @@ final class GoalViewModel: ObservableObject {
         deadline: Date?,
         newMilestones: [Milestone]
     ) -> Goal? {
-        do {
-            return try editGoalUseCase.execute(
+        handleUseCase(errorMessage: "Erorr editing Goal", defaultValue: nil) {
+            try editGoalUseCase.execute(
                 goal,
                 newTitle: title,
                 newDesc: desc,
                 newDeadline: deadline,
                 newMilestones: newMilestones
             )
-        } catch {
-            errorMsg = "Erorr editing Goal: \(error.localizedDescription)"
-            print(errorMsg ?? "")
-            return nil
         }
     }
     
@@ -136,6 +119,17 @@ final class GoalViewModel: ObservableObject {
             try action()
         } catch  {
             self.errorMsg = "\(errorMessage): \(error.localizedDescription)"
+            print(errorMsg ?? "")
+        }
+    }
+    
+    private func handleUseCase<T>(errorMessage: String, defaultValue: T, action: () throws -> T) -> T {
+        do {
+            return try action()
+        } catch  {
+            self.errorMsg = "\(errorMessage): \(error.localizedDescription)"
+            print(errorMsg ?? "")
+            return defaultValue
         }
     }
 }

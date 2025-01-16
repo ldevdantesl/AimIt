@@ -35,7 +35,7 @@ struct AnalyticsView: View {
                         in: workspaceVM.currentWorkspace
                     )
                     
-                    AIMonthChart(
+                    AIGoalMonthChart(
                         analyticsVM: analyticsVM,
                         workspace: workspaceVM.currentWorkspace
                     )

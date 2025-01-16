@@ -50,4 +50,7 @@ protocol AnalyticsRepository {
     
     /// Calculate monthly data for milestones in a workspace for specific year
     func calculateMonthlyDataForMilestones(in workspace: Workspace) throws -> [AnalyticsMonthlyData]
+    
+    /// Calculate monthly data for completed goals in a workspace for specific year
+    func calculateMonthlyDataForCompletedGoals(in workspace: Workspace) throws -> [AnalyticsMonthlyData]
 }

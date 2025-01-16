@@ -30,10 +30,14 @@ struct ChartHelper {
 
         for month in 1...12 {
             if let monthDate = calendar.date(from: DateComponents(year: currentYear, month: month, day: 1)) {
-                monthlyData.append(AnalyticsMonthlyData(date: monthDate, count: 1))
+                monthlyData.append(AnalyticsMonthlyData(date: monthDate, count: 0))
             }
         }
 
         return monthlyData
+    }
+    
+    static func getMaximumCountValue(from results: [AnalyticsMonthlyData]) -> Int {
+        return results.map(\.count).max() ?? 0
     }
 }
