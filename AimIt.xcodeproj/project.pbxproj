@@ -186,6 +186,7 @@
 		DAB906C92D38ECBC00269935 /* AIChartInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906C82D38ECBC00269935 /* AIChartInfo.swift */; };
 		DAB906CB2D38F36300269935 /* AICompletedGoalsAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906CA2D38F36300269935 /* AICompletedGoalsAnalytics.swift */; };
 		DAB906CD2D38F5DE00269935 /* AIMiniGoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906CC2D38F5DE00269935 /* AIMiniGoalCard.swift */; };
+		DAB906CF2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906CE2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift */; };
 		DADBE5802D2788390024D18B /* FloatingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE57F2D2788390024D18B /* FloatingTabBar.swift */; };
 		DADBE5822D2796870024D18B /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5812D2796870024D18B /* TabCoordinator.swift */; };
 		DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5842D2796D30024D18B /* CustomTab.swift */; };
@@ -398,6 +399,7 @@
 		DAB906C82D38ECBC00269935 /* AIChartInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIChartInfo.swift; sourceTree = "<group>"; };
 		DAB906CA2D38F36300269935 /* AICompletedGoalsAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICompletedGoalsAnalytics.swift; sourceTree = "<group>"; };
 		DAB906CC2D38F5DE00269935 /* AIMiniGoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMiniGoalCard.swift; sourceTree = "<group>"; };
+		DAB906CE2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMostPostpondedGoalAnalytics.swift; sourceTree = "<group>"; };
 		DADBE57F2D2788390024D18B /* FloatingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBar.swift; sourceTree = "<group>"; };
 		DADBE5812D2796870024D18B /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		DADBE5842D2796D30024D18B /* CustomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTab.swift; sourceTree = "<group>"; };
@@ -1173,6 +1175,7 @@
 				DAB906812D3765A000269935 /* AICompletedAnalytics.swift */,
 				DAB906852D3792C400269935 /* AIUncompletedAnalytics.swift */,
 				DAB906CA2D38F36300269935 /* AICompletedGoalsAnalytics.swift */,
+				DAB906CE2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift */,
 			);
 			path = ProgressBars;
 			sourceTree = "<group>";
@@ -1330,6 +1333,7 @@
 				DA518FF12D1E06FB00A5E896 /* GoalMapper.swift in Sources */,
 				DAB906C42D38E2CD00269935 /* AnalyticsCalculateMonthlyDataForCompletedMilestonesUseCaseImpl.swift in Sources */,
 				DA518FF22D1E06FB00A5E896 /* MilestoneMapper.swift in Sources */,
+				DAB906CF2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift in Sources */,
 				DAB906632D37568300269935 /* AnalyticsFetchUncompletedMilestonesUseCase.swift in Sources */,
 				DAB906672D3756C900269935 /* AnalyticsAverageMilestoneCompletionTimeUseCase.swift in Sources */,
 				DAB906862D3792C400269935 /* AIUncompletedAnalytics.swift in Sources */,
