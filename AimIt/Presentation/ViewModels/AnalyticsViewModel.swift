@@ -25,7 +25,9 @@ final class AnalyticsViewModel: ObservableObject {
     private let fetchUncompletedMilestonesUseCase: AnalyticsFetchUncompletedMilestonesUseCase
     
     private let fetchGoalsCompletedWithinMonthUseCase: AnalyticsFetchGoalsCompletedWithinMonthUseCase
-    private let fetchMilestonesCompletedWithinWeek: AnalyticsFetchCompletedMilestonesWithinWeekUseCase
+    private let fetchMilestonesCompletedWithinWeekUseCase: AnalyticsFetchCompletedMilestonesWithinWeekUseCase
+    
+    private let fetchMostPostpondedGoalUseCase: AnalyticsFetchMostPostpondedGoalUseCase
     
     private let calculateMonthlyDataForGoalsUseCase: AnalyticsCalculateMonthlyDataForGoalsUseCase
     private let calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCase
@@ -42,7 +44,8 @@ final class AnalyticsViewModel: ObservableObject {
         fetchCompletedMilestonesUseCase: AnalyticsFetchCompletedMilestonesUseCase,
         fetchUncompletedMilestonesUseCase: AnalyticsFetchUncompletedMilestonesUseCase,
         fetchGoalsCompletedWithinMonthUseCase: AnalyticsFetchGoalsCompletedWithinMonthUseCase,
-        fetchMilestonesCompletedWithinWeek: AnalyticsFetchCompletedMilestonesWithinWeekUseCase,
+        fetchMilestonesCompletedWithinWeekUseCase: AnalyticsFetchCompletedMilestonesWithinWeekUseCase,
+        fetchMostPostpondedGoalUseCase: AnalyticsFetchMostPostpondedGoalUseCase,
         calculateMonthlyDataForGoalsUseCase: AnalyticsCalculateMonthlyDataForGoalsUseCase,
         calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCase,
         calculateMonthlyDataForCompletedGoalsUseCase: AnalyticsCalculateMonthlyDataForCompletedGoalsUseCase,
@@ -57,7 +60,8 @@ final class AnalyticsViewModel: ObservableObject {
         self.fetchCompletedMilestonesUseCase = fetchCompletedMilestonesUseCase
         self.fetchUncompletedMilestonesUseCase = fetchUncompletedMilestonesUseCase
         self.fetchGoalsCompletedWithinMonthUseCase = fetchGoalsCompletedWithinMonthUseCase
-        self.fetchMilestonesCompletedWithinWeek = fetchMilestonesCompletedWithinWeek
+        self.fetchMilestonesCompletedWithinWeekUseCase = fetchMilestonesCompletedWithinWeekUseCase
+        self.fetchMostPostpondedGoalUseCase = fetchMostPostpondedGoalUseCase
         self.calculateMonthlyDataForGoalsUseCase = calculateMonthlyDataForGoalsUseCase
         self.calculateMonthlyDataForMilestonesUseCase = calculateMonthlyDataForMilestonesUseCase
         self.calculateMonthlyDataForCompletedGoalsUseCase = calculateMonthlyDataForCompletedGoalsUseCase
@@ -105,7 +109,11 @@ final class AnalyticsViewModel: ObservableObject {
     }
     
     public func fetchMilestonesCompletedWithinWeek(in workspace: Workspace) -> [Milestone] {
-        handleUseCase(in: workspace, defaultValue: [], action: fetchMilestonesCompletedWithinWeek.execute)
+        handleUseCase(in: workspace, defaultValue: [], action: fetchMilestonesCompletedWithinWeekUseCase.execute)
+    }
+    
+    public func fetchMostPostpondedGoal(in workspace: Workspace) -> Goal? {
+        handleUseCase(in: workspace, defaultValue: nil, action: fetchMostPostpondedGoalUseCase.execute)
     }
     
     // MARK: - MONTHLY DATA

@@ -23,7 +23,7 @@ enum CustomTab: String, CaseIterable {
     var specialButton: String {
         switch self {
         case .home: return "plus"
-        case .analytics: return "magnifyingglass"
+        case .analytics: return "chevron.up"
         case .settings: return "person"
         }
     }

@@ -23,6 +23,9 @@ protocol AnalyticsRepository {
     /// Fetch completed goals within month in a workspace.
     func fetchGoalsCompletedWithinMonth(in workspace: Workspace) throws -> [Goal]
     
+    /// Fetch completed goals within month in a workspace.
+    func fetchMostPostpondedGoal(in workspace: Workspace) throws -> Goal?
+    
     /// Fetch the average time taken to complete goals in a workspace.
     func averageGoalCompletionTime(in workspace: Workspace) throws -> TimeInterval
     

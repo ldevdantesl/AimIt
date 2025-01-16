@@ -26,7 +26,7 @@ struct AIGoalBreakdownCharts: View {
             AIInfoField(
                 title: "Charts",
                 titleFontStyle: .subheadline,
-                info: "Total Goals within month",
+                info: "Total Goals within each month",
                 swappedPostions: true
             )
             
@@ -61,7 +61,7 @@ struct AIGoalBreakdownCharts: View {
             .chartAppearence()
             
             AIInfoField(
-                title: "Total Goals completed within month",
+                title: "Total Goals completed within each month",
                 titleFontStyle: .subheadline,
                 info: nil
             )

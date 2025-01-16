@@ -56,6 +56,27 @@ final class AnalyticsRepositoryImpl: AnalyticsRepository {
         return try CDStack.viewContext.fetch(request).map { GoalMapper.mapToDomain(from: $0) }
     }
     
+    
+    func fetchMostPostpondedGoal(in workspace: Workspace) throws -> Goal? {
+        let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "workspace.id == %@", workspace.id.uuidString),
+            NSPredicate(format: "isCompleted == %@", NSNumber(value: false))
+        ])
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "deadlineChanges", ascending: false)]
+        
+        request.fetchLimit = 1
+        
+        let goals = try CDStack.viewContext.fetch(request)
+        
+        if let goal = goals.first, goal.deadlineChanges > 0 {
+            return GoalMapper.mapToDomain(from: goal)
+        }
+        
+        return nil
+    }
+    
     // MARK: - GOAL TIMEBASED
     func averageGoalCompletionTime(in workspace: Workspace) throws -> TimeInterval {
         let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()

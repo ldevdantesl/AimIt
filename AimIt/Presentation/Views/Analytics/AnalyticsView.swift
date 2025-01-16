@@ -45,14 +45,18 @@ struct AnalyticsView: View {
                         workspace: workspaceVM.currentWorkspace
                     )
                     
+                    AIMostPostpondedGoalAnalytics(
+                        analyticsVM: analyticsVM,
+                        workspace: workspaceVM.currentWorkspace
+                    )
+                    
                     AIMilestoneBreakdownChart(
                         analyticsVM: analyticsVM,
                         workspace: workspaceVM.currentWorkspace
                     )
                 }
+                .padding(.bottom, 20)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.bottom, 20)
             .background(Color.aiBackground)
             .sheet(item: $coordinator.sheet) { sheet in
                 coordinator.build(sheet: sheet)
@@ -65,10 +69,11 @@ struct AnalyticsView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    FloatingTabBar()
+                    FloatingTabBar(action: {})
+                        .frame(maxWidth: .infinity)
                 }
             }
-            .toolbarBackground(.aiBackground, for: .bottomBar)
+            .toolbarBackground(.clear, for: .bottomBar)
         }
     }
 }
