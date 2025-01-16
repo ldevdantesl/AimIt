@@ -77,7 +77,8 @@ final class DIContainer: ObservableObject {
             fetchMilestonesCompletedWithinWeek: AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl(repository: repository),
             calculateMonthlyDataForGoalsUseCase: AnalyticsCalculateMonthlyDataForGoalsUseCaseImpl(repository: repository),
             calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCaseImpl(repository: repository),
-            calculateMonthlyDataForCompletedGoalsUseCase: AnalyticsCalculateMonthlyDataForCompletedGoalsUseCaseImpl(repository: repository)
+            calculateMonthlyDataForCompletedGoalsUseCase: AnalyticsCalculateMonthlyDataForCompletedGoalsUseCaseImpl(repository: repository),
+            calculateMonthlyDataForCompletedMilestonesUseCase: AnalyticsCalculateMonthlyDataForCompletedMilestonesUseCaseImpl(repository: repository)
         )
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct TopSafeAreaOverlay: ViewModifier {
+struct TopSafeAreaOverlayModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .safeAreaInset(edge: .top){

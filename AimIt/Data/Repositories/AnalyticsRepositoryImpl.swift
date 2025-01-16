@@ -256,7 +256,7 @@ final class AnalyticsRepositoryImpl: AnalyticsRepository {
         
         let goals = try CDStack.viewContext.fetch(request)
         
-        let completedGoals = goals.filter { $0.completedAt != nil }
+        let completedGoals = goals.filter { $0.completedAt != nil && $0.isCompleted }
         
         let groupedGoals = Dictionary(grouping: completedGoals, by: { goal -> Date in
             let components = calendar.dateComponents([.year, .month], from: goal.completedAt!)
@@ -265,6 +265,38 @@ final class AnalyticsRepositoryImpl: AnalyticsRepository {
 
         let result = groupedGoals.map { (monthDate, goals) in
             AnalyticsMonthlyData(date: monthDate, count: goals.count)
+        }
+        .sorted(by: { $0.date < $1.date })
+
+        return result
+    }
+    
+    func calculateMonthlyDataForCompletedMilestones(in workspace: Workspace) throws -> [AnalyticsMonthlyData] {
+        let request: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
+        let calendar = Calendar.current
+        
+        let currentYear = calendar.component(.year, from: Date())
+        guard let startOfYear = calendar.date(from: DateComponents(year: currentYear, month: 1, day: 1)),
+              let endOfYear = calendar.date(from: DateComponents(year: currentYear + 1, month: 1, day: 1)) else {
+            throw AnalyticsRepositoryErrors.dateError
+        }
+        
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString),
+            NSPredicate(format: "createdAt >= %@ AND createdAt < %@", startOfYear as NSDate, endOfYear as NSDate)
+        ])
+        
+        let milestones = try CDStack.viewContext.fetch(request)
+        
+        let completedMilestones = milestones.filter { $0.completedAt != nil && $0.isCompleted }
+        
+        let groupedMilestones = Dictionary(grouping: completedMilestones, by: { milestone -> Date in
+            let components = calendar.dateComponents([.year, .month], from: milestone.completedAt!)
+            return calendar.date(from: components) ?? Date()
+        })
+
+        let result = groupedMilestones.map { (monthDate, milestones) in
+            AnalyticsMonthlyData(date: monthDate, count: milestones.count)
         }
         .sorted(by: { $0.date < $1.date })
 

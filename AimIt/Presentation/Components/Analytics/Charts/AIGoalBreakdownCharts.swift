@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Charts
 
-struct AIGoalMonthChart: View {
+struct AIGoalBreakdownCharts: View {
     private let analyticsVM: AnalyticsViewModel
     private let workspace: Workspace
     
@@ -20,14 +20,13 @@ struct AIGoalMonthChart: View {
     
     @State private var goalsMonthlyData: [AnalyticsMonthlyData] = []
     @State private var completedGoalsMonthlyData: [AnalyticsMonthlyData] = []
-    @State private var milestonesMonthlyData: [AnalyticsMonthlyData] = []
     
     var body: some View {
         VStack{
             AIInfoField(
                 title: "Charts",
                 titleFontStyle: .subheadline,
-                info: "Goal deadlines of \(Date().formatted(.dateTime.year()))",
+                info: "Total Goals within month",
                 swappedPostions: true
             )
             
@@ -58,62 +57,59 @@ struct AIGoalMonthChart: View {
                         .font(.system(size: 11, weight: .light, design: .rounded))
                 }
             }
-            .chartYScale(domain: 0...ChartHelper.getMaximumCountValue(from: goalsMonthlyData) + 1)
-            .frame(height: 200)
-            .padding(.vertical, 10)
-            .padding(.top, 5)
-            .padding(.horizontal, 10)
-            .background(Color.aiSecondary, in: .rect(cornerRadius: 15))
-            .padding(.horizontal, 20)
-            .padding(.bottom, 10)
+            .chartYScale(domain: ChartHelper.chartYScaleDomain(data: goalsMonthlyData))
+            .chartAppearence()
             
             AIInfoField(
-                title: "Goal completions of \(Date().formatted(.dateTime.year()))",
+                title: "Total Goals completed within month",
                 titleFontStyle: .subheadline,
                 info: nil
             )
             
-            Chart {
-                ForEach(completedGoalsMonthlyData) { data in
-                    AreaMark(
-                        x: .value("Month", data.date, unit: .month),
-                        y: .value("Total Goals", data.count)
-                    )
-                    .foregroundStyle(Color.accentColor)
-                    .cornerRadius(5)
+            VStack(alignment: .trailing){
+                Chart {
+                    ForEach(completedGoalsMonthlyData) { data in
+                        AreaMark(
+                            x: .value("Month", data.date, unit: .month),
+                            y: .value("Total Goals", data.count)
+                        )
+                        .foregroundStyle(Color.accentColor)
+                        .cornerRadius(5)
+                        
+                        RuleMark(y: .value("Preferred Value", 1))
+                            .lineStyle(.init(lineWidth: 2, dash: [2, 2]))
+                            .foregroundStyle(.aiBeige)
+                    }
                 }
-            }
-            .chartXAxis {
-                AxisMarks(values: completedGoalsMonthlyData.map(\.date)) { _ in
-                    AxisGridLine()
-                    AxisTick()
-                    AxisValueLabel(format: .dateTime.month(.abbreviated))
-                        .foregroundStyle(.aiBeige)
-                        .font(.system(size: 11, weight: .light, design: .rounded))
+                .chartXAxis {
+                    AxisMarks(values: completedGoalsMonthlyData.map(\.date)) { _ in
+                        AxisGridLine()
+                        AxisTick()
+                        AxisValueLabel(format: .dateTime.month(.abbreviated))
+                            .foregroundStyle(.aiBeige)
+                            .font(.system(size: 11, weight: .light, design: .rounded))
+                    }
                 }
-            }
-            .chartYAxis {
-                AxisMarks{
-                    AxisGridLine()
-                    AxisValueLabel()
-                        .foregroundStyle(.aiBeige)
-                        .font(.system(size: 11, weight: .light, design: .rounded))
+                .chartYAxis {
+                    AxisMarks{
+                        AxisGridLine()
+                        AxisValueLabel()
+                            .foregroundStyle(.aiBeige)
+                            .font(.system(size: 11, weight: .light, design: .rounded))
+                    }
                 }
+                .chartYScale(domain: ChartHelper.chartYScaleDomain(data: completedGoalsMonthlyData))
+                .chartAppearence()
+                
+                AIChartInfo(text: "Preferred Amount", shape: .dashedLine, color: .aiBeige)
+                    .padding(.horizontal, 20)
             }
-            .chartYScale(domain: 0...ChartHelper.getMaximumCountValue(from: completedGoalsMonthlyData) + 1)
-            .frame(height: 200)
-            .padding(.vertical, 10)
-            .padding(.top, 5)
-            .padding(.horizontal, 10)
-            .background(Color.aiSecondary, in: .rect(cornerRadius: 15))
-            .padding(.horizontal, 20)
-            .padding(.bottom, 10)
         }
         .onAppear(perform: setup)
     }
     
     private func setup() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             withAnimation {
                 self.goalsMonthlyData = ChartHelper.mergeResultsWithDefaults(
                     results: analyticsVM.calculateMonthlyDataForGoals(in: workspace)
@@ -122,17 +118,13 @@ struct AIGoalMonthChart: View {
                 self.completedGoalsMonthlyData = ChartHelper.mergeResultsWithDefaults(
                     results: analyticsVM.calculateMonthlyDataForCompletedGoals(in: workspace)
                 )
-                
-                self.milestonesMonthlyData = ChartHelper.mergeResultsWithDefaults(
-                    results: analyticsVM.calculateMonthlyDataForMilestones(in: workspace)
-                )
             }
         }
     }
 }
 
 #Preview {
-    AIGoalMonthChart(analyticsVM: DIContainer().makeAnalyticsViewModel(), workspace: .sample)
+    AIGoalBreakdownCharts(analyticsVM: DIContainer().makeAnalyticsViewModel(), workspace: .sample)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
 }

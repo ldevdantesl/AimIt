@@ -13,6 +13,7 @@ enum ImageNames {
     static let noFound = "NoFound"
     static let noGoals = "NoGoals"
     static let noMilestones = "NoMilestones"
+    static let noCompletedGoals = "NoCompletedGoals"
     
     // MARK: - INTRO & SPLASH
     static let intro1 = "Intro1"

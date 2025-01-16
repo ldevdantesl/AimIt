@@ -35,13 +35,24 @@ struct AnalyticsView: View {
                         in: workspaceVM.currentWorkspace
                     )
                     
-                    AIGoalMonthChart(
+                    AIGoalBreakdownCharts(
+                        analyticsVM: analyticsVM,
+                        workspace: workspaceVM.currentWorkspace
+                    )
+                    
+                    AICompletedGoalsAnalytics(
+                        analyticsVM: analyticsVM,
+                        workspace: workspaceVM.currentWorkspace
+                    )
+                    
+                    AIMilestoneBreakdownChart(
                         analyticsVM: analyticsVM,
                         workspace: workspaceVM.currentWorkspace
                     )
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.bottom, 20)
             .background(Color.aiBackground)
             .sheet(item: $coordinator.sheet) { sheet in
                 coordinator.build(sheet: sheet)

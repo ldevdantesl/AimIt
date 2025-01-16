@@ -30,6 +30,7 @@ final class AnalyticsViewModel: ObservableObject {
     private let calculateMonthlyDataForGoalsUseCase: AnalyticsCalculateMonthlyDataForGoalsUseCase
     private let calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCase
     private let calculateMonthlyDataForCompletedGoalsUseCase: AnalyticsCalculateMonthlyDataForCompletedGoalsUseCase
+    private let calculateMonthlyDataForCompletedMilestonesUseCase: AnalyticsCalculateMonthlyDataForCompletedMilestonesUseCase
     
     init(
         averageGoalCompletionTimeUseCase: AnalyticsAverageGoalCompletionTimeUseCase,
@@ -44,7 +45,8 @@ final class AnalyticsViewModel: ObservableObject {
         fetchMilestonesCompletedWithinWeek: AnalyticsFetchCompletedMilestonesWithinWeekUseCase,
         calculateMonthlyDataForGoalsUseCase: AnalyticsCalculateMonthlyDataForGoalsUseCase,
         calculateMonthlyDataForMilestonesUseCase: AnalyticsCalculateMonthlyDataForMilestonesUseCase,
-        calculateMonthlyDataForCompletedGoalsUseCase: AnalyticsCalculateMonthlyDataForCompletedGoalsUseCase
+        calculateMonthlyDataForCompletedGoalsUseCase: AnalyticsCalculateMonthlyDataForCompletedGoalsUseCase,
+        calculateMonthlyDataForCompletedMilestonesUseCase: AnalyticsCalculateMonthlyDataForCompletedMilestonesUseCase
     ) {
         self.averageGoalCompletionTimeUseCase = averageGoalCompletionTimeUseCase
         self.averageMilestoneCompletionTimeUseCase = averageMilestoneCompletionTimeUseCase
@@ -59,6 +61,7 @@ final class AnalyticsViewModel: ObservableObject {
         self.calculateMonthlyDataForGoalsUseCase = calculateMonthlyDataForGoalsUseCase
         self.calculateMonthlyDataForMilestonesUseCase = calculateMonthlyDataForMilestonesUseCase
         self.calculateMonthlyDataForCompletedGoalsUseCase = calculateMonthlyDataForCompletedGoalsUseCase
+        self.calculateMonthlyDataForCompletedMilestonesUseCase = calculateMonthlyDataForCompletedMilestonesUseCase
     }
     
     // MARK: - TOTAL COUNT FUNCTIONS
@@ -116,6 +119,10 @@ final class AnalyticsViewModel: ObservableObject {
     
     public func calculateMonthlyDataForCompletedGoals(in workspace: Workspace) -> [AnalyticsMonthlyData] {
         handleUseCase(in: workspace, defaultValue: [], action: calculateMonthlyDataForCompletedGoalsUseCase.execute)
+    }
+    
+    public func calculateMonthlyDataForCompletedMilestones(in workspace: Workspace) -> [AnalyticsMonthlyData] {
+        handleUseCase(in: workspace, defaultValue: [], action: calculateMonthlyDataForCompletedMilestonesUseCase.execute)
     }
     
     // MARK: - PRIVATE FUNCTIONS

@@ -45,12 +45,15 @@ protocol AnalyticsRepository {
     
     // MARK: - CHARTS
     
-    /// Calculate monthly data for goals in a workspace for specific year
+    /// Calculate monthly data for goals in a workspace for current year
     func calculateMonthlyDataForGoals(in workspace: Workspace) throws -> [AnalyticsMonthlyData]
     
-    /// Calculate monthly data for milestones in a workspace for specific year
+    /// Calculate monthly data for milestones in a workspace for current year
     func calculateMonthlyDataForMilestones(in workspace: Workspace) throws -> [AnalyticsMonthlyData]
     
-    /// Calculate monthly data for completed goals in a workspace for specific year
+    /// Calculate monthly data for completed goals in a workspace for current year
     func calculateMonthlyDataForCompletedGoals(in workspace: Workspace) throws -> [AnalyticsMonthlyData]
+    
+    /// Calculate monthly data for completed milestones in a workspace for current year
+    func calculateMonthlyDataForCompletedMilestones(in workspace: Workspace) throws -> [AnalyticsMonthlyData]
 }

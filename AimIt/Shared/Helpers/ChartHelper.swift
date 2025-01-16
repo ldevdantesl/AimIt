@@ -40,4 +40,8 @@ struct ChartHelper {
     static func getMaximumCountValue(from results: [AnalyticsMonthlyData]) -> Int {
         return results.map(\.count).max() ?? 0
     }
+    
+    static func chartYScaleDomain(data: [AnalyticsMonthlyData], incrementedBy: Int = 1) -> ClosedRange<Int> {
+        0...ChartHelper.getMaximumCountValue(from: data) + incrementedBy
+    }
 }

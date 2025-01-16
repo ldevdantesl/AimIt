@@ -10,7 +10,7 @@ import SwiftUI
 
 extension View {
     func topSafeAreaContent() -> some View {
-        self.modifier(TopSafeAreaOverlay())
+        self.modifier(TopSafeAreaOverlayModifier())
     }
     
     func hideKeyboard() {
@@ -21,5 +21,9 @@ extension View {
         self.onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
+    }
+    
+    func chartAppearence() -> some View {
+        self.modifier(ChartSizingAndPaddingModifier())
     }
 }

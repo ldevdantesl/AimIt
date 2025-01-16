@@ -137,6 +137,7 @@ final class GoalRepositoryImpl: GoalRepository {
                 newEntity.desc = milestone.desc
                 newEntity.systemImage = milestone.systemImage
                 newEntity.isCompleted = milestone.isCompleted
+                newEntity.createdAt = milestone.createdAt
                 newEntity.dueDate = milestone.dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
                 newEntity.goal = goalEntity
                 return newEntity
