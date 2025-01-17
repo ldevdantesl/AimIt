@@ -103,6 +103,7 @@ final class WorkspaceViewModel: ObservableObject {
     func unprioritizeGoal(in workspace: Workspace) {
         handleUseCase {
             try unprioritizeGoalUseCase.execute(in: workspace)
+            fetchCurrentWorkspace()
         }
     }
     

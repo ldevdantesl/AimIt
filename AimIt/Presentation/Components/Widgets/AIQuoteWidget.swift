@@ -32,7 +32,7 @@ struct AIQuoteWidget: View {
         .padding(15)
         .frame(maxWidth: UIConstants.widgetWidth, alignment: .leading)
         .frame(maxHeight: UIConstants.widgetHeight, alignment: .top)
-        .background(Color.aiOrange, in: .rect(cornerRadius: UIConstants.widgetCornerRadius))
+        .background(Color.accentColor.gradient, in: .rect(cornerRadius: UIConstants.widgetCornerRadius))
         .padding(.trailing, 20)
         .onTapGesture {
             coordinator.present(sheet: .quote(quoteVM))

@@ -34,6 +34,7 @@ struct AIMostPostpondedGoalAnalytics: View {
                         .font(.system(size: 70, weight: .semibold, design: .rounded))
                         .foregroundStyle(.aiBeige)
                         .padding(.trailing, 20)
+                        .contentTransition(.numericText())
                 }
             } else {
                 HStack{

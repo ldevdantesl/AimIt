@@ -63,10 +63,11 @@ struct AIButton: View {
                     .foregroundStyle(foreColor)
                     .frame(minWidth: UIConstants.screenWidth - 40, maxWidth: .infinity)
                     .frame(height: 50)
-                    .background(backColor, in: .rect(cornerRadius: 25))
+                    .background(backColor.gradient, in: .rect(cornerRadius: 25))
                     .shadow(color: Color.aiBlack.opacity(0.3), radius: 15, x: 0, y: 0)
-                    .shadow(color: Color.aiBlack.opacity(0.2), radius: 30, x: 0, y: 0) //
+                    .shadow(color: Color.aiBlack.opacity(0.2), radius: 30, x: 0, y: 0)
                     .padding(.horizontal, 20)
+                    .contentTransition(.numericText())
             } else {
                 if image != .empty{
                     ZStack {

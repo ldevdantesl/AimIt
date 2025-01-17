@@ -25,6 +25,10 @@ struct AIGoalCard: View {
         self.prioritized = true
     }
     
+    private var isDeadlinePassed:Bool {
+        DeadlineFormatter.isDayPassed(goal.deadline)
+    }
+    
     var body: some View {
         Button(action: {
             coordinator.push(to: .goalDetails($goal))
@@ -33,31 +37,47 @@ struct AIGoalCard: View {
                 HStack{
                     Text(goal.title)
                         .font(.system(.headline, design: .rounded, weight: .bold))
-                        .foregroundStyle(.aiBlack)
+                        .foregroundStyle(isDeadlinePassed ? .aiLabel : .aiBlack)
                         .lineLimit(1)
                     
                     Spacer()
                     
                     Text(DeadlineFormatter.formatToDayMonth(goal.deadline))
                         .font(.system(.subheadline, design: .rounded, weight: .semibold))
-                        .foregroundStyle(.aiBlack)
+                        .foregroundStyle(isDeadlinePassed ? .aiLabel : .aiBlack)
                 }
                 
                 if let desc = goal.desc{
                     Text(desc.isEmpty ? "No description for this goal" : desc)
                         .font(.system(.caption, design: .rounded, weight: .bold))
-                        .foregroundStyle(.aiBlack.opacity(0.8))
+                        .foregroundStyle(isDeadlinePassed ? .aiLabel.opacity(0.8) : .aiBlack.opacity(0.8))
                         .lineLimit(1)
                         .padding(.bottom, 20)
                 }
-            
-                AIGoalProgressBar(goal: goal)
+                
+                if isDeadlinePassed {
+                    HStack{
+                        Text("Deadline is passed")
+                            .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                            .foregroundStyle(.aiLabel)
+                        
+                        Spacer()
+                        
+                        Image(ImageNames.warning)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30, height: 30)
+                    }
                     .padding(.bottom, 10)
+                } else {
+                    AIGoalProgressBar(goal: goal)
+                        .padding(.bottom, 10)
+                }
             }
             .padding([.horizontal, .top], 20)
             .frame(maxWidth: .infinity)
             .frame(maxHeight: 120)
-            .background(Color.aiLabel, in: .rect(cornerRadius: 25))
+            .background(isDeadlinePassed ? Color.aiLightBrown.gradient : Color.aiLabel.gradient, in: .rect(cornerRadius: 25))
             .padding(.horizontal)
             .shadow(color: .aiSecondary2.opacity(0.2), radius: 2, x: 0, y: 1)
             .overlay(alignment: .topTrailing) {
@@ -76,7 +96,8 @@ struct AIGoalCard: View {
 
 #Preview {
     AIGoalCard(goal: .sample)
-        .preferredColorScheme(.dark)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.aiBackground)
         .environmentObject(HomeCoordinator())
         .environmentObject(DIContainer().makeGoalViewModel())
 }

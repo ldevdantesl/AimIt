@@ -27,15 +27,17 @@ struct AIDateCard: View {
                 .font(.system(.subheadline, design: .rounded, weight: .light))
                 .foregroundColor(.aiSecondary2)
                 .padding(.bottom, 3)
+                .contentTransition(.numericText())
             
             HStack{
                 Text("\(DeadlineFormatter.formatToDaysLeftDescription(goal.deadline))")
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundStyle(.aiLabel)
+                    .contentTransition(.numericText())
                 
                 Spacer()
                 
-                Image(.clock)
+                Image(ImageNames.clock)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 25, height: 25)
@@ -43,6 +45,7 @@ struct AIDateCard: View {
                 Text("\(daysGone)/\(totalDays) day(s)")
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .foregroundStyle(.aiSecondary2)
+                    .contentTransition(.numericText())
             }
             .padding(.bottom, 15)
             
@@ -59,6 +62,7 @@ struct AIDateCard: View {
                 condition: isDayPassed
             )
             .onTapGesture(perform: coordinateToEditDate)
+            .contentTransition(.numericText())
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 20)

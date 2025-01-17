@@ -64,6 +64,7 @@ struct AISearchResultsView: View {
                     subtitle: "Check spelling and try again",
                     action: clearPrompt
                 )
+                .contentTransition(.numericText())
             }
         }
         .onChange(of: searchText) { newValue in

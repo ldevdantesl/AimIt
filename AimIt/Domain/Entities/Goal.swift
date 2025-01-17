@@ -27,7 +27,7 @@ extension Goal {
         title: "Learn UIKit",
         desc: "Finish UIKit till next week and learn SwiftUI",
         isCompleted: false,
-        deadline: .now,
+        deadline: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
         deadlineChanges: 0,
         createdAt: Date(),
         completedAt: nil,

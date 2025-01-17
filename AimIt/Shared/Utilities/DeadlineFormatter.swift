@@ -10,7 +10,7 @@ import Foundation
 struct DeadlineFormatter {
     static func formatToTheEndOfTheDay(_ date: Date) -> Date? {
         let startOfDay = Calendar.current.startOfDay(for: date)
-        return Calendar.current.date(byAdding: DateComponents(day: 1, nanosecond: -100), to: startOfDay)
+        return Calendar.current.date(byAdding: DateComponents(day: 1, second: -1), to: startOfDay)
     }
     
     static func formatToDaysLeftDescription(_ date: Date) -> String {

@@ -24,4 +24,5 @@ enum ImageNames {
     
     // MARK: - OTHER
     static let growth = "growth"
+    static let warning = "warning"
 }

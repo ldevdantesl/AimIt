@@ -26,6 +26,7 @@ struct AIWorkspaceSelector: View {
                 buttonAction: { isSelecting.toggle() }
             )
             .animation(.bouncy, value: isSelecting)
+            .contentTransition(.numericText())
             
             if isSelecting {
                 VStack(spacing: 20){

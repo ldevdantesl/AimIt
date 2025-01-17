@@ -31,6 +31,7 @@ struct AICompletedGoalsAnalytics: View {
                 Text(completedGoalsWithinMonth.count.description)
                     .font(.system(size: 70, weight: .semibold, design: .rounded))
                     .foregroundStyle(.aiBeige)
+                    .contentTransition(.numericText())
                 
                 if !completedGoalsWithinMonth.isEmpty {
                     TabView(selection: $selectedIndex) {

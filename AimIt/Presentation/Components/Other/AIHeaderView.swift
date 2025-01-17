@@ -63,11 +63,13 @@ struct AIHeaderView<Content: View>: View {
                         .font(.system(.subheadline, design: .rounded, weight: .light))
                         .foregroundStyle(.aiSecondary2)
                         .lineLimit(1)
+                        .contentTransition(.numericText())
                     
                     Text(subtitle)
                         .font(.system(leftButton.image == .empty ? .title3 : .headline, design: .rounded, weight: .semibold))
                         .foregroundStyle(.aiLabel)
                         .lineLimit(1)
+                        .contentTransition(.numericText())
                 }
                 .padding(.horizontal, 10)
             } else {

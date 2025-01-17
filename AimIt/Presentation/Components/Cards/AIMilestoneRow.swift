@@ -74,7 +74,7 @@ struct AIMilestoneRow: View {
             .foregroundStyle(milestone.isCompleted ? .aiLabel : .aiSecondary2)
             .frame(maxWidth: .infinity)
             .frame(height: 50)
-            .background(milestone.isCompleted ? .green : .aiSecondary, in: .rect(cornerRadius: 15))
+            .background(milestone.isCompleted ? Color.green.gradient : Color.aiSecondary.gradient, in: .rect(cornerRadius: 15))
             .onTapGesture {
                 onTap?($milestone)
             }
@@ -87,7 +87,7 @@ struct AIMilestoneRow: View {
                     AIHaptics.shared.generate(with: .medium)
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(milestone.isCompleted ? .green : .aiSecondary)
+                        .fill(milestone.isCompleted ? Color.green.gradient : Color.aiSecondary.gradient)
                         .frame(width: 50)
                         .overlay {
                             Image(systemName: milestone.isCompleted ? "checkmark.circle.fill" : "circle")
@@ -104,7 +104,7 @@ struct AIMilestoneRow: View {
                     AIHaptics.shared.generate(with: .light)
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(.accent)
+                        .fill(.accent.gradient)
                         .frame(width: 50)
                         .overlay {
                             Image(systemName: "trash.fill")
