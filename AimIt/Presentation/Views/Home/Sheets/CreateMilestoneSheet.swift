@@ -90,7 +90,6 @@ struct CreateMilestoneSheet: View {
             .background(Color.aiBackground)
             .toolbarBackground(Color.black, for: .bottomBar)
         }
-        
     }
     
     private var deadline: Date? {

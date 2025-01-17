@@ -12,7 +12,7 @@ struct AISystemImagePicker: View {
     
     @State private var selectedCategory: SystemImageCategory = .allCategories[0]
     
-    let columns: [GridItem] = Array(repeating: GridItem(.fixed(40), spacing: 15), count: 6)
+    private let columns: [GridItem] = Array(repeating: GridItem(.fixed(40), spacing: 15), count: 6)
     
     var body: some View {
         VStack{
@@ -54,14 +54,11 @@ struct AISystemImagePicker: View {
     }
     
     @ViewBuilder
-    func selectedCategoryPicker() -> some View {
+    private func selectedCategoryPicker() -> some View {
         Picker("", selection: $selectedCategory) {
             ForEach(SystemImageCategory.allCategories, id:\.self){ cat in
-                HStack{
-                    Text(cat.name)
-                    Image(systemName: cat.titleImage)
-                }
-                .tag(cat)
+                Label(cat.name, systemImage: cat.titleImage)
+                    .tag(cat)
             }
         }
     }

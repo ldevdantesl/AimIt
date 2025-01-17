@@ -166,6 +166,9 @@ final class GoalRepositoryImpl: GoalRepository {
         let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         goalEntity.isCompleted = true
         goalEntity.completedAt = DeadlineFormatter.formatToTheEndOfTheDay(Date())
+        if let prioritizedGoal = goalEntity.workspace?.prioritizedGoal, prioritizedGoal.id == goalEntity.id {
+            goalEntity.workspace?.prioritizedGoal = nil
+        }
         saveContext()
     }
     

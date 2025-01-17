@@ -46,89 +46,81 @@ final class WorkspaceViewModel: ObservableObject {
         self.editWorkspaceUseCase = editWorkspaceUseCase
         self.deleteWorkspaceUseCase = deleteWorkspaceUseCase
         self.storageManager = storageManager
-        self.currentWorkspace = storageManager.getValue(for: currentWorkspaceKey) ?? Workspace(id: UUID(), title: "Goals", goals: [])
+        self.currentWorkspace = storageManager.getValue(for: currentWorkspaceKey) ?? Workspace.sample
         self.prioritizeGoalUseCase = prioritizeGoalUseCase
         self.unprioritizeGoalUseCase = unprioritizeGoalUseCase
-        self.workspaceForAnalytics = storageManager.getValue(for: currentWorkspaceKey) ?? Workspace(id: UUID(), title: "Goals", goals: [])
+        self.workspaceForAnalytics = storageManager.getValue(for: currentWorkspaceKey) ?? Workspace.sample
         fetchWorkspaces()
     }
     
-    private func updateCurrentWorkspace() {
-        storageManager.setValue(currentWorkspace, for: currentWorkspaceKey)
-    }
-    
     func addWorkspace(title: String){
-        do {
+        handleUseCase {
             currentWorkspace = try addWorkspaceUseCase.execute(title: title)
             fetchWorkspaces()
-        } catch {
-            errorMsg = "Error creating workspace: \(error.localizedDescription)"
-            print(errorMsg ?? "")
         }
     }
     
     func fetchWorkspaces(){
-        do {
+        handleUseCase {
             self.workspaces = try fetchWorkspacesUseCase.execute()
-        } catch {
-            errorMsg = "Error fetching workspaces: \(error.localizedDescription)"
-            print(errorMsg ?? "")
         }
     }
     
     func fetchCurrentWorkspace() {
-        do {
+        handleUseCase {
             currentWorkspace = try fetchCurrentWorkspaceUseCase.execute(by: currentWorkspace.id)
             fetchWorkspaces()
-        } catch {
-            errorMsg = "Error fetching current workspace: \(error.localizedDescription)"
-            print(errorMsg ?? "")
         }
     }
     
     func editWorkspace(_ workspace: Workspace, newTitle: String, newGoals: [Goal]) {
-        do {
+        handleUseCase {
             try editWorkspaceUseCase.execute(workspace, newTitle: newTitle, newGoals: newGoals)
             fetchCurrentWorkspace()
-        } catch {
-            errorMsg = "Error editing workspace: \(error.localizedDescription)"
-            print(errorMsg ?? "")
         }
     }
     
     func deleteWorkspace(_ workspace: Workspace) {
-        do {
+        handleUseCase {
             try deleteWorkspaceUseCase.execute(workspace)
             fetchCurrentWorkspace()
-        } catch {
-            errorMsg = "Error deleting workspace: \(error.localizedDescription)"
-            print(errorMsg ?? "")
         }
     }
     
     func prioritizeGoal(_ workspace: Workspace, goal: Goal) {
-        do {
+        handleUseCase {
             try prioritizeGoalUseCase.execute(in: workspace, goal: goal)
             fetchCurrentWorkspace()
-        } catch {
-            errorMsg = "Error prioritizing goal: \(error.localizedDescription)"
-            print(errorMsg ?? "")
         }
     }
     
     func unprioritizeGoal(in workspace: Workspace) {
-        do {
+        handleUseCase {
             try unprioritizeGoalUseCase.execute(in: workspace)
-            fetchCurrentWorkspace()
-        } catch {
-            errorMsg = "Error unprioritizing goal: \(error.localizedDescription)"
+        }
+    }
+    
+    // MARK: - PRIVATE FUNCTIONS
+    private func handleUseCase(action: () throws -> ()) {
+        do {
+            try action()
+        } catch  {
+            self.errorMsg = "Error occuered: \(error.localizedDescription)"
             print(errorMsg ?? "")
         }
     }
     
-    func reprioritizeGoal(in workspace: Workspace, newGoal: Goal) {
-        unprioritizeGoal(in: workspace)
-        prioritizeGoal(workspace, goal: newGoal)
-        fetchCurrentWorkspace()
+    private func handleUseCase<T>(defaultValue: T, action: () throws -> T) -> T {
+        do {
+            return try action()
+        } catch  {
+            self.errorMsg = "Error occured: \(error.localizedDescription)"
+            print(errorMsg ?? "")
+            return defaultValue
+        }
+    }
+    
+    private func updateCurrentWorkspace() {
+        storageManager.setValue(currentWorkspace, for: currentWorkspaceKey)
     }
 }
