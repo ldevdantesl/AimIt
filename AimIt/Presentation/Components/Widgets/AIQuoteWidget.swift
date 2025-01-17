@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct AIQuoteWidget: View {
+    @EnvironmentObject var coordinator: HomeCoordinator
+    
+    private let quoteVM: QuoteViewModel
     private let quote: Quote
     
-    init(quote: Quote) {
-        self.quote = quote
+    init(quoteVM: QuoteViewModel) {
+        self.quoteVM = quoteVM
+        self.quote = quoteVM.randomQuote
     }
     
     var body: some View {
@@ -30,11 +34,14 @@ struct AIQuoteWidget: View {
         .frame(maxHeight: UIConstants.widgetHeight, alignment: .top)
         .background(Color.aiOrange, in: .rect(cornerRadius: UIConstants.widgetCornerRadius))
         .padding(.trailing, 20)
+        .onTapGesture {
+            coordinator.present(sheet: .quote(quoteVM))
+        }
     }
 }
 
 #Preview {
     AIQuoteWidget(
-        quote: Quote(id: 0, quote: "", author: "")
+        quoteVM: DIContainer().makeQuoteViewModel()
     )
 }

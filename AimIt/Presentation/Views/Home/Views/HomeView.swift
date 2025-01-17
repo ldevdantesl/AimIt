@@ -49,11 +49,7 @@ struct HomeView: View {
                             
                             Spacer()
                             
-                            
-                            AIQuoteWidget(quote: quoteVM.randomQuote)
-                                .onTapGesture {
-                                    coordinator.present(sheet: .quote(quoteVM))
-                                }
+                            AIQuoteWidget(quoteVM: quoteVM)
                         }
                         
                         AIGoalCardList(in: workspaceVM.currentWorkspace)
@@ -82,12 +78,41 @@ struct HomeView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    FloatingTabBar(action: { coordinator.push(to: .addGoal) })
+                    FloatingTabBar(menuContent: menuContentTabBar)
                         .frame(maxWidth: .infinity)
                 }
             }
             .toolbarBackground(.clear, for: .bottomBar)
         }
+    }
+    
+    @ViewBuilder
+    private func menuContentTabBar() -> some View {
+        Text("Sort by")
+        
+        Button {
+            withAnimation {
+                workspaceVM.sortSystem = { $0.deadline < $1.deadline }
+            }
+        } label: { Label("Deadline", systemImage: "deskclock") }
+        
+        Button {
+            withAnimation {
+                workspaceVM.sortSystem = { $0.createdAt < $1.createdAt }
+            }
+        } label: { Label("Creation Date", systemImage: "calendar") }
+        
+        Button {
+            withAnimation {
+                workspaceVM.sortSystem = { ($0.milestones?.count ?? 0) > ($1.milestones?.count ?? 0) }
+            }
+        } label: { Label("Total Milestones", systemImage: "flag.2.crossed") }
+        
+        Button {
+            withAnimation {
+                workspaceVM.sortSystem = { $0.title < $1.title }
+            }
+        } label: { Label("Alphabetic", systemImage: "b.circle.fill") }
     }
 }
 

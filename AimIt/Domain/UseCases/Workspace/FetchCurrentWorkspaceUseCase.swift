@@ -8,5 +8,5 @@
 import Foundation
 
 protocol FetchCurrentWorkspaceUseCase {
-    func execute(by id: UUID) throws -> Workspace
+    func execute(by id: UUID, sortSystem: (GoalEntity, GoalEntity) -> Bool) throws -> Workspace
 }

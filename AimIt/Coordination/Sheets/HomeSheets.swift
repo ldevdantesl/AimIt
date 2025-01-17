@@ -11,7 +11,7 @@ import SwiftUI
 enum HomeSheets: Identifiable {
     case addWorkspace
     case quote(QuoteViewModel)
-    case milestoneDetails(Binding<Milestone>)
+    case milestoneDetails(Binding<Milestone>, Bool)
     case changeDeadline(Binding<Goal>)
     
     var id: UUID { UUID() }
@@ -25,7 +25,7 @@ enum HomeSheets: Identifiable {
         case .milestoneDetails:
             return [.fraction(1/6), .fraction(1/4)]
         case .changeDeadline:
-            return [.medium, .large]
+            return [.medium]
         }
     }
 }

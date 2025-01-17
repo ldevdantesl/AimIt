@@ -75,12 +75,13 @@ final class GoalViewModel: ObservableObject {
     }
     
     // MARK: - EDITING
+    @discardableResult
     func editGoal(
         _ goal: Goal,
-        title: String,
+        title: String? = nil,
         desc: String? = nil,
-        deadline: Date?,
-        newMilestones: [Milestone]
+        deadline: Date? = nil,
+        newMilestones: [Milestone] = []
     ) -> Goal? {
         handleUseCase(errorMessage: "Erorr editing Goal", defaultValue: nil) {
             try editGoalUseCase.execute(

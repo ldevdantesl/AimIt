@@ -72,8 +72,11 @@ struct GoalDetailsView: View {
                     action: coordinateToEditGoal
                 )
             } else {
-                AIGoalMilestonesList(goalMilestones: $goal.milestones)
-                    .padding(.bottom, 20)
+                AIGoalMilestonesList(
+                    goalMilestones: $goal.milestones,
+                    isTogglingEnabled: !isDeadlinePassed
+                )
+                .padding(.bottom, 20)
             }
         }
         .background(Color.aiBackground)

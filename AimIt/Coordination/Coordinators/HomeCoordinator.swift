@@ -40,12 +40,12 @@ final class HomeCoordinator: ObservableObject, Coordinator {
                 AIQuoteSheet(quoteVM: quoteVM)
                     .presentationDetents(sheet.detents)
                     .presentationDragIndicator(.visible)
-            case .milestoneDetails(let milestone):
-                MilestoneDetailsSheet(milestone: milestone)
+            case .milestoneDetails(let milestone, let togglingEnabled):
+                MilestoneDetailsSheet(milestone: milestone, togglingEnabled: togglingEnabled)
                     .presentationDetents(sheet.detents)
                     .presentationDragIndicator(.visible)
             case .changeDeadline(let goal):
-                AIDatePicker(chosenDate: goal.deadline)
+                AIDatePicker(chosenDate: goal.deadline, for: goal.wrappedValue)
                     .presentationDetents(sheet.detents)
                     .presentationDragIndicator(.visible)
             }

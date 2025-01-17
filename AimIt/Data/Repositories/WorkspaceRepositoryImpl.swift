@@ -37,7 +37,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         return entities.map { WorkspaceMapper.toDomain($0) }
     }
     
-    func fetchCurrentWorkspace(by id: UUID) throws -> Workspace {
+    func fetchCurrentWorkspace(by id: UUID, sortSystem: (GoalEntity, GoalEntity) -> Bool) throws -> Workspace {
         let request: NSFetchRequest<WorkspaceEntity> = WorkspaceEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         let workspaces = try CDStack.viewContext.fetch(request)
@@ -49,7 +49,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         if let goalSet = workspace.goals as? Set<GoalEntity>, !goalSet.isEmpty {
             sortedGoals = goalSet
                 .filter { !$0.isCompleted }
-                .sorted { $0.deadline < $1.deadline }
+                .sorted(by: sortSystem)
                 .map { GoalMapper.mapToDomain(from: $0) }
         } else {
             sortedGoals = []

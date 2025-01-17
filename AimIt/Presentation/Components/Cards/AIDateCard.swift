@@ -52,9 +52,13 @@ struct AIDateCard: View {
                 datePassedAction: coordinateToEditDate
             )
             .padding(.bottom, 10)
+            .id(goal.deadline)
             
-            AIFooterNote(text: "If deadline is passed you won't be able to manipulate the goal unless you change the deadline. Tap to change it",
-                         condition: isDayPassed)
+            AIFooterNote(
+                text: "If deadline is passed you can't manipulate the goal unless you change the deadline. Tap to change it",
+                condition: isDayPassed
+            )
+            .onTapGesture(perform: coordinateToEditDate)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 20)
@@ -65,17 +69,15 @@ struct AIDateCard: View {
     }
     
     private var totalDays: Int {
-        // Calculate total number of days between creation and due date
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day], from: goal.createdAt, to: goal.deadline)
-        return max(components.day ?? 0, 1) // Ensure it's non-negative
+        return max(components.day ?? 0, 1)
     }
     
     private var daysGone: Int {
-        // Calculate how many days have passed since the creation date
         let calendar = Calendar.current
         let components = calendar.dateComponents([.day], from: goal.createdAt, to: Date())
-        return max(components.day ?? 0, 1) // Ensure it's non-negative
+        return max(components.day ?? 0, 1)
     }
     
 }

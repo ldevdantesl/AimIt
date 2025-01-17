@@ -94,7 +94,7 @@ struct CreateMilestoneSheet: View {
     
     private var deadline: Date? {
         if Calendar.current.isDateInToday(goalDeadline) {
-            return nil
+            return DeadlineFormatter.formatToTheEndOfTheDay(goalDeadline)
         } else if DeadlineFormatter.isDayPassed(goalDeadline) {
             return nil
         } else {

@@ -18,6 +18,12 @@ final class WorkspaceViewModel: ObservableObject {
     @Published var workspaces: [Workspace] = []
     @Published var errorMsg: String?
     
+    @Published var sortSystem: (GoalEntity, GoalEntity) -> Bool = { $0.deadline < $1.deadline }{
+        didSet {
+            fetchCurrentWorkspace()
+        }
+    }
+    
     private let currentWorkspaceKey = ConstantKeys.currentWorkspaceKey
     
     private let storageManager: StorageManager
@@ -68,7 +74,7 @@ final class WorkspaceViewModel: ObservableObject {
     
     func fetchCurrentWorkspace() {
         handleUseCase {
-            currentWorkspace = try fetchCurrentWorkspaceUseCase.execute(by: currentWorkspace.id)
+            currentWorkspace = try fetchCurrentWorkspaceUseCase.execute(by: currentWorkspace.id, sortSystem: sortSystem)
             fetchWorkspaces()
         }
     }

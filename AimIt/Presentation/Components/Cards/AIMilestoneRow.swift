@@ -19,6 +19,7 @@ struct AIMilestoneRow: View {
     private let rowType: RowType
     private let onDelete: ((Milestone) -> Void)?
     private let onTap: ((Binding<Milestone>) -> Void)?
+    private let isTogglingEnabled: Bool
     
     ///Initializer for removing. Used in a *AIMilestoneCreationList*
     ///Use when removing is option
@@ -31,18 +32,21 @@ struct AIMilestoneRow: View {
         self.rowType = .removing
         self.onDelete = onDelete
         self.onTap = onTap
+        self.isTogglingEnabled = false
     }
     
     ///Initializer for toggling. Used in a *AIGoalMilestoneList*
     ///Use when toggling is option
     init(
         milestone: Binding<Milestone>,
-        onTap: ((Binding<Milestone>) -> Void)? = nil
+        onTap: ((Binding<Milestone>) -> Void)? = nil,
+        isTogglingEnabled: Bool = true
     ){
         self._milestone = milestone
         self.rowType = .toggling
         self.onTap = onTap
         self.onDelete = nil
+        self.isTogglingEnabled = isTogglingEnabled
     }
     
     var body: some View {
@@ -93,6 +97,7 @@ struct AIMilestoneRow: View {
                                 .foregroundStyle(milestone.isCompleted ? .aiLabel : .aiSecondary2)
                         }
                 }
+                .disabled(!isTogglingEnabled)
             } else {
                 Button{
                     onDelete?(milestone)

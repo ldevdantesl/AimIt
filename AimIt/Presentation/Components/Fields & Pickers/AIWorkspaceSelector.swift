@@ -56,18 +56,26 @@ struct AIWorkspaceSelector: View {
                         }
                     }
                     
-                    Button {
-                        coordinator.present(sheet: .addWorkspace)
-                        isSelecting.toggle()
-                    } label: {
-                        Text("+ New Workspace")
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .font(.system(.headline, design: .rounded, weight: .semibold))
+                    VStack(alignment: .trailing){
+                        Button(action: createNewWorkspace) {
+                            Text("+ New Workspace")
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .font(.system(.headline, design: .rounded, weight: .semibold))
+                                .padding(.horizontal, 20)
+                        }
+                        .disabled(workspaceVM.workspaces.count > 2)
+                        
+                        AIFooterNote(text: "Maximum amount is 3", condition: workspaceVM.workspaces.count > 2)
                             .padding(.horizontal, 20)
                     }
                 }
             }
         }
+    }
+    
+    private func createNewWorkspace() {
+        coordinator.present(sheet: .addWorkspace)
+        isSelecting.toggle()
     }
 }
 

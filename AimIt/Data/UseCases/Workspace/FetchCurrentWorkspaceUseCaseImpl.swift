@@ -14,7 +14,7 @@ final class FetchCurrentWorkspaceUseCaseImpl: FetchCurrentWorkspaceUseCase {
         self.repository = repository
     }
     
-    func execute(by id: UUID) throws -> Workspace {
-        try repository.fetchCurrentWorkspace(by: id)
+    func execute(by id: UUID, sortSystem: (GoalEntity, GoalEntity) -> Bool) throws -> Workspace {
+        try repository.fetchCurrentWorkspace(by: id, sortSystem: sortSystem)
     }
 }

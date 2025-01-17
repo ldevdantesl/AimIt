@@ -44,11 +44,11 @@ struct AIMilestoneBreakdownChart: View {
                         .cornerRadius(5)
                     }
                     
-                    RuleMark(y: .value("Some Value", 10))
+                    RuleMark(y: .value("Some Value", 5))
                         .foregroundStyle(.aiBeige)
                         .lineStyle(.init(lineWidth: 1, dash: [2,2]))
-                        .annotation(alignment: .leading) {
-                            Text("Ideal Quantity")
+                        .annotation(alignment: .trailing) {
+                            Text("Optimal Quantity")
                                 .font(.system(.caption2, design: .rounded, weight: .light))
                                 .foregroundStyle(.aiSecondary2)
                         }

@@ -50,6 +50,7 @@ struct AICompletedAnalytics: View {
                     Gauge(value: completedGoals, in: 0...totalGoals) { } currentValueLabel: {
                         Text(Int(completedGoals).description)
                             .foregroundStyle(.aiLabel)
+                            .contentTransition(.numericText())
                     }
                     .gaugeStyle(AccessoryCircularCapacityGaugeStyle())
                     .frame(width: 120, height: 120)
@@ -73,6 +74,7 @@ struct AICompletedAnalytics: View {
                     Gauge(value: completedMilestones, in: 0...totalMilestones) { } currentValueLabel: {
                         Text(Int(completedMilestones).description)
                             .foregroundStyle(.aiLabel)
+                            .contentTransition(.numericText())
                     }
                     .gaugeStyle(AccessoryCircularCapacityGaugeStyle())
                     .frame(width: 120, height: 120)
@@ -96,18 +98,19 @@ struct AICompletedAnalytics: View {
             targetMilestones = fetchedMilestones
             
             Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { timer in
-                let step = 0.15
+                let stepGoals = 0.1 * Double(completedGoals + 1)
+                let stepMilestones = 0.1 * Double(completedMilestones + 1)
                 var goalsDone = false
                 var milestonesDone = false
                 
                 if completedGoals < targetGoals {
-                    completedGoals = min(completedGoals + step, targetGoals)
+                    completedGoals = min(completedGoals + stepGoals, targetGoals)
                 } else {
                     goalsDone = true
                 }
                 
                 if completedMilestones < targetMilestones {
-                    completedMilestones = min(completedMilestones + step, targetMilestones)
+                    completedMilestones = min(completedMilestones + stepMilestones, targetMilestones)
                 } else {
                     milestonesDone = true
                 }

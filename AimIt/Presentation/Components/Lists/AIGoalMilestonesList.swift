@@ -15,8 +15,11 @@ struct AIGoalMilestonesList: View {
     
     @Binding private var goalMilestones: [Milestone]
     
-    init(goalMilestones: Binding<[Milestone]>) {
+    private let isTogglingEnabled: Bool
+    
+    init(goalMilestones: Binding<[Milestone]>, isTogglingEnabled: Bool = true) {
         self._goalMilestones = goalMilestones
+        self.isTogglingEnabled = isTogglingEnabled
     }
     
     var body: some View {
@@ -62,7 +65,8 @@ struct AIGoalMilestonesList: View {
             ForEach($goalMilestones) { milestone in
                 AIMilestoneRow(
                     milestone: milestone,
-                    onTap: onMilestoneTap
+                    onTap: onMilestoneTap,
+                    isTogglingEnabled: isTogglingEnabled
                 )
             }
             
@@ -72,7 +76,7 @@ struct AIGoalMilestonesList: View {
     }
     
     private func onMilestoneTap(milestone: Binding<Milestone>) {
-        coordinator.present(sheet: .milestoneDetails(milestone))
+        coordinator.present(sheet: .milestoneDetails(milestone, isTogglingEnabled))
     }
     
     private var areAllMilestonesCompleted: Bool {

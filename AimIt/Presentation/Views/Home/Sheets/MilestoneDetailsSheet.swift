@@ -11,9 +11,11 @@ struct MilestoneDetailsSheet: View {
     @EnvironmentObject var milestoneVM: MilestoneViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     @Binding var milestone: Milestone
+    private let togglingEnabled: Bool
     
-    init(milestone: Binding<Milestone>) {
+    init(milestone: Binding<Milestone>, togglingEnabled: Bool) {
         self._milestone = milestone
+        self.togglingEnabled = togglingEnabled
     }
     
     var body: some View {
@@ -57,6 +59,7 @@ struct MilestoneDetailsSheet: View {
                         .frame(width: 25, height: 25)
                         .foregroundStyle(milestone.isCompleted ? Color.accentColor : Color.aiSecondary2)
                 }
+                .disabled(!togglingEnabled)
                 
                 Text(milestone.desc)
                     .foregroundStyle(.aiLabel)
@@ -84,7 +87,7 @@ struct MilestoneDetailsSheet: View {
 }
 
 #Preview {
-    MilestoneDetailsSheet(milestone: .constant(.sample))
+    MilestoneDetailsSheet(milestone: .constant(.sample), togglingEnabled: false)
         .environmentObject(DIContainer().makeMilestoneViewModel())
         .environmentObject(HomeCoordinator())
 }

@@ -10,10 +10,14 @@ import SwiftUI
 
 struct AIDatePicker: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var goalVM: GoalViewModel
     @Binding private var chosenDate: Date
-
-    init(chosenDate: Binding<Date>) {
+    
+    private let goal: Goal?
+    
+    init(chosenDate: Binding<Date>, for goal: Goal? = nil) {
         self._chosenDate = chosenDate
+        self.goal = goal
     }
     
     var body: some View {
@@ -28,6 +32,9 @@ struct AIDatePicker: View {
             .padding(.horizontal, 20)
             
             AIButton(title: "Done"){
+                if let goal = goal {
+                    goalVM.editGoal(goal, deadline: chosenDate)
+                }
                 dismiss()
             }
         }
@@ -36,5 +43,5 @@ struct AIDatePicker: View {
 }
 
 #Preview {
-    AIDatePicker(chosenDate: .constant(.now))
+    AIDatePicker(chosenDate: .constant(.now), for: .sample)
 }
