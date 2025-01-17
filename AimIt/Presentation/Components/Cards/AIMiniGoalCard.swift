@@ -37,13 +37,10 @@ struct AIMiniGoalCard: View {
                     .lineLimit(1)
                     .padding(.bottom, 20)
             }
-            
-            AIGoalProgressBar(goal: goal)
-                .padding(.bottom, 10)
         }
         .padding([.horizontal, .top], 20)
         .frame(maxWidth: .infinity)
-        .frame(maxHeight: 120)
+        .frame(maxHeight: 80)
         .background(Color.aiBeige, in: .rect(cornerRadius: 25))
         .padding(.horizontal)
         .shadow(color: .aiSecondary2.opacity(0.2), radius: 2, x: 0, y: 1)

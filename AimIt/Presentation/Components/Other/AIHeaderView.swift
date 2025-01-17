@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AIHeaderView: View {
+struct AIHeaderView<Content: View>: View {
     
     private let leftButton: AIButton
     private let rightButton: AIButton
@@ -15,17 +15,39 @@ struct AIHeaderView: View {
     private let title: String
     private let subtitle: String?
     
+    private let menuInit: Bool
+    
+    @ViewBuilder let menuContent: Content
+    
     init(
         leftButton: AIButton = AIButton(image: .empty),
         rightButton: AIButton = AIButton(image: .empty),
         title: String,
         subtitle: String? = nil
-    ) {
+    )  where Content == EmptyView {
         self.leftButton = leftButton
         self.rightButton = rightButton
     
         self.title = title
         self.subtitle = subtitle
+        self.menuInit = false
+        self.menuContent = EmptyView()
+    }
+    
+    init(
+        leftButton: AIButton = AIButton(image: .empty),
+        rightMenu: AIButton = AIButton(image: .empty),
+        title: String,
+        subtitle: String? = nil,
+        @ViewBuilder menuContent: () -> Content
+    ) {
+        self.leftButton = leftButton
+        self.rightButton = rightMenu
+    
+        self.title = title
+        self.subtitle = subtitle
+        self.menuInit = true
+        self.menuContent = menuContent()
     }
     
     var body: some View {
@@ -55,7 +77,15 @@ struct AIHeaderView: View {
             }
             
             Spacer()
-            rightButton
+            if menuInit {
+                Menu {
+                    menuContent
+                } label: {
+                    rightButton
+                }
+            } else {
+                rightButton
+            }
         }
         .padding(.trailing, rightButton.image == .empty ? 10 : 20)
         .padding(.leading, leftButton.image == .empty ? 10 : 20)
@@ -65,4 +95,6 @@ struct AIHeaderView: View {
 
 #Preview {
     AIHeaderView(rightButton: AIButton(image: .plus), title: "Good morning 🌥️", subtitle: "Buzurg Rahimzoda")
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.aiBackground)
 }

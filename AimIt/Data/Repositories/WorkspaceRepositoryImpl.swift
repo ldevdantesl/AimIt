@@ -48,6 +48,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
         let sortedGoals: [Goal]
         if let goalSet = workspace.goals as? Set<GoalEntity>, !goalSet.isEmpty {
             sortedGoals = goalSet
+                .filter { !$0.isCompleted }
                 .sorted { $0.deadline < $1.deadline }
                 .map { GoalMapper.mapToDomain(from: $0) }
         } else {

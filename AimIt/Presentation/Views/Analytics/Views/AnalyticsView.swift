@@ -12,50 +12,58 @@ struct AnalyticsView: View {
     @EnvironmentObject var tabCoordinator: TabCoordinator
     @EnvironmentObject var analyticsVM: AnalyticsViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
+
+    @State private var previousWorkspace: Workspace?
     
     var body: some View {
         NavigationStack(path: $coordinator.path){
             ScrollView{
                 VStack(spacing: 15){
-                    AIHeaderView(
-                        rightButton: AIButton(
-                            image: .ellipsis,
+                    AIHeaderView (
+                        rightMenu: AIButton(
+                            image: .chevronDown,
                             backColor: .accent,
-                            foreColor: .aiLabel,
-                            action: nil
+                            foreColor: .aiLabel
                         ),
-                        title: "Track your progress",
-                        subtitle: "Analytics"
+                        title: "Track your progress in",
+                        subtitle: workspaceVM.workspaceForAnalytics.title,
+                        menuContent: headerMenuView
                     )
                     
                     AIGrowthIllustration()
                     
                     AICompletedAnalytics(
                         analyticsVM: analyticsVM,
-                        in: workspaceVM.currentWorkspace
+                        in: workspaceVM.workspaceForAnalytics
                     )
                     
                     AIGoalBreakdownCharts(
                         analyticsVM: analyticsVM,
-                        workspace: workspaceVM.currentWorkspace
+                        workspace: workspaceVM.workspaceForAnalytics
                     )
                     
                     AICompletedGoalsAnalytics(
                         analyticsVM: analyticsVM,
-                        workspace: workspaceVM.currentWorkspace
+                        workspace: workspaceVM.workspaceForAnalytics
                     )
                     
                     AIMostPostpondedGoalAnalytics(
                         analyticsVM: analyticsVM,
-                        workspace: workspaceVM.currentWorkspace
+                        workspace: workspaceVM.workspaceForAnalytics
                     )
                     
                     AIMilestoneBreakdownChart(
                         analyticsVM: analyticsVM,
-                        workspace: workspaceVM.currentWorkspace
+                        workspace: workspaceVM.workspaceForAnalytics
+                    )
+                    
+                    AICompletedMilestoneAnalytics(
+                        analyticsVM: analyticsVM,
+                        workspace: workspaceVM.workspaceForAnalytics
                     )
                 }
                 .padding(.bottom, 20)
+                .id(workspaceVM.workspaceForAnalytics)
             }
             .background(Color.aiBackground)
             .sheet(item: $coordinator.sheet) { sheet in
@@ -69,11 +77,41 @@ struct AnalyticsView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    FloatingTabBar(action: {})
-                        .frame(maxWidth: .infinity)
+                    FloatingTabBar(menuContent: specialButtonView)
                 }
             }
             .toolbarBackground(.clear, for: .bottomBar)
+        }
+    }
+    
+    @ViewBuilder
+    private func headerMenuView() -> some View {
+        ForEach(workspaceVM.workspaces) { workspace in
+            Button{
+                withAnimation {
+                    self.previousWorkspace = workspaceVM.workspaceForAnalytics
+                    workspaceVM.workspaceForAnalytics = workspace
+                }
+            } label:{
+                Text(workspace.title)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func specialButtonView() -> some View {
+        Label("Previous Workspace", systemImage: "chevron.left")
+        
+        if let previousWorkspace {
+            Button{
+                withAnimation {
+                    let prevWork = previousWorkspace
+                    self.previousWorkspace = workspaceVM.workspaceForAnalytics
+                    workspaceVM.workspaceForAnalytics = prevWork
+                }
+            } label: {
+                Text(previousWorkspace.title)
+            }
         }
     }
 }

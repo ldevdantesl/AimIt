@@ -16,7 +16,7 @@ struct AIGrowthIllustration: View {
                 .scaledToFit()
                 .frame(width: 100, height: 80)
             
-            Text("Analytics, even on a small scale, can be a powerful tool for achieving specific aims.")
+            Text("Analytics, even on a small scale, can be a powerful tool for achieving incredible aims.")
                 .font(.system(.callout, design: .rounded, weight: .light))
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .padding(.trailing, 10)

@@ -7,13 +7,25 @@
 
 import SwiftUI
 
-struct FloatingTabBar: View {
+struct FloatingTabBar<Content: View>: View {
     @EnvironmentObject var tabCoordinator: TabCoordinator
+    @ViewBuilder var menuContent: Content
     
-    let action: (() -> Void)?
-    
-    init(action: (() -> Void)? = nil) {
+    private let action: (() -> Void)?
+    private let menuInit: Bool
+
+    init(action: (() -> Void)? = nil) where Content == EmptyView {
         self.action = action
+        self.menuContent = EmptyView()
+        self.menuInit = false
+    }
+    
+    init(
+        @ViewBuilder menuContent: () -> Content
+    ) {
+        self.action = nil
+        self.menuContent = menuContent()
+        self.menuInit = true
     }
     
     private let allTabs = CustomTab.allCases
@@ -47,7 +59,7 @@ struct FloatingTabBar: View {
                                 .foregroundStyle(.aiLabel)
                             
                             Text(tab.title)
-                                .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                                .font(.system(.footnote, design: .rounded, weight: .semibold))
                                 .foregroundStyle(.aiLabel)
                                 .lineLimit(1)
                         }
@@ -68,14 +80,28 @@ struct FloatingTabBar: View {
             
             Spacer(minLength: 15)
             
-            Button(action: { action?() }){
-                Image(systemName: tabCoordinator.selectedTab.specialButton)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                    .foregroundStyle(.aiLabel)
-                    .padding(19)
-                    .background(Color.accentColor, in: .circle)
+            if menuInit {
+                Menu {
+                    menuContent
+                } label: {
+                    Image(systemName: tabCoordinator.selectedTab.specialButton)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                        .foregroundStyle(.aiLabel)
+                        .padding(19)
+                        .background(Color.accentColor, in: .circle)
+                }
+            } else {
+                Button(action: { action?() }){
+                    Image(systemName: tabCoordinator.selectedTab.specialButton)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                        .foregroundStyle(.aiLabel)
+                        .padding(19)
+                        .background(Color.accentColor, in: .circle)
+                }
             }
         }
         .shadow(color: .aiBlack.opacity(0.4), radius: 5, x: 0, y: 5)

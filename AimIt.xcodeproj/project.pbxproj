@@ -189,12 +189,12 @@
 		DAB906CF2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906CE2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift */; };
 		DAB906D12D39C41F00269935 /* AnalyticsFetchMostPostpondedGoalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906D02D39C41F00269935 /* AnalyticsFetchMostPostpondedGoalUseCase.swift */; };
 		DAB906D32D39C81A00269935 /* AnalyticsFetchMostPostpondedGoalUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906D22D39C81A00269935 /* AnalyticsFetchMostPostpondedGoalUseCaseImpl.swift */; };
+		DAB906D52D39D08A00269935 /* AICompletedMilestoneAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906D42D39D08A00269935 /* AICompletedMilestoneAnalytics.swift */; };
 		DADBE5802D2788390024D18B /* FloatingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE57F2D2788390024D18B /* FloatingTabBar.swift */; };
 		DADBE5822D2796870024D18B /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5812D2796870024D18B /* TabCoordinator.swift */; };
 		DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5842D2796D30024D18B /* CustomTab.swift */; };
 		DADBE5872D279B1D0024D18B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5862D279B1D0024D18B /* Coordinator.swift */; };
 		DADBE5892D279F380024D18B /* CoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5882D279F380024D18B /* CoreView.swift */; };
-		DADBE58C2D279FF80024D18B /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE58B2D279FF80024D18B /* AnalyticsView.swift */; };
 		DADBE58E2D27A0940024D18B /* AnalyticsSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE58D2D27A0940024D18B /* AnalyticsSheets.swift */; };
 		DADBE5902D27A0A30024D18B /* SettingsSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE58F2D27A0A30024D18B /* SettingsSheets.swift */; };
 		DADBE5922D27A0C30024D18B /* AnalyticsScreenCovers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5912D27A0C30024D18B /* AnalyticsScreenCovers.swift */; };
@@ -404,12 +404,12 @@
 		DAB906CE2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMostPostpondedGoalAnalytics.swift; sourceTree = "<group>"; };
 		DAB906D02D39C41F00269935 /* AnalyticsFetchMostPostpondedGoalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchMostPostpondedGoalUseCase.swift; sourceTree = "<group>"; };
 		DAB906D22D39C81A00269935 /* AnalyticsFetchMostPostpondedGoalUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchMostPostpondedGoalUseCaseImpl.swift; sourceTree = "<group>"; };
+		DAB906D42D39D08A00269935 /* AICompletedMilestoneAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICompletedMilestoneAnalytics.swift; sourceTree = "<group>"; };
 		DADBE57F2D2788390024D18B /* FloatingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBar.swift; sourceTree = "<group>"; };
 		DADBE5812D2796870024D18B /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		DADBE5842D2796D30024D18B /* CustomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTab.swift; sourceTree = "<group>"; };
 		DADBE5862D279B1D0024D18B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DADBE5882D279F380024D18B /* CoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreView.swift; sourceTree = "<group>"; };
-		DADBE58B2D279FF80024D18B /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		DADBE58D2D27A0940024D18B /* AnalyticsSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsSheets.swift; sourceTree = "<group>"; };
 		DADBE58F2D27A0A30024D18B /* SettingsSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSheets.swift; sourceTree = "<group>"; };
 		DADBE5912D27A0C30024D18B /* AnalyticsScreenCovers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScreenCovers.swift; sourceTree = "<group>"; };
@@ -433,6 +433,19 @@
 		DADBE5C72D30FDCB0024D18B /* FetchGoalByIDUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGoalByIDUseCase.swift; sourceTree = "<group>"; };
 		DADBE5C92D30FDEC0024D18B /* FetchGoalByIDUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGoalByIDUseCaseImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DAB906E42D39E0D900269935 /* Sheets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		DAB906E52D39E0E800269935 /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DA9E0D392D011CBF00E80B34 /* Frameworks */ = {
@@ -1182,6 +1195,7 @@
 				DAB906852D3792C400269935 /* AIUncompletedAnalytics.swift */,
 				DAB906CA2D38F36300269935 /* AICompletedGoalsAnalytics.swift */,
 				DAB906CE2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift */,
+				DAB906D42D39D08A00269935 /* AICompletedMilestoneAnalytics.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -1218,7 +1232,8 @@
 		DADBE58A2D279FEF0024D18B /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				DADBE58B2D279FF80024D18B /* AnalyticsView.swift */,
+				DAB906E52D39E0E800269935 /* Views */,
+				DAB906E42D39E0D900269935 /* Sheets */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -1237,6 +1252,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DAB906E42D39E0D900269935 /* Sheets */,
+				DAB906E52D39E0E800269935 /* Views */,
 			);
 			name = AimIt;
 			packageProductDependencies = (
@@ -1407,7 +1426,6 @@
 				DA51901D2D1E06FB00A5E896 /* AddMilestoneUseCase.swift in Sources */,
 				DA51901E2D1E06FB00A5E896 /* DeleteMilestoneUseCase.swift in Sources */,
 				DADBE5C42D30E0690024D18B /* FetchTodayMilestonesForWorkspaceUseCaseImpl.swift in Sources */,
-				DADBE58C2D279FF80024D18B /* AnalyticsView.swift in Sources */,
 				DA42990B2D3610ED0046ABBA /* AIHaptics.swift in Sources */,
 				DA51901F2D1E06FB00A5E896 /* FetchAllMilestonesUseCase.swift in Sources */,
 				DA5190202D1E06FB00A5E896 /* FetchMilestonesForGoalUseCase.swift in Sources */,
@@ -1484,6 +1502,7 @@
 				DAB906D12D39C41F00269935 /* AnalyticsFetchMostPostpondedGoalUseCase.swift in Sources */,
 				DA51905F2D1E07BF00A5E896 /* QuoteViewModel.swift in Sources */,
 				DA51904A2D1E06FB00A5E896 /* LaunchAddWorkspaceView.swift in Sources */,
+				DAB906D52D39D08A00269935 /* AICompletedMilestoneAnalytics.swift in Sources */,
 				DADBE5A82D27C60E0024D18B /* UnprioritizeGoalUseCaseImpl.swift in Sources */,
 				DAB906822D3765A000269935 /* AICompletedAnalytics.swift in Sources */,
 				DA51904B2D1E06FB00A5E896 /* LaunchIntroView.swift in Sources */,

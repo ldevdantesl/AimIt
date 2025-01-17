@@ -18,6 +18,7 @@ struct AIButton: View {
         case empty
         case ava
         case edit
+        case chevronDown
     }
 
     let title: String?
@@ -82,7 +83,7 @@ struct AIButton: View {
                         makeImage()
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 25, height: 20)
+                            .frame(width: image == .chevronDown ? 20 : 25, height: 20)
                             .zIndex(2)
                             .foregroundStyle(foreColor)
                     }
@@ -111,6 +112,8 @@ struct AIButton: View {
             return Image(systemName: "person.fill")
         case .edit:
             return Image(systemName: "pencil")
+        case .chevronDown:
+            return Image(systemName: "chevron.down")
         }
     }
 }

@@ -6,9 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum AnalyticsSheets: Identifiable {
-    case some 
+    case selectWorkspace
     
     var id: UUID { UUID() }
+    
+    var detents: Set<PresentationDetent>  {
+        switch self {
+        case .selectWorkspace:
+            return [.medium]
+        }
+    }
 }

@@ -41,15 +41,17 @@ struct AICompletedGoalsAnalytics: View {
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
                     .frame(maxWidth: .infinity)
-                    .frame(height: 120)
+                    .frame(height: 80)
                     .overlay(alignment: .trailing) {
-                        Button(action: increaseIndex){
-                            Image(systemName: "chevron.right.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 25, height: 25)
-                                .opacity(selectedIndex == 0 ? 0.7 : 0)
-                                .padding(.trailing, 10)
+                        if completedGoalsWithinMonth.count > 1 {
+                            Button(action: increaseIndex){
+                                Image(systemName: "chevron.right.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                    .opacity(selectedIndex == 0 ? 0.7 : 0)
+                                    .padding(.trailing, 10)
+                            }
                         }
                     }
                 } else {

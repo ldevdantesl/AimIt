@@ -13,6 +13,8 @@ final class WorkspaceViewModel: ObservableObject {
         didSet { updateCurrentWorkspace(); fetchWorkspaces() }
     }
     
+    @Published var workspaceForAnalytics: Workspace
+    
     @Published var workspaces: [Workspace] = []
     @Published var errorMsg: String?
     
@@ -47,6 +49,7 @@ final class WorkspaceViewModel: ObservableObject {
         self.currentWorkspace = storageManager.getValue(for: currentWorkspaceKey) ?? Workspace(id: UUID(), title: "Goals", goals: [])
         self.prioritizeGoalUseCase = prioritizeGoalUseCase
         self.unprioritizeGoalUseCase = unprioritizeGoalUseCase
+        self.workspaceForAnalytics = storageManager.getValue(for: currentWorkspaceKey) ?? Workspace(id: UUID(), title: "Goals", goals: [])
         fetchWorkspaces()
     }
     
