@@ -36,7 +36,7 @@ struct AIGoalBreakdownCharts: View {
                         x: .value("Month", data.date, unit: .month),
                         y: .value("Total Goals", data.count)
                     )
-                    .foregroundStyle(Color.accentColor)
+                    .foregroundStyle(Color.accentColor.gradient)
                     .cornerRadius(5)
                 }
             }
@@ -73,7 +73,7 @@ struct AIGoalBreakdownCharts: View {
                             x: .value("Month", data.date, unit: .month),
                             y: .value("Total Goals", data.count)
                         )
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accentColor.gradient)
                         .cornerRadius(5)
                         
                         RuleMark(y: .value("Preferred Value", 1))

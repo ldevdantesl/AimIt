@@ -55,7 +55,7 @@ struct AICompletedAnalytics: View {
                     .gaugeStyle(AccessoryCircularCapacityGaugeStyle())
                     .frame(width: 120, height: 120)
                     .scaleEffect(2)
-                    .tint(.accent)
+                    .tint(Color.accent.gradient)
                 }
                 
                 Spacer()
@@ -79,7 +79,7 @@ struct AICompletedAnalytics: View {
                     .gaugeStyle(AccessoryCircularCapacityGaugeStyle())
                     .frame(width: 120, height: 120)
                     .scaleEffect(2)
-                    .tint(.accent)
+                    .tint(Color.accent.gradient)
                 }
             }
             .padding(.horizontal, 20)
