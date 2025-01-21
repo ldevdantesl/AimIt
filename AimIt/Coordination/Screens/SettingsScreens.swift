@@ -8,9 +8,5 @@
 import Foundation
 
 enum SettingsScreens: Hashable {
-    case account
-    case appearance
-    case storage
-    case privacy
-    case terms
+    case completedGoalsAndMilestones
 }

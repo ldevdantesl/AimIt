@@ -17,14 +17,17 @@ struct AIHeaderView<Content: View>: View {
     
     private let menuInit: Bool
     
+    private let swappedTitleAndSubtitle: Bool
+    
     @ViewBuilder let menuContent: Content
     
     init(
         leftButton: AIButton = AIButton(image: .empty),
         rightButton: AIButton = AIButton(image: .empty),
         title: String,
-        subtitle: String? = nil
-    )  where Content == EmptyView {
+        subtitle: String? = nil,
+        swappedTitleAndSubtitle: Bool = false
+    ) where Content == EmptyView {
         self.leftButton = leftButton
         self.rightButton = rightButton
     
@@ -32,6 +35,7 @@ struct AIHeaderView<Content: View>: View {
         self.subtitle = subtitle
         self.menuInit = false
         self.menuContent = EmptyView()
+        self.swappedTitleAndSubtitle = swappedTitleAndSubtitle
     }
     
     init(
@@ -39,6 +43,7 @@ struct AIHeaderView<Content: View>: View {
         rightMenu: AIButton = AIButton(image: .empty),
         title: String,
         subtitle: String? = nil,
+        swappedTitleAndSubtitle: Bool = false,
         @ViewBuilder menuContent: () -> Content
     ) {
         self.leftButton = leftButton
@@ -48,6 +53,7 @@ struct AIHeaderView<Content: View>: View {
         self.subtitle = subtitle
         self.menuInit = true
         self.menuContent = menuContent()
+        self.swappedTitleAndSubtitle = swappedTitleAndSubtitle
     }
     
     var body: some View {
@@ -59,17 +65,27 @@ struct AIHeaderView<Content: View>: View {
             
             if let subtitle = subtitle {
                 VStack(alignment: leftButton.image == .empty ? .leading : .center) {
+                    if swappedTitleAndSubtitle {
+                        Text(subtitle)
+                            .font(.system(leftButton.image == .empty ? .title3 : .headline, design: .rounded, weight: .semibold))
+                            .foregroundStyle(.aiLabel)
+                            .lineLimit(1)
+                            .contentTransition(.numericText())
+                    }
+                    
                     Text(title)
                         .font(.system(.subheadline, design: .rounded, weight: .light))
                         .foregroundStyle(.aiSecondary2)
                         .lineLimit(1)
                         .contentTransition(.numericText())
                     
-                    Text(subtitle)
-                        .font(.system(leftButton.image == .empty ? .title3 : .headline, design: .rounded, weight: .semibold))
-                        .foregroundStyle(.aiLabel)
-                        .lineLimit(1)
-                        .contentTransition(.numericText())
+                    if !swappedTitleAndSubtitle {
+                        Text(subtitle)
+                            .font(.system(leftButton.image == .empty ? .title3 : .headline, design: .rounded, weight: .semibold))
+                            .foregroundStyle(.aiLabel)
+                            .lineLimit(1)
+                            .contentTransition(.numericText())
+                    }
                 }
                 .padding(.horizontal, 10)
             } else {
@@ -96,7 +112,7 @@ struct AIHeaderView<Content: View>: View {
 }
 
 #Preview {
-    AIHeaderView(rightButton: AIButton(image: .plus), title: "Good morning 🌥️", subtitle: "Buzurg Rahimzoda")
+    AIHeaderView(rightButton: AIButton(image: .plus), title: "Good morning 🌥️", subtitle: "Buzurg Rahimzoda", swappedTitleAndSubtitle: true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
 }

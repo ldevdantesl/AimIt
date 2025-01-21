@@ -13,11 +13,27 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack(path: $coordinator.path){
             ScrollView{
-                Text("Settings View")
-                    .foregroundStyle(.aiLabel)
+                VStack(spacing: 10){
+                    AIHeaderView(
+                        title: "Personalize Your Experience",
+                        subtitle: "Settings",
+                        swappedTitleAndSubtitle: true
+                    )
+                    
+                    AIUserSettings()
+                    
+                    AISettingsContent()
+                }
+                .padding(.bottom, 20)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.aiBackground)
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    FloatingTabBar()
+                }
+            }
+            .toolbarBackground(.clear, for: .bottomBar)
             .sheet(item: $coordinator.sheet) { sheet in
                 coordinator.build(sheet: sheet)
             }
@@ -27,9 +43,6 @@ struct SettingsView: View {
             .navigationDestination(for: SettingsScreens.self) { screen in
                 coordinator.build(screen: screen)
             }
-            .safeAreaInset(edge: .bottom) {
-                FloatingTabBar()
-            }
         }
     }
 }
@@ -37,4 +50,5 @@ struct SettingsView: View {
 #Preview {
     SettingsView()
         .environmentObject(SettingsCoordinator())
+        .environmentObject(TabCoordinator())
 }

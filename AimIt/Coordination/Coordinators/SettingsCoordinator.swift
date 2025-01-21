@@ -22,12 +22,21 @@ final class SettingsCoordinator: ObservableObject, Coordinator {
     
     @ViewBuilder
     func build(screen: SettingsScreens) -> some View {
-        
+        switch screen {
+        case .completedGoalsAndMilestones:
+            CompletedGoalsAndMilestonesScreen()
+        }
     }
     
     @ViewBuilder
     func build(sheet: SettingsSheets) -> some View {
-        
+        switch sheet {
+        case .totalWorkspaces:
+            TotalWorkspacesSettingsSheet()
+                .presentationDetents(sheet.detents)
+                .presentationDragIndicator(.visible)
+                .presentationBackground(Color.aiBackground)
+        }
     }
     
     @ViewBuilder
