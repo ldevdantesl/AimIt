@@ -15,12 +15,14 @@ enum ImageNames {
     static let noMilestones = "NoMilestones"
     static let noCompletedGoals = "NoCompletedGoals"
     static let noPostpondedGoal = "NoPostpondedGoal"
+    static let noCompleted = "NoCompleted"
     
     // MARK: - INTRO & SPLASH
     static let intro1 = "Intro1"
     static let splashImage = "SplashImage"
     static let pin = "pin"
     static let clock = "clock"
+    static let deadlinePassed = "DeadlinePassed"
     
     // MARK: - OTHER
     static let growth = "growth"

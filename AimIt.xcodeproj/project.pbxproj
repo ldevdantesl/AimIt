@@ -195,6 +195,7 @@
 		DAB906FE2D3F5E1900269935 /* AIUserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906FD2D3F5E1900269935 /* AIUserSettings.swift */; };
 		DAB907012D3F649B00269935 /* TotalWorkspacesSettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB907002D3F649B00269935 /* TotalWorkspacesSettingsSheet.swift */; };
 		DAB907042D3F71A000269935 /* CompletedGoalsAndMilestonesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB907032D3F71A000269935 /* CompletedGoalsAndMilestonesScreen.swift */; };
+		DAB907062D3F971A00269935 /* AIGoalOrMilestoneSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB907052D3F971A00269935 /* AIGoalOrMilestoneSelector.swift */; };
 		DADBE5802D2788390024D18B /* FloatingTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE57F2D2788390024D18B /* FloatingTabBar.swift */; };
 		DADBE5822D2796870024D18B /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5812D2796870024D18B /* TabCoordinator.swift */; };
 		DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBE5842D2796D30024D18B /* CustomTab.swift */; };
@@ -415,6 +416,7 @@
 		DAB906FD2D3F5E1900269935 /* AIUserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIUserSettings.swift; sourceTree = "<group>"; };
 		DAB907002D3F649B00269935 /* TotalWorkspacesSettingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalWorkspacesSettingsSheet.swift; sourceTree = "<group>"; };
 		DAB907032D3F71A000269935 /* CompletedGoalsAndMilestonesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedGoalsAndMilestonesScreen.swift; sourceTree = "<group>"; };
+		DAB907052D3F971A00269935 /* AIGoalOrMilestoneSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGoalOrMilestoneSelector.swift; sourceTree = "<group>"; };
 		DADBE57F2D2788390024D18B /* FloatingTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabBar.swift; sourceTree = "<group>"; };
 		DADBE5812D2796870024D18B /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		DADBE5842D2796D30024D18B /* CustomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTab.swift; sourceTree = "<group>"; };
@@ -825,6 +827,7 @@
 				DA518FAC2D1E06FB00A5E896 /* AIWorkspaceSelector.swift */,
 				DADBE5AB2D2E51450024D18B /* AIOptionalDateField.swift */,
 				DA42990C2D361F530046ABBA /* AIDatePicker.swift */,
+				DAB907052D3F971A00269935 /* AIGoalOrMilestoneSelector.swift */,
 			);
 			path = "Fields & Pickers";
 			sourceTree = "<group>";
@@ -1482,6 +1485,7 @@
 				DA5190212D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCase.swift in Sources */,
 				DA5190222D1E06FB00A5E896 /* UpdateMilestoneUseCase.swift in Sources */,
 				DA5DC0252D26554F00BE895B /* FieldChecker.swift in Sources */,
+				DAB907062D3F971A00269935 /* AIGoalOrMilestoneSelector.swift in Sources */,
 				DA5190232D1E06FB00A5E896 /* GetSettingsUseCase.swift in Sources */,
 				DA5190242D1E06FB00A5E896 /* RemoveSettingUseCase.swift in Sources */,
 				DA5190252D1E06FB00A5E896 /* SetSettingUseCase.swift in Sources */,

@@ -52,7 +52,10 @@ struct CreateMilestoneView: View {
                 .background(Color.aiLabel)
                 .padding(.vertical, 10)
             
-            AIMilestoneCreationList(milestones: $milestones)
+            AIMilestoneCreationList(
+                milestones: $milestones,
+                createMilestoneSheet: $onSheet
+            )
         }
         .sheet(isPresented: $onSheet) {
             if let goal = goal {

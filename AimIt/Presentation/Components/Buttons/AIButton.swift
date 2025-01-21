@@ -19,6 +19,7 @@ struct AIButton: View {
         case ava
         case edit
         case chevronDown
+        case briefCase
     }
 
     let title: String?
@@ -97,24 +98,16 @@ struct AIButton: View {
     
     private func makeImage() -> Image {
         switch image {
-        case .back:
-            return Image(systemName: "chevron.left")
-        case .ellipsis:
-            return Image(systemName: "ellipsis")
-        case .bell:
-            return Image(systemName: "bell")
-        case .plus:
-            return Image(systemName: "plus")
-        case .xmark:
-            return Image(systemName: "xmark")
-        case .empty:
-            return Image(systemName: "circle.fill")
-        case .ava:
-            return Image(systemName: "person.fill")
-        case .edit:
-            return Image(systemName: "pencil")
-        case .chevronDown:
-            return Image(systemName: "chevron.down")
+        case .back:         Image(systemName: "chevron.left")
+        case .ellipsis:     Image(systemName: "ellipsis")
+        case .bell:         Image(systemName: "bell")
+        case .plus:         Image(systemName: "plus")
+        case .xmark:        Image(systemName: "xmark")
+        case .empty:        Image(systemName: "circle.fill")
+        case .ava:          Image(systemName: "person.fill")
+        case .edit:         Image(systemName: "pencil")
+        case .chevronDown:  Image(systemName: "chevron.down")
+        case .briefCase:    Image(systemName: "briefcase.fill")
         }
     }
 }

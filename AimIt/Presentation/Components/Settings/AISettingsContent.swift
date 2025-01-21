@@ -26,7 +26,7 @@ struct AISettingsContent: View {
                 AISettingsRow(
                     title: "Completed",
                     image: "checkmark.circle.fill",
-                    pushAction: { coordinator.push(to: SettingsScreens)}
+                    pushAction: { coordinator.push(to: .completedGoalsAndMilestones)}
                 )
             }
             

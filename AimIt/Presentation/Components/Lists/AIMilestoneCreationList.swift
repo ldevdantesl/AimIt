@@ -10,6 +10,7 @@ import SwiftUI
 struct AIMilestoneCreationList: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @Binding var milestones: [Milestone]
+    @Binding var createMilestoneSheet: Bool
     
     var body: some View {
         if milestones.isEmpty {
@@ -18,7 +19,7 @@ struct AIMilestoneCreationList: View {
                 title: "No Milestones",
                 verticalPadding: 40,
                 subtitle: "Tap to add new milestone to you goal",
-                action: {}
+                action: { createMilestoneSheet.toggle() }
             )
         } else {
             LazyVStack(spacing: 12){
@@ -39,7 +40,7 @@ struct AIMilestoneCreationList: View {
 }
 
 #Preview {
-    AIMilestoneCreationList(milestones: .constant(Milestone.sampleMilestones))
+    AIMilestoneCreationList(milestones: .constant(Milestone.sampleMilestones), createMilestoneSheet: .constant(false))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
         .environmentObject(HomeCoordinator())

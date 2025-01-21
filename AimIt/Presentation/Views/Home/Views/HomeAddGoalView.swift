@@ -24,8 +24,12 @@ struct HomeAddGoalView: View {
         ScrollView {
             VStack(spacing: 20){
                 AIHeaderView(
-                    leftButton: AIButton(image: .back, action: coordinator.goBack),
-                    rightButton: AIButton(image: .ellipsis),
+                    rightButton: AIButton(
+                        image: .xmark,
+                        backColor: .aiSecondary,
+                        foreColor: .aiLabel,
+                        action: coordinator.goBack
+                    ),
                     title: "New Goal",
                     subtitle: "For \(workspaceVM.currentWorkspace.title)"
                 )
