@@ -10,7 +10,7 @@ import Combine
 
 final class WorkspaceViewModel: ObservableObject {
     @Published var currentWorkspace: Workspace {
-        didSet { updateCurrentWorkspace(); fetchWorkspaces() }
+        didSet { updateCurrentWorkspace(); fetchWorkspaces()}
     }
     
     @Published var workspaceForAnalytics: Workspace
@@ -75,7 +75,6 @@ final class WorkspaceViewModel: ObservableObject {
     func fetchCurrentWorkspace() {
         handleUseCase {
             currentWorkspace = try fetchCurrentWorkspaceUseCase.execute(by: currentWorkspace.id, sortSystem: sortSystem)
-            fetchWorkspaces()
         }
     }
     

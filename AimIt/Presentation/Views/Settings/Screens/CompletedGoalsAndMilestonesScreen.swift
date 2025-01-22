@@ -41,25 +41,48 @@ struct CompletedGoalsAndMilestonesScreen: View {
                 
                 AIGoalOrMilestoneSelector(isGoal: $isGoal)
                 
-                if goals.isEmpty {
-                    NotFoundView(
-                        imageName: ImageNames.noCompleted,
-                        title: "No completed \(isGoal ? "Goals" : "Milestones")",
-                        verticalPadding: 100,
-                        subtitle: "Complete any \(isGoal ? "Goal" : "Milestone") to see it here.",
-                        action: nil
-                    )
-                    .contentTransition(.numericText())
-                } else { }
+                if isGoal {
+                    if goals.isEmpty {
+                        NotFoundView(
+                            imageName: ImageNames.noCompleted,
+                            title: "No completed Goals",
+                            verticalPadding: 100,
+                            subtitle: "Complete any Goal to see it here.",
+                            action: nil
+                        )
+                    } else {
+                        ForEach(goals) { goal in
+                            AICompletedGoalCard(goal: goal)
+                        }
+                    }
+                } else {
+                    if milestones.isEmpty {
+                        NotFoundView(
+                            imageName: ImageNames.noCompleted,
+                            title: "No completed Milestones",
+                            verticalPadding: 100,
+                            subtitle: "Complete any Milestone to see it here.",
+                            action: nil
+                        )
+                    } else {
+                        ForEach(milestones) { milestone in
+                            AICompletedMilestoneCard(milestone: milestone)
+                                .padding(.horizontal, 20)
+                        }
+                    }
+                }
             }
         }
-        .onAppear {
-            withAnimation {
-                selectedWorkspace = workspaceVM.currentWorkspace
-            }
-        }
+        .onAppear(perform: setup)
         .background(Color.aiBackground)
         .navigationBarBackButtonHidden()
+        .onChange(of: selectedWorkspace) { newValue in
+            withAnimation {
+                self.selectedWorkspace = newValue
+                self.goals = goalVM.fetchCompletedGoalsForWorkspace(newValue)
+                self.milestones = milestoneVM.fetchCompletedMilestonesForWorkspace(newValue)
+            }
+        }
     }
     
     @ViewBuilder
@@ -74,6 +97,14 @@ struct CompletedGoalsAndMilestonesScreen: View {
                     Text(workspace.title)
                 }
             }
+        }
+    }
+    
+    private func setup() {
+        withAnimation {
+            self.selectedWorkspace = workspaceVM.currentWorkspace
+            self.goals = goalVM.fetchCompletedGoalsForWorkspace(selectedWorkspace)
+            self.milestones = milestoneVM.fetchCompletedMilestonesForWorkspace(selectedWorkspace)
         }
     }
 }

@@ -28,7 +28,7 @@ struct AIMostPostpondedGoalAnalytics: View {
             
             if let goal = mostPostpondedGoal {
                 HStack{
-                    AIMiniGoalCard(goal: goal)
+                    AICompletedGoalCard(goal: goal)
                     
                     Text(goal.deadlineChanges.description)
                         .font(.system(size: 70, weight: .semibold, design: .rounded))

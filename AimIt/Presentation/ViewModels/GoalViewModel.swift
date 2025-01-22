@@ -18,6 +18,7 @@ final class GoalViewModel: ObservableObject {
     private let fetchGoalsUseCase: FetchGoalsUseCase
     private let fetchGoalByIDUseCase: FetchGoalByIDUseCase
     private let fetchGoalsByPromptUseCase: FetchGoalsByPromptUseCase
+    private let fetchCompletedGoalsForWorkspaceUseCase: FetchCompletedGoalsForWorkspaceUseCase
     private let toggleCompletionGoalUseCase: ToggleCompletionGoalUseCase
     
     init(
@@ -27,6 +28,7 @@ final class GoalViewModel: ObservableObject {
         fetchGoalsUseCase: FetchGoalsUseCase,
         fetchGoalByIDUseCase: FetchGoalByIDUseCase,
         fetchGoalsByPromptUseCase: FetchGoalsByPromptUseCase,
+        fetchCompletedGoalsForWorkspaceUseCase: FetchCompletedGoalsForWorkspaceUseCase,
         toggleCompletionGoalUseCase: ToggleCompletionGoalUseCase
     ) {
         self.addGoalUseCase = addGoalUseCase
@@ -35,6 +37,7 @@ final class GoalViewModel: ObservableObject {
         self.fetchGoalsUseCase = fetchGoalsUseCase
         self.fetchGoalByIDUseCase = fetchGoalByIDUseCase
         self.fetchGoalsByPromptUseCase = fetchGoalsByPromptUseCase
+        self.fetchCompletedGoalsForWorkspaceUseCase = fetchCompletedGoalsForWorkspaceUseCase
         self.toggleCompletionGoalUseCase = toggleCompletionGoalUseCase
     }
     
@@ -52,6 +55,12 @@ final class GoalViewModel: ObservableObject {
     func fetchGoalByPrompt(with prompt: String, in workspace: Workspace) -> [Goal] {
         handleUseCase(errorMessage: "Error fetching goal by prompt", defaultValue: []) {
             try fetchGoalsByPromptUseCase.execute(with: prompt, in: workspace)
+        }
+    }
+    
+    func fetchCompletedGoalsForWorkspace(_ workspace: Workspace) -> [Goal] {
+        handleUseCase(errorMessage: "Error fetching completed goals for workspace", defaultValue: []) {
+            try fetchCompletedGoalsForWorkspaceUseCase.execute(workspace)
         }
     }
     

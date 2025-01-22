@@ -1,20 +1,17 @@
 //
-//  AIMilestoneCard.swift
+//  AICompletedMilestoneCard.swift
 //  AimIt
 //
-//  Created by Buzurg Rakhimzoda on 10.01.2025.
+//  Created by Buzurg Rakhimzoda on 21.01.2025.
 //
 
 import SwiftUI
 
-struct AIMilestoneCard: View {
-    @EnvironmentObject var workspaceVM: WorkspaceViewModel
-    @EnvironmentObject var milestoneVM: MilestoneViewModel
+struct AICompletedMilestoneCard: View {
     @EnvironmentObject var goalVM: GoalViewModel
-    
     @State private var milestoneGoal: Goal? = nil
     
-    @State private var milestone: Milestone
+    private let milestone: Milestone
     
     init(milestone: Milestone) {
         self.milestone = milestone
@@ -43,40 +40,35 @@ struct AIMilestoneCard: View {
             
             Spacer()
             
-            Button(action: toggle) {
-                Image(systemName: milestone.isCompleted ? "checkmark.circle.fill" : "circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 30, height: 30)
-                    .foregroundStyle(milestone.isCompleted ? .accent : .aiSecondary2)
+            if let completedAt = milestone.completedAt {
+                VStack {
+                    Text(DeadlineFormatter.formatToDayMonth(completedAt))
+                        .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                        .foregroundStyle(.aiBlack)
+                        
+                    Text("Completed:")
+                        .font(.system(.caption2, design: .rounded, weight: .light))
+                        .foregroundStyle(.aiSecondary2)
+                }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .frame(height: 60)
         .padding(.horizontal, 10)
-        .background(Color.aiLabel, in:.rect(cornerRadius: UIConstants.widgetCornerRadius - 5))
-        .onAppear {
-            if let goalID = milestone.goalID {
-                milestoneGoal = goalVM.fetchGoalByID(id: goalID)
-            }
-        }
+        .background(Color.aiBeige, in:.rect(cornerRadius: UIConstants.widgetCornerRadius - 5))
+        .onAppear(perform: setup)
     }
     
-    private func toggle() {
-        DispatchQueue.main.async {
-            withAnimation {
-                milestone.isCompleted.toggle()
-                milestoneVM.toggleMilestoneCompletion(milestone)
-                workspaceVM.fetchCurrentWorkspace()
-            }
+    private func setup() {
+        if let goalID = milestone.goalID {
+            milestoneGoal = goalVM.fetchGoalByID(id: goalID)
         }
     }
 }
 
 #Preview {
-    AIMilestoneCard(milestone: .sample)
+    AICompletedMilestoneCard(milestone: .sample)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
-        .environmentObject(DIContainer().makeMilestoneViewModel())
         .environmentObject(DIContainer().makeGoalViewModel())
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AIMiniGoalCard: View {
+struct AICompletedGoalCard: View {
     
     private let goal: Goal
     
@@ -25,9 +25,17 @@ struct AIMiniGoalCard: View {
                 
                 Spacer()
                 
-                Text(DeadlineFormatter.formatToDayMonth(goal.deadline))
-                    .font(.system(.subheadline, design: .rounded, weight: .semibold))
-                    .foregroundStyle(.aiBlack)
+                if let completedAt = goal.completedAt {
+                    VStack(alignment:.trailing){
+                        Text(DeadlineFormatter.formatToDayMonth(completedAt))
+                            .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                            .foregroundStyle(.aiBlack)
+                        
+                        Text("Completed:")
+                            .font(.system(.caption2, design: .rounded, weight: .light))
+                            .foregroundStyle(.aiSecondary2)
+                    }
+                }
             }
             
             if let desc = goal.desc{
@@ -48,7 +56,7 @@ struct AIMiniGoalCard: View {
 }
 
 #Preview {
-    AIMiniGoalCard(goal: .sample)
+    AICompletedGoalCard(goal: .sample)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
 }

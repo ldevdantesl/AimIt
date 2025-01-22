@@ -35,6 +35,7 @@ struct AIWorkspaceSelector: View {
                             Button {
                                 workspaceVM.currentWorkspace = workspace
                                 isSelecting.toggle()
+                                workspaceVM.fetchCurrentWorkspace()
                             } label: {
                                 HStack{
                                     AIInfoField(

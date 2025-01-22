@@ -36,4 +36,6 @@ protocol GoalRepository {
     func fetchGoalByID(id: UUID) throws -> Goal
     
     func fetchGoalsByPrompt(with prompt: String, in workspace: Workspace) throws -> [Goal]
+    
+    func fetchCompletedGoalsForWorkspace(_ workspace: Workspace) throws -> [Goal]
 }

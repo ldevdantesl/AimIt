@@ -25,7 +25,7 @@ struct AICompletedMilestoneAnalytics: View {
                 
                 VStack(spacing: 10){
                     ForEach(completedMilestoneWithinWeek) { milestone in
-                        AIMilestoneCard(milestone: milestone, isTogglable: false)
+                        AICompletedMilestoneCard(milestone: milestone)
                     }
                     .padding(.horizontal, 20)
                 }

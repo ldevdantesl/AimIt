@@ -20,6 +20,7 @@ final class MilestoneViewModel: ObservableObject {
     private let fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCase
     private let fetchTodayMilestonesForWorkspaceUseCase: FetchTodayMilestonesForWorkspaceUseCase
     private let fetchMilestonesByPromptUseCase: FetchMilestonesByPromptUseCase
+    private let fetchCompletedMilestoneForWorkspaceUseCase: FetchCompletedMilestoneForWorkspaceUseCase
     
     private let toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCase
     private let createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCase
@@ -31,6 +32,7 @@ final class MilestoneViewModel: ObservableObject {
         fetchMilestonesForGoalUseCase: FetchMilestonesForGoalUseCase,
         fetchTodayMilestonesForWorkspaceUseCase: FetchTodayMilestonesForWorkspaceUseCase,
         fetchMilestonesByPromptUseCase: FetchMilestonesByPromptUseCase,
+        fetchCompletedMilestoneForWorkspaceUseCase: FetchCompletedMilestoneForWorkspaceUseCase,
         toggleMilestoneCompletionUseCase: ToggleMilestoneCompletionUseCase,
         updateMilestoneUseCase: UpdateMilestoneUseCase,
         createSeperateMilestoneUseCase: CreateSeparateMilestoneUseCase
@@ -41,6 +43,7 @@ final class MilestoneViewModel: ObservableObject {
         self.fetchMilestonesForGoalUseCase = fetchMilestonesForGoalUseCase
         self.fetchTodayMilestonesForWorkspaceUseCase = fetchTodayMilestonesForWorkspaceUseCase
         self.fetchMilestonesByPromptUseCase = fetchMilestonesByPromptUseCase
+        self.fetchCompletedMilestoneForWorkspaceUseCase = fetchCompletedMilestoneForWorkspaceUseCase
         self.toggleMilestoneCompletionUseCase = toggleMilestoneCompletionUseCase
         self.updateMilestoneUseCase = updateMilestoneUseCase
         self.createSeperateMilestoneUseCase = createSeperateMilestoneUseCase
@@ -54,6 +57,12 @@ final class MilestoneViewModel: ObservableObject {
     func fetchMilestonesForGoal(_ goal: Goal) {
         handleUseCase(errorMessage: "Error fetching milestones for goal") {
             self.milestones = try fetchMilestonesForGoalUseCase.execute(for: goal)
+        }
+    }
+    
+    func fetchCompletedMilestonesForWorkspace(_ workspace: Workspace) -> [Milestone] {
+        handleUseCase(errorMessage: "Error fetching completed milestones for workspace", defaultValue: []) {
+            try fetchCompletedMilestoneForWorkspaceUseCase.execute(workspace)
         }
     }
     

@@ -50,7 +50,7 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
             sortedGoals = goalSet
                 .filter { !$0.isCompleted }
                 .sorted(by: sortSystem)
-                .map { GoalMapper.mapToDomain(from: $0) }
+                .map(GoalMapper.mapToDomain)
         } else {
             sortedGoals = []
         }

@@ -35,6 +35,8 @@ final class CoreDataStack {
                 fatalError("Error loading persistent store: \(error)")
             }
         }
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return container
     }()
     

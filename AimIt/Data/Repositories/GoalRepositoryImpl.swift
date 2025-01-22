@@ -32,8 +32,7 @@ final class GoalRepositoryImpl: GoalRepository {
         let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "deadline", ascending: true)]
         let goalEntity = try CDstack.viewContext.fetch(request)
-        let goalDomain = goalEntity.map { GoalMapper.mapToDomain(from: $0) }
-        return goalDomain
+        return goalEntity.map(GoalMapper.mapToDomain)
     }
     
     func fetchGoalByID(id: UUID) throws -> Goal {
@@ -46,12 +45,23 @@ final class GoalRepositoryImpl: GoalRepository {
     
     func fetchGoalsByPrompt(with prompt: String, in workspace: Workspace) throws -> [Goal] {
         let fetchRequest: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
-        let promptPredicate = NSPredicate(format: "title CONTAINS[c] %@ OR desc CONTAINS[c] %@", prompt, prompt)
-        let workspacePredicate = NSPredicate(format: "workspace.id == %@", workspace.id.uuidString)
-        
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [promptPredicate, workspacePredicate])
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "title CONTAINS[c] %@ OR desc CONTAINS[c] %@", prompt, prompt),
+            NSPredicate(format: "workspace.id == %@", workspace.id.uuidString),
+            NSPredicate(format: "isCompleted == false")
+        ])
         
         return try CDstack.viewContext.fetch(fetchRequest).map(GoalMapper.mapToDomain)
+    }
+    
+    func fetchCompletedGoalsForWorkspace(_ workspace: Workspace) throws -> [Goal] {
+        let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "workspace.id == %@", workspace.id.uuidString),
+            NSPredicate(format: "isCompleted == true")
+        ])
+        let goals = try CDstack.viewContext.fetch(request)
+        return goals.map(GoalMapper.mapToDomain)
     }
     
     // MARK: - ADDING
@@ -66,7 +76,7 @@ final class GoalRepositoryImpl: GoalRepository {
         newGoal.id = UUID()
         newGoal.title = title
         newGoal.desc = desc
-        newGoal.deadline = deadline.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) } ?? Date()
+        newGoal.deadline = deadline.flatMap(DeadlineFormatter.formatToTheEndOfTheDay) ?? Date()
         newGoal.deadlineChanges = 0
         newGoal.createdAt = Date()
         newGoal.isCompleted = false
@@ -78,7 +88,7 @@ final class GoalRepositoryImpl: GoalRepository {
             milestoneEntity.desc = milestone.desc
             milestoneEntity.systemImage = milestone.systemImage
             milestoneEntity.isCompleted = milestone.isCompleted
-            milestoneEntity.dueDate = milestone.dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
+            milestoneEntity.dueDate = milestone.dueDate.flatMap(DeadlineFormatter.formatToTheEndOfTheDay)
             milestoneEntity.createdAt = milestone.createdAt
             milestoneEntity.completedAt = nil
             milestoneEntity.goal = newGoal

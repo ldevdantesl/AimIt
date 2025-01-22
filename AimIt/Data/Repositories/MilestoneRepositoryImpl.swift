@@ -22,19 +22,31 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
     }
 
     func fetchMilestones(for goal: Goal) throws -> [Milestone] {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         let fetchRequest: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "goal == %@", goalEntity)
+        fetchRequest.predicate = NSPredicate(format: "goal.id == %@", goal.id.uuidString)
         return try CDstack.viewContext.fetch(fetchRequest).map(MilestoneMapper.toDomain)
     }
 
     func fetchMilestonesByPrompt(with prompt: String, in workspace: Workspace) throws -> [Milestone] {
         let fetchRequest: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
-        let promptPredicate = NSPredicate(format: "desc CONTAINS[c] %@", prompt)
-        let workspacePredicate = NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString)
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [promptPredicate, workspacePredicate])
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "desc CONTAINS[c] %@", prompt),
+            NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString),
+            NSPredicate(format: "isCompleted == false")
+        ])
         
-        return try CDstack.viewContext.fetch(fetchRequest).map { MilestoneMapper.toDomain($0) }
+        return try CDstack.viewContext.fetch(fetchRequest).map(MilestoneMapper.toDomain)
+    }
+    
+    func fetchCompletedMilestoneForWorkspace(_ workspace: Workspace) throws -> [Milestone] {
+        let request: NSFetchRequest<MilestoneEntity> = MilestoneEntity.fetchRequest()
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString),
+            NSPredicate(format: "isCompleted == true")
+        ])
+        
+        let milestones = try CDstack.viewContext.fetch(request)
+        return milestones.map(MilestoneMapper.toDomain)
     }
     
     func fetchTodayMilestonesForWorkspace(
@@ -46,14 +58,12 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: date)
         let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)?.addingTimeInterval(-1) ?? Date()
-    
-        let workspacePredicate = NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString)
-        let completedPredicate = NSPredicate(format: "isCompleted == false")
-        let datePredicate = NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", startOfDay as NSDate, endOfDay as NSDate)
-
-        fetchRequest.predicate = NSCompoundPredicate(
-            andPredicateWithSubpredicates: [workspacePredicate, completedPredicate, datePredicate]
-        )
+        
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[
+            NSPredicate(format: "goal.workspace.id == %@", workspace.id.uuidString),
+            NSPredicate(format: "isCompleted == false"),
+            NSPredicate(format: "dueDate >= %@ AND dueDate <= %@", startOfDay as NSDate, endOfDay as NSDate)
+        ])
         
         return try CDstack.viewContext.fetch(fetchRequest).map(MilestoneMapper.toDomain)
     }
@@ -73,7 +83,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
         newMilestone.systemImage = systemImage
         newMilestone.createdAt = Date()
         newMilestone.completedAt = nil
-        newMilestone.dueDate = dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
+        newMilestone.dueDate = dueDate.flatMap(DeadlineFormatter.formatToTheEndOfTheDay)
         newMilestone.goal = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
         
         saveContext()
@@ -88,7 +98,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
     ) throws {
         let milestoneEntity = MilestoneMapper.toEntity(milestone, context: CDstack.viewContext)
         milestoneEntity.desc = desc ?? milestoneEntity.desc
-        milestoneEntity.dueDate = dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) } ?? milestoneEntity.dueDate
+        milestoneEntity.dueDate = dueDate.flatMap(DeadlineFormatter.formatToTheEndOfTheDay) ?? milestoneEntity.dueDate
         milestoneEntity.systemImage = systemImage ?? milestoneEntity.systemImage
         
         saveContext()
@@ -122,7 +132,7 @@ final class MilestoneRepositoryImpl: MilestoneRepository {
             systemImage: systemImage,
             createdAt: .now,
             completedAt: nil,
-            dueDate: dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) },
+            dueDate: dueDate.flatMap(DeadlineFormatter.formatToTheEndOfTheDay),
             isCompleted: completed,
             goalID: nil
         )

@@ -36,7 +36,7 @@ struct AICompletedGoalsAnalytics: View {
                 if !completedGoalsWithinMonth.isEmpty {
                     TabView(selection: $selectedIndex) {
                         ForEach(0..<completedGoalsWithinMonth.count, id: \.self) { index in
-                            AIMiniGoalCard(goal: completedGoalsWithinMonth[index])
+                            AICompletedGoalCard(goal: completedGoalsWithinMonth[index])
                                 .tag(index)
                         }
                     }

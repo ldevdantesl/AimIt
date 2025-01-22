@@ -34,6 +34,8 @@ protocol MilestoneRepository {
     
     func fetchMilestonesByPrompt(with prompt: String, in workspace: Workspace) throws -> [Milestone]
     
+    func fetchCompletedMilestoneForWorkspace(_ workspace: Workspace) throws -> [Milestone]
+    
     func toggleMilestoneCompletion(_ milestone: Milestone) throws
     
     func createSeparateMilestone(desc: String, systemImage: String, dueDate: Date?, completed: Bool) throws -> Milestone
