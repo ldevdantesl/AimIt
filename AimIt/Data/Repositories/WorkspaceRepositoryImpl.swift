@@ -76,13 +76,9 @@ final class WorkspaceRepositoryImpl: WorkspaceRepository {
     // MARK: - DELETE
     func deleteWorkspace(_ workspace: Workspace) throws {
         let entity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
-        
-        if CDStack.viewContext == entity.managedObjectContext {
-            CDStack.viewContext.delete(entity)
-            CDStack.saveContext()
-        } else {
-            throw CoreDataErrors.failedToDeleteFromContext
-        }
+
+        CDStack.viewContext.delete(entity)
+        CDStack.saveContext()
     }
     
     // MARK: - EDIT

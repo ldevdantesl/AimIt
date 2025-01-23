@@ -9,7 +9,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="milestones" toMany="YES" deletionRule="Nullify" destinationEntity="MilestoneEntity" inverseName="goal" inverseEntity="MilestoneEntity"/>
+        <relationship name="milestones" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MilestoneEntity" inverseName="goal" inverseEntity="MilestoneEntity"/>
         <relationship name="workspace" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkspaceEntity" inverseName="goals" inverseEntity="WorkspaceEntity"/>
         <relationship name="workspaceForPrioritized" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkspaceEntity" inverseName="prioritizedGoal" inverseEntity="WorkspaceEntity"/>
     </entity>
@@ -23,10 +23,19 @@
         <attribute name="systemImage" optional="YES" attributeType="String"/>
         <relationship name="goal" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="GoalEntity" inverseName="milestones" inverseEntity="GoalEntity"/>
     </entity>
+    <entity name="UserSettingsEntity" representedClassName="UserSettingsEntity" syncable="YES">
+        <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isCloudSyncEnabled" optional="YES" attributeType="Boolean" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="isFirstEntry" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isNotificationEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="profileImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="themeColor" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="WorkspaceEntity" representedClassName="WorkspaceEntity" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="goals" toMany="YES" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="workspace" inverseEntity="GoalEntity"/>
+        <relationship name="goals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="workspace" inverseEntity="GoalEntity"/>
         <relationship name="prioritizedGoal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="workspaceForPrioritized" inverseEntity="GoalEntity"/>
     </entity>
 </model>

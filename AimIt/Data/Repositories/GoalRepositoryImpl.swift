@@ -163,12 +163,8 @@ final class GoalRepositoryImpl: GoalRepository {
     // MARK: - DELETING
     func deleteGoal(_ goal: Goal) throws {
         let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
-        if CDstack.viewContext == goalEntity.managedObjectContext {
-            CDstack.viewContext.delete(goalEntity)
-            saveContext()
-        } else {
-            throw CoreDataErrors.failedToDeleteFromContext
-        }
+        CDstack.viewContext.delete(goalEntity)
+        saveContext()
     }
     
     // MARK: - COMPLETION

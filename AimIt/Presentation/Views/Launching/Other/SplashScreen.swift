@@ -10,7 +10,12 @@ import SwiftUI
 struct SplashScreen: View {
     @State private var offset: CGFloat = 0
     @State private var isAnimating = false
-    let onFinish: () -> ()
+    private let onFinish: () -> ()
+    
+    init(onFinish: @escaping () -> Void) {
+        self.onFinish = onFinish
+    }
+    
     var body: some View {
         VStack {
             Image(.splash)
@@ -18,9 +23,7 @@ struct SplashScreen: View {
                 .scaledToFit()
                 .frame(width: 100, height: 100)
                 .offset(y:100 - offset)
-                .onAppear {
-                    startBouncing()
-                }
+                .onAppear(perform: startBouncing)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .background(Color.aiBackground)
@@ -28,9 +31,7 @@ struct SplashScreen: View {
     }
     
     private func startBouncing() {
-        withAnimation(
-            Animation.interpolatingSpring(stiffness: 100, damping: 5)
-        ) {
+        withAnimation(.interpolatingSpring(stiffness: 100, damping: 5)) {
             offset = 100
         }
     }

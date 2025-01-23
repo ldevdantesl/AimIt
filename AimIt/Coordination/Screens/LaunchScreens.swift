@@ -8,6 +8,6 @@
 import Foundation
 
 enum LaunchScreens {
-    case intro
+    case addProfile
     case addWorkspace
 }

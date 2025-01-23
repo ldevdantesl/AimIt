@@ -30,7 +30,6 @@
 		DA518FE92D1E06FB00A5E896 /* SettingsScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F382D1E06FB00A5E896 /* SettingsScreens.swift */; };
 		DA518FEA2D1E06FB00A5E896 /* HomeSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F3A2D1E06FB00A5E896 /* HomeSheets.swift */; };
 		DA518FEC2D1E06FB00A5E896 /* AimIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA518F3E2D1E06FB00A5E896 /* AimIt.xcdatamodeld */; };
-		DA518FED2D1E06FB00A5E896 /* CategoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F3F2D1E06FB00A5E896 /* CategoryEntity.swift */; };
 		DA518FEE2D1E06FB00A5E896 /* GoalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F402D1E06FB00A5E896 /* GoalEntity.swift */; };
 		DA518FEF2D1E06FB00A5E896 /* MilestoneEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F412D1E06FB00A5E896 /* MilestoneEntity.swift */; };
 		DA518FF02D1E06FB00A5E896 /* WorkspaceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F422D1E06FB00A5E896 /* WorkspaceEntity.swift */; };
@@ -39,7 +38,6 @@
 		DA518FF32D1E06FB00A5E896 /* WorkspaceMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F462D1E06FB00A5E896 /* WorkspaceMapper.swift */; };
 		DA518FF42D1E06FB00A5E896 /* GoalRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F482D1E06FB00A5E896 /* GoalRepositoryImpl.swift */; };
 		DA518FF52D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F492D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift */; };
-		DA518FF62D1E06FB00A5E896 /* SettingsRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F4A2D1E06FB00A5E896 /* SettingsRepositoryImpl.swift */; };
 		DA518FF72D1E06FB00A5E896 /* WorkspaceRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F4B2D1E06FB00A5E896 /* WorkspaceRepositoryImpl.swift */; };
 		DA518FF82D1E06FB00A5E896 /* NotificationServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F4D2D1E06FB00A5E896 /* NotificationServiceImpl.swift */; };
 		DA518FF92D1E06FB00A5E896 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F4F2D1E06FB00A5E896 /* StorageManager.swift */; };
@@ -55,9 +53,6 @@
 		DA5190032D1E06FB00A5E896 /* FetchMilestonesForGoalUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F5B2D1E06FB00A5E896 /* FetchMilestonesForGoalUseCaseImpl.swift */; };
 		DA5190042D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F5C2D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCaseImpl.swift */; };
 		DA5190052D1E06FB00A5E896 /* UpdateMilestoneUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F5D2D1E06FB00A5E896 /* UpdateMilestoneUseCaseImpl.swift */; };
-		DA5190062D1E06FB00A5E896 /* GetSettingUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F5F2D1E06FB00A5E896 /* GetSettingUseCaseImpl.swift */; };
-		DA5190072D1E06FB00A5E896 /* RemoveSettingUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F602D1E06FB00A5E896 /* RemoveSettingUseCaseImpl.swift */; };
-		DA5190082D1E06FB00A5E896 /* SetSettingUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F612D1E06FB00A5E896 /* SetSettingUseCaseImpl.swift */; };
 		DA5190092D1E06FB00A5E896 /* AddWorkspaceUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F632D1E06FB00A5E896 /* AddWorkspaceUseCaseImpl.swift */; };
 		DA51900A2D1E06FB00A5E896 /* DeleteWorkspaceUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F642D1E06FB00A5E896 /* DeleteWorkspaceUseCaseImpl.swift */; };
 		DA51900B2D1E06FB00A5E896 /* EditWorkspaceUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F652D1E06FB00A5E896 /* EditWorkspaceUseCaseImpl.swift */; };
@@ -69,7 +64,6 @@
 		DA5190122D1E06FB00A5E896 /* Workspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F6F2D1E06FB00A5E896 /* Workspace.swift */; };
 		DA5190132D1E06FB00A5E896 /* GoalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F712D1E06FB00A5E896 /* GoalRepository.swift */; };
 		DA5190142D1E06FB00A5E896 /* MilestoneRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F722D1E06FB00A5E896 /* MilestoneRepository.swift */; };
-		DA5190152D1E06FB00A5E896 /* SettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F732D1E06FB00A5E896 /* SettingsRepository.swift */; };
 		DA5190162D1E06FB00A5E896 /* WorkspaceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F742D1E06FB00A5E896 /* WorkspaceRepository.swift */; };
 		DA5190172D1E06FB00A5E896 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F762D1E06FB00A5E896 /* NotificationService.swift */; };
 		DA5190182D1E06FB00A5E896 /* AddGoalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F782D1E06FB00A5E896 /* AddGoalUseCase.swift */; };
@@ -83,9 +77,6 @@
 		DA5190202D1E06FB00A5E896 /* FetchMilestonesForGoalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F812D1E06FB00A5E896 /* FetchMilestonesForGoalUseCase.swift */; };
 		DA5190212D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F822D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCase.swift */; };
 		DA5190222D1E06FB00A5E896 /* UpdateMilestoneUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F832D1E06FB00A5E896 /* UpdateMilestoneUseCase.swift */; };
-		DA5190232D1E06FB00A5E896 /* GetSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F852D1E06FB00A5E896 /* GetSettingsUseCase.swift */; };
-		DA5190242D1E06FB00A5E896 /* RemoveSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F862D1E06FB00A5E896 /* RemoveSettingUseCase.swift */; };
-		DA5190252D1E06FB00A5E896 /* SetSettingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F872D1E06FB00A5E896 /* SetSettingUseCase.swift */; };
 		DA5190262D1E06FB00A5E896 /* AddWorkspaceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F892D1E06FB00A5E896 /* AddWorkspaceUseCase.swift */; };
 		DA5190272D1E06FB00A5E896 /* DeleteWorkspaceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F8A2D1E06FB00A5E896 /* DeleteWorkspaceUseCase.swift */; };
 		DA5190282D1E06FB00A5E896 /* EditWorkspaceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F8B2D1E06FB00A5E896 /* EditWorkspaceUseCase.swift */; };
@@ -131,7 +122,6 @@
 		DA5190512D1E06FB00A5E896 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FCB2D1E06FB00A5E896 /* UIConstants.swift */; };
 		DA5190522D1E06FB00A5E896 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FCD2D1E06FB00A5E896 /* Bundle+Extensions.swift */; };
 		DA5190532D1E06FB00A5E896 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FCE2D1E06FB00A5E896 /* View+Extensions.swift */; };
-		DA5190542D1E06FB00A5E896 /* MockSettingsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FD32D1E06FB00A5E896 /* MockSettingsRepository.swift */; };
 		DA5190552D1E06FB00A5E896 /* TopSafeAreaOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FD52D1E06FB00A5E896 /* TopSafeAreaOverlayModifier.swift */; };
 		DA5190562D1E06FB00A5E896 /* DeadlineFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FD72D1E06FB00A5E896 /* DeadlineFormatter.swift */; };
 		DA5190572D1E06FB00A5E896 /* SystemImageCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FD82D1E06FB00A5E896 /* SystemImageCategory.swift */; };
@@ -228,6 +218,12 @@
 		DAED91252D405E4B00CC155B /* FetchCompletedMilestoneForWorkspaceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED91242D405E4B00CC155B /* FetchCompletedMilestoneForWorkspaceUseCase.swift */; };
 		DAED91272D405E6E00CC155B /* FetchCompletedMilestoneForWorkspaceUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED91262D405E6E00CC155B /* FetchCompletedMilestoneForWorkspaceUseCaseImpl.swift */; };
 		DAED91292D40689500CC155B /* AICompletedMilestoneCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED91282D40689500CC155B /* AICompletedMilestoneCard.swift */; };
+		DAED912D2D40A2C700CC155B /* UserSettingsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED912B2D40A2C600CC155B /* UserSettingsEntity.swift */; };
+		DAED91302D40A35300CC155B /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED912F2D40A35300CC155B /* UserSettings.swift */; };
+		DAED91322D40A46B00CC155B /* UserSettingsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED91312D40A46B00CC155B /* UserSettingsMapper.swift */; };
+		DAED914A2D40B8DD00CC155B /* LaunchAddProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED91492D40B8DD00CC155B /* LaunchAddProfileView.swift */; };
+		DAED914C2D40BC8A00CC155B /* LaunchSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED914B2D40BC8A00CC155B /* LaunchSheets.swift */; };
+		DAED914F2D40BCE500CC155B /* LaunchPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED914E2D40BCE500CC155B /* LaunchPhotoPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -253,7 +249,6 @@
 		DA518F372D1E06FB00A5E896 /* LaunchScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreens.swift; sourceTree = "<group>"; };
 		DA518F382D1E06FB00A5E896 /* SettingsScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreens.swift; sourceTree = "<group>"; };
 		DA518F3A2D1E06FB00A5E896 /* HomeSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSheets.swift; sourceTree = "<group>"; };
-		DA518F3F2D1E06FB00A5E896 /* CategoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEntity.swift; sourceTree = "<group>"; };
 		DA518F402D1E06FB00A5E896 /* GoalEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEntity.swift; sourceTree = "<group>"; };
 		DA518F412D1E06FB00A5E896 /* MilestoneEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneEntity.swift; sourceTree = "<group>"; };
 		DA518F422D1E06FB00A5E896 /* WorkspaceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceEntity.swift; sourceTree = "<group>"; };
@@ -262,7 +257,6 @@
 		DA518F462D1E06FB00A5E896 /* WorkspaceMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceMapper.swift; sourceTree = "<group>"; };
 		DA518F482D1E06FB00A5E896 /* GoalRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRepositoryImpl.swift; sourceTree = "<group>"; };
 		DA518F492D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneRepositoryImpl.swift; sourceTree = "<group>"; };
-		DA518F4A2D1E06FB00A5E896 /* SettingsRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepositoryImpl.swift; sourceTree = "<group>"; };
 		DA518F4B2D1E06FB00A5E896 /* WorkspaceRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceRepositoryImpl.swift; sourceTree = "<group>"; };
 		DA518F4D2D1E06FB00A5E896 /* NotificationServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServiceImpl.swift; sourceTree = "<group>"; };
 		DA518F4F2D1E06FB00A5E896 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -278,9 +272,6 @@
 		DA518F5B2D1E06FB00A5E896 /* FetchMilestonesForGoalUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMilestonesForGoalUseCaseImpl.swift; sourceTree = "<group>"; };
 		DA518F5C2D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleMilestoneCompletionUseCaseImpl.swift; sourceTree = "<group>"; };
 		DA518F5D2D1E06FB00A5E896 /* UpdateMilestoneUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMilestoneUseCaseImpl.swift; sourceTree = "<group>"; };
-		DA518F5F2D1E06FB00A5E896 /* GetSettingUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSettingUseCaseImpl.swift; sourceTree = "<group>"; };
-		DA518F602D1E06FB00A5E896 /* RemoveSettingUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSettingUseCaseImpl.swift; sourceTree = "<group>"; };
-		DA518F612D1E06FB00A5E896 /* SetSettingUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSettingUseCaseImpl.swift; sourceTree = "<group>"; };
 		DA518F632D1E06FB00A5E896 /* AddWorkspaceUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkspaceUseCaseImpl.swift; sourceTree = "<group>"; };
 		DA518F642D1E06FB00A5E896 /* DeleteWorkspaceUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteWorkspaceUseCaseImpl.swift; sourceTree = "<group>"; };
 		DA518F652D1E06FB00A5E896 /* EditWorkspaceUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkspaceUseCaseImpl.swift; sourceTree = "<group>"; };
@@ -292,7 +283,6 @@
 		DA518F6F2D1E06FB00A5E896 /* Workspace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workspace.swift; sourceTree = "<group>"; };
 		DA518F712D1E06FB00A5E896 /* GoalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRepository.swift; sourceTree = "<group>"; };
 		DA518F722D1E06FB00A5E896 /* MilestoneRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneRepository.swift; sourceTree = "<group>"; };
-		DA518F732D1E06FB00A5E896 /* SettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRepository.swift; sourceTree = "<group>"; };
 		DA518F742D1E06FB00A5E896 /* WorkspaceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceRepository.swift; sourceTree = "<group>"; };
 		DA518F762D1E06FB00A5E896 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		DA518F782D1E06FB00A5E896 /* AddGoalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalUseCase.swift; sourceTree = "<group>"; };
@@ -306,9 +296,6 @@
 		DA518F812D1E06FB00A5E896 /* FetchMilestonesForGoalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMilestonesForGoalUseCase.swift; sourceTree = "<group>"; };
 		DA518F822D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleMilestoneCompletionUseCase.swift; sourceTree = "<group>"; };
 		DA518F832D1E06FB00A5E896 /* UpdateMilestoneUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMilestoneUseCase.swift; sourceTree = "<group>"; };
-		DA518F852D1E06FB00A5E896 /* GetSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSettingsUseCase.swift; sourceTree = "<group>"; };
-		DA518F862D1E06FB00A5E896 /* RemoveSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSettingUseCase.swift; sourceTree = "<group>"; };
-		DA518F872D1E06FB00A5E896 /* SetSettingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSettingUseCase.swift; sourceTree = "<group>"; };
 		DA518F892D1E06FB00A5E896 /* AddWorkspaceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkspaceUseCase.swift; sourceTree = "<group>"; };
 		DA518F8A2D1E06FB00A5E896 /* DeleteWorkspaceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteWorkspaceUseCase.swift; sourceTree = "<group>"; };
 		DA518F8B2D1E06FB00A5E896 /* EditWorkspaceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkspaceUseCase.swift; sourceTree = "<group>"; };
@@ -359,7 +346,6 @@
 		DA518FCE2D1E06FB00A5E896 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		DA518FD02D1E06FB00A5E896 /* Quotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Quotes.json; sourceTree = "<group>"; };
 		DA518FD12D1E06FB00A5E896 /* SystemImageCategory.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SystemImageCategory.json; sourceTree = "<group>"; };
-		DA518FD32D1E06FB00A5E896 /* MockSettingsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSettingsRepository.swift; sourceTree = "<group>"; };
 		DA518FD52D1E06FB00A5E896 /* TopSafeAreaOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSafeAreaOverlayModifier.swift; sourceTree = "<group>"; };
 		DA518FD72D1E06FB00A5E896 /* DeadlineFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineFormatter.swift; sourceTree = "<group>"; };
 		DA518FD82D1E06FB00A5E896 /* SystemImageCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImageCategory.swift; sourceTree = "<group>"; };
@@ -454,6 +440,13 @@
 		DAED91242D405E4B00CC155B /* FetchCompletedMilestoneForWorkspaceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCompletedMilestoneForWorkspaceUseCase.swift; sourceTree = "<group>"; };
 		DAED91262D405E6E00CC155B /* FetchCompletedMilestoneForWorkspaceUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCompletedMilestoneForWorkspaceUseCaseImpl.swift; sourceTree = "<group>"; };
 		DAED91282D40689500CC155B /* AICompletedMilestoneCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICompletedMilestoneCard.swift; sourceTree = "<group>"; };
+		DAED912A2D40709100CC155B /* AimIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AimIt.entitlements; sourceTree = "<group>"; };
+		DAED912B2D40A2C600CC155B /* UserSettingsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsEntity.swift; sourceTree = "<group>"; };
+		DAED912F2D40A35300CC155B /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		DAED91312D40A46B00CC155B /* UserSettingsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsMapper.swift; sourceTree = "<group>"; };
+		DAED91492D40B8DD00CC155B /* LaunchAddProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAddProfileView.swift; sourceTree = "<group>"; };
+		DAED914B2D40BC8A00CC155B /* LaunchSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSheets.swift; sourceTree = "<group>"; };
+		DAED914E2D40BCE500CC155B /* LaunchPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPhotoPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -539,6 +532,7 @@
 				DA518F3A2D1E06FB00A5E896 /* HomeSheets.swift */,
 				DADBE58D2D27A0940024D18B /* AnalyticsSheets.swift */,
 				DADBE58F2D27A0A30024D18B /* SettingsSheets.swift */,
+				DAED914B2D40BC8A00CC155B /* LaunchSheets.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -560,7 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				DA518F3E2D1E06FB00A5E896 /* AimIt.xcdatamodeld */,
-				DA518F3F2D1E06FB00A5E896 /* CategoryEntity.swift */,
+				DAED912B2D40A2C600CC155B /* UserSettingsEntity.swift */,
 				DA518F402D1E06FB00A5E896 /* GoalEntity.swift */,
 				DA518F412D1E06FB00A5E896 /* MilestoneEntity.swift */,
 				DA518F422D1E06FB00A5E896 /* WorkspaceEntity.swift */,
@@ -574,6 +568,7 @@
 				DA518F442D1E06FB00A5E896 /* GoalMapper.swift */,
 				DA518F452D1E06FB00A5E896 /* MilestoneMapper.swift */,
 				DA518F462D1E06FB00A5E896 /* WorkspaceMapper.swift */,
+				DAED91312D40A46B00CC155B /* UserSettingsMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -583,7 +578,6 @@
 			children = (
 				DA518F482D1E06FB00A5E896 /* GoalRepositoryImpl.swift */,
 				DA518F492D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift */,
-				DA518F4A2D1E06FB00A5E896 /* SettingsRepositoryImpl.swift */,
 				DA518F4B2D1E06FB00A5E896 /* WorkspaceRepositoryImpl.swift */,
 				DA4299202D3748A80046ABBA /* AnalyticsRepositoryImpl.swift */,
 			);
@@ -639,16 +633,6 @@
 			path = Milestone;
 			sourceTree = "<group>";
 		};
-		DA518F622D1E06FB00A5E896 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				DA518F5F2D1E06FB00A5E896 /* GetSettingUseCaseImpl.swift */,
-				DA518F602D1E06FB00A5E896 /* RemoveSettingUseCaseImpl.swift */,
-				DA518F612D1E06FB00A5E896 /* SetSettingUseCaseImpl.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		DA518F682D1E06FB00A5E896 /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
@@ -669,7 +653,6 @@
 				DAB906682D3756EC00269935 /* Analytics */,
 				DA518F572D1E06FB00A5E896 /* Goal */,
 				DA518F5E2D1E06FB00A5E896 /* Milestone */,
-				DA518F622D1E06FB00A5E896 /* Settings */,
 				DA518F682D1E06FB00A5E896 /* Workspace */,
 			);
 			path = UseCases;
@@ -696,6 +679,7 @@
 				DA518F6E2D1E06FB00A5E896 /* Quote.swift */,
 				DA518F6F2D1E06FB00A5E896 /* Workspace.swift */,
 				DAB906912D37AA3100269935 /* AnalyticsMonthlyData.swift */,
+				DAED912F2D40A35300CC155B /* UserSettings.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -705,7 +689,6 @@
 			children = (
 				DA518F712D1E06FB00A5E896 /* GoalRepository.swift */,
 				DA518F722D1E06FB00A5E896 /* MilestoneRepository.swift */,
-				DA518F732D1E06FB00A5E896 /* SettingsRepository.swift */,
 				DA518F742D1E06FB00A5E896 /* WorkspaceRepository.swift */,
 				DA42991D2D373C770046ABBA /* AnalyticsRepository.swift */,
 			);
@@ -752,16 +735,6 @@
 			path = Milestone;
 			sourceTree = "<group>";
 		};
-		DA518F882D1E06FB00A5E896 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				DA518F852D1E06FB00A5E896 /* GetSettingsUseCase.swift */,
-				DA518F862D1E06FB00A5E896 /* RemoveSettingUseCase.swift */,
-				DA518F872D1E06FB00A5E896 /* SetSettingUseCase.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		DA518F8E2D1E06FB00A5E896 /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
@@ -782,7 +755,6 @@
 				DA42991F2D3748930046ABBA /* Analytics */,
 				DA518F7D2D1E06FB00A5E896 /* Goal */,
 				DA518F842D1E06FB00A5E896 /* Milestone */,
-				DA518F882D1E06FB00A5E896 /* Settings */,
 				DA518F8E2D1E06FB00A5E896 /* Workspace */,
 			);
 			path = UseCases;
@@ -927,10 +899,9 @@
 		DA518FBF2D1E06FB00A5E896 /* Launching */ = {
 			isa = PBXGroup;
 			children = (
-				DA518FBB2D1E06FB00A5E896 /* Launch Screen.storyboard */,
-				DA518FBC2D1E06FB00A5E896 /* LaunchAddWorkspaceView.swift */,
-				DA518FBD2D1E06FB00A5E896 /* LaunchIntroView.swift */,
-				DA518FBE2D1E06FB00A5E896 /* SplashScreen.swift */,
+				DAED914D2D40BCD600CC155B /* Sheets */,
+				DAED91482D40B8BA00CC155B /* Other */,
+				DAED91472D40B8AF00CC155B /* Screens */,
 			);
 			path = Launching;
 			sourceTree = "<group>";
@@ -1017,7 +988,6 @@
 		DA518FD42D1E06FB00A5E896 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				DA518FD32D1E06FB00A5E896 /* MockSettingsRepository.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1057,6 +1027,7 @@
 		DA518FDC2D1E06FB00A5E896 /* AimIt */ = {
 			isa = PBXGroup;
 			children = (
+				DAED912A2D40709100CC155B /* AimIt.entitlements */,
 				DA518F2F2D1E06FB00A5E896 /* App */,
 				DA518F3D2D1E06FB00A5E896 /* Coordination */,
 				DA518F6A2D1E06FB00A5E896 /* Data */,
@@ -1303,6 +1274,33 @@
 			path = Analytics;
 			sourceTree = "<group>";
 		};
+		DAED91472D40B8AF00CC155B /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				DA518FBD2D1E06FB00A5E896 /* LaunchIntroView.swift */,
+				DA518FBC2D1E06FB00A5E896 /* LaunchAddWorkspaceView.swift */,
+				DAED91492D40B8DD00CC155B /* LaunchAddProfileView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		DAED91482D40B8BA00CC155B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				DA518FBB2D1E06FB00A5E896 /* Launch Screen.storyboard */,
+				DA518FBE2D1E06FB00A5E896 /* SplashScreen.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		DAED914D2D40BCD600CC155B /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				DAED914E2D40BCE500CC155B /* LaunchPhotoPicker.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1419,7 +1417,6 @@
 				DA518FEA2D1E06FB00A5E896 /* HomeSheets.swift in Sources */,
 				DADBE5CA2D30FDEC0024D18B /* FetchGoalByIDUseCaseImpl.swift in Sources */,
 				DA518FEC2D1E06FB00A5E896 /* AimIt.xcdatamodeld in Sources */,
-				DA518FED2D1E06FB00A5E896 /* CategoryEntity.swift in Sources */,
 				DA518FEE2D1E06FB00A5E896 /* GoalEntity.swift in Sources */,
 				DA518FEF2D1E06FB00A5E896 /* MilestoneEntity.swift in Sources */,
 				DA518FF02D1E06FB00A5E896 /* WorkspaceEntity.swift in Sources */,
@@ -1434,9 +1431,9 @@
 				DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */,
 				DA518FF32D1E06FB00A5E896 /* WorkspaceMapper.swift in Sources */,
 				DA518FF42D1E06FB00A5E896 /* GoalRepositoryImpl.swift in Sources */,
+				DAED914F2D40BCE500CC155B /* LaunchPhotoPicker.swift in Sources */,
 				DA518FF52D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift in Sources */,
 				DAB906882D37A28C00269935 /* AIGoalBreakdownCharts.swift in Sources */,
-				DA518FF62D1E06FB00A5E896 /* SettingsRepositoryImpl.swift in Sources */,
 				DAB9067E2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift in Sources */,
 				DAB906CD2D38F5DE00269935 /* AICompletedGoalCard.swift in Sources */,
 				DA4299152D362BFD0046ABBA /* FetchMilestonesByPromptUseCase.swift in Sources */,
@@ -1465,9 +1462,6 @@
 				DA5190042D1E06FB00A5E896 /* ToggleMilestoneCompletionUseCaseImpl.swift in Sources */,
 				DAB906842D378F3000269935 /* AIGrowthIllustration.swift in Sources */,
 				DA5190052D1E06FB00A5E896 /* UpdateMilestoneUseCaseImpl.swift in Sources */,
-				DA5190062D1E06FB00A5E896 /* GetSettingUseCaseImpl.swift in Sources */,
-				DA5190072D1E06FB00A5E896 /* RemoveSettingUseCaseImpl.swift in Sources */,
-				DA5190082D1E06FB00A5E896 /* SetSettingUseCaseImpl.swift in Sources */,
 				DA5190092D1E06FB00A5E896 /* AddWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900A2D1E06FB00A5E896 /* DeleteWorkspaceUseCaseImpl.swift in Sources */,
 				DAED91232D405D6700CC155B /* FetchCompletedGoalsForWorkspaceUseCaseImpl.swift in Sources */,
@@ -1476,6 +1470,7 @@
 				DA51900C2D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900D2D1E06FB00A5E896 /* FetchWorkspacesUseCaseImpl.swift in Sources */,
 				DA51900F2D1E06FB00A5E896 /* Goal.swift in Sources */,
+				DAED914A2D40B8DD00CC155B /* LaunchAddProfileView.swift in Sources */,
 				DA5190102D1E06FB00A5E896 /* Milestone.swift in Sources */,
 				DA5190112D1E06FB00A5E896 /* Quote.swift in Sources */,
 				DA5190122D1E06FB00A5E896 /* Workspace.swift in Sources */,
@@ -1483,7 +1478,6 @@
 				DAB906C02D38D93800269935 /* AIMilestoneBreakdownChart.swift in Sources */,
 				DA5190142D1E06FB00A5E896 /* MilestoneRepository.swift in Sources */,
 				DA42990F2D3626D40046ABBA /* AIFooterNote.swift in Sources */,
-				DA5190152D1E06FB00A5E896 /* SettingsRepository.swift in Sources */,
 				DAB9068A2D37A54D00269935 /* AnalyticsCalculateMonthlyDataForGoalsUseCase.swift in Sources */,
 				DADBE5C62D30E1F20024D18B /* AIMilestoneCard.swift in Sources */,
 				DA5190162D1E06FB00A5E896 /* WorkspaceRepository.swift in Sources */,
@@ -1505,9 +1499,6 @@
 				DA5190222D1E06FB00A5E896 /* UpdateMilestoneUseCase.swift in Sources */,
 				DA5DC0252D26554F00BE895B /* FieldChecker.swift in Sources */,
 				DAB907062D3F971A00269935 /* AIGoalOrMilestoneSelector.swift in Sources */,
-				DA5190232D1E06FB00A5E896 /* GetSettingsUseCase.swift in Sources */,
-				DA5190242D1E06FB00A5E896 /* RemoveSettingUseCase.swift in Sources */,
-				DA5190252D1E06FB00A5E896 /* SetSettingUseCase.swift in Sources */,
 				DAB906782D37587800269935 /* AnalyticsFetchCompletedMilestonesUseCaseImpl.swift in Sources */,
 				DA5190262D1E06FB00A5E896 /* AddWorkspaceUseCase.swift in Sources */,
 				DA5190272D1E06FB00A5E896 /* DeleteWorkspaceUseCase.swift in Sources */,
@@ -1515,6 +1506,7 @@
 				DAED91252D405E4B00CC155B /* FetchCompletedMilestoneForWorkspaceUseCase.swift in Sources */,
 				DA5190282D1E06FB00A5E896 /* EditWorkspaceUseCase.swift in Sources */,
 				DA5190292D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCase.swift in Sources */,
+				DAED914C2D40BC8A00CC155B /* LaunchSheets.swift in Sources */,
 				DA51902A2D1E06FB00A5E896 /* FetchWorkspacesUseCase.swift in Sources */,
 				DAB9066C2D37570700269935 /* AnalyticsAverageGoalCompletionTimeUseCaseImpl.swift in Sources */,
 				DA51902B2D1E06FB00A5E896 /* AIGoalProgressBar.swift in Sources */,
@@ -1523,6 +1515,7 @@
 				DA51902E2D1E06FB00A5E896 /* AIGoalCard.swift in Sources */,
 				DAB907012D3F649B00269935 /* TotalWorkspacesSettingsSheet.swift in Sources */,
 				DAB906652D3756A700269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCase.swift in Sources */,
+				DAED91322D40A46B00CC155B /* UserSettingsMapper.swift in Sources */,
 				DA51902F2D1E06FB00A5E896 /* AIMilestoneRow.swift in Sources */,
 				DAB906742D37580900269935 /* AnalyticsFetchUncompletedGoalsUseCaseImpl.swift in Sources */,
 				DA5190302D1E06FB00A5E896 /* CreateMilestoneView.swift in Sources */,
@@ -1531,6 +1524,7 @@
 				DA5190322D1E06FB00A5E896 /* AISystemImagePicker.swift in Sources */,
 				DA5190332D1E06FB00A5E896 /* AITextField.swift in Sources */,
 				DADBE5802D2788390024D18B /* FloatingTabBar.swift in Sources */,
+				DAED91302D40A35300CC155B /* UserSettings.swift in Sources */,
 				DA5190342D1E06FB00A5E896 /* AIGoalCardList.swift in Sources */,
 				DA5190352D1E06FB00A5E896 /* AIGoalMilestonesList.swift in Sources */,
 				DA5190652D1E766500A5E896 /* HomeScreenCovers.swift in Sources */,
@@ -1542,6 +1536,7 @@
 				DA5190372D1E06FB00A5E896 /* AIDateCapsule.swift in Sources */,
 				DA5190382D1E06FB00A5E896 /* AIGoalWidget.swift in Sources */,
 				DA5190392D1E06FB00A5E896 /* AIQuoteWidget.swift in Sources */,
+				DAED912D2D40A2C700CC155B /* UserSettingsEntity.swift in Sources */,
 				DAB9067C2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift in Sources */,
 				DA51903A2D1E06FB00A5E896 /* AITriumphWidget.swift in Sources */,
 				DA51903B2D1E06FB00A5E896 /* AIHeaderView.swift in Sources */,
@@ -1595,7 +1590,6 @@
 				DADBE5822D2796870024D18B /* TabCoordinator.swift in Sources */,
 				DA5190522D1E06FB00A5E896 /* Bundle+Extensions.swift in Sources */,
 				DA5190532D1E06FB00A5E896 /* View+Extensions.swift in Sources */,
-				DA5190542D1E06FB00A5E896 /* MockSettingsRepository.swift in Sources */,
 				DA5190552D1E06FB00A5E896 /* TopSafeAreaOverlayModifier.swift in Sources */,
 				DA5190562D1E06FB00A5E896 /* DeadlineFormatter.swift in Sources */,
 				DA5190572D1E06FB00A5E896 /* SystemImageCategory.swift in Sources */,
@@ -1729,6 +1723,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AimIt/AimIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AimIt/Resources/Preview Content\"";
@@ -1763,6 +1758,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AimIt/AimIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AimIt/Resources/Preview Content\"";
