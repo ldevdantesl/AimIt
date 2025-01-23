@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AIQuoteWidget: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     
     private let quoteVM: QuoteViewModel
@@ -20,20 +21,28 @@ struct AIQuoteWidget: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5){
-            Text(quote.author)
-                .font(.system(.subheadline, design: .rounded, weight: .bold))
-                .foregroundStyle(.aiLabel)
-                .fontDesign(.serif)
-            
+            HStack{
+                Text(quote.author)
+                    .font(.system(.subheadline, design: .rounded, weight: .bold))
+                    .foregroundStyle(.aiLabel)
+                    .fontDesign(.serif)
+                
+                Spacer()
+                
+                Text("Quote")
+                    .font(.system(.caption2, design: .rounded, weight: .light))
+                    .foregroundStyle(.aiBeige)
+                    .fontDesign(.serif)
+            }
             Text(quote.quote)
                 .foregroundStyle(.aiLabel)
                 .font(.system(.subheadline, design: .rounded, weight: .regular))
         }
         .padding(15)
-        .frame(maxWidth: UIConstants.widgetWidth, alignment: .leading)
-        .frame(maxHeight: UIConstants.widgetHeight, alignment: .top)
-        .background(Color.accentColor.gradient, in: .rect(cornerRadius: UIConstants.widgetCornerRadius))
-        .padding(.trailing, 20)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxHeight: UIConstants.widgetHeight)
+        .background(userVM.themeColor.gradient, in: .rect(cornerRadius: UIConstants.widgetCornerRadius))
+        .padding(.horizontal, 20)
         .onTapGesture {
             coordinator.present(sheet: .quote(quoteVM))
         }

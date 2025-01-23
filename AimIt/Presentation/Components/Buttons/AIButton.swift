@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AIButton: View {
+    @EnvironmentObject var userVM: UserViewModel
     
     enum ImageType: String {
         case back
@@ -22,17 +23,19 @@ struct AIButton: View {
         case briefCase
     }
 
-    let title: String?
     let image: ImageType
-    let action: (() -> ())?
-    let backColor: Color
-    let foreColor: Color
+    private let title: String?
+    private let action: (() -> ())?
+    private let backColor: Color
+    private let foreColor: Color
+    private let imageSize: CGFloat
     
     ///Default Initializer. Used for presenting button in a circle using *ImageType*\n
     init(
         image: ImageType,
-        backColor: Color = .aiSecondBackground,
-        foreColor: Color = .aiBlack,
+        backColor: Color = .aiSecondary,
+        foreColor: Color = .aiLabel,
+        imageSize: CGFloat = 20,
         action: (() -> ())? = nil
     ) {
         self.title = nil
@@ -40,6 +43,7 @@ struct AIButton: View {
         self.action = action
         self.backColor = backColor
         self.foreColor = foreColor
+        self.imageSize = 20
     }
     
     ///Initializer used for presenting a button filled throughout the whole screenwidth.\n Use it in a bottom toolbar positions.
@@ -49,6 +53,7 @@ struct AIButton: View {
         self.image = .empty
         self.backColor = color
         self.foreColor = .aiLabel
+        self.imageSize = 0
     }
     
     var body: some View {
@@ -74,22 +79,31 @@ struct AIButton: View {
                     ZStack {
                         Circle()
                             .fill(backColor.opacity(0.4))
-                            .frame(width: 52, height: 52)
+                            .frame(width: imageSize*2.6, height: imageSize*2.6)
                             .zIndex(1)
                         
-                        Circle()
-                            .fill(backColor)
-                            .frame(width: 45, height: 45)
-                            .zIndex(2)
-                        
-                        makeImage()
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: image == .chevronDown ? 20 : 25, height: 20)
-                            .zIndex(2)
-                            .foregroundStyle(foreColor)
+                        if image == .ava, let image = userVM.profileImage {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: imageSize*2.25, height: imageSize*2.25)
+                                .zIndex(2)
+                                .clipShape(Circle())
+                        } else {
+                            Circle()
+                                .fill(backColor)
+                                .frame(width: imageSize*2.25, height: imageSize*2.25)
+                                .zIndex(2)
+                            
+                            makeImage()
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: imageSize, height: imageSize)
+                                .zIndex(3)
+                                .foregroundStyle(foreColor)
+                        }
                     }
-                    .frame(width: 40, height: 40)
+                    .frame(width: imageSize*2.5, height: imageSize*2.5)
                 }
             }
         }

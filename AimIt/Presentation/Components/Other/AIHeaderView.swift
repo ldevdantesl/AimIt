@@ -102,7 +102,11 @@ struct AIHeaderView<Content: View>: View {
                     rightButton
                 }
             } else {
-                rightButton
+                if rightButton.image == .empty && leftButton.image != .empty {
+                    Spacer()
+                } else {
+                    rightButton
+                }
             }
         }
         .padding(.trailing, rightButton.image == .empty ? 10 : 20)

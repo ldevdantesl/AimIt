@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AIWorkspaceSelector: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     
@@ -42,7 +43,7 @@ struct AIWorkspaceSelector: View {
                                         title: "\(workspace.goals.count) goals",
                                         info: workspace.title,
                                         infoFontStyle: .headline,
-                                        infoForeColor: .accentColor
+                                        infoForeColor: userVM.themeColor
                                     )
                                     
                                     Spacer()

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AIMilestoneCard: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var milestoneVM: MilestoneViewModel
     @EnvironmentObject var goalVM: GoalViewModel
@@ -48,7 +49,7 @@ struct AIMilestoneCard: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 30, height: 30)
-                    .foregroundStyle(milestone.isCompleted ? .accent : .aiSecondary2)
+                    .foregroundStyle(milestone.isCompleted ? userVM.themeColor : .aiSecondary2)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

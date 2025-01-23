@@ -23,25 +23,36 @@ final class SettingsCoordinator: ObservableObject, Coordinator {
     @ViewBuilder
     func build(screen: SettingsScreens) -> some View {
         switch screen {
-        case .completedGoalsAndMilestones:
-            CompletedGoalsAndMilestonesScreen()
+        case .completedGoalsAndMilestones: CompletedGoalsAndMilestonesScreen()
+        case .notificationSettings: NotificationSettingsScreen()
         }
     }
     
     @ViewBuilder
     func build(sheet: SettingsSheets) -> some View {
-        switch sheet {
-        case .totalWorkspaces:
-            TotalWorkspacesSettingsSheet()
-                .presentationDetents(sheet.detents)
-                .presentationDragIndicator(.visible)
-                .presentationBackground(Color.aiBackground)
+        NavigationStack{
+            switch sheet {
+            case .totalWorkspaces:
+                TotalWorkspacesSettingsSheet()
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.visible)
+                    .presentationBackground(Color.aiBackground)
+            case .themeColor:
+                ChangeThemeColorSheet()
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.hidden)
+                    .presentationBackground(Color.aiBackground)
+            }
         }
     }
     
     @ViewBuilder
     func build(screenCovers: SettingsScreenCovers) -> some View {
-        
+        NavigationStack{
+            switch screenCovers {
+            case .editProfile: EditProfileScreenCover()
+            }
+        }
     }
     
     func present(sheet: SettingsSheets) {

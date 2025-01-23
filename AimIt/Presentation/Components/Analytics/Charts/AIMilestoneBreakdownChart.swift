@@ -9,6 +9,7 @@ import SwiftUI
 import Charts
 
 struct AIMilestoneBreakdownChart: View {
+    @EnvironmentObject var userVM: UserViewModel
     private let analyticsVM: AnalyticsViewModel
     private let workspace: Workspace
     
@@ -40,7 +41,7 @@ struct AIMilestoneBreakdownChart: View {
                             x: .value("Month", data.date, unit: .month),
                             y: .value("Completed Milestones", data.count)
                         )
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(userVM.themeColor)
                         .cornerRadius(5)
                     }
                     
@@ -75,7 +76,7 @@ struct AIMilestoneBreakdownChart: View {
                 .chartAppearence()
                 
                 HStack {
-                    AIChartInfo(text: "Completed Milestones", shape: .circle, color: .accentColor)
+                    AIChartInfo(text: "Completed Milestones", shape: .circle, color: userVM.themeColor)
                     
                     Spacer()
                     

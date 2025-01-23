@@ -38,18 +38,7 @@ final class LaunchCoordinator: ObservableObject, Coordinator {
     }
     
     @ViewBuilder
-    func build(sheet: LaunchSheets) -> some View {
-        switch sheet {
-        case .photoPicker(let selection):
-            LaunchPhotoPicker(selection: selection)
-                .presentationBackground(Color.aiBackground)
-                .presentationDragIndicator(.visible)
-        }
-    }
-    
-    func present(sheet: LaunchSheets) {
-        
-    }
+    func build(sheet: LaunchSheets) -> some View { }
     
     func push(to screen: LaunchScreens) {
         path.append(screen)

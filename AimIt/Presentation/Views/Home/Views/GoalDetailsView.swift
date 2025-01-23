@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct GoalDetailsView: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
@@ -32,7 +33,7 @@ struct GoalDetailsView: View {
                 ),
                 rightButton: AIButton(
                     image: .edit,
-                    backColor: isDeadlinePassed ? .aiSecondary : .accentColor,
+                    backColor: isDeadlinePassed ? .aiSecondary : userVM.themeColor,
                     foreColor: isDeadlinePassed ? .aiSecondary2 : .aiLabel,
                     action: coordinateToEditGoal
                 ),
@@ -66,10 +67,10 @@ struct GoalDetailsView: View {
             
             if goal.milestones.isEmpty {
                 NotFoundView(
-                    imageName: ImageNames.noMilestones,
+                    imageName: isDeadlinePassed ? ImageNames.deadlinePassed : ImageNames.noMilestones,
                     title: "Oops...",
-                    subtitle: "No Milestones. Tap to edit",
-                    action: coordinateToEditGoal
+                    subtitle: isDeadlinePassed ? "The Deadline is passed " : "No milestones, tap to add.",
+                    action: isDeadlinePassed ? coordinateToChangeDeadline : coordinateToEditGoal
                 )
             } else {
                 AIGoalMilestonesList(
@@ -77,6 +78,18 @@ struct GoalDetailsView: View {
                     isTogglingEnabled: !isDeadlinePassed
                 )
                 .padding(.bottom, 20)
+                .overlay {
+                    if isDeadlinePassed{
+                        NotFoundView(
+                            imageName: ImageNames.deadlinePassed,
+                            title: "Deadline Passed",
+                            subtitle: "",
+                            action: coordinateToChangeDeadline
+                        )
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding(.all, 20)
+                    }
+                }
             }
         }
         .background(Color.aiBackground)
@@ -102,11 +115,15 @@ struct GoalDetailsView: View {
     }
     
     private func coordinateToEditGoal() {
-        isDeadlinePassed ? () : coordinator.present(fullScreenCover: .editGoal($goal))
+        coordinator.present(fullScreenCover: .editGoal($goal))
     }
     
     private var isCompleteDisabled: Bool {
         return goal.milestones.allSatisfy { $0.isCompleted } && !DeadlineFormatter.isDayPassed(goal.deadline)
+    }
+    
+    private func coordinateToChangeDeadline() {
+        coordinator.present(sheet: .changeDeadline($goal))
     }
 }
 

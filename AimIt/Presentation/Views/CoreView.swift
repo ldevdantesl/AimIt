@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CoreView: View {
     @EnvironmentObject var tabCoordinator: TabCoordinator
+    @EnvironmentObject var userVM: UserViewModel
+    
+    @State private var tint: Color = .accentColor
     
     var body: some View {
         ZStack{
@@ -23,6 +26,13 @@ struct CoreView: View {
         }
         .transition(.push(from: .trailing))
         .animation(.easeInOut, value: tabCoordinator.selectedTab)
+        .tint(tint)
+        .onChange(of: userVM.themeColor) { _ in
+            tint = userVM.themeColor
+        }
+        .onAppear{
+            self.tint = userVM.themeColor
+        }
     }
 }
 

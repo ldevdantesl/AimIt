@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AISystemImagePicker: View {
+    @EnvironmentObject var userVM: UserViewModel
     @Binding var selectedImage: String
     
     @State private var selectedCategory: SystemImageCategory = .allCategories[0]
@@ -22,7 +23,7 @@ struct AISystemImagePicker: View {
                 .frame(width: 25, height: 25)
                 .foregroundStyle(.aiLabel)
                 .padding(20)
-                .background(Color.aiOrange, in:.circle)
+                .background(userVM.themeColor, in: .circle)
                 .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
             
             VStack(alignment: .leading){
@@ -37,7 +38,7 @@ struct AISystemImagePicker: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundStyle(selectedImage == symbol ? Color.aiLabel : Color.aiSecondary)
                                 .padding(15)
-                                .background(selectedImage == symbol ? Color.orange : Color.aiSecondary2, in: .circle)
+                                .background(selectedImage == symbol ? userVM.themeColor : Color.aiSecondary2, in: .circle)
                         }
                     }
                     .animation(.bouncy, value: selectedImage)

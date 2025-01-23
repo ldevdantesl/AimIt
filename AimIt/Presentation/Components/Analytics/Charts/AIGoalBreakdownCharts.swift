@@ -10,6 +10,8 @@ import SwiftUI
 import Charts
 
 struct AIGoalBreakdownCharts: View {
+    @EnvironmentObject var userVM: UserViewModel
+    
     private let analyticsVM: AnalyticsViewModel
     private let workspace: Workspace
     
@@ -36,7 +38,7 @@ struct AIGoalBreakdownCharts: View {
                         x: .value("Month", data.date, unit: .month),
                         y: .value("Total Goals", data.count)
                     )
-                    .foregroundStyle(Color.accentColor.gradient)
+                    .foregroundStyle(userVM.themeColor.gradient)
                     .cornerRadius(5)
                 }
             }
@@ -73,7 +75,7 @@ struct AIGoalBreakdownCharts: View {
                             x: .value("Month", data.date, unit: .month),
                             y: .value("Total Goals", data.count)
                         )
-                        .foregroundStyle(Color.accentColor.gradient)
+                        .foregroundStyle(userVM.themeColor.gradient)
                         .cornerRadius(5)
                         
                         RuleMark(y: .value("Preferred Value", 1))

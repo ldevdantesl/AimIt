@@ -6,29 +6,41 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct AIUserSettings: View {
-
+    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var coordinator: SettingsCoordinator
+    
     var body: some View {
-        VStack {
-            Image(systemName: "person.circle.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 80, height: 80)
-                .foregroundStyle(.accent)
-            
-            Text("Name Surname")
-                .font(.system(.title3, design: .rounded, weight: .semibold))
-                .lineLimit(1)
-                .frame(maxWidth: UIConstants.screenWidth - 40)
-                .foregroundStyle(.aiLabel)
-            
-            Text("email@example.com")
-                .font(.system(.subheadline, design: .rounded, weight: .light))
-                .lineLimit(1)
-                .frame(maxWidth: UIConstants.screenWidth - 20)
-                .foregroundStyle(.aiLabel)
+        Button(action: pushToEdit) {
+            VStack{
+                if let image = userVM.profileImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                } else {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
+                        .foregroundStyle(userVM.themeColor)
+                }
+                
+                Text(userVM.fullName)
+                    .font(.system(.title3, design: .rounded, weight: .semibold))
+                    .lineLimit(1)
+                    .frame(maxWidth: UIConstants.screenWidth - 40)
+                    .foregroundStyle(.aiLabel)
+                    .contentTransition(.numericText())
+            }
         }
+    }
+    
+    private func pushToEdit() {
+        coordinator.present(fullScreenCover: .editProfile)
     }
 }
 
@@ -36,4 +48,5 @@ struct AIUserSettings: View {
     AIUserSettings()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
+        .environmentObject(UserViewModel())
 }

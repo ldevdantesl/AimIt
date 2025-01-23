@@ -9,4 +9,5 @@ import Foundation
 
 enum SettingsScreens: Hashable {
     case completedGoalsAndMilestones
+    case notificationSettings
 }

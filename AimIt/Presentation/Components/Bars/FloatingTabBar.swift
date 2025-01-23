@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FloatingTabBar<Content: View>: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var tabCoordinator: TabCoordinator
     @ViewBuilder var menuContent: Content
     
@@ -65,7 +66,7 @@ struct FloatingTabBar<Content: View>: View {
                         }
                         .padding(10)
                         .padding(.horizontal, 5)
-                        .background(Color.accentColor)
+                        .background(userVM.themeColor)
                         .padding(.leading, tab == .home ? 10 : 0)
                         .padding(.trailing, tab == .settings ? 10 : 0)
                     }
@@ -90,7 +91,7 @@ struct FloatingTabBar<Content: View>: View {
                         .frame(width: 20, height: 20)
                         .foregroundStyle(.aiLabel)
                         .padding(19)
-                        .background(Color.accentColor, in: .circle)
+                        .background(userVM.themeColor, in: .circle)
                 }
             } else {
                 Button(action: { action?() }){
@@ -100,7 +101,8 @@ struct FloatingTabBar<Content: View>: View {
                         .frame(width: 20, height: 20)
                         .foregroundStyle(.aiLabel)
                         .padding(19)
-                        .background(Color.accentColor, in: .circle)
+                        .background(userVM.themeColor, in: .circle)
+                        .contentTransition(.numericText())
                 }
             }
         }

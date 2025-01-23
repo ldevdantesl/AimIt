@@ -8,7 +8,7 @@
 import Foundation
 
 enum SettingsScreenCovers: Identifiable {
-    case some 
+    case editProfile
     
     var id: UUID { UUID() }
 }

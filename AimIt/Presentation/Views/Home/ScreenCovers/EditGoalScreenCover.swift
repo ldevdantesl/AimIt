@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditGoalScreenCover: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var milestoneVM: MilestoneViewModel
@@ -30,7 +31,7 @@ struct EditGoalScreenCover: View {
             AIHeaderView(
                 rightButton: AIButton(
                     image: .xmark,
-                    backColor: .aiOrange,
+                    backColor: userVM.themeColor,
                     foreColor: .aiLabel,
                     action: coordinator.dismissFullScreenCover
                 ),

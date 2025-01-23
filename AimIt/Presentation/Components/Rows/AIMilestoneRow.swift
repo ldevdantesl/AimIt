@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AIMilestoneRow: View {
     @EnvironmentObject var milestoneVM: MilestoneViewModel
+    @EnvironmentObject var userVM: UserViewModel
     @Binding private var milestone: Milestone
     
     enum RowType {
@@ -104,7 +105,7 @@ struct AIMilestoneRow: View {
                     AIHaptics.shared.generate(with: .light)
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(.accent.gradient)
+                        .fill(userVM.themeColor.gradient)
                         .frame(width: 50)
                         .overlay {
                             Image(systemName: "trash.fill")

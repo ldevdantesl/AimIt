@@ -13,6 +13,6 @@ protocol EditGoalUseCase {
         newTitle: String?,
         newDesc: String?,
         newDeadline: Date?,
-        newMilestones: [Milestone]
+        newMilestones: [Milestone]?
     ) throws -> Goal
 }

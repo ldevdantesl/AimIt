@@ -20,6 +20,7 @@ struct AimItApp: App {
                 .environmentObject(diContainer.makeMilestoneViewModel())
                 .environmentObject(diContainer.makeWorkspaceViewModel())
                 .environmentObject(diContainer.makeQuoteViewModel())
+                .environmentObject(diContainer.makeUserViewModel())
                 .preferredColorScheme(.dark)
                 .topSafeAreaContent()
         }

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AIGoalProgressBar: View {
+    @EnvironmentObject var userVM: UserViewModel
     @State private var milestonesWidths: [CGFloat] = []
     @State private var animationProgress: [CGFloat] = []
     
@@ -30,7 +31,7 @@ struct AIGoalProgressBar: View {
                                 .frame(height: 20)
                             
                             Capsule()
-                                .fill(Color.accentColor.gradient)
+                                .fill(userVM.themeColor.gradient)
                                 .frame(
                                     width: index < animationProgress.count ?
                                     animationProgress[index] * geometry.size.width / CGFloat(max(1, goal.milestones.count)) : 0,

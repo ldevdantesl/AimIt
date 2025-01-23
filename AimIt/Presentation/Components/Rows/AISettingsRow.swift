@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AISettingsRow: View {
     
+    @EnvironmentObject var userVM: UserViewModel
+    
     enum SettingsRowType {
         case toggle
         case pusher
@@ -128,7 +130,7 @@ struct AISettingsRow: View {
                         .foregroundStyle(.aiSecondary2)
                 } else if type == .toggle {
                     Toggle(isOn: $isOn, label: {})
-                        .tint(Color.accentColor)
+                        .tint(userVM.themeColor)
                 }
             }
             .padding(.horizontal, 20)

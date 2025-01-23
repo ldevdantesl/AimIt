@@ -10,6 +10,7 @@ import SwiftUI
 struct AISettingsContent: View {
     @EnvironmentObject var coordinator: SettingsCoordinator
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     var body: some View {
         VStack(spacing: 10) {
@@ -38,30 +39,22 @@ struct AISettingsContent: View {
                     image: "globe",
                     imageBackgroundShape: .roundRect,
                     textOnPusher: "English",
-                    buttonAction: nil
+                    buttonAction: openSettings
                 )
                 
                 AISettingsRow(
                     title: "Theme",
                     image: "paintpalette.fill",
                     imageBackgroundShape: .roundRect,
-                    textOnPusher: "Default",
-                    pushAction: nil
+                    pushAction: { coordinator.present(sheet: .themeColor) }
                 )
                 
                 AISettingsRow(
                     title: "Notifications",
                     image: "bell.fill",
                     imageBackgroundShape: .roundRect,
-                    textOnPusher: "Enabled",
-                    pushAction: nil
-                )
-                
-                AISettingsRow(
-                    title: "iCloud Sync",
-                    image: "cloud.fill",
-                    imageBackgroundShape: .roundRect,
-                    isOn: .constant(true)
+                    textOnPusher: userVM.isNotificationEnabled ? "Enabled" : "Disabled",
+                    pushAction: { coordinator.push(to: .notificationSettings) }
                 )
             }
             
@@ -95,6 +88,14 @@ struct AISettingsContent: View {
                     imageBackgroundShape: .roundRect,
                     buttonAction: nil
                 )
+            }
+        }
+    }
+    
+    private func openSettings() {
+        if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+            if UIApplication.shared.canOpenURL(settingsURL) {
+                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
             }
         }
     }

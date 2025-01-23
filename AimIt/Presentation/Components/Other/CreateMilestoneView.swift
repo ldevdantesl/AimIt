@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateMilestoneView: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     @Binding var milestones: [Milestone]
     @State private var onSheet: Bool = false
@@ -42,7 +43,7 @@ struct CreateMilestoneView: View {
                 
                 AIButton(
                     image: .plus,
-                    backColor: .accentColor,
+                    backColor: userVM.themeColor,
                     foreColor: .aiLabel,
                     action: { onSheet.toggle() }
                 )

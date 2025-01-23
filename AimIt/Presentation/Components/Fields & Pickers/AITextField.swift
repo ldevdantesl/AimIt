@@ -59,7 +59,7 @@ struct AITextField: View {
                     .foregroundStyle(.aiSecondary2)
                 Spacer()
             }
-            .padding(.leading, 10)
+            
             
             TextField(text: $text, axis: axis) {
                 Text("Example: \(placeholder)")
@@ -95,6 +95,7 @@ struct AITextField: View {
                 }
             }
             .offset(x: offset)
+            .contentTransition(.numericText())
             
             if let errorMsg = errorMsg, !errorMsg.isEmpty, isValidated {
                 Text(errorMsg)

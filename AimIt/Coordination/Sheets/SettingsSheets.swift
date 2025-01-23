@@ -10,6 +10,7 @@ import SwiftUI
 
 enum SettingsSheets: Identifiable {
     case totalWorkspaces
+    case themeColor
     
     var id: UUID { UUID() }
     
@@ -17,6 +18,8 @@ enum SettingsSheets: Identifiable {
         switch self {
         case .totalWorkspaces:
             return [.fraction(1/3), .medium]
+        case .themeColor:
+            return [.height(120)]
         }
     }
 }

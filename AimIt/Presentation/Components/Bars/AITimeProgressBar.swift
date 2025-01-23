@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AITimeProgressBar: View {
+    @EnvironmentObject var userVM: UserViewModel
+    
     private var createdDate: Date
     private var dueDate: Date
     private var datePassedAction: (() -> ())?
@@ -27,7 +29,7 @@ struct AITimeProgressBar: View {
     var body: some View {
         ZStack(alignment:.leading) {
             Capsule()
-                .fill(Color.accentColor)
+                .fill(userVM.themeColor)
                 .frame(width: max(progressWidth, minCapsuleWidth), height: 20)
                 .zIndex(2)
                 .overlay {

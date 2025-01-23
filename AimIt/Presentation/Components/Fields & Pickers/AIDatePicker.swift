@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AIDatePicker: View {
+    @EnvironmentObject var userVM: UserViewModel
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var goalVM: GoalViewModel
     @Binding private var chosenDate: Date
@@ -31,13 +32,14 @@ struct AIDatePicker: View {
             .datePickerStyle(.graphical)
             .padding(.horizontal, 20)
             
-            AIButton(title: "Done"){
+            AIButton(title: "Done", color: userVM.themeColor){
                 if let goal = goal {
                     goalVM.editGoal(goal, deadline: chosenDate)
                 }
                 dismiss()
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
     }
 }

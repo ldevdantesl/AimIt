@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-enum LaunchSheets: Identifiable {
-    case photoPicker(Binding<UIImage?>)
-    
+enum LaunchSheets: Identifiable {    
     var id: UUID { UUID() }
 }

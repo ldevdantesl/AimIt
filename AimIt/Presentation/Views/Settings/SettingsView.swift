@@ -21,6 +21,7 @@ struct SettingsView: View {
                     )
                     
                     AIUserSettings()
+                        .padding(.vertical, 20)
                     
                     AISettingsContent()
                 }
@@ -30,7 +31,7 @@ struct SettingsView: View {
             .background(Color.aiBackground)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    FloatingTabBar()
+                    FloatingTabBar(action: showEditProfile)
                 }
             }
             .toolbarBackground(.clear, for: .bottomBar)
@@ -44,6 +45,10 @@ struct SettingsView: View {
                 coordinator.build(screen: screen)
             }
         }
+    }
+    
+    private func showEditProfile() {
+        coordinator.present(fullScreenCover: .editProfile)
     }
 }
 

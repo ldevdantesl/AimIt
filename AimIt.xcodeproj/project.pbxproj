@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA2E71342D420AE6008990C2 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71332D420AE6008990C2 /* UserViewModel.swift */; };
+		DA2E71362D420E65008990C2 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71352D420E65008990C2 /* UIColor+Extensions.swift */; };
+		DA2E71382D420F91008990C2 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71372D420F90008990C2 /* Color+Extensions.swift */; };
+		DA2E713B2D421A4E008990C2 /* EditProfileScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E713A2D421A4E008990C2 /* EditProfileScreenCover.swift */; };
+		DA2E713D2D42214C008990C2 /* ChangeThemeColorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E713C2D42214C008990C2 /* ChangeThemeColorSheet.swift */; };
+		DA2E713F2D4240B4008990C2 /* NotificationSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E713E2D4240B4008990C2 /* NotificationSettingsScreen.swift */; };
 		DA42990B2D3610ED0046ABBA /* AIHaptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990A2D3610ED0046ABBA /* AIHaptics.swift */; };
 		DA42990D2D361F530046ABBA /* AIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990C2D361F530046ABBA /* AIDatePicker.swift */; };
 		DA42990F2D3626D40046ABBA /* AIFooterNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990E2D3626D40046ABBA /* AIFooterNote.swift */; };
@@ -95,7 +101,6 @@
 		DA5190352D1E06FB00A5E896 /* AIGoalMilestonesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518F9F2D1E06FB00A5E896 /* AIGoalMilestonesList.swift */; };
 		DA5190362D1E06FB00A5E896 /* AIMilestoneCreationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FA02D1E06FB00A5E896 /* AIMilestoneCreationList.swift */; };
 		DA5190372D1E06FB00A5E896 /* AIDateCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FA22D1E06FB00A5E896 /* AIDateCapsule.swift */; };
-		DA5190382D1E06FB00A5E896 /* AIGoalWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FA42D1E06FB00A5E896 /* AIGoalWidget.swift */; };
 		DA5190392D1E06FB00A5E896 /* AIQuoteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FA52D1E06FB00A5E896 /* AIQuoteWidget.swift */; };
 		DA51903A2D1E06FB00A5E896 /* AITriumphWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FA62D1E06FB00A5E896 /* AITriumphWidget.swift */; };
 		DA51903B2D1E06FB00A5E896 /* AIHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA518FA82D1E06FB00A5E896 /* AIHeaderView.swift */; };
@@ -223,10 +228,15 @@
 		DAED91322D40A46B00CC155B /* UserSettingsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED91312D40A46B00CC155B /* UserSettingsMapper.swift */; };
 		DAED914A2D40B8DD00CC155B /* LaunchAddProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED91492D40B8DD00CC155B /* LaunchAddProfileView.swift */; };
 		DAED914C2D40BC8A00CC155B /* LaunchSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED914B2D40BC8A00CC155B /* LaunchSheets.swift */; };
-		DAED914F2D40BCE500CC155B /* LaunchPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED914E2D40BCE500CC155B /* LaunchPhotoPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA2E71332D420AE6008990C2 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		DA2E71352D420E65008990C2 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		DA2E71372D420F90008990C2 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		DA2E713A2D421A4E008990C2 /* EditProfileScreenCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileScreenCover.swift; sourceTree = "<group>"; };
+		DA2E713C2D42214C008990C2 /* ChangeThemeColorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeThemeColorSheet.swift; sourceTree = "<group>"; };
+		DA2E713E2D4240B4008990C2 /* NotificationSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsScreen.swift; sourceTree = "<group>"; };
 		DA42990A2D3610ED0046ABBA /* AIHaptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHaptics.swift; sourceTree = "<group>"; };
 		DA42990C2D361F530046ABBA /* AIDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIDatePicker.swift; sourceTree = "<group>"; };
 		DA42990E2D3626D40046ABBA /* AIFooterNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFooterNote.swift; sourceTree = "<group>"; };
@@ -314,7 +324,6 @@
 		DA518F9F2D1E06FB00A5E896 /* AIGoalMilestonesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGoalMilestonesList.swift; sourceTree = "<group>"; };
 		DA518FA02D1E06FB00A5E896 /* AIMilestoneCreationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMilestoneCreationList.swift; sourceTree = "<group>"; };
 		DA518FA22D1E06FB00A5E896 /* AIDateCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIDateCapsule.swift; sourceTree = "<group>"; };
-		DA518FA42D1E06FB00A5E896 /* AIGoalWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIGoalWidget.swift; sourceTree = "<group>"; };
 		DA518FA52D1E06FB00A5E896 /* AIQuoteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIQuoteWidget.swift; sourceTree = "<group>"; };
 		DA518FA62D1E06FB00A5E896 /* AITriumphWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AITriumphWidget.swift; sourceTree = "<group>"; };
 		DA518FA82D1E06FB00A5E896 /* AIHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHeaderView.swift; sourceTree = "<group>"; };
@@ -446,7 +455,6 @@
 		DAED91312D40A46B00CC155B /* UserSettingsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsMapper.swift; sourceTree = "<group>"; };
 		DAED91492D40B8DD00CC155B /* LaunchAddProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAddProfileView.swift; sourceTree = "<group>"; };
 		DAED914B2D40BC8A00CC155B /* LaunchSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSheets.swift; sourceTree = "<group>"; };
-		DAED914E2D40BCE500CC155B /* LaunchPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPhotoPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -473,6 +481,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA2E71392D421A42008990C2 /* ScreenCovers */ = {
+			isa = PBXGroup;
+			children = (
+				DA2E713A2D421A4E008990C2 /* EditProfileScreenCover.swift */,
+			);
+			path = ScreenCovers;
+			sourceTree = "<group>";
+		};
 		DA42991A2D36531F0046ABBA /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -840,7 +856,6 @@
 		DA518FA72D1E06FB00A5E896 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				DA518FA42D1E06FB00A5E896 /* AIGoalWidget.swift */,
 				DA518FA52D1E06FB00A5E896 /* AIQuoteWidget.swift */,
 				DA518FA62D1E06FB00A5E896 /* AITriumphWidget.swift */,
 			);
@@ -882,6 +897,7 @@
 				DA518FB32D1E06FB00A5E896 /* WorkspaceViewModel.swift */,
 				DA51905E2D1E07BF00A5E896 /* QuoteViewModel.swift */,
 				DAB9067F2D37592700269935 /* AnalyticsViewModel.swift */,
+				DA2E71332D420AE6008990C2 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -899,7 +915,6 @@
 		DA518FBF2D1E06FB00A5E896 /* Launching */ = {
 			isa = PBXGroup;
 			children = (
-				DAED914D2D40BCD600CC155B /* Sheets */,
 				DAED91482D40B8BA00CC155B /* Other */,
 				DAED91472D40B8AF00CC155B /* Screens */,
 			);
@@ -909,6 +924,7 @@
 		DA518FC12D1E06FB00A5E896 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				DA2E71392D421A42008990C2 /* ScreenCovers */,
 				DAB907022D3F719600269935 /* Screens */,
 				DAB906FF2D3F647500269935 /* Sheets */,
 				DA518FC02D1E06FB00A5E896 /* SettingsView.swift */,
@@ -972,6 +988,8 @@
 			children = (
 				DA518FCD2D1E06FB00A5E896 /* Bundle+Extensions.swift */,
 				DA518FCE2D1E06FB00A5E896 /* View+Extensions.swift */,
+				DA2E71352D420E65008990C2 /* UIColor+Extensions.swift */,
+				DA2E71372D420F90008990C2 /* Color+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1232,6 +1250,7 @@
 			isa = PBXGroup;
 			children = (
 				DAB907002D3F649B00269935 /* TotalWorkspacesSettingsSheet.swift */,
+				DA2E713C2D42214C008990C2 /* ChangeThemeColorSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -1240,6 +1259,7 @@
 			isa = PBXGroup;
 			children = (
 				DAB907032D3F71A000269935 /* CompletedGoalsAndMilestonesScreen.swift */,
+				DA2E713E2D4240B4008990C2 /* NotificationSettingsScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1291,14 +1311,6 @@
 				DA518FBE2D1E06FB00A5E896 /* SplashScreen.swift */,
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		DAED914D2D40BCD600CC155B /* Sheets */ = {
-			isa = PBXGroup;
-			children = (
-				DAED914E2D40BCE500CC155B /* LaunchPhotoPicker.swift */,
-			);
-			path = Sheets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1407,6 +1419,7 @@
 				DAB906C92D38ECBC00269935 /* AIChartInfo.swift in Sources */,
 				DAB906CB2D38F36300269935 /* AICompletedGoalsAnalytics.swift in Sources */,
 				DAB906762D37584D00269935 /* AnalyticsFetchTotalMilestonesUseCaseImpl.swift in Sources */,
+				DA2E713F2D4240B4008990C2 /* NotificationSettingsScreen.swift in Sources */,
 				DAB9065B2D37562800269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCase.swift in Sources */,
 				DAB9065C2D37562800269935 /* AnalyticsFetchTotalGoalsUseCase.swift in Sources */,
 				DAB9065D2D37562800269935 /* AnalyticsFetchUncompletedGoalsUseCase.swift in Sources */,
@@ -1431,7 +1444,6 @@
 				DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */,
 				DA518FF32D1E06FB00A5E896 /* WorkspaceMapper.swift in Sources */,
 				DA518FF42D1E06FB00A5E896 /* GoalRepositoryImpl.swift in Sources */,
-				DAED914F2D40BCE500CC155B /* LaunchPhotoPicker.swift in Sources */,
 				DA518FF52D1E06FB00A5E896 /* MilestoneRepositoryImpl.swift in Sources */,
 				DAB906882D37A28C00269935 /* AIGoalBreakdownCharts.swift in Sources */,
 				DAB9067E2D3758F500269935 /* AnalyticsAverageMilestoneCompletionTimeUseCaseImpl.swift in Sources */,
@@ -1445,6 +1457,7 @@
 				DA518FFA2D1E06FB00A5E896 /* UserDefaultsStorageManager.swift in Sources */,
 				DAB906612D37565F00269935 /* AnalyticsFetchCompletedMilestonesUseCase.swift in Sources */,
 				DA518FFB2D1E06FB00A5E896 /* AddGoalUseCaseImpl.swift in Sources */,
+				DA2E71362D420E65008990C2 /* UIColor+Extensions.swift in Sources */,
 				DA518FFC2D1E06FB00A5E896 /* DeleteGoalUseCaseImpl.swift in Sources */,
 				DA42991E2D373C770046ABBA /* AnalyticsRepository.swift in Sources */,
 				DA518FFD2D1E06FB00A5E896 /* EditGoalUseCaseImpl.swift in Sources */,
@@ -1455,6 +1468,7 @@
 				DAED91272D405E6E00CC155B /* FetchCompletedMilestoneForWorkspaceUseCaseImpl.swift in Sources */,
 				DA5190012D1E06FB00A5E896 /* DeleteMilestoneUseCaseImpl.swift in Sources */,
 				DA5190022D1E06FB00A5E896 /* FetchAllMilestonesUseCaseImpl.swift in Sources */,
+				DA2E713D2D42214C008990C2 /* ChangeThemeColorSheet.swift in Sources */,
 				DADBE5942D27A0D40024D18B /* SettingsScreenCovers.swift in Sources */,
 				DA5190032D1E06FB00A5E896 /* FetchMilestonesForGoalUseCaseImpl.swift in Sources */,
 				DADBE5AA2D27C6DE0024D18B /* AIPrioritizedGoalCard.swift in Sources */,
@@ -1473,6 +1487,7 @@
 				DAED914A2D40B8DD00CC155B /* LaunchAddProfileView.swift in Sources */,
 				DA5190102D1E06FB00A5E896 /* Milestone.swift in Sources */,
 				DA5190112D1E06FB00A5E896 /* Quote.swift in Sources */,
+				DA2E713B2D421A4E008990C2 /* EditProfileScreenCover.swift in Sources */,
 				DA5190122D1E06FB00A5E896 /* Workspace.swift in Sources */,
 				DA5190132D1E06FB00A5E896 /* GoalRepository.swift in Sources */,
 				DAB906C02D38D93800269935 /* AIMilestoneBreakdownChart.swift in Sources */,
@@ -1534,7 +1549,6 @@
 				DADBE5852D2796D30024D18B /* CustomTab.swift in Sources */,
 				DADBE5A22D27C0D50024D18B /* PrioritizeGoalUseCase.swift in Sources */,
 				DA5190372D1E06FB00A5E896 /* AIDateCapsule.swift in Sources */,
-				DA5190382D1E06FB00A5E896 /* AIGoalWidget.swift in Sources */,
 				DA5190392D1E06FB00A5E896 /* AIQuoteWidget.swift in Sources */,
 				DAED912D2D40A2C700CC155B /* UserSettingsEntity.swift in Sources */,
 				DAB9067C2D3758CE00269935 /* AnalyticsFetchCompletedMilestonesWithinWeekUseCaseImpl.swift in Sources */,
@@ -1560,6 +1574,7 @@
 				DA5190432D1E06FB00A5E896 /* MilestoneViewModel.swift in Sources */,
 				DADBE5AC2D2E51450024D18B /* AIOptionalDateField.swift in Sources */,
 				DA5190442D1E06FB00A5E896 /* WorkspaceViewModel.swift in Sources */,
+				DA2E71382D420F91008990C2 /* Color+Extensions.swift in Sources */,
 				DAB9068E2D37A72200269935 /* AnalyticsCalculateMonthlyDataForGoalsUseCaseImpl.swift in Sources */,
 				DA5190452D1E06FB00A5E896 /* GoalDetailsView.swift in Sources */,
 				DAB906702D37578400269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCaseImpl.swift in Sources */,
@@ -1577,6 +1592,7 @@
 				DADBE5A82D27C60E0024D18B /* UnprioritizeGoalUseCaseImpl.swift in Sources */,
 				DAB906822D3765A000269935 /* AICompletedAnalytics.swift in Sources */,
 				DA51904B2D1E06FB00A5E896 /* LaunchIntroView.swift in Sources */,
+				DA2E71342D420AE6008990C2 /* UserViewModel.swift in Sources */,
 				DA51904C2D1E06FB00A5E896 /* SplashScreen.swift in Sources */,
 				DA51904D2D1E06FB00A5E896 /* SettingsView.swift in Sources */,
 				DA51904E2D1E06FB00A5E896 /* ConstantKeys.swift in Sources */,
@@ -1731,6 +1747,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AimIt/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to let you customize your avatar.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1766,6 +1783,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AimIt/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to let you customize your avatar.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

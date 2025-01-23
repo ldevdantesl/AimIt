@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AnalyticsView: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: AnalyticsCoordinator
     @EnvironmentObject var tabCoordinator: TabCoordinator
     @EnvironmentObject var analyticsVM: AnalyticsViewModel
@@ -22,7 +23,7 @@ struct AnalyticsView: View {
                     AIHeaderView (
                         rightMenu: AIButton(
                             image: .chevronDown,
-                            backColor: .accent,
+                            backColor: userVM.themeColor,
                             foreColor: .aiLabel
                         ),
                         title: "Track your progress in",

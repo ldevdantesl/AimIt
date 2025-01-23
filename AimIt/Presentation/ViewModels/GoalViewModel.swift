@@ -90,7 +90,7 @@ final class GoalViewModel: ObservableObject {
         title: String? = nil,
         desc: String? = nil,
         deadline: Date? = nil,
-        newMilestones: [Milestone] = []
+        newMilestones: [Milestone]? = nil
     ) -> Goal? {
         handleUseCase(errorMessage: "Erorr editing Goal", defaultValue: nil) {
             try editGoalUseCase.execute(

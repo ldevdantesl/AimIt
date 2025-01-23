@@ -1,25 +1,29 @@
 //
-//  LaunchAddProfileView.swift
+//  EditProfileScreenCover.swift
 //  AimIt
 //
-//  Created by Buzurg Rakhimzoda on 22.01.2025.
+//  Created by Buzurg Rakhimzoda on 23.01.2025.
 //
 
 import SwiftUI
 import PhotosUI
 
-struct LaunchAddProfileView: View {
-    @EnvironmentObject var coordinator: LaunchCoordinator
+struct EditProfileScreenCover: View {
+    @EnvironmentObject var coordinator: SettingsCoordinator
     @EnvironmentObject var userVM: UserViewModel
     
     @State private var fullName: String = ""
     @State private var selectedImage: UIImage? = nil
     @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var errorMsg: String? = ""
+    @State private var errorMsg: String? = "" 
     
     var body: some View {
         VStack{
-            AIHeaderView(title: "Craft unique Identity", subtitle: "Create Profile")
+            AIHeaderView(
+                rightButton: AIButton(image: .xmark, action: dismiss),
+                title: "Update your details",
+                subtitle: "Edit Profile"
+            )
             
             Spacer()
                 .frame(height: UIConstants.halfHeight / 3)
@@ -60,24 +64,36 @@ struct LaunchAddProfileView: View {
         .background(Color.aiBackground)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Continue", color: userVM.themeColor, action: pushToWorkspace)
+                AIButton(title: "Save", color: userVM.themeColor, action: save)
                     .disabled(errorMsg != nil)
             }
         }
+        .onAppear(perform: setup)
     }
     
-    private func pushToWorkspace() {
-        coordinator.push(to: .addWorkspace)
+    private func dismiss() {
+        coordinator.dismissFullScreenCover()
+    }
+    
+    private func setup() {
+        withAnimation {
+            self.fullName = userVM.fullName
+            self.selectedImage = userVM.profileImage
+        }
+    }
+    
+    private func save() {
         userVM.updateName(fullName)
         if let image = selectedImage {
             userVM.updateProfileImage(image)
         }
+        dismiss()
     }
 }
 
 #Preview {
     NavigationStack{
-        LaunchAddProfileView()
+        EditProfileScreenCover()
             .environmentObject(LaunchCoordinator(onFinish: {}))
     }
 }

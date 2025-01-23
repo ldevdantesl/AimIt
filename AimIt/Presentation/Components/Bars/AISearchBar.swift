@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AISearchBar: View {
     
+    @EnvironmentObject var userVM: UserViewModel
+    
     @Binding var searchText: String
     @FocusState var isFocused: Bool
     
@@ -47,7 +49,7 @@ struct AISearchBar: View {
                     .scaledToFit()
                     .frame(width: 25, height: 25)
                     .padding(.trailing, 10)
-                    .foregroundStyle(Color.accentColor)
+                    .foregroundStyle(userVM.themeColor)
                     .onTapGesture {
                         DispatchQueue.main.async {
                             withAnimation {

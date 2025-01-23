@@ -88,6 +88,10 @@ final class DIContainer: ObservableObject {
     func makeQuoteViewModel() -> QuoteViewModel {
         return QuoteViewModel()
     }
+    
+    func makeUserViewModel() -> UserViewModel {
+        return UserViewModel()
+    }
 
     func makeAnalyticsViewModel() -> AnalyticsViewModel {
         let repository: AnalyticsRepository = AnalyticsRepositoryImpl(

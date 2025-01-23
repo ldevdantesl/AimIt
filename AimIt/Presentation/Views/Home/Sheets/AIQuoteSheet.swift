@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AIQuoteSheet: View {
+    @EnvironmentObject var userVM: UserViewModel
     @State var quoteVM: QuoteViewModel
 
     init(quoteVM: QuoteViewModel) {
@@ -19,7 +20,7 @@ struct AIQuoteSheet: View {
             AIInfoField(
                 title: "Quote",
                 titleFontStyle: .headline,
-                titleForeColor: .ailIghtPink,
+                titleForeColor: .aiBeige,
                 info: quoteVM.randomQuote.author,
                 infoForeColor: .aiLabel,
                 infoFontDesign: .serif, 
@@ -34,7 +35,7 @@ struct AIQuoteSheet: View {
                 .padding(.horizontal, 20)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.aiOrange)
+        .background(userVM.themeColor)
     }
 }
 

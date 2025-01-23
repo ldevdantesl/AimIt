@@ -22,7 +22,7 @@ protocol GoalRepository {
         newTitle: String?,
         newDesc: String?,
         newDeadline: Date?,
-        newMilestones: [Milestone]
+        newMilestones: [Milestone]?
     ) throws -> Goal
     
     func completeGoal(_ goal: Goal) throws

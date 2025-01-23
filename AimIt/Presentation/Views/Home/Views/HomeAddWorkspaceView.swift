@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeAddWorkspaceView: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @Environment(\.dismiss) var dismiss
     @State private var title: String = ""
@@ -34,7 +35,7 @@ struct HomeAddWorkspaceView: View {
         .background(Color.aiBackground)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Create") {
+                AIButton(title: "Create", color: userVM.themeColor) {
                     workspaceVM.addWorkspace(title: title)
                     dismiss()
                 }

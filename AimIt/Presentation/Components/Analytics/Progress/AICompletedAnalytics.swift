@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AICompletedAnalytics: View {
+    @EnvironmentObject var userVM: UserViewModel
     private let analyticsVM: AnalyticsViewModel
     private let workspace: Workspace
     
@@ -55,7 +56,7 @@ struct AICompletedAnalytics: View {
                     .gaugeStyle(AccessoryCircularCapacityGaugeStyle())
                     .frame(width: 120, height: 120)
                     .scaleEffect(2)
-                    .tint(Color.accent.gradient)
+                    .tint(userVM.themeColor.gradient)
                 }
                 
                 Spacer()
@@ -79,7 +80,7 @@ struct AICompletedAnalytics: View {
                     .gaugeStyle(AccessoryCircularCapacityGaugeStyle())
                     .frame(width: 120, height: 120)
                     .scaleEffect(2)
-                    .tint(Color.accent.gradient)
+                    .tint(userVM.themeColor.gradient)
                 }
             }
             .padding(.horizontal, 20)

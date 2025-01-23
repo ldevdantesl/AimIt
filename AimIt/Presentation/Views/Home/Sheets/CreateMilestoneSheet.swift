@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreateMilestoneSheet: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var milestoneVM: MilestoneViewModel
     @Environment(\.dismiss) var dismiss
     
@@ -44,7 +45,7 @@ struct CreateMilestoneSheet: View {
                     AIHeaderView(
                         rightButton: AIButton(
                             image: .xmark,
-                            backColor: Color.accentColor,
+                            backColor: userVM.themeColor,
                             foreColor: Color.aiLabel,
                             action: { dismiss() }
                         ),
@@ -72,7 +73,7 @@ struct CreateMilestoneSheet: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
-                        AIButton(title: "Create") {
+                        AIButton(title: "Create", color: userVM.themeColor) {
                             if let milestone = milestoneVM.createSeperateMilestone(
                                 desc: title,
                                 systemImage: systemImage,

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MilestoneDetailsSheet: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var milestoneVM: MilestoneViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
     @Binding var milestone: Milestone
@@ -45,7 +46,7 @@ struct MilestoneDetailsSheet: View {
             .frame(maxWidth: .infinity)
             .frame(height: 60)
             .background(
-                Color.accentColor,
+                userVM.themeColor,
                 in:.rect(cornerRadii: .init(bottomLeading: 15, bottomTrailing: 15))
             )
             
@@ -57,7 +58,7 @@ struct MilestoneDetailsSheet: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 25, height: 25)
-                        .foregroundStyle(milestone.isCompleted ? Color.accentColor : Color.aiSecondary2)
+                        .foregroundStyle(milestone.isCompleted ? userVM.themeColor : Color.aiSecondary2)
                 }
                 .disabled(!togglingEnabled)
                 

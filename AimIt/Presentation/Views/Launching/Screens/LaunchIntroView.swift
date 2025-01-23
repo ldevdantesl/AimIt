@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LaunchIntroView: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: LaunchCoordinator
     
     @State private var selectedTab: Int = 0
@@ -44,15 +45,14 @@ struct LaunchIntroView: View {
             .background(Color.aiBackground)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    AIButton(title: "Continue") {
+                    AIButton(title: "Continue", color: userVM.themeColor) {
                         if selectedTab < 2 {
                             withAnimation {
                                 selectedTab+=1
                             }
                         } else {
-                            coordinator.push(to: .addWorkspace)
+                            coordinator.push(to: .addProfile)
                         }
-                        
                     }
                 }
             }

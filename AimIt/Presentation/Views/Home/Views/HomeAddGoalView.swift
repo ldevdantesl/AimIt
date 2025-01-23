@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeAddGoalView: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
@@ -68,7 +69,7 @@ struct HomeAddGoalView: View {
         .toolbar(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Create", action: addGoal)
+                AIButton(title: "Create", color: userVM.themeColor, action: addGoal)
                     .disabled(titleErrorMsg != nil)
             }
         }

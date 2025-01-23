@@ -9,9 +9,8 @@ import Foundation
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var tabCoordinator: TabCoordinator
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
-    @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var quoteVM: QuoteViewModel
     
@@ -22,15 +21,18 @@ struct HomeView: View {
             ScrollView{
                 VStack(spacing: 20) {
                     AIHeaderView(
-                        leftButton: AIButton (image: .ava),
+                        leftButton: AIButton (
+                            image: .ava, backColor: .aiLabel
+                        ),
+                        
                         rightButton: AIButton (
                             image: .plus,
-                            backColor: .accentColor,
+                            backColor: userVM.themeColor,
                             foreColor: .aiLabel,
                             action: { coordinator.push(to: .addGoal) }
                         ),
                         title: "Good morning 🌥️",
-                        subtitle: "Buzurgmehr Rahimzoda"
+                        subtitle: userVM.fullName
                     )
                     
                     AISearchBar(
@@ -44,13 +46,7 @@ struct HomeView: View {
                         
                         AIPrioritizedGoalCard(in: workspaceVM.currentWorkspace)
                         
-                        HStack(alignment: .top) {
-                            AIGoalWidget(workspace: workspaceVM.currentWorkspace)
-                            
-                            Spacer()
-                            
-                            AIQuoteWidget(quoteVM: quoteVM)
-                        }
+                        AIQuoteWidget(quoteVM: quoteVM)
                         
                         AIGoalCardList(in: workspaceVM.currentWorkspace)
                         

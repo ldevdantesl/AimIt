@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CompletedGoalsAndMilestonesScreen: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: SettingsCoordinator
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var milestoneVM: MilestoneViewModel
@@ -30,7 +31,7 @@ struct CompletedGoalsAndMilestonesScreen: View {
                     ),
                     rightMenu: AIButton(
                         image: .briefCase,
-                        backColor: Color.accentColor,
+                        backColor: userVM.themeColor,
                         foreColor: Color.aiLabel
                     ),
                     title: "In Workspace",

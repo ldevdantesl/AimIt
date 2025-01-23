@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AIOptionalDateField: View {
+    @EnvironmentObject var userVM: UserViewModel
     private let titleName: String
     private let widthSize: CGFloat
     private let dateUntil: Date?
@@ -72,7 +73,7 @@ struct AIOptionalDateField: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 35, height: 35)
-                            .foregroundStyle(Color.accentColor)
+                            .foregroundStyle(userVM.themeColor)
                     }
                 }
             }
@@ -92,7 +93,7 @@ struct AIOptionalDateField: View {
                 .datePickerStyle(.graphical)
                 .padding(.horizontal, 20)
                 
-                AIButton(title: "Done") {
+                AIButton(title: "Done", color: userVM.themeColor) {
                     showSheet.toggle()
                     withAnimation {
                         self.chosenDate = choosingDate

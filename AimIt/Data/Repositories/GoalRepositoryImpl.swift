@@ -110,7 +110,7 @@ final class GoalRepositoryImpl: GoalRepository {
         newTitle: String?,
         newDesc: String?,
         newDeadline: Date?,
-        newMilestones: [Milestone]
+        newMilestones: [Milestone]?
     ) throws -> Goal {
         let context = CDstack.viewContext
         let goalEntity = GoalMapper.toEntity(from: goal, context: context)
@@ -123,38 +123,40 @@ final class GoalRepositoryImpl: GoalRepository {
             goalEntity.deadlineChanges += 1
         }
         
-        let existingMilestones = goalEntity.milestones as? Set<MilestoneEntity> ?? Set()
-        let newMilestoneIDs = Set(newMilestones.map { $0.id })
-        
-        let milestonesToRemove = existingMilestones.filter { !newMilestoneIDs.contains($0.id) }
-        milestonesToRemove.forEach { milestoneEntity in
-            goalEntity.removeFromMilestones(milestoneEntity)
-            context.delete(milestoneEntity)
-        }
-        
-        let updatedMilestones = newMilestones.map { milestone -> MilestoneEntity in
-            if let existingEntity = existingMilestones.first(where: { $0.id == milestone.id }) {
-                existingEntity.desc = milestone.desc
-                existingEntity.systemImage = milestone.systemImage
-                existingEntity.isCompleted = milestone.isCompleted
-                existingEntity.dueDate = milestone.dueDate
-                existingEntity.createdAt = milestone.createdAt
-                existingEntity.goal = goalEntity
-                return existingEntity
-            } else {
-                let newEntity = MilestoneEntity(context: context)
-                newEntity.id = milestone.id
-                newEntity.desc = milestone.desc
-                newEntity.systemImage = milestone.systemImage
-                newEntity.isCompleted = milestone.isCompleted
-                newEntity.createdAt = milestone.createdAt
-                newEntity.dueDate = milestone.dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
-                newEntity.goal = goalEntity
-                return newEntity
+        if let newMilestones {
+            let existingMilestones = goalEntity.milestones as? Set<MilestoneEntity> ?? Set()
+            let newMilestoneIDs = Set(newMilestones.map { $0.id })
+            
+            let milestonesToRemove = existingMilestones.filter { !newMilestoneIDs.contains($0.id) }
+            milestonesToRemove.forEach { milestoneEntity in
+                goalEntity.removeFromMilestones(milestoneEntity)
+                context.delete(milestoneEntity)
             }
+            
+            let updatedMilestones = newMilestones.map { milestone -> MilestoneEntity in
+                if let existingEntity = existingMilestones.first(where: { $0.id == milestone.id }) {
+                    existingEntity.desc = milestone.desc
+                    existingEntity.systemImage = milestone.systemImage
+                    existingEntity.isCompleted = milestone.isCompleted
+                    existingEntity.dueDate = milestone.dueDate
+                    existingEntity.createdAt = milestone.createdAt
+                    existingEntity.goal = goalEntity
+                    return existingEntity
+                } else {
+                    let newEntity = MilestoneEntity(context: context)
+                    newEntity.id = milestone.id
+                    newEntity.desc = milestone.desc
+                    newEntity.systemImage = milestone.systemImage
+                    newEntity.isCompleted = milestone.isCompleted
+                    newEntity.createdAt = milestone.createdAt
+                    newEntity.dueDate = milestone.dueDate.flatMap { DeadlineFormatter.formatToTheEndOfTheDay($0) }
+                    newEntity.goal = goalEntity
+                    return newEntity
+                }
+            }
+            
+            goalEntity.milestones = NSSet(array: updatedMilestones)
         }
-        
-        goalEntity.milestones = NSSet(array: updatedMilestones)
         
         saveContext()
         return GoalMapper.mapToDomain(from: goalEntity)
