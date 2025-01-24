@@ -26,6 +26,7 @@ struct AIDatePicker: View {
             DatePicker(
                 "",
                 selection: $chosenDate,
+                in: Calendar.current.date(byAdding: .day, value: 1, to: Date())!...,
                 displayedComponents: .date
             )
             .datePickerStyle(.graphical)

@@ -17,6 +17,7 @@
 		DA2E71442D4316C9008990C2 /* ApplicationOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71432D4316C9008990C2 /* ApplicationOpener.swift */; };
 		DA2E71462D432503008990C2 /* PhotoLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71452D432503008990C2 /* PhotoLibraryService.swift */; };
 		DA2E71482D432589008990C2 /* PhotoLibraryServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71472D432589008990C2 /* PhotoLibraryServiceImpl.swift */; };
+		DA2E714A2D43622D008990C2 /* AISettingsShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71492D43622D008990C2 /* AISettingsShareButton.swift */; };
 		DA42990B2D3610ED0046ABBA /* AIHaptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990A2D3610ED0046ABBA /* AIHaptics.swift */; };
 		DA42990D2D361F530046ABBA /* AIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990C2D361F530046ABBA /* AIDatePicker.swift */; };
 		DA42990F2D3626D40046ABBA /* AIFooterNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990E2D3626D40046ABBA /* AIFooterNote.swift */; };
@@ -245,6 +246,7 @@
 		DA2E71432D4316C9008990C2 /* ApplicationOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationOpener.swift; sourceTree = "<group>"; };
 		DA2E71452D432503008990C2 /* PhotoLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryService.swift; sourceTree = "<group>"; };
 		DA2E71472D432589008990C2 /* PhotoLibraryServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryServiceImpl.swift; sourceTree = "<group>"; };
+		DA2E71492D43622D008990C2 /* AISettingsShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettingsShareButton.swift; sourceTree = "<group>"; };
 		DA42990A2D3610ED0046ABBA /* AIHaptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHaptics.swift; sourceTree = "<group>"; };
 		DA42990C2D361F530046ABBA /* AIDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIDatePicker.swift; sourceTree = "<group>"; };
 		DA42990E2D3626D40046ABBA /* AIFooterNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFooterNote.swift; sourceTree = "<group>"; };
@@ -821,6 +823,7 @@
 			isa = PBXGroup;
 			children = (
 				DA518F942D1E06FB00A5E896 /* AIButton.swift */,
+				DA2E71492D43622D008990C2 /* AISettingsShareButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -1556,6 +1559,7 @@
 				DAED91322D40A46B00CC155B /* UserSettingsMapper.swift in Sources */,
 				DA51902F2D1E06FB00A5E896 /* AIMilestoneRow.swift in Sources */,
 				DAB906742D37580900269935 /* AnalyticsFetchUncompletedGoalsUseCaseImpl.swift in Sources */,
+				DA2E714A2D43622D008990C2 /* AISettingsShareButton.swift in Sources */,
 				DA5190302D1E06FB00A5E896 /* CreateMilestoneView.swift in Sources */,
 				DA5190312D1E06FB00A5E896 /* AIDateField.swift in Sources */,
 				DADBE58E2D27A0940024D18B /* AnalyticsSheets.swift in Sources */,

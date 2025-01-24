@@ -98,6 +98,12 @@ final class GoalRepositoryImpl: GoalRepository {
         }
         
         newGoal.milestones = NSSet(array: milestoneEntities)
+        do {
+            try milestoneEntities.forEach(scheduleNotificationFor)
+        } catch {
+            print("Failed to schedule notification for milestone: \(error.localizedDescription)")
+        }
+        
         
         let workspaceEntity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
         workspaceEntity.addToGoals(newGoal)
@@ -105,11 +111,11 @@ final class GoalRepositoryImpl: GoalRepository {
         
         do {
             try scheduleNotification(for: newGoal)
+        } catch let error as NotificationErrors {
+            print("Failed to schedule notification: \(error.errorDescription)")
         } catch {
             print("Failed to schedule notification: \(error.localizedDescription)")
         }
-        
-        saveContext()
         
         saveContext()
     }
@@ -138,6 +144,9 @@ final class GoalRepositoryImpl: GoalRepository {
             let newMilestoneIDs = Set(newMilestones.map { $0.id })
             
             let milestonesToRemove = existingMilestones.filter { !newMilestoneIDs.contains($0.id) }
+            
+            milestonesToRemove.forEach(removeNotification)
+            
             milestonesToRemove.forEach { milestoneEntity in
                 goalEntity.removeFromMilestones(milestoneEntity)
                 context.delete(milestoneEntity)
@@ -165,16 +174,28 @@ final class GoalRepositoryImpl: GoalRepository {
                 }
             }
             
+            updatedMilestones.forEach(removeNotification)
+            updatedMilestones.forEach {
+                do {
+                    try scheduleNotificationFor(milestone: $0)
+                } catch {
+                    print("Error scheduling notification for \($0.desc): \(error.localizedDescription)")
+                }
+            }
+            
             goalEntity.milestones = NSSet(array: updatedMilestones)
         }
         
         saveContext()
         
+        removeNotification(for: goalEntity)
+        
         do {
-            try removeNotification(for: goalEntity)
             try scheduleNotification(for: goalEntity)
+        } catch let error as NotificationErrors {
+            print("Error scheduling notification: \(error.errorDescription)")
         } catch {
-            print("Error removing or scheduling notification: \(error.localizedDescription)")
+            print("Error scheduling notification: \(error.localizedDescription)")
         }
         
         return GoalMapper.mapToDomain(from: goalEntity)
@@ -184,7 +205,7 @@ final class GoalRepositoryImpl: GoalRepository {
     func deleteGoal(_ goal: Goal) throws {
         let goalEntity = GoalMapper.toEntity(from: goal, context: CDStack.viewContext)
         CDStack.viewContext.delete(goalEntity)
-        try removeNotification(for: goalEntity)
+        removeNotification(for: goalEntity)
         saveContext()
     }
     
@@ -197,13 +218,9 @@ final class GoalRepositoryImpl: GoalRepository {
         if let prioritizedGoal = goalEntity.workspace?.prioritizedGoal, prioritizedGoal.id == goalEntity.id {
             goalEntity.workspace?.prioritizedGoal = nil
         }
-    
-        do {
-            try removeNotification(for: goalEntity)
-        } catch {
-            print("Error removing notification: \(error.localizedDescription)")
-        }
-        
+
+        removeNotification(for: goalEntity)
+
         saveContext()
     }
     
@@ -223,6 +240,10 @@ final class GoalRepositoryImpl: GoalRepository {
     
     // MARK: - Scheduling Notification
     private func scheduleNotification(for goal: GoalEntity) throws {
+        guard UserDefaults.standard.bool(forKey: ConstantKeys.isNotificationsEnabled) else {
+            throw NotificationErrors.notificationsAreDisabled
+        }
+        
         guard let dayBeforeDeadline = Calendar.current.date(byAdding: .day, value: -1, to: goal.deadline) else {
             throw NSError(domain: "Day Before deadline is nil", code: -230, userInfo: nil)
         }
@@ -237,7 +258,7 @@ final class GoalRepositoryImpl: GoalRepository {
         }
         print(notifyDate)
         
-        guard !DeadlineFormatter.isDayPassed(notifyDate) else {
+        guard Date() > notifyDate else {
             throw NSError(domain: "Notify date is already passed.", code: -230, userInfo: nil)
         }
         
@@ -245,7 +266,7 @@ final class GoalRepositoryImpl: GoalRepository {
             do {
                 try await notificationService.scheduleNotification(
                     identifier: goal.id.uuidString,
-                    title: "Goal Reminder",
+                    title: "Goal Reminder in \(goal.workspace?.title ?? "") workspace",
                     body: "Your goal \"\(goal.title)\" is due tomorrow.",
                     date: notifyDate
                 )
@@ -258,16 +279,60 @@ final class GoalRepositoryImpl: GoalRepository {
         }
     }
     
-    private func removeNotification(for goal: GoalEntity) throws {
+    private func scheduleNotificationFor(milestone: MilestoneEntity) throws {
+        guard UserDefaults.standard.bool(forKey: ConstantKeys.isNotificationsEnabled) else {
+            throw NotificationErrors.notificationsAreDisabled
+        }
+        
+        guard let dueDate = milestone.dueDate else {
+            throw NSError(domain: "Milestone don't have a dueDate \(milestone.desc)", code: -10)
+        }
+        
+        guard !milestone.isCompleted else {
+            throw NSError(domain: "Milestone is completed already \(milestone.desc)", code: -1)
+        }
+        
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: dueDate)
+            components.hour = 9
+            components.minute = 0
+            components.second = 0
+        
+        guard let notifyDate = Calendar.current.date(from: components) else {
+            throw NSError(domain: "Notify date is nil", code: -230)
+        }
+        
+        guard Date() > notifyDate else {
+            throw NSError(domain: "Date is already passed nil", code: -230)
+        }
+    
         Task {
             do {
-                try await notificationService.cancelNotification(identifier: goal.id.uuidString)
-                print("Successfully removed notification for \(goal.title)")
+                try await notificationService.scheduleNotification(
+                    identifier: milestone.id.uuidString,
+                    title: "\(milestone.desc) is due today",
+                    body: "Don't forget to complete milestone.",
+                    date: notifyDate
+                )
+                print("Successfully scheduled notification for \(milestone.desc)")
+                
+            } catch let error as NotificationErrors {
+                print("Failed to schedule notification: \(error.errorDescription)")
+                throw error
             } catch {
-                print("Couldn't remove the notifcation for \(goal.title)")
+                print("Failed to schedule notification: \(error.localizedDescription)")
                 throw error
             }
         }
+    }
+    
+    private func removeNotification(for goal: GoalEntity) {
+        notificationService.cancelNotification(identifier: goal.id.uuidString)
+        print("Successfully removed notification for \(goal.title)")
+    }
+    
+    private func removeNotification(for milestone: MilestoneEntity) {
+        notificationService.cancelNotification(identifier: milestone.id.uuidString)
+        print("Successfully removed notification for \(milestone.desc)")
     }
     
     // MARK: - OTHER

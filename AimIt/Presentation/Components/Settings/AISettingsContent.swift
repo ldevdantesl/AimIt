@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AISettingsContent: View {
+    @State private var isShowingReview: Bool = false
+    
     @EnvironmentObject var coordinator: SettingsCoordinator
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var userVM: UserViewModel
@@ -61,12 +63,12 @@ struct AISettingsContent: View {
             VStack {
                 AIInfoField(title: "Other", info: nil)
                 
-                AISettingsRow(
-                    title: "Help",
-                    image: "questionmark",
-                    imageBackgroundShape: .roundRect,
-                    buttonAction: nil
-                )
+//                AISettingsRow(
+//                    title: "Help",
+//                    image: "questionmark",
+//                    imageBackgroundShape: .roundRect,
+//                    buttonAction: nil
+//                )
                 
                 AISettingsRow(
                     title: "Feedback",
@@ -75,18 +77,24 @@ struct AISettingsContent: View {
                     buttonAction: nil
                 )
                 
-                AISettingsRow(
-                    title: "Share",
-                    image: "arrowshape.turn.up.right.fill",
-                    imageBackgroundShape: .roundRect,
-                    buttonAction: nil
+                AISettingsShareButton(
+                    url: Constants.APP_URL,
+                    subject: "Checkout the app.",
+                    message: "I really recommend u this app..."
                 )
                 
                 AISettingsRow(
                     title: "Review",
                     image: "star",
                     imageBackgroundShape: .roundRect,
-                    buttonAction: nil
+                    buttonAction: { isShowingReview.toggle() }
+                )
+            }
+            .alert(isPresented: $isShowingReview) {
+                Alert(
+                    title: Text("Review Request Simulation"),
+                    message: Text("Once the app is live, you'll be able to leave a review on the App Store."),
+                    dismissButton: .default(Text("Got it!"))
                 )
             }
         }

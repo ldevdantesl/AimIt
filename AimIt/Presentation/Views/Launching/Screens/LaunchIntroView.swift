@@ -11,7 +11,7 @@ struct LaunchIntroView: View {
     @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: LaunchCoordinator
     
-    @State private var selectedTab: Int = 3
+    @State private var selectedTab: Int = 0
     
     var body: some View {
         NavigationStack(path: $coordinator.path){

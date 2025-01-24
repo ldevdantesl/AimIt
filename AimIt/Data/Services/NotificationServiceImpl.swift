@@ -39,7 +39,7 @@ final class NotificationServiceImpl: NotificationService {
         try await center.add(request)
     }
     
-    func cancelNotification(identifier: String) async throws {
+    func cancelNotification(identifier: String) {
         center.removePendingNotificationRequests(withIdentifiers: [identifier])
     }
     

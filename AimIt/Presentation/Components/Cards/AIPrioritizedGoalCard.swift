@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AIPrioritizedGoalCard: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var goalVM: GoalViewModel
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     
@@ -29,6 +30,7 @@ struct AIPrioritizedGoalCard: View {
                     )
                 }
                 .id(workspace.prioritizedGoal)
+                .shadow(color: userVM.themeColor.opacity(0.8), radius: 5, x: 0, y: 0)
         }
     }
     
