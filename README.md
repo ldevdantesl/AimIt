@@ -35,12 +35,12 @@ This app is designed to help users manage their goals effectively by creating mi
 ## How to Build
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/goal-management-app.git
+   git clone https://github.com/ldevdantesl/AimIt.git
    ```
 2. Open the project in Xcode:
    ```bash
-   cd goal-management-app
-   open GoalManagementApp.xcodeproj
+   cd AimIt
+   open AimIt.xcodeproj
    ```
 3. Install dependencies (if applicable, e.g., CocoaPods or Swift Package Manager).
    ```bash
