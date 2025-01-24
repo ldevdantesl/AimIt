@@ -39,7 +39,7 @@ struct AISettingsContent: View {
                     image: "globe",
                     imageBackgroundShape: .roundRect,
                     textOnPusher: "English",
-                    buttonAction: openSettings
+                    buttonAction: ApplicationOpener.openSettings
                 )
                 
                 AISettingsRow(
@@ -53,7 +53,7 @@ struct AISettingsContent: View {
                     title: "Notifications",
                     image: "bell.fill",
                     imageBackgroundShape: .roundRect,
-                    textOnPusher: userVM.isNotificationEnabled ? "Enabled" : "Disabled",
+                    textOnPusher: notificationText,
                     pushAction: { coordinator.push(to: .notificationSettings) }
                 )
             }
@@ -92,12 +92,8 @@ struct AISettingsContent: View {
         }
     }
     
-    private func openSettings() {
-        if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-            if UIApplication.shared.canOpenURL(settingsURL) {
-                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-            }
-        }
+    private var notificationText: String {
+        userVM.isNotificationEnabled && userVM.notificationStatus == .authorized ? "Enabled" : "Disabled"
     }
 }
 

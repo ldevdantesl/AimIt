@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum ImageNames {
+enum ImageNames{
+    
     // MARK: - Not found
     static let noTodayMilestones = "NoTodayMilestones"
     static let noFound = "NoFound"
@@ -16,6 +17,7 @@ enum ImageNames {
     static let noCompletedGoals = "NoCompletedGoals"
     static let noPostpondedGoal = "NoPostpondedGoal"
     static let noCompleted = "NoCompleted"
+    static let noNotifications = "NoNotifications"
     
     // MARK: - INTRO & SPLASH
     static let intro1 = "Intro1"

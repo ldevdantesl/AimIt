@@ -98,6 +98,7 @@ struct GoalDetailsView: View {
             ToolbarItem(placement: .bottomBar) {
                 AIButton (
                     title: goal.isCompleted ? "Uncomplete" : "Complete",
+                    color: !isCompleteDisabled ? .secondary : userVM.themeColor,
                     action: toggleCompletion
                 )
                 .disabled(!isCompleteDisabled)

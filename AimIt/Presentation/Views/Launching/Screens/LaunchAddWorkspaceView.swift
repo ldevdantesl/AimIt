@@ -35,8 +35,12 @@ struct LaunchAddWorkspaceView: View {
         .background(Color.aiBackground)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Create", color: userVM.themeColor, action: addWorkspace)
-                    .disabled(titleErrorMsg != nil)
+                AIButton(
+                    title: "Create",
+                    color: titleErrorMsg != nil ? .secondary : userVM.themeColor,
+                    action: addWorkspace
+                )
+                .disabled(titleErrorMsg != nil)
             }
         }
     }

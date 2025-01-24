@@ -21,24 +21,26 @@ enum GoalRepositoryError: Error {
 
 final class GoalRepositoryImpl: GoalRepository {
     
-    private let CDstack: CoreDataStack
+    private let CDStack: CoreDataStack
+    private let notificationService: NotificationService
     
-    init(CDstack: CoreDataStack) {
-        self.CDstack = CDstack
+    init(CDStack: CoreDataStack, notificationService: NotificationService) {
+        self.CDStack = CDStack
+        self.notificationService = notificationService
     }
     
     // MARK: - FETCHING
     func fetchGoals() throws -> [Goal] {
         let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "deadline", ascending: true)]
-        let goalEntity = try CDstack.viewContext.fetch(request)
+        let goalEntity = try CDStack.viewContext.fetch(request)
         return goalEntity.map(GoalMapper.mapToDomain)
     }
     
     func fetchGoalByID(id: UUID) throws -> Goal {
         let request: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id.uuidString)
-        let entity = try CDstack.viewContext.fetch(request)
+        let entity = try CDStack.viewContext.fetch(request)
         guard let goal = entity.first else { throw GoalRepositoryError.goalNotFound }
         return GoalMapper.mapToDomain(from: goal)
     }
@@ -51,7 +53,7 @@ final class GoalRepositoryImpl: GoalRepository {
             NSPredicate(format: "isCompleted == false")
         ])
         
-        return try CDstack.viewContext.fetch(fetchRequest).map(GoalMapper.mapToDomain)
+        return try CDStack.viewContext.fetch(fetchRequest).map(GoalMapper.mapToDomain)
     }
     
     func fetchCompletedGoalsForWorkspace(_ workspace: Workspace) throws -> [Goal] {
@@ -60,7 +62,7 @@ final class GoalRepositoryImpl: GoalRepository {
             NSPredicate(format: "workspace.id == %@", workspace.id.uuidString),
             NSPredicate(format: "isCompleted == true")
         ])
-        let goals = try CDstack.viewContext.fetch(request)
+        let goals = try CDStack.viewContext.fetch(request)
         return goals.map(GoalMapper.mapToDomain)
     }
     
@@ -72,7 +74,7 @@ final class GoalRepositoryImpl: GoalRepository {
         deadline: Date?,
         milestones: [Milestone]
     ) throws {
-        let newGoal = GoalEntity(context: CDstack.viewContext)
+        let newGoal = GoalEntity(context: CDStack.viewContext)
         newGoal.id = UUID()
         newGoal.title = title
         newGoal.desc = desc
@@ -83,7 +85,7 @@ final class GoalRepositoryImpl: GoalRepository {
         newGoal.completedAt = nil
         
         let milestoneEntities = milestones.map { milestone -> MilestoneEntity in
-            let milestoneEntity = MilestoneEntity(context: CDstack.viewContext)
+            let milestoneEntity = MilestoneEntity(context: CDStack.viewContext)
             milestoneEntity.id = milestone.id
             milestoneEntity.desc = milestone.desc
             milestoneEntity.systemImage = milestone.systemImage
@@ -97,9 +99,17 @@ final class GoalRepositoryImpl: GoalRepository {
         
         newGoal.milestones = NSSet(array: milestoneEntities)
         
-        let workspaceEntity = WorkspaceMapper.toEntity(workspace, context: CDstack.viewContext)
+        let workspaceEntity = WorkspaceMapper.toEntity(workspace, context: CDStack.viewContext)
         workspaceEntity.addToGoals(newGoal)
         newGoal.workspace = workspaceEntity
+        
+        do {
+            try scheduleNotification(for: newGoal)
+        } catch {
+            print("Failed to schedule notification: \(error.localizedDescription)")
+        }
+        
+        saveContext()
         
         saveContext()
     }
@@ -112,7 +122,7 @@ final class GoalRepositoryImpl: GoalRepository {
         newDeadline: Date?,
         newMilestones: [Milestone]?
     ) throws -> Goal {
-        let context = CDstack.viewContext
+        let context = CDStack.viewContext
         let goalEntity = GoalMapper.toEntity(from: goal, context: context)
         
         goalEntity.title = newTitle ?? goalEntity.title
@@ -159,36 +169,110 @@ final class GoalRepositoryImpl: GoalRepository {
         }
         
         saveContext()
+        
+        do {
+            try removeNotification(for: goalEntity)
+            try scheduleNotification(for: goalEntity)
+        } catch {
+            print("Error removing or scheduling notification: \(error.localizedDescription)")
+        }
+        
         return GoalMapper.mapToDomain(from: goalEntity)
     }
     
     // MARK: - DELETING
     func deleteGoal(_ goal: Goal) throws {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
-        CDstack.viewContext.delete(goalEntity)
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDStack.viewContext)
+        CDStack.viewContext.delete(goalEntity)
+        try removeNotification(for: goalEntity)
         saveContext()
     }
     
     // MARK: - COMPLETION
     func completeGoal(_ goal: Goal) throws {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDStack.viewContext)
         goalEntity.isCompleted = true
         goalEntity.completedAt = DeadlineFormatter.formatToTheEndOfTheDay(Date())
+    
         if let prioritizedGoal = goalEntity.workspace?.prioritizedGoal, prioritizedGoal.id == goalEntity.id {
             goalEntity.workspace?.prioritizedGoal = nil
         }
+    
+        do {
+            try removeNotification(for: goalEntity)
+        } catch {
+            print("Error removing notification: \(error.localizedDescription)")
+        }
+        
         saveContext()
     }
     
     func uncompleteGoal(_ goal: Goal) throws {
-        let goalEntity = GoalMapper.toEntity(from: goal, context: CDstack.viewContext)
+        let goalEntity = GoalMapper.toEntity(from: goal, context: CDStack.viewContext)
         goalEntity.isCompleted = false
         goalEntity.completedAt = nil
+
+        do {
+            try scheduleNotification(for: goalEntity)
+        } catch {
+            print("Error scheduling notification: \(error.localizedDescription)")
+        }
+
         saveContext()
+    }
+    
+    // MARK: - Scheduling Notification
+    private func scheduleNotification(for goal: GoalEntity) throws {
+        guard let dayBeforeDeadline = Calendar.current.date(byAdding: .day, value: -1, to: goal.deadline) else {
+            throw NSError(domain: "Day Before deadline is nil", code: -230, userInfo: nil)
+        }
+        
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: dayBeforeDeadline)
+            components.hour = 9
+            components.minute = 0
+            components.second = 0
+        
+        guard let notifyDate = Calendar.current.date(from: components) else {
+            throw NSError(domain: "Notify date is nil", code: -230, userInfo: nil)
+        }
+        print(notifyDate)
+        
+        guard !DeadlineFormatter.isDayPassed(notifyDate) else {
+            throw NSError(domain: "Notify date is already passed.", code: -230, userInfo: nil)
+        }
+        
+        Task {
+            do {
+                try await notificationService.scheduleNotification(
+                    identifier: goal.id.uuidString,
+                    title: "Goal Reminder",
+                    body: "Your goal \"\(goal.title)\" is due tomorrow.",
+                    date: notifyDate
+                )
+                
+                print("Successfully scheduled notification for \(goal.title)")
+            } catch {
+                print("Failed to schedule notification: \(error.localizedDescription)")
+                throw error
+            }
+        }
+    }
+    
+    private func removeNotification(for goal: GoalEntity) throws {
+        Task {
+            do {
+                try await notificationService.cancelNotification(identifier: goal.id.uuidString)
+                print("Successfully removed notification for \(goal.title)")
+            } catch {
+                print("Couldn't remove the notifcation for \(goal.title)")
+                throw error
+            }
+        }
     }
     
     // MARK: - OTHER
     private func saveContext() {
-        CDstack.saveContext()
+        CDStack.saveContext()
     }
+    
 }

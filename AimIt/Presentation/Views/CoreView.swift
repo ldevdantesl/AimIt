@@ -26,13 +26,6 @@ struct CoreView: View {
         }
         .transition(.push(from: .trailing))
         .animation(.easeInOut, value: tabCoordinator.selectedTab)
-        .tint(tint)
-        .onChange(of: userVM.themeColor) { _ in
-            tint = userVM.themeColor
-        }
-        .onAppear{
-            self.tint = userVM.themeColor
-        }
     }
 }
 

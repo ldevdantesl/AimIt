@@ -69,8 +69,12 @@ struct HomeAddGoalView: View {
         .toolbar(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Create", color: userVM.themeColor, action: addGoal)
-                    .disabled(titleErrorMsg != nil)
+                AIButton(
+                    title: "Create",
+                    color: titleErrorMsg != nil ? .secondary : userVM.themeColor,
+                    action: addGoal
+                )
+                .disabled(titleErrorMsg != nil)
             }
         }
         .hideKeyboardOnTap()

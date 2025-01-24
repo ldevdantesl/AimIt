@@ -64,8 +64,12 @@ struct EditProfileScreenCover: View {
         .background(Color.aiBackground)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Save", color: userVM.themeColor, action: save)
-                    .disabled(errorMsg != nil)
+                AIButton(
+                    title: "Save",
+                    color: errorMsg != nil ? .secondary : userVM.themeColor,
+                    action: save
+                )
+                .disabled(errorMsg != nil)
             }
         }
         .onAppear(perform: setup)
@@ -76,6 +80,14 @@ struct EditProfileScreenCover: View {
     }
     
     private func setup() {
+        userVM.checkPhotoLibraryPermission()
+        
+        if userVM.photoLibraryStatus == .notDetermined {
+            Task {
+                await userVM.requestPhotoLibraryPermission()
+            }
+        }
+        
         withAnimation {
             self.fullName = userVM.fullName
             self.selectedImage = userVM.profileImage

@@ -58,7 +58,7 @@ struct AIChartInfo: View {
 }
 
 #Preview {
-    AIChartInfo(text: "Preferred Amount", shape: .line, color: .accent)
+    AIChartInfo(text: "Preferred Amount", shape: .line, color: .aiOrange)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
 }

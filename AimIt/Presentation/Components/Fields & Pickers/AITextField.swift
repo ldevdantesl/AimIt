@@ -107,7 +107,7 @@ struct AITextField: View {
         .padding(.horizontal, 20)
     }
     
-    private func validate() {
+    func validate() {
         do {
             try FieldChecker.checkField(value: text, options: validationOptions)
             withAnimation {

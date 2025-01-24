@@ -11,11 +11,13 @@ import SwiftUI
 @MainActor
 final class DIContainer: ObservableObject {
 
-    private let CDstack = CoreDataStack(modelName: Constants.COREDATA_MODEL)
+    private let CDStack = CoreDataStack(modelName: Constants.COREDATA_MODEL)
+    private let notificationService: NotificationService = NotificationServiceImpl()
+    private let photoLibraryService: PhotoLibraryService = PhotoLibraryServiceImpl()
 
     func makeWorkspaceViewModel() -> WorkspaceViewModel {
         let repository: WorkspaceRepository = WorkspaceRepositoryImpl(
-            CDStack: CDstack)
+            CDStack: CDStack)
 
         return WorkspaceViewModel(
             addWorkspaceUseCase: AddWorkspaceUseCaseImpl(
@@ -36,7 +38,9 @@ final class DIContainer: ObservableObject {
     }
 
     func makeGoalViewModel() -> GoalViewModel {
-        let repository: GoalRepository = GoalRepositoryImpl(CDstack: CDstack)
+        let repository: GoalRepository = GoalRepositoryImpl(
+            CDStack: CDStack, notificationService: notificationService
+        )
 
         return GoalViewModel(
             addGoalUseCase: AddGoalUseCaseImpl(repository: repository),
@@ -57,7 +61,7 @@ final class DIContainer: ObservableObject {
 
     func makeMilestoneViewModel() -> MilestoneViewModel {
         let repository: MilestoneRepository = MilestoneRepositoryImpl(
-            CDstack: CDstack)
+            CDstack: CDStack)
 
         return MilestoneViewModel(
             addMilestoneUseCase: AddMilestoneUseCaseImpl(
@@ -90,12 +94,15 @@ final class DIContainer: ObservableObject {
     }
     
     func makeUserViewModel() -> UserViewModel {
-        return UserViewModel()
+        return UserViewModel(
+            notificationService: notificationService,
+            photoLibraryService: photoLibraryService
+        )
     }
 
     func makeAnalyticsViewModel() -> AnalyticsViewModel {
         let repository: AnalyticsRepository = AnalyticsRepositoryImpl(
-            CDStack: CDstack)
+            CDStack: CDStack)
 
         return AnalyticsViewModel(
             averageGoalCompletionTimeUseCase:

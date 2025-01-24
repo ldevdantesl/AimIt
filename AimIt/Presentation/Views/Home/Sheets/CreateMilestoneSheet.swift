@@ -73,7 +73,10 @@ struct CreateMilestoneSheet: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
-                        AIButton(title: "Create", color: userVM.themeColor) {
+                        AIButton(
+                            title: "Create",
+                            color: titleErrorMsg != nil ? .secondary : userVM.themeColor 
+                        ) {
                             if let milestone = milestoneVM.createSeperateMilestone(
                                 desc: title,
                                 systemImage: systemImage,

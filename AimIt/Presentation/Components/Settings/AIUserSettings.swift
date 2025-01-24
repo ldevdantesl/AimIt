@@ -48,5 +48,5 @@ struct AIUserSettings: View {
     AIUserSettings()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
-        .environmentObject(UserViewModel())
+        .environmentObject(DIContainer().makeUserViewModel())
 }

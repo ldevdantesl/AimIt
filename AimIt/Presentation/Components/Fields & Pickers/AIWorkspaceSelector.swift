@@ -65,6 +65,7 @@ struct AIWorkspaceSelector: View {
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                                 .font(.system(.headline, design: .rounded, weight: .semibold))
                                 .padding(.horizontal, 20)
+                                .foregroundStyle(workspaceVM.workspaces.count > 2 ? .secondary : userVM.themeColor)
                         }
                         .disabled(workspaceVM.workspaces.count > 2)
                         

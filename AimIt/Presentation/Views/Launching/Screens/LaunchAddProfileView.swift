@@ -51,7 +51,12 @@ struct LaunchAddProfileView: View {
                     }
                 }
                 
-                AITextField(titleName: "", placeholder: "John Doe", text: $fullName, errorMsg: $errorMsg)
+                AITextField(
+                    titleName: "",
+                    placeholder: "John Doe",
+                    text: $fullName,
+                    errorMsg: $errorMsg
+                )
             }
             
             Spacer()
@@ -60,10 +65,15 @@ struct LaunchAddProfileView: View {
         .background(Color.aiBackground)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                AIButton(title: "Continue", color: userVM.themeColor, action: pushToWorkspace)
-                    .disabled(errorMsg != nil)
+                AIButton(
+                    title: "Continue",
+                    color: errorMsg != nil ? .secondary : userVM.themeColor,
+                    action: pushToWorkspace
+                )
+                .disabled(errorMsg != nil)
             }
         }
+        .onAppear(perform: setup)
     }
     
     private func pushToWorkspace() {
@@ -71,6 +81,12 @@ struct LaunchAddProfileView: View {
         userVM.updateName(fullName)
         if let image = selectedImage {
             userVM.updateProfileImage(image)
+        }
+    }
+    
+    private func setup() {
+        Task{
+            await userVM.requestNotificationPermission()
         }
     }
 }

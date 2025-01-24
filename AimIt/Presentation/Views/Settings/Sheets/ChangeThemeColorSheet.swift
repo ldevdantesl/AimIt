@@ -50,5 +50,5 @@ struct ChangeThemeColorSheet: View {
     ChangeThemeColorSheet()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
-        .environmentObject(UserViewModel())
+        .environmentObject(DIContainer().makeUserViewModel())
 }

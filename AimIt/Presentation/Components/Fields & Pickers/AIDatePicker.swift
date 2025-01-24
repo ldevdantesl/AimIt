@@ -26,7 +26,6 @@ struct AIDatePicker: View {
             DatePicker(
                 "",
                 selection: $chosenDate,
-                in: Calendar.current.date(byAdding: .day, value: 1, to: Date())!...,
                 displayedComponents: .date
             )
             .datePickerStyle(.graphical)
@@ -41,6 +40,11 @@ struct AIDatePicker: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
+        .onDisappear {
+            if let goal = goal {
+                goalVM.editGoal(goal, deadline: chosenDate)
+            }
+        }
     }
 }
 

@@ -13,6 +13,10 @@
 		DA2E713B2D421A4E008990C2 /* EditProfileScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E713A2D421A4E008990C2 /* EditProfileScreenCover.swift */; };
 		DA2E713D2D42214C008990C2 /* ChangeThemeColorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E713C2D42214C008990C2 /* ChangeThemeColorSheet.swift */; };
 		DA2E713F2D4240B4008990C2 /* NotificationSettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E713E2D4240B4008990C2 /* NotificationSettingsScreen.swift */; };
+		DA2E71422D43018C008990C2 /* NotificationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71412D43018C008990C2 /* NotificationErrors.swift */; };
+		DA2E71442D4316C9008990C2 /* ApplicationOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71432D4316C9008990C2 /* ApplicationOpener.swift */; };
+		DA2E71462D432503008990C2 /* PhotoLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71452D432503008990C2 /* PhotoLibraryService.swift */; };
+		DA2E71482D432589008990C2 /* PhotoLibraryServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71472D432589008990C2 /* PhotoLibraryServiceImpl.swift */; };
 		DA42990B2D3610ED0046ABBA /* AIHaptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990A2D3610ED0046ABBA /* AIHaptics.swift */; };
 		DA42990D2D361F530046ABBA /* AIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990C2D361F530046ABBA /* AIDatePicker.swift */; };
 		DA42990F2D3626D40046ABBA /* AIFooterNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990E2D3626D40046ABBA /* AIFooterNote.swift */; };
@@ -237,6 +241,10 @@
 		DA2E713A2D421A4E008990C2 /* EditProfileScreenCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileScreenCover.swift; sourceTree = "<group>"; };
 		DA2E713C2D42214C008990C2 /* ChangeThemeColorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeThemeColorSheet.swift; sourceTree = "<group>"; };
 		DA2E713E2D4240B4008990C2 /* NotificationSettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsScreen.swift; sourceTree = "<group>"; };
+		DA2E71412D43018C008990C2 /* NotificationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationErrors.swift; sourceTree = "<group>"; };
+		DA2E71432D4316C9008990C2 /* ApplicationOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationOpener.swift; sourceTree = "<group>"; };
+		DA2E71452D432503008990C2 /* PhotoLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryService.swift; sourceTree = "<group>"; };
+		DA2E71472D432589008990C2 /* PhotoLibraryServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryServiceImpl.swift; sourceTree = "<group>"; };
 		DA42990A2D3610ED0046ABBA /* AIHaptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHaptics.swift; sourceTree = "<group>"; };
 		DA42990C2D361F530046ABBA /* AIDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIDatePicker.swift; sourceTree = "<group>"; };
 		DA42990E2D3626D40046ABBA /* AIFooterNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFooterNote.swift; sourceTree = "<group>"; };
@@ -489,6 +497,14 @@
 			path = ScreenCovers;
 			sourceTree = "<group>";
 		};
+		DA2E71402D430180008990C2 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				DA2E71412D43018C008990C2 /* NotificationErrors.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		DA42991A2D36531F0046ABBA /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -604,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				DA518F4D2D1E06FB00A5E896 /* NotificationServiceImpl.swift */,
+				DA2E71472D432589008990C2 /* PhotoLibraryServiceImpl.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -715,6 +732,7 @@
 			isa = PBXGroup;
 			children = (
 				DA518F762D1E06FB00A5E896 /* NotificationService.swift */,
+				DA2E71452D432503008990C2 /* PhotoLibraryService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -779,6 +797,7 @@
 		DA518F902D1E06FB00A5E896 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				DA2E71402D430180008990C2 /* Errors */,
 				DA518F702D1E06FB00A5E896 /* Entities */,
 				DA518F752D1E06FB00A5E896 /* Repositories */,
 				DA518F772D1E06FB00A5E896 /* Services */,
@@ -1104,6 +1123,7 @@
 				DADBE5BB2D30CCA00024D18B /* PopupView.swift */,
 				DA42990A2D3610ED0046ABBA /* AIHaptics.swift */,
 				DAB906932D37B5D000269935 /* ChartHelper.swift */,
+				DA2E71432D4316C9008990C2 /* ApplicationOpener.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1430,12 +1450,14 @@
 				DA518FEA2D1E06FB00A5E896 /* HomeSheets.swift in Sources */,
 				DADBE5CA2D30FDEC0024D18B /* FetchGoalByIDUseCaseImpl.swift in Sources */,
 				DA518FEC2D1E06FB00A5E896 /* AimIt.xcdatamodeld in Sources */,
+				DA2E71422D43018C008990C2 /* NotificationErrors.swift in Sources */,
 				DA518FEE2D1E06FB00A5E896 /* GoalEntity.swift in Sources */,
 				DA518FEF2D1E06FB00A5E896 /* MilestoneEntity.swift in Sources */,
 				DA518FF02D1E06FB00A5E896 /* WorkspaceEntity.swift in Sources */,
 				DA518FF12D1E06FB00A5E896 /* GoalMapper.swift in Sources */,
 				DAB906C42D38E2CD00269935 /* AnalyticsCalculateMonthlyDataForCompletedMilestonesUseCaseImpl.swift in Sources */,
 				DA518FF22D1E06FB00A5E896 /* MilestoneMapper.swift in Sources */,
+				DA2E71462D432503008990C2 /* PhotoLibraryService.swift in Sources */,
 				DAB906CF2D3900A800269935 /* AIMostPostpondedGoalAnalytics.swift in Sources */,
 				DAB906632D37568300269935 /* AnalyticsFetchUncompletedMilestonesUseCase.swift in Sources */,
 				DAB906672D3756C900269935 /* AnalyticsAverageMilestoneCompletionTimeUseCase.swift in Sources */,
@@ -1483,6 +1505,7 @@
 				DADBE5892D279F380024D18B /* CoreView.swift in Sources */,
 				DA51900C2D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900D2D1E06FB00A5E896 /* FetchWorkspacesUseCaseImpl.swift in Sources */,
+				DA2E71482D432589008990C2 /* PhotoLibraryServiceImpl.swift in Sources */,
 				DA51900F2D1E06FB00A5E896 /* Goal.swift in Sources */,
 				DAED914A2D40B8DD00CC155B /* LaunchAddProfileView.swift in Sources */,
 				DA5190102D1E06FB00A5E896 /* Milestone.swift in Sources */,
@@ -1606,6 +1629,7 @@
 				DADBE5822D2796870024D18B /* TabCoordinator.swift in Sources */,
 				DA5190522D1E06FB00A5E896 /* Bundle+Extensions.swift in Sources */,
 				DA5190532D1E06FB00A5E896 /* View+Extensions.swift in Sources */,
+				DA2E71442D4316C9008990C2 /* ApplicationOpener.swift in Sources */,
 				DA5190552D1E06FB00A5E896 /* TopSafeAreaOverlayModifier.swift in Sources */,
 				DA5190562D1E06FB00A5E896 /* DeadlineFormatter.swift in Sources */,
 				DA5190572D1E06FB00A5E896 /* SystemImageCategory.swift in Sources */,

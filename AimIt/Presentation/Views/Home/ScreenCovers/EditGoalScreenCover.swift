@@ -79,6 +79,7 @@ struct EditGoalScreenCover: View {
             ToolbarItem(placement: .bottomBar) {
                 AIButton(
                     title: "Save",
+                    color: titleErrorMsg != nil ? .secondary : userVM.themeColor,
                     action: editGoal
                 )
                 .disabled(titleErrorMsg != nil)

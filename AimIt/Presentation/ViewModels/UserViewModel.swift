@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import PhotosUI
 
 final class UserViewModel: ObservableObject {
     @Published var fullName: String
@@ -14,10 +15,16 @@ final class UserViewModel: ObservableObject {
     @Published var themeColor: Color = .aiOrange
     @Published var isNotificationEnabled: Bool
     @Published var isFirstLaunch: Bool
+    @Published var notificationStatus: UNAuthorizationStatus = .notDetermined
+    @Published var photoLibraryStatus: PHAuthorizationStatus = .notDetermined
 
     private let defaults: UserDefaults = .standard
-
-    init() {
+    private let notificationService: NotificationService
+    private let photoLibraryService: PhotoLibraryService
+    
+    init(notificationService: NotificationService, photoLibraryService: PhotoLibraryService) {
+        self.notificationService = notificationService
+        self.photoLibraryService = photoLibraryService
         self.fullName = defaults.string(forKey: ConstantKeys.fullName) ?? ""
         if let imageData = defaults.data(forKey: ConstantKeys.profileImage) {
             self.profileImage = UIImage(data: imageData)
@@ -45,8 +52,14 @@ final class UserViewModel: ObservableObject {
             ? defaults.bool(
                 forKey: ConstantKeys.isFirstLaunchKey
             ) : true
+        
+        checkPhotoLibraryPermission()
+    
+        Task {
+            await checkNotificationPermission()
+        }
     }
-
+    
     func updateName(_ name: String) {
         self.fullName = name
         defaults.set(name, forKey: ConstantKeys.fullName)
@@ -70,5 +83,41 @@ final class UserViewModel: ObservableObject {
     func updateFirstLaunchStatus(_ status: Bool) {
         self.isFirstLaunch = status
         defaults.set(status, forKey: ConstantKeys.isFirstLaunchKey)
+    }
+    
+    
+    func requestNotificationPermission() async {
+        do {
+            try await notificationService.requestAuthorization()
+            await MainActor.run {
+                notificationStatus = .authorized
+                isNotificationEnabled = true
+            }
+        } catch {
+            await MainActor.run {
+                notificationStatus = .denied
+                isNotificationEnabled = false
+            }
+            print("Failed to get notification permissions: \(error.localizedDescription)")
+        }
+    }
+
+    func checkNotificationPermission() async {
+        let status = await notificationService.checkNotificationPersmission()
+        await MainActor.run {
+            self.notificationStatus = status
+        }
+    }
+    
+    func checkPhotoLibraryPermission() {
+        let status = photoLibraryService.checkAuthorizationStatus()
+        self.photoLibraryStatus = status
+    }
+    
+    func requestPhotoLibraryPermission() async {
+        let status = await photoLibraryService.requestAuthorizationPermission()
+        await MainActor.run {
+            self.photoLibraryStatus = status
+        }
     }
 }

@@ -69,9 +69,7 @@ struct HomeView: View {
             .navigationDestination(for: HomeScreens.self) { screen in
                 coordinator.build(screen: screen)
             }
-            .onAppear {
-                workspaceVM.fetchCurrentWorkspace()
-            }
+            .onAppear(perform: setup)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     FloatingTabBar(menuContent: menuContentTabBar)
@@ -79,6 +77,15 @@ struct HomeView: View {
                 }
             }
             .toolbarBackground(.clear, for: .bottomBar)
+        }
+    }
+    
+    private func setup() {
+        workspaceVM.fetchCurrentWorkspace()
+        if userVM.notificationStatus == .notDetermined {
+            Task {
+                await userVM.requestNotificationPermission()
+            }
         }
     }
     
