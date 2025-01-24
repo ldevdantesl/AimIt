@@ -11,7 +11,7 @@ struct LaunchIntroView: View {
     @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var coordinator: LaunchCoordinator
     
-    @State private var selectedTab: Int = 0
+    @State private var selectedTab: Int = 3
     
     var body: some View {
         NavigationStack(path: $coordinator.path){
@@ -26,16 +26,23 @@ struct LaunchIntroView: View {
                     
                     item(
                         imageName: "Intro2",
-                        title: "Set milestones and track progress",
-                        info: "Don't hurry! ⚡️ \nSet milestones along the way to keep yourself motivated.",
+                        title: "Set milestones⚡️",
+                        info: "Set milestones along the way to keep yourself motivated.",
                         tag: 1
                     )
                     
                     item(
                         imageName: "Intro3",
-                        title: "Track goals in every device",
-                        info: "Icloud syncronization ☁️\nTrack your progress and see goals in real time.",
+                        title: "Prioritize goals 📌",
+                        info: "Accelerate your success by focusing on your top priority first.",
                         tag: 2
+                    )
+                    
+                    item(
+                        imageName: "Intro4",
+                        title: "Make analysis 📊",
+                        info: "Insightful Analysis for Strategic Decision-Making",
+                        tag: 3
                     )
                 }
                 .frame(maxWidth: .infinity)
@@ -45,15 +52,12 @@ struct LaunchIntroView: View {
             .background(Color.aiBackground)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    AIButton(title: "Continue", color: userVM.themeColor) {
-                        if selectedTab < 2 {
-                            withAnimation {
-                                selectedTab+=1
-                            }
-                        } else {
-                            coordinator.push(to: .addProfile)
-                        }
-                    }
+                    AIButton(
+                        title: selectedTab < 3 ? "Next" : "Continue",
+                        color: userVM.themeColor,
+                        action: nextIntro
+                    )
+                    .contentTransition(.numericText())
                 }
             }
             .navigationDestination(for: LaunchScreens.self) { screen in
@@ -62,8 +66,23 @@ struct LaunchIntroView: View {
         }
     }
     
+    private func nextIntro() {
+        if selectedTab < 3 {
+            withAnimation {
+                selectedTab+=1
+            }
+        } else {
+            coordinator.push(to: .addProfile)
+        }
+    }
+    
     @ViewBuilder
-    private func item(imageName: String, title: String, info: String, tag: Int) -> some View {
+    private func item(
+        imageName: String,
+        title: String,
+        info: String,
+        tag: Int
+    ) -> some View {
         VStack{
             Image(imageName)
                 .resizable()
@@ -72,22 +91,28 @@ struct LaunchIntroView: View {
                 .frame(height: 310)
                 .padding(.bottom, 25)
             
-            AIInfoField(
-                title: title,
-                info: info,
-                infoFontStyle: .title3
-            )
-    
             HStack{
-                ForEach(0..<3) { i in
-                    Image(systemName: selectedTab == i ? "circle.fill" : "circle")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 10, height: 10)
+                AIInfoField(
+                    title: title,
+                    info: info,
+                    infoFontStyle: .title3,
+                    swappedPostions: true
+                )
+                
+                VStack{
+                    Spacer()
+                    ForEach(0..<4) { i in
+                        Image(systemName: selectedTab == i ? "circle.fill" : "circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 10, height: 10)
+                            .foregroundStyle(.aiBeige)
+                    }
+                    Spacer()
                 }
-                Spacer()
+                .frame(height: 50)
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
         }
         .tag(tag)
     }
@@ -96,4 +121,5 @@ struct LaunchIntroView: View {
 #Preview {
     LaunchIntroView()
         .environmentObject(LaunchCoordinator(onFinish: {}))
+        .environmentObject(DIContainer().makeUserViewModel())
 }
