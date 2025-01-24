@@ -55,17 +55,16 @@ This app is designed to help users manage their goals effectively by creating mi
 - **iOS:** Version 15.0+
 
 ## Screenshots
-![IMG_6663](https://github.com/user-attachments/assets/7d0e3bfc-937b-4dae-984f-cb2815d0f7b5)
-![IMG_6662](https://github.com/user-attachments/assets/12f43f7c-110c-4a4b-8214-7f9e0c118a5c)
-![IMG_6661](https://github.com/user-attachments/assets/692ca384-e0dd-4a2f-ab4b-d74a71e7f63b)
-![IMG_6660](https://github.com/user-attachments/assets/e20d63b2-f786-4e6b-a4da-7df6c1f8926a)
-![IMG_6659](https://github.com/user-attachments/assets/4c433444-44cc-466f-9eb1-38f0f3f58bee)
-![IMG_6658](https://github.com/user-attachments/assets/aafe83c1-abc7-43f5-98ef-8bfba2e36408)
-![IMG_6657](https://github.com/user-attachments/assets/ff514f27-f8cf-444f-862d-7c24810b04cd)
-![IMG_6656](https://github.com/user-attachments/assets/0855a9cf-0219-4216-a143-e0dfd394906e)
-![IMG_6655](https://github.com/user-attachments/assets/415f1525-4c88-4119-a8ac-4a62f981fb6d)
-![IMG_6654](https://github.com/user-attachments/assets/f1abb86b-ba4a-4405-8604-b75e3a5e80b7)
-
+<img src="https://github.com/user-attachments/assets/7d0e3bfc-937b-4dae-984f-cb2815d0f7b5" alt="Description" width="400"/>
+<img src="https://github.com/user-attachments/assets/12f43f7c-110c-4a4b-8214-7f9e0c118a5c" alt="Description" width="400"/>
+<img src="https://github.com/user-attachments/assets/692ca384-e0dd-4a2f-ab4b-d74a71e7f63b" alt="Description" width="400"/>
+<img src="https://github.com/user-attachments/assets/e20d63b2-f786-4e6b-a4da-7df6c1f8926a" alt="Description" width="400"/>
+<img src="https://github.com/user-attachments/assets/4c433444-44cc-466f-9eb1-38f0f3f58bee" alt="Description" width="400"/>
+<img src="https://github.com/user-attachments/assets/aafe83c1-abc7-43f5-98ef-8bfba2e36408" alt="Description" width="400"/>
+<img src="https://github.com/user-attachments/assets/ff514f27-f8cf-444f-862d-7c24810b04cd" alt="Description" width="400"/>
+<img src="https://github.com/user-attachments/assets/0855a9cf-0219-4216-a143-e0dfd394906e" alt="Description" width="400"/>
+<img src="https://github.com/user-attachments/assets/415f1525-4c88-4119-a8ac-4a62f981fb6d" alt="Description" width="400"/>
+<img src="https://github.com/user-attachments/assets/f1abb86b-ba4a-4405-8604-b75e3a5e80b7" alt="Description" width="400"/>
 
 ## Contributing
 Contributions are welcome! Feel free to fork the repo and submit a pull request. Please ensure all changes adhere to the app's architecture and coding standards.
