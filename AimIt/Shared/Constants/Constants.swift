@@ -15,4 +15,6 @@ enum Constants {
     static let APP_VERSION = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
     
     static let PRIVACY_URL = "https://www.termsfeed.com/live/2527d838-85f5-436c-a1cc-28ac5b941aab"
+    
+    static let WEBSITE_URL = "https://aimit.carrd.co"
 }

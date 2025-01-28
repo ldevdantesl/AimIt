@@ -74,7 +74,7 @@ struct AISettingsContent: View {
                     title: "Feedback",
                     image: "quote.bubble.fill",
                     imageBackgroundShape: .roundRect,
-                    buttonAction: nil
+                    buttonAction: { isShowingReview.toggle() }
                 )
                 
                 AISettingsShareButton(
@@ -88,6 +88,13 @@ struct AISettingsContent: View {
                     image: "star",
                     imageBackgroundShape: .roundRect,
                     buttonAction: { isShowingReview.toggle() }
+                )
+                
+                AISettingsRow(
+                    title: "Website",
+                    image: "globe",
+                    imageBackgroundShape: .roundRect,
+                    buttonAction: openWebsite
                 )
             }
             .alert(isPresented: $isShowingReview) {
@@ -106,6 +113,10 @@ struct AISettingsContent: View {
     
     private func openPrivacy() {
         ApplicationOpener.openURL(URLString: Constants.PRIVACY_URL)
+    }
+    
+    private func openWebsite() {
+        ApplicationOpener.openURL(URLString: Constants.WEBSITE_URL)
     }
 }
 
