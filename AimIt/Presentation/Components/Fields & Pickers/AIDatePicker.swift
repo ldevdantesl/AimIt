@@ -16,6 +16,8 @@ struct AIDatePicker: View {
     
     private let goal: Goal?
     
+    private let lowerBound = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+    
     init(chosenDate: Binding<Date>, for goal: Goal? = nil) {
         self._chosenDate = chosenDate
         self.goal = goal
@@ -26,7 +28,7 @@ struct AIDatePicker: View {
             DatePicker(
                 "",
                 selection: $chosenDate,
-                in: Calendar.current.date(byAdding: .day, value: 1, to: Date())!...,
+                in: lowerBound...,
                 displayedComponents: .date
             )
             .datePickerStyle(.graphical)

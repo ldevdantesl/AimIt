@@ -28,6 +28,8 @@ struct SettingsView: View {
                     Text("-Version \(Constants.APP_VERSION ?? "1.0.0")")
                         .font(.system(.caption2, design: .rounded, weight: .semibold))
                         .foregroundStyle(.aiSecondary2)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 10)
                 }
                 .padding(.bottom, 20)
             }

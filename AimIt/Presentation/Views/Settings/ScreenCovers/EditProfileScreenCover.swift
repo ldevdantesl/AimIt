@@ -15,7 +15,7 @@ struct EditProfileScreenCover: View {
     @State private var fullName: String = ""
     @State private var selectedImage: UIImage? = nil
     @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var errorMsg: String? = "" 
+    @State private var errorMsg: String? = nil
     
     var body: some View {
         VStack{

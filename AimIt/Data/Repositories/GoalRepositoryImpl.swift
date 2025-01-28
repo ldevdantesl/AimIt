@@ -256,9 +256,8 @@ final class GoalRepositoryImpl: GoalRepository {
         guard let notifyDate = Calendar.current.date(from: components) else {
             throw NSError(domain: "Notify date is nil", code: -230, userInfo: nil)
         }
-        print(notifyDate)
         
-        guard Date() > notifyDate else {
+        guard Date() < notifyDate else {
             throw NSError(domain: "Notify date is already passed.", code: -230, userInfo: nil)
         }
         
@@ -301,7 +300,7 @@ final class GoalRepositoryImpl: GoalRepository {
             throw NSError(domain: "Notify date is nil", code: -230)
         }
         
-        guard Date() > notifyDate else {
+        guard Date() < notifyDate else {
             throw NSError(domain: "Date is already passed nil", code: -230)
         }
     

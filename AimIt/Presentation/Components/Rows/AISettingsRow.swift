@@ -96,11 +96,7 @@ struct AISettingsRow: View {
     }
     
     var body: some View {
-        Button {
-            withAnimation {
-                type == .pusher || type == .button ? action?() : isOn.toggle()
-            }
-        } label: {
+        Button(action: makeAction){
             HStack(spacing: 10) {
                 Image(systemName: image)
                     .resizable()
@@ -135,11 +131,13 @@ struct AISettingsRow: View {
             }
             .padding(.horizontal, 20)
             .frame(maxWidth: .infinity)
-            .contentTransition(.numericText())
         }
     }
+    
+    private func makeAction() {
+        type == .pusher || type == .button ? action?() : isOn.toggle()
+    }
 }
-
 #Preview {
     AISettingsRow(title: "Favorites", image: "plus", isOn: .constant(true))
         .frame(maxWidth: .infinity, maxHeight: .infinity)

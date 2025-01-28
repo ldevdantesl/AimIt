@@ -18,6 +18,8 @@ struct AIOptionalDateField: View {
     @State private var showSheet: Bool = false
     @State private var choosingDate: Date = Date()
     
+    private let upperBound: Date
+    
     init(
         titleName: String,
         widthSize: CGFloat,
@@ -28,6 +30,7 @@ struct AIOptionalDateField: View {
         self.widthSize = widthSize
         self._chosenDate = chosenDate
         self.dateUntil = dateUntil
+        self.upperBound = dateUntil ?? .distantFuture
     }
     
     var body: some View {
@@ -87,7 +90,7 @@ struct AIOptionalDateField: View {
                 DatePicker(
                     "",
                     selection: $choosingDate,
-                    in: Date()...(dateUntil ?? .distantFuture),
+                    in: Date()...upperBound,
                     displayedComponents: .date
                 )
                 .datePickerStyle(.graphical)
