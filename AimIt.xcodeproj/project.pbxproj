@@ -147,6 +147,7 @@
 		DA5190692D1E76C400A5E896 /* EditGoalScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5190682D1E76C400A5E896 /* EditGoalScreenCover.swift */; };
 		DA5DBD8F2D26440400BE895B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */; };
 		DA5DC0252D26554F00BE895B /* FieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DC0242D26554F00BE895B /* FieldChecker.swift */; };
+		DA7A15F32D48A20E00B7B0A4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DA7A15F22D48A20E00B7B0A4 /* PrivacyInfo.xcprivacy */; };
 		DAB906592D37562800269935 /* AnalyticsAverageGoalCompletionTimeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906532D37562800269935 /* AnalyticsAverageGoalCompletionTimeUseCase.swift */; };
 		DAB9065A2D37562800269935 /* AnalyticsFetchCompletedGoalsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906542D37562800269935 /* AnalyticsFetchCompletedGoalsUseCase.swift */; };
 		DAB9065B2D37562800269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB906552D37562800269935 /* AnalyticsFetchGoalsCompletedWithinMonthUseCase.swift */; };
@@ -378,6 +379,7 @@
 		DA5190682D1E76C400A5E896 /* EditGoalScreenCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGoalScreenCover.swift; sourceTree = "<group>"; };
 		DA5DBD8D2D26440400BE895B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		DA5DC0242D26554F00BE895B /* FieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldChecker.swift; sourceTree = "<group>"; };
+		DA7A15F22D48A20E00B7B0A4 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		DA9E0D3C2D011CBF00E80B34 /* AimIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AimIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAB906532D37562800269935 /* AnalyticsAverageGoalCompletionTimeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsAverageGoalCompletionTimeUseCase.swift; sourceTree = "<group>"; };
 		DAB906542D37562800269935 /* AnalyticsFetchCompletedGoalsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsFetchCompletedGoalsUseCase.swift; sourceTree = "<group>"; };
@@ -994,6 +996,7 @@
 			children = (
 				DA518FC52D1E06FB00A5E896 /* Preview Content */,
 				DA518FC62D1E06FB00A5E896 /* Assets.xcassets */,
+				DA7A15F22D48A20E00B7B0A4 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1401,6 +1404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA7A15F32D48A20E00B7B0A4 /* PrivacyInfo.xcprivacy in Resources */,
 				DA2E72E62D487678008990C2 /* AppLaunchScreen.storyboard in Resources */,
 				DA5190592D1E06FB00A5E896 /* Preview Assets.xcassets in Resources */,
 				DA51905A2D1E06FB00A5E896 /* Assets.xcassets in Resources */,
