@@ -18,6 +18,7 @@
 		DA2E71462D432503008990C2 /* PhotoLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71452D432503008990C2 /* PhotoLibraryService.swift */; };
 		DA2E71482D432589008990C2 /* PhotoLibraryServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71472D432589008990C2 /* PhotoLibraryServiceImpl.swift */; };
 		DA2E714A2D43622D008990C2 /* AISettingsShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E71492D43622D008990C2 /* AISettingsShareButton.swift */; };
+		DA2E72E32D48612B008990C2 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E72E12D48612B008990C2 /* AnalyticsView.swift */; };
 		DA42990B2D3610ED0046ABBA /* AIHaptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990A2D3610ED0046ABBA /* AIHaptics.swift */; };
 		DA42990D2D361F530046ABBA /* AIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990C2D361F530046ABBA /* AIDatePicker.swift */; };
 		DA42990F2D3626D40046ABBA /* AIFooterNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA42990E2D3626D40046ABBA /* AIFooterNote.swift */; };
@@ -247,6 +248,7 @@
 		DA2E71452D432503008990C2 /* PhotoLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryService.swift; sourceTree = "<group>"; };
 		DA2E71472D432589008990C2 /* PhotoLibraryServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryServiceImpl.swift; sourceTree = "<group>"; };
 		DA2E71492D43622D008990C2 /* AISettingsShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISettingsShareButton.swift; sourceTree = "<group>"; };
+		DA2E72E12D48612B008990C2 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		DA42990A2D3610ED0046ABBA /* AIHaptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHaptics.swift; sourceTree = "<group>"; };
 		DA42990C2D361F530046ABBA /* AIDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIDatePicker.swift; sourceTree = "<group>"; };
 		DA42990E2D3626D40046ABBA /* AIFooterNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFooterNote.swift; sourceTree = "<group>"; };
@@ -467,19 +469,6 @@
 		DAED914B2D40BC8A00CC155B /* LaunchSheets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchSheets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		DAB906E42D39E0D900269935 /* Sheets */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Sheets;
-			sourceTree = "<group>";
-		};
-		DAB906E52D39E0E800269935 /* Views */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Views;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		DA9E0D392D011CBF00E80B34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -505,6 +494,21 @@
 				DA2E71412D43018C008990C2 /* NotificationErrors.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		DA2E72E22D48612B008990C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA2E72E12D48612B008990C2 /* AnalyticsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DA2E72E42D48612D008990C2 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sheets;
 			sourceTree = "<group>";
 		};
 		DA42991A2D36531F0046ABBA /* Analytics */ = {
@@ -1311,8 +1315,8 @@
 		DADBE58A2D279FEF0024D18B /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				DAB906E52D39E0E800269935 /* Views */,
-				DAB906E42D39E0D900269935 /* Sheets */,
+				DA2E72E22D48612B008990C2 /* Views */,
+				DA2E72E42D48612D008990C2 /* Sheets */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -1350,10 +1354,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				DAB906E42D39E0D900269935 /* Sheets */,
-				DAB906E52D39E0E800269935 /* Views */,
 			);
 			name = AimIt;
 			packageProductDependencies = (
@@ -1509,6 +1509,7 @@
 				DA51900C2D1E06FB00A5E896 /* FetchCurrentWorkspaceUseCaseImpl.swift in Sources */,
 				DA51900D2D1E06FB00A5E896 /* FetchWorkspacesUseCaseImpl.swift in Sources */,
 				DA2E71482D432589008990C2 /* PhotoLibraryServiceImpl.swift in Sources */,
+				DA2E72E32D48612B008990C2 /* AnalyticsView.swift in Sources */,
 				DA51900F2D1E06FB00A5E896 /* Goal.swift in Sources */,
 				DAED914A2D40B8DD00CC155B /* LaunchAddProfileView.swift in Sources */,
 				DA5190102D1E06FB00A5E896 /* Milestone.swift in Sources */,
@@ -1785,7 +1786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Dantes.AimIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1821,7 +1822,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Dantes.AimIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
