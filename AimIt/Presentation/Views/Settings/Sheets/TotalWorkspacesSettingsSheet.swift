@@ -60,6 +60,8 @@ struct TotalWorkspacesSettingsSheet: View {
             Spacer()
         }
         .padding(.vertical, 10)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.aiBackground)
         .confirmationDialog("Delete", isPresented: $isTrynaDelete) {
             Button("Delete", role: .destructive, action: actuallyDeleteWorkspace)
         } message: {

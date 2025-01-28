@@ -23,16 +23,14 @@ struct AIQuoteWidget: View {
         VStack(alignment: .leading, spacing: 5){
             HStack{
                 Text(quote.author)
-                    .font(.system(.subheadline, design: .rounded, weight: .bold))
+                    .font(.system(.subheadline, design: .serif, weight: .bold))
                     .foregroundStyle(.aiLabel)
-                    .fontDesign(.serif)
                 
                 Spacer()
                 
                 Text("Quote")
-                    .font(.system(.caption2, design: .rounded, weight: .light))
+                    .font(.system(.caption2, design: .serif, weight: .light))
                     .foregroundStyle(.aiBeige)
-                    .fontDesign(.serif)
             }
             Text(quote.quote)
                 .foregroundStyle(.aiLabel)

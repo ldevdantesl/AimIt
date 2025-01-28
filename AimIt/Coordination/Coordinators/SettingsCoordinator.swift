@@ -36,12 +36,10 @@ final class SettingsCoordinator: ObservableObject, Coordinator {
                 TotalWorkspacesSettingsSheet()
                     .presentationDetents(sheet.detents)
                     .presentationDragIndicator(.visible)
-                    .presentationBackground(Color.aiBackground)
             case .themeColor:
                 ChangeThemeColorSheet()
                     .presentationDetents(sheet.detents)
                     .presentationDragIndicator(.hidden)
-                    .presentationBackground(Color.aiBackground)
             }
         }
     }

@@ -103,8 +103,9 @@ struct AIOptionalDateField: View {
                     }
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.aiBackground)
             .presentationDetents([.medium])
-            .presentationBackground(.aiBackground)
             .presentationDragIndicator(.visible)
             .preferredColorScheme(.dark)
         }

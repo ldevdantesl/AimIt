@@ -58,7 +58,6 @@ struct AIDateField: View {
         .sheet(isPresented: $showSheet) {
             AIDatePicker(chosenDate: $chosenDate)
                 .presentationDetents([.medium])
-                .presentationBackground(.aiBackground)
                 .presentationDragIndicator(.visible)
                 .preferredColorScheme(.dark)
         }

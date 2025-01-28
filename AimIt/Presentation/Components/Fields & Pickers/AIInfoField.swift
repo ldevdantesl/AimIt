@@ -97,11 +97,10 @@ struct AIInfoField: View {
                     Text(info)
                         .font(.system(
                             swappedPostions ? titleFontStyle : infoFontStyle,
-                            design: .rounded,
+                            design: infoFontDesign,
                             weight: swappedPostions ? .light : .semibold)
                         )
                         .foregroundStyle(swappedPostions ? titleForeColor : infoForeColor)
-                        .fontDesign(infoFontDesign)
                 }
             }
             Spacer()
