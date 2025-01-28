@@ -63,12 +63,12 @@ struct AISettingsContent: View {
             VStack {
                 AIInfoField(title: "Other", info: nil)
                 
-//                AISettingsRow(
-//                    title: "Help",
-//                    image: "questionmark",
-//                    imageBackgroundShape: .roundRect,
-//                    buttonAction: nil
-//                )
+                AISettingsRow(
+                    title: "Privacy & Policy",
+                    image: "hand.raised.fill",
+                    imageBackgroundShape: .roundRect,
+                    buttonAction: openPrivacy
+                )
                 
                 AISettingsRow(
                     title: "Feedback",
@@ -102,6 +102,10 @@ struct AISettingsContent: View {
     
     private var notificationText: String {
         userVM.isNotificationEnabled && userVM.notificationStatus == .authorized ? "Enabled" : "Disabled"
+    }
+    
+    private func openPrivacy() {
+        ApplicationOpener.openURL(URLString: Constants.PRIVACY_URL)
     }
 }
 

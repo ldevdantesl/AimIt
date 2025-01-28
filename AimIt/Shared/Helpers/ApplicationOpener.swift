@@ -16,4 +16,14 @@ struct ApplicationOpener {
             }
         }
     }
+    
+    static func openURL(URLString: String) {
+        if let url = URL(string: URLString) {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                print("Cannot open URL")
+            }
+        }
+    }
 }
