@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct AISettingsContent: View {
     @State private var isShowingReview: Bool = false
@@ -33,7 +34,7 @@ struct AISettingsContent: View {
                 )
             }
             
-            VStack{
+            VStack {
                 AIInfoField(title: "Preferences", info: "")
                 
                 AISettingsRow(
@@ -74,11 +75,11 @@ struct AISettingsContent: View {
                     title: "Feedback",
                     image: "quote.bubble.fill",
                     imageBackgroundShape: .roundRect,
-                    buttonAction: { isShowingReview.toggle() }
+                    buttonAction: openAppStore
                 )
                 
                 AISettingsShareButton(
-                    url: Constants.APP_URL,
+                    URLString: Constants.APPSTORE_URL,
                     subject: "Checkout the app.",
                     message: "I really recommend u this app..."
                 )
@@ -87,7 +88,7 @@ struct AISettingsContent: View {
                     title: "Review",
                     image: "star",
                     imageBackgroundShape: .roundRect,
-                    buttonAction: { isShowingReview.toggle() }
+                    buttonAction: { userVM.requestReview(fromSettings: true) } 
                 )
                 
                 AISettingsRow(
@@ -117,6 +118,10 @@ struct AISettingsContent: View {
     
     private func openWebsite() {
         ApplicationOpener.openURL(URLString: Constants.WEBSITE_URL)
+    }
+    
+    private func openAppStore() {
+        ApplicationOpener.openURL(URLString: Constants.APPSTORE_URL+"?action=write-review")
     }
 }
 

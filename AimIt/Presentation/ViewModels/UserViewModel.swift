@@ -8,13 +8,16 @@
 import Foundation
 import SwiftUI
 import PhotosUI
+import StoreKit
 
 final class UserViewModel: ObservableObject {
     @Published var fullName: String
     @Published var profileImage: UIImage?
-    @Published var themeColor: Color = .aiOrange
+    @Published var themeColor: Color
     @Published var isNotificationEnabled: Bool
     @Published var isFirstLaunch: Bool
+    @Published var isReviewRequested: Bool
+    
     @Published var notificationStatus: UNAuthorizationStatus = .notDetermined
     @Published var photoLibraryStatus: PHAuthorizationStatus = .notDetermined
 
@@ -53,6 +56,15 @@ final class UserViewModel: ObservableObject {
                 forKey: ConstantKeys.isFirstLaunchKey
             ) : true
         
+        self.isReviewRequested =
+            defaults.object(
+                forKey:
+                    ConstantKeys.isReviewRequested) != nil
+            ? defaults.bool(
+                forKey: ConstantKeys.isReviewRequested
+            ) : false
+    
+        
         checkPhotoLibraryPermission()
     
         Task {
@@ -85,6 +97,21 @@ final class UserViewModel: ObservableObject {
         defaults.set(status, forKey: ConstantKeys.isFirstLaunchKey)
     }
     
+    @MainActor
+    func requestReview(fromSettings: Bool) {
+        if !fromSettings {
+            guard !isReviewRequested else { return }
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                AppStore.requestReview(in: scene)
+            }
+            self.isReviewRequested = true
+            defaults.set(true, forKey: ConstantKeys.isReviewRequested)
+        } else {
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                AppStore.requestReview(in: scene)
+            }
+        }
+    }
     
     func requestNotificationPermission() async {
         do {

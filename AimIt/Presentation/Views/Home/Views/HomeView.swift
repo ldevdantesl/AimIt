@@ -98,7 +98,6 @@ struct HomeView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.tabCoordinator.settingsCoordinator.present(fullScreenCover: .editProfile)
         }
-        
     }
     
     @ViewBuilder

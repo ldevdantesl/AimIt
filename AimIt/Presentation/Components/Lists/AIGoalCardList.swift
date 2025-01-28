@@ -11,6 +11,7 @@ struct AIGoalCardList: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var goalVM: GoalViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     private let workspace: Workspace
     
@@ -50,6 +51,7 @@ struct AIGoalCardList: View {
                     }
                 }
             }
+            .onAppear(perform: requestAReview)
         }
     }
     
@@ -72,6 +74,12 @@ struct AIGoalCardList: View {
     
     private func addOneGoal() {
         coordinator.push(to: .addGoal)
+    }
+    
+    private func requestAReview() {
+        if workspace.goals.count > 2 {
+            userVM.requestReview(fromSettings: false)
+        }
     }
 }
 

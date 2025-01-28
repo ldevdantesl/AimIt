@@ -9,19 +9,19 @@ import Foundation
 import SwiftUI
 
 struct AISettingsShareButton: View {
-    private let url: URL
+    private let URLString: String
     private let subject: String
     private let message: String?
     
-    init(url: URL, subject: String, message: String? = nil) {
-        self.url = url
+    init(URLString: String, subject: String, message: String? = nil) {
+        self.URLString = URLString
         self.subject = subject
         self.message = message
     }
     
     var body: some View {
         ShareLink(
-            item: url,
+            item: URL(string: URLString) ?? URL(string: "https://google.com")!,
             subject: Text(subject),
             message: Text(message ?? "")
         ) {
@@ -46,7 +46,7 @@ struct AISettingsShareButton: View {
 }
 
 #Preview {
-    AISettingsShareButton(url: URL(string: "")!, subject: "Checkout the app", message: "Checkout the app")
+    AISettingsShareButton(URLString:"you want some" , subject: "Checkout the app", message: "Checkout the app")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.aiBackground)
 }
