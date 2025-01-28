@@ -13,6 +13,7 @@ struct HomeView: View {
     @EnvironmentObject var coordinator: HomeCoordinator
     @EnvironmentObject var workspaceVM: WorkspaceViewModel
     @EnvironmentObject var quoteVM: QuoteViewModel
+    @EnvironmentObject var tabCoordinator: TabCoordinator
     
     @State private var searchText: String = ""
     
@@ -22,7 +23,10 @@ struct HomeView: View {
                 VStack(spacing: 20) {
                     AIHeaderView(
                         leftButton: AIButton (
-                            image: .ava, backColor: .aiLabel
+                            image: .ava,
+                            backColor: .aiLabel,
+                            foreColor: .aiBlack,
+                            action: userButtonTapped
                         ),
                         
                         rightButton: AIButton (
@@ -87,6 +91,14 @@ struct HomeView: View {
                 await userVM.requestNotificationPermission()
             }
         }
+    }
+    
+    private func userButtonTapped() {
+        self.tabCoordinator.selectedTab = .settings
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.tabCoordinator.settingsCoordinator.present(fullScreenCover: .editProfile)
+        }
+        
     }
     
     @ViewBuilder

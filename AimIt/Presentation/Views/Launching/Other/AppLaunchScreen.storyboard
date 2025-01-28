@@ -17,19 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashImage" translatesAutoresizingMaskIntoConstraints="NO" id="Lu0-Nr-2Xc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ng5-DS-V60">
                                 <rect key="frame" x="146.66666666666666" y="376" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="6VQ-NK-Uum"/>
-                                    <constraint firstAttribute="width" constant="100" id="lm2-jN-pOq"/>
+                                    <constraint firstAttribute="width" constant="100" id="8RC-PU-iLw"/>
+                                    <constraint firstAttribute="height" constant="100" id="D5z-W4-nPI"/>
+                                    <constraint firstAttribute="width" secondItem="Ng5-DS-V60" secondAttribute="height" multiplier="1:1" id="Ouv-SF-YHY"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" name="AIBackground"/>
                         <constraints>
-                            <constraint firstItem="Lu0-Nr-2Xc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eNx-AZ-5qe"/>
-                            <constraint firstItem="Lu0-Nr-2Xc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zHk-ZV-dTT"/>
+                            <constraint firstItem="Ng5-DS-V60" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Qbl-jV-U4C"/>
+                            <constraint firstItem="Ng5-DS-V60" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="llZ-3d-Dhx"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,7 +40,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SplashImage" width="512" height="512"/>
+        <image name="Icon" width="1024" height="1024"/>
         <namedColor name="AIBackground">
             <color red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

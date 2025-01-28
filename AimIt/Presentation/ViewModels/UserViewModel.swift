@@ -26,7 +26,7 @@ final class UserViewModel: ObservableObject {
         self.notificationService = notificationService
         self.photoLibraryService = photoLibraryService
         self.fullName = defaults.string(forKey: ConstantKeys.fullName) ?? ""
-        if let imageData = defaults.data(forKey: ConstantKeys.profileImage) {
+        if let object = defaults.object(forKey: ConstantKeys.profileImage), let imageData = object as? Data {
             self.profileImage = UIImage(data: imageData)
         } else {
             self.profileImage = nil

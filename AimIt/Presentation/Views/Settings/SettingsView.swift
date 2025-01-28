@@ -24,6 +24,10 @@ struct SettingsView: View {
                         .padding(.vertical, 20)
                     
                     AISettingsContent()
+                    
+                    Text("-Version \(Constants.APP_VERSION ?? "1.0.0")")
+                        .font(.system(.caption2, design: .rounded, weight: .semibold))
+                        .foregroundStyle(.aiSecondary2)
                 }
                 .padding(.bottom, 20)
             }

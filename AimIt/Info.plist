@@ -4,12 +4,5 @@
 <dict>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>We need your permission to send you notifications about updates, reminders, and important alerts.</string>
-	<key>UILaunchScreen</key>
-	<dict>
-		<key>UIColorName</key>
-		<string>AIBackground</string>
-		<key>UILaunchScreen</key>
-		<string>Launch Screen.storyboard</string>
-	</dict>
 </dict>
 </plist>

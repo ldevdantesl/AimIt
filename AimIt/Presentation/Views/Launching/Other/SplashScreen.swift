@@ -21,7 +21,7 @@ struct SplashScreen: View {
             Image(.splash)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 100, height: 100)
+                .frame(width: 130, height: 130)
                 .offset(y:100 - offset)
                 .onAppear(perform: startBouncing)
         }

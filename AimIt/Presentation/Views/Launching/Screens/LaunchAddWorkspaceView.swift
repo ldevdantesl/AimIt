@@ -18,10 +18,18 @@ struct LaunchAddWorkspaceView: View {
     
     var body: some View {
         ScrollView {
-            AIHeaderView(
-                title: "Add Your First",
-                subtitle: "Workspace"
-            )
+            VStack(alignment: .leading) {
+                AIHeaderView(
+                    title: "Add Your First",
+                    subtitle: "Workspace"
+                )
+                
+                Text("- Workspaces are used to organize goals into specific focus areas")
+                    .font(.system(.caption, design: .rounded, weight: .light))
+                    .foregroundStyle(.aiSecondary2)
+                    .padding(.horizontal, 20)
+                    .lineLimit(2)
+            }
             
             Spacer(minLength: 25)
             
