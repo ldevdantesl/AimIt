@@ -16,7 +16,8 @@ struct GoalMapper {
             title: goal.title,
             desc: goal.desc,
             isCompleted: goal.isCompleted,
-            deadline: goal.deadline ?? Date(),
+            deadline: goal.deadline,
+            deadlineChanges: Int(goal.deadlineChanges),
             createdAt: goal.createdAt,
             completedAt: goal.completedAt,
             milestones: (goal.milestones as? Set<MilestoneEntity>)?.map {
@@ -40,6 +41,21 @@ struct GoalMapper {
             newEntity.title = goal.title
             newEntity.desc = goal.desc
             newEntity.deadline = goal.deadline
+            newEntity.deadlineChanges = Int16(goal.deadlineChanges)
+            newEntity.completedAt = goal.completedAt
+            newEntity.isCompleted = goal.isCompleted
+            newEntity.createdAt = goal.createdAt
+            newEntity.milestones = NSSet(array: goal.milestones)
+
+            let request: NSFetchRequest<WorkspaceEntity> = WorkspaceEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "id == %@", goal.workspaceID.uuidString)
+            
+            guard let workspaceEntity = try? context.fetch(request).first else {
+                fatalError("Workspace is not found for the provided workspaceID")
+            }
+            
+            newEntity.workspace = workspaceEntity
+            newEntity.workspaceForPrioritizedGoal = workspaceEntity
             return newEntity
         }
     }

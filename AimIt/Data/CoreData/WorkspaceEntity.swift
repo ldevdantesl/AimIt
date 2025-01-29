@@ -19,6 +19,7 @@ public class WorkspaceEntity: NSManagedObject, Identifiable {
     @NSManaged public var id: UUID
     @NSManaged public var title: String
     @NSManaged public var goals: NSSet?
+    @NSManaged public var prioritizedGoal: GoalEntity?
 }
 
 extension WorkspaceEntity {

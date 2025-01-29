@@ -21,8 +21,9 @@ protocol GoalRepository {
         _ goal: Goal,
         newTitle: String?,
         newDesc: String?,
-        newDeadline: Date?
-    ) throws
+        newDeadline: Date?,
+        newMilestones: [Milestone]?
+    ) throws -> Goal
     
     func completeGoal(_ goal: Goal) throws
     
@@ -31,4 +32,10 @@ protocol GoalRepository {
     func deleteGoal(_ goal: Goal) throws
     
     func fetchGoals() throws -> [Goal]
+    
+    func fetchGoalByID(id: UUID) throws -> Goal
+    
+    func fetchGoalsByPrompt(with prompt: String, in workspace: Workspace) throws -> [Goal]
+    
+    func fetchCompletedGoalsForWorkspace(_ workspace: Workspace) throws -> [Goal]
 }

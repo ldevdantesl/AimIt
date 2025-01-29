@@ -18,14 +18,8 @@ final class AppCoordinator: ObservableObject {
     
     @Published var appState: AppState = .splash
     
-    private var isFirstLaunchKey = ConstantKeys.isFirstLaunchKey
-    
-    private lazy var homeCoordinator: HomeCoordinator = {
-        HomeCoordinator()
-    }()
-    
-    private lazy var settingsCoordinator: SettingsCoordinator = {
-        SettingsCoordinator()
+    private lazy var tabCoordinator: TabCoordinator = {
+        TabCoordinator()
     }()
     
     private lazy var launchCoordinator: LaunchCoordinator = {
@@ -34,17 +28,17 @@ final class AppCoordinator: ObservableObject {
     
     @ViewBuilder
     func start() -> some View {
-        ZStack{
+        Group{
             switch appState {
             case .splash:
                 SplashScreen(onFinish: checkAuthentication)
                     .transition(.slide)
             case .authenticated:
-                homeCoordinator.start()
+                tabCoordinator.start()
                     .transition(.move(edge: .leading))
             case .unauthenticated:
                 launchCoordinator.start()
-                    .transition(.move(edge: .trailing))
+                    .transition(.move(edge: .leading))
             }
         }
         .animation(.bouncy, value: appState)
@@ -53,14 +47,14 @@ final class AppCoordinator: ObservableObject {
     private func finishLaunch() {
         DispatchQueue.main.async {
             self.appState = .authenticated
-            UserDefaults.standard.set(false, forKey: self.isFirstLaunchKey)
+            UserDefaults.standard.set(false, forKey: ConstantKeys.isFirstLaunchKey)
         }
     }
     
     private func checkAuthentication() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let isFirstLaunch = UserDefaults.standard.object(forKey: self.isFirstLaunchKey) == nil ?
-            true : UserDefaults.standard.bool(forKey: self.isFirstLaunchKey)
+            let isFirstLaunch = UserDefaults.standard.object(forKey: ConstantKeys.isFirstLaunchKey) == nil ?
+            true : UserDefaults.standard.bool(forKey: ConstantKeys.isFirstLaunchKey)
             self.appState = isFirstLaunch ? .unauthenticated : .authenticated
         }
     }

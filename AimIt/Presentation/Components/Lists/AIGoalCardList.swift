@@ -9,26 +9,65 @@ import SwiftUI
 
 struct AIGoalCardList: View {
     @EnvironmentObject var coordinator: HomeCoordinator
-    var goals: [Goal] = []
+    @EnvironmentObject var workspaceVM: WorkspaceViewModel
+    @EnvironmentObject var goalVM: GoalViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
-    var workspaceGoals: [Goal] {
-        goals.sorted { $0.milestones.count < $1.milestones.count }
+    private let workspace: Workspace
+    
+    init(in workspace: Workspace) {
+        self.workspace = workspace
     }
     
     var body: some View {
-        if workspaceGoals.isEmpty {
+        if workspace.goals.isEmpty && workspace.prioritizedGoal == nil {
             NotFoundView(
                 imageName: ImageNames.noGoals,
                 title: "No goals yet",
-                topPadding: 40,
+                verticalPadding: 60,
                 subtitle: "Tap once to add new goal",
                 action: addOneGoal
             )
         } else {
             LazyVStack(spacing: 20) {
-                ForEach(goals, id: \.self) { goal in
-                    AIGoalCardView(goal: goal)
+                ForEach(workspace.goals, id: \.self) { goal in
+                    if goal.id != workspace.prioritizedGoal?.id {
+                        AIGoalCard(goal: goal)
+                            .contextMenu {
+                                if workspace.prioritizedGoal == nil {
+                                    Button(
+                                        "Prioritize",
+                                        systemImage: "exclamationmark",
+                                        action: { prioritizeGoal(goal: goal) }
+                                    )
+                                }
+                                Button(
+                                    "Delete",
+                                    systemImage: "trash.fill",
+                                    role:.destructive,
+                                    action: { deleteGoal(goal: goal)}
+                                )
+                            }
+                    }
                 }
+            }
+            .onAppear(perform: requestAReview)
+        }
+    }
+    
+    private func prioritizeGoal(goal: Goal) {
+        DispatchQueue.main.async {
+            withAnimation {
+                workspaceVM.prioritizeGoal(workspace, goal: goal)
+            }
+        }
+    }
+    
+    private func deleteGoal(goal: Goal) {
+        DispatchQueue.main.async {
+            withAnimation {
+                goalVM.deleteGoal(goal)
+                workspaceVM.fetchCurrentWorkspace()
             }
         }
     }
@@ -36,9 +75,17 @@ struct AIGoalCardList: View {
     private func addOneGoal() {
         coordinator.push(to: .addGoal)
     }
+    
+    private func requestAReview() {
+        if workspace.goals.count > 2 {
+            userVM.requestReview(fromSettings: false)
+        }
+    }
 }
 
 #Preview {
-    AIGoalCardList(goals: [])
+    AIGoalCardList(in: .sample)
         .environmentObject(HomeCoordinator())
+        .environmentObject(DIContainer().makeWorkspaceViewModel())
+        .environmentObject(DIContainer().makeGoalViewModel())
 }

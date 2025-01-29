@@ -8,32 +8,47 @@
 import SwiftUI
 
 struct AIQuoteWidget: View {
-    let quote: String
+    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var coordinator: HomeCoordinator
     
-    init(quote: String) {
-        self.quote = quote
+    private let quoteVM: QuoteViewModel
+    private let quote: Quote
+    
+    init(quoteVM: QuoteViewModel) {
+        self.quoteVM = quoteVM
+        self.quote = quoteVM.randomQuote
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5){
-            Text("Quote: ")
-                .font(.system(.headline, design: .rounded, weight: .bold))
-                .foregroundStyle(.aiLabel)
-                .fontDesign(.serif)
-            
-            Text(quote)
+            HStack{
+                Text(quote.author)
+                    .font(.system(.subheadline, design: .serif, weight: .bold))
+                    .foregroundStyle(.aiLabel)
+                
+                Spacer()
+                
+                Text("Quote")
+                    .font(.system(.caption2, design: .serif, weight: .light))
+                    .foregroundStyle(.aiBeige)
+            }
+            Text(quote.quote)
                 .foregroundStyle(.aiLabel)
                 .font(.system(.subheadline, design: .rounded, weight: .regular))
         }
         .padding(15)
-        .frame(maxWidth: UIConstants.widgetWidth, alignment: .leading)
-        .frame(maxHeight: UIConstants.widgetHeight, alignment: .top)
-        .background(Color.aiOrange, in: .rect(cornerRadius: UIConstants.widgetCornerRadius))
-        .padding(.trailing, 20)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxHeight: UIConstants.widgetHeight)
+        .background(userVM.themeColor.gradient, in: .rect(cornerRadius: UIConstants.widgetCornerRadius))
+        .padding(.horizontal, 20)
+        .onTapGesture {
+            coordinator.present(sheet: .quote(quoteVM))
+        }
     }
 }
 
 #Preview {
     AIQuoteWidget(
-        quote: "Some quote")
+        quoteVM: DIContainer().makeQuoteViewModel()
+    )
 }

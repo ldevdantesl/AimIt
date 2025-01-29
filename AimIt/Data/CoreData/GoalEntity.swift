@@ -15,17 +15,17 @@ public class GoalEntity: NSManagedObject {
         return NSFetchRequest<GoalEntity>(entityName: "GoalEntity")
     }
 
-    @NSManaged public var category: String
     @NSManaged public var completedAt: Date?
     @NSManaged public var createdAt: Date
-    @NSManaged public var deadline: Date?
+    @NSManaged public var deadline: Date
+    @NSManaged public var deadlineChanges: Int16
     @NSManaged public var desc: String?
     @NSManaged public var id: UUID
     @NSManaged public var isCompleted: Bool
     @NSManaged public var title: String
     @NSManaged public var milestones: NSSet?
     @NSManaged public var workspace: WorkspaceEntity?
-
+    @NSManaged public var workspaceForPrioritizedGoal: WorkspaceEntity?
 }
 
 extension GoalEntity: Identifiable {

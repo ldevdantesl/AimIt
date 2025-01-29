@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AIButton: View {
+    @EnvironmentObject var userVM: UserViewModel
     
     enum ImageType: String {
         case back
@@ -18,18 +19,23 @@ struct AIButton: View {
         case empty
         case ava
         case edit
+        case chevronDown
+        case briefCase
     }
 
-    let title: String?
     let image: ImageType
-    let action: (() -> ())?
-    let backColor: Color
-    let foreColor: Color
+    private let title: String?
+    private let action: (() -> ())?
+    private let backColor: Color
+    private let foreColor: Color
+    private let imageSize: CGFloat
     
+    ///Default Initializer. Used for presenting button in a circle using *ImageType*\n
     init(
         image: ImageType,
-        backColor: Color = .aiSecondBackground,
-        foreColor: Color = .aiBlack,
+        backColor: Color = .aiSecondary,
+        foreColor: Color = .aiLabel,
+        imageSize: CGFloat = 20,
         action: (() -> ())? = nil
     ) {
         self.title = nil
@@ -37,19 +43,25 @@ struct AIButton: View {
         self.action = action
         self.backColor = backColor
         self.foreColor = foreColor
+        self.imageSize = 20
     }
     
-    init(title: String, action: (() -> ())? = nil) {
+    ///Initializer used for presenting a button filled throughout the whole screenwidth.\n Use it in a bottom toolbar positions.
+    init(title: String, color: Color = .accentColor, action: (() -> ())? = nil) {
         self.title = title
         self.action = action
         self.image = .empty
-        self.backColor = .accent
+        self.backColor = color
         self.foreColor = .aiLabel
+        self.imageSize = 0
     }
     
     var body: some View {
         Button{
-            action?()
+            withAnimation {
+                action?()
+                AIHaptics.shared.generate()
+            }
         } label: {
             if let title = title {
                 Text(title)
@@ -57,55 +69,59 @@ struct AIButton: View {
                     .foregroundStyle(foreColor)
                     .frame(minWidth: UIConstants.screenWidth - 40, maxWidth: .infinity)
                     .frame(height: 50)
-                    .background(backColor, in: .rect(cornerRadius: 25))
+                    .background(backColor.gradient, in: .rect(cornerRadius: 25))
                     .shadow(color: Color.aiBlack.opacity(0.3), radius: 15, x: 0, y: 0)
-                    .shadow(color: Color.aiBlack.opacity(0.2), radius: 30, x: 0, y: 0) //
+                    .shadow(color: Color.aiBlack.opacity(0.2), radius: 30, x: 0, y: 0)
                     .padding(.horizontal, 20)
+                    .contentTransition(.numericText())
             } else {
-                ZStack {
-                    if image != .empty{
+                if image != .empty{
+                    ZStack {
                         Circle()
                             .fill(backColor.opacity(0.4))
-                            .frame(width: 52, height: 52)
+                            .frame(width: imageSize*2.6, height: imageSize*2.6)
                             .zIndex(1)
                         
-                        Circle()
-                            .fill(backColor)
-                            .frame(width: 45, height: 45)
-                            .zIndex(2)
-                        
-                        makeImage()
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 25, height: 20)
-                            .zIndex(2)
-                            .foregroundStyle(foreColor)
+                        if image == .ava, let image = userVM.profileImage {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: imageSize*2.25, height: imageSize*2.25)
+                                .zIndex(2)
+                                .clipShape(Circle())
+                        } else {
+                            Circle()
+                                .fill(backColor)
+                                .frame(width: imageSize*2.25, height: imageSize*2.25)
+                                .zIndex(2)
+                            
+                            makeImage()
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: imageSize, height: imageSize)
+                                .zIndex(3)
+                                .foregroundStyle(foreColor)
+                        }
                     }
+                    .frame(width: imageSize*2.5, height: imageSize*2.5)
                 }
-                .frame(width: 40, height: 40)
             }
         }
     }
     
     
-    func makeImage() -> Image {
+    private func makeImage() -> Image {
         switch image {
-        case .back:
-            return Image(systemName: "chevron.left")
-        case .ellipsis:
-            return Image(systemName: "ellipsis")
-        case .bell:
-            return Image(systemName: "bell")
-        case .plus:
-            return Image(systemName: "plus")
-        case .xmark:
-            return Image(systemName: "xmark")
-        case .empty:
-            return Image(systemName: "circle.fill")
-        case .ava:
-            return Image(systemName: "person.fill")
-        case .edit:
-            return Image(systemName: "pencil")
+        case .back:         Image(systemName: "chevron.left")
+        case .ellipsis:     Image(systemName: "ellipsis")
+        case .bell:         Image(systemName: "bell")
+        case .plus:         Image(systemName: "plus")
+        case .xmark:        Image(systemName: "xmark")
+        case .empty:        Image(systemName: "circle.fill")
+        case .ava:          Image(systemName: "person.fill")
+        case .edit:         Image(systemName: "pencil")
+        case .chevronDown:  Image(systemName: "chevron.down")
+        case .briefCase:    Image(systemName: "briefcase.fill")
         }
     }
 }

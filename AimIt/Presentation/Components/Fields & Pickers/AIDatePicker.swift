@@ -2,86 +2,55 @@
 //  AIDatePicker.swift
 //  AimIt
 //
-//  Created by Buzurg Rakhimzoda on 8.12.2024.
+//  Created by Buzurg Rakhimzoda on 13.01.2025.
 //
 
+import Foundation
 import SwiftUI
 
 struct AIDatePicker: View {
-    let titleName: String
-    let widthSize: CGFloat
-    
+    @EnvironmentObject var userVM: UserViewModel
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var goalVM: GoalViewModel
     @Binding private var chosenDate: Date
     
-    @State private var showSheet: Bool = false
+    private let goal: Goal?
     
-    init(
-        titleName: String,
-        widthSize: CGFloat,
-        chosenDate: Binding<Date>
-    ) {
-        self.titleName = titleName
-        self.widthSize = widthSize
+    private let lowerBound = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+    
+    init(chosenDate: Binding<Date>, for goal: Goal? = nil) {
         self._chosenDate = chosenDate
+        self.goal = goal
     }
     
     var body: some View {
-        VStack(alignment:.leading){
-            HStack{
-                Text(titleName)
-                    .font(.system(.headline, design: .rounded, weight: .light))
-                    .foregroundStyle(.aiSecondary2)
-                
-                Spacer()
-            }
-            .padding(.leading, 10)
+        VStack{
+            DatePicker(
+                "",
+                selection: $chosenDate,
+                in: lowerBound...,
+                displayedComponents: .date
+            )
+            .datePickerStyle(.graphical)
+            .padding(.horizontal, 20)
             
-            HStack{
-                Text(DeadlineFormatter.formatToDayMonth(chosenDate))
-                    .foregroundStyle(.aiLabel)
-                    .font(.system(.headline, design: .rounded, weight: .light))
-                
-                Spacer()
-                
-                Image(systemName: "calendar")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                    .foregroundStyle(.aiLabel)
-            }
-            .padding(.horizontal, 20)
-            .frame(maxWidth: widthSize)
-            .frame(height: 50)
-            .background(Color.aiSecondary, in:.rect(cornerRadius: 30))
-        }
-        .padding(.horizontal, 20)
-        .onTapGesture {
-            showSheet.toggle()
-        }
-        .sheet(isPresented: $showSheet) {
-            VStack{
-                DatePicker(
-                    "",
-                    selection: $chosenDate,
-                    in: Calendar.current.date(byAdding: .day, value: 1, to: Date())!...,
-                    displayedComponents: .date
-                )
-                .datePickerStyle(.graphical)
-                
-                Button("Done"){
-                    showSheet.toggle()
+            AIButton(title: "Done", color: userVM.themeColor){
+                if let goal = goal {
+                    goalVM.editGoal(goal, deadline: chosenDate)
                 }
-                .foregroundStyle(.aiOrange)
+                dismiss()
             }
-            .padding(.horizontal, 20)
-            .presentationDetents([.medium])
-            .presentationBackground(.aiBackground)
-            .preferredColorScheme(.dark)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.aiBackground)
+        .onDisappear {
+            if let goal = goal {
+                goalVM.editGoal(goal, deadline: chosenDate)
+            }
         }
     }
 }
 
 #Preview {
-    AIDatePicker(titleName: "Due Date", widthSize: UIConstants.screenWidth / 2 - 20, chosenDate: .constant(.now))
-        .preferredColorScheme(.dark)
+    AIDatePicker(chosenDate: .constant(.now), for: .sample)
 }

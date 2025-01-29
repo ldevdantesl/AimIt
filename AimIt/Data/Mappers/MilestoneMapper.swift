@@ -14,8 +14,11 @@ struct MilestoneMapper {
             id: milestoneEntity.id,
             desc: milestoneEntity.desc,
             systemImage: milestoneEntity.systemImage,
+            createdAt: milestoneEntity.createdAt,
+            completedAt: milestoneEntity.completedAt,
+            dueDate: milestoneEntity.dueDate,
             isCompleted: milestoneEntity.isCompleted,
-            goalID: milestoneEntity.goal.id
+            goalID: milestoneEntity.goal?.id ?? UUID()
         )
     }
     
@@ -30,10 +33,15 @@ struct MilestoneMapper {
             entity.id = milestone.id
             entity.desc = milestone.desc
             entity.systemImage = milestone.systemImage
+            entity.createdAt = milestone.createdAt
+            entity.completedAt = milestone.completedAt
+            entity.dueDate = milestone.dueDate
             entity.isCompleted = milestone.isCompleted
             
+            guard let goalID = milestone.goalID else { fatalError("Milestone must have a goalID") }
+            
             let goalFetchRequest: NSFetchRequest<GoalEntity> = GoalEntity.fetchRequest()
-            goalFetchRequest.predicate = NSPredicate(format: "id == %@", milestone.goalID as CVarArg)
+            goalFetchRequest.predicate = NSPredicate(format: "id == %@", goalID as CVarArg)
             
             guard let goalEntity = try? context.fetch(goalFetchRequest).first else {
                 fatalError("Goal not found for the provided goalID")

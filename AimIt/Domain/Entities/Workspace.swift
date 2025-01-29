@@ -10,7 +10,8 @@ import Foundation
 struct Workspace: Identifiable, Hashable, Codable {
     let id: UUID
     let title: String
-    let goals: [Goal]
+    var goals: [Goal]
+    var prioritizedGoal: Goal?
 }
 
 extension Workspace {
@@ -18,7 +19,9 @@ extension Workspace {
         id: UUID(),
         title: "Sample Workspace",
         goals: [
-            Goal(id: UUID(), workspaceID: UUID(), title: "Some Goal", isCompleted: false, deadline: .now, createdAt: .now, milestones: [])
+            Goal(id: UUID(), workspaceID: UUID(), title: "Some Goal", isCompleted: false, deadline: .now, deadlineChanges: 0, createdAt: .now, milestones: [
+                Milestone(id: UUID(), desc: "", systemImage: "", createdAt: .now, dueDate: .now, isCompleted: false, goalID: UUID())
+            ])
         ]
     )
 }

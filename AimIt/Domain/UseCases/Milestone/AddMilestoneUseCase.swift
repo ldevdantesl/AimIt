@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AddMilestoneUseCase {
-    func execute(desc: String, systemImage: String, to goal: Goal) throws
+    func execute(desc: String, systemImage: String, dueDate: Date? ,completed: Bool, to goal: Goal) throws
 }

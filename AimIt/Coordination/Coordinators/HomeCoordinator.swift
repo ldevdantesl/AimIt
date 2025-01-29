@@ -12,6 +12,7 @@ final class HomeCoordinator: ObservableObject, Coordinator {
     @Published var path: NavigationPath = NavigationPath()
     
     @Published var sheet: HomeSheets?
+    @Published var fullScreenCover: HomeScreenCovers?
     
     @ViewBuilder
     func start() -> some View {
@@ -22,15 +23,8 @@ final class HomeCoordinator: ObservableObject, Coordinator {
     @ViewBuilder
     func build(screen: HomeScreens) -> some View {
         switch screen {
-            
-        case .addGoal:
-            HomeAddGoalView()
-            
-        case .goalDetails(let goal):
-            GoalDetailsView(goal: goal)
-            
-        default:
-            EmptyView()
+        case .addGoal: HomeAddGoalView()
+        case .goalDetails(let goal): GoalDetailsView(goal: goal)
         }
     }
     
@@ -40,8 +34,30 @@ final class HomeCoordinator: ObservableObject, Coordinator {
             switch sheet {
             case .addWorkspace:
                 HomeAddWorkspaceView()
-                    .presentationDetents([.fraction(1/3), .fraction(1/2)])
-                    .presentationBackground(Color.aiBackground)
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.visible)
+            case .quote(let quoteVM):
+                AIQuoteSheet(quoteVM: quoteVM)
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.visible)
+            case .milestoneDetails(let milestone, let togglingEnabled):
+                MilestoneDetailsSheet(milestone: milestone, togglingEnabled: togglingEnabled)
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.visible)
+            case .changeDeadline(let goal):
+                AIDatePicker(chosenDate: goal.deadline, for: goal.wrappedValue)
+                    .presentationDetents(sheet.detents)
+                    .presentationDragIndicator(.visible)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func build(fullScreenCover: HomeScreenCovers) -> some View {
+        NavigationStack{
+            switch fullScreenCover {
+            case .editGoal(let goal):
+                EditGoalScreenCover(goal: goal)
             }
         }
     }
@@ -50,8 +66,16 @@ final class HomeCoordinator: ObservableObject, Coordinator {
         self.sheet = sheet
     }
     
-    func dismiss() {
+    func present(fullScreenCover: HomeScreenCovers) {
+        self.fullScreenCover = fullScreenCover
+    }
+    
+    func dismissSheet() {
         self.sheet = nil
+    }
+    
+    func dismissFullScreenCover() {
+        self.fullScreenCover = nil
     }
     
     func push(to screen: HomeScreens) {

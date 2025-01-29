@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct AISystemImagePicker: View {
+    @EnvironmentObject var userVM: UserViewModel
     @Binding var selectedImage: String
     
     @State private var selectedCategory: SystemImageCategory = .allCategories[0]
     
-    let columns: [GridItem] = Array(repeating: GridItem(.fixed(40), spacing: 15), count: 6)
+    private let columns: [GridItem] = Array(repeating: GridItem(.fixed(40), spacing: 15), count: 6)
     
     var body: some View {
         VStack{
@@ -22,7 +23,7 @@ struct AISystemImagePicker: View {
                 .frame(width: 25, height: 25)
                 .foregroundStyle(.aiLabel)
                 .padding(20)
-                .background(Color.aiOrange, in:.circle)
+                .background(userVM.themeColor, in: .circle)
                 .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
             
             VStack(alignment: .leading){
@@ -37,7 +38,7 @@ struct AISystemImagePicker: View {
                                 .frame(width: 20, height: 20)
                                 .foregroundStyle(selectedImage == symbol ? Color.aiLabel : Color.aiSecondary)
                                 .padding(15)
-                                .background(selectedImage == symbol ? Color.orange : Color.aiSecondary2, in: .circle)
+                                .background(selectedImage == symbol ? userVM.themeColor : Color.aiSecondary2, in: .circle)
                         }
                     }
                     .animation(.bouncy, value: selectedImage)
@@ -54,14 +55,11 @@ struct AISystemImagePicker: View {
     }
     
     @ViewBuilder
-    func selectedCategoryPicker() -> some View {
+    private func selectedCategoryPicker() -> some View {
         Picker("", selection: $selectedCategory) {
             ForEach(SystemImageCategory.allCategories, id:\.self){ cat in
-                HStack{
-                    Text(cat.name)
-                    Image(systemName: cat.titleImage)
-                }
-                .tag(cat)
+                Label(cat.name, systemImage: cat.titleImage)
+                    .tag(cat)
             }
         }
     }

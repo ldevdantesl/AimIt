@@ -14,7 +14,7 @@ final class AddMilestoneUseCaseImpl: AddMilestoneUseCase {
         self.repository = repository
     }
     
-    func execute(desc: String, systemImage: String, to goal: Goal) throws {
-        try repository.addMilestone(desc: desc, systemImage: systemImage, to: goal)
+    func execute(desc: String, systemImage: String, dueDate: Date?, completed: Bool, to goal: Goal) throws {
+        try repository.addMilestone(desc: desc, systemImage: systemImage, dueDate: dueDate, completed: completed, to: goal)
     }
 }

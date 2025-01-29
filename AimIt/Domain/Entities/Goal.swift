@@ -14,6 +14,7 @@ struct Goal: Identifiable, Codable, Hashable {
     var desc: String?
     var isCompleted: Bool
     var deadline: Date
+    var deadlineChanges: Int
     var createdAt: Date
     var completedAt: Date?
     var milestones: [Milestone]
@@ -26,15 +27,20 @@ extension Goal {
         title: "Learn UIKit",
         desc: "Finish UIKit till next week and learn SwiftUI",
         isCompleted: false,
-        deadline: .now,
+        deadline: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
+        deadlineChanges: 0,
         createdAt: Date(),
         completedAt: nil,
-        milestones: [
-            Milestone(id: UUID(), desc: "Milestone 1", systemImage: "bookmark", isCompleted: true, goalID: UUID()),
-            Milestone(id: UUID(), desc: "Milestone 2", systemImage: "house", isCompleted: false, goalID: UUID()),
-            Milestone(id: UUID(), desc: "Milestone 3", systemImage: "heart", isCompleted: false, goalID: UUID()),
-            Milestone(id: UUID(), desc: "Milestone 2", systemImage: "figure", isCompleted: true, goalID: UUID()),
-            Milestone(id: UUID(), desc: "Milestone 3", systemImage: "heart", isCompleted: false, goalID: UUID()),
-        ]
+        milestones: Array(
+            repeating: Milestone(
+                id: UUID(),
+                desc: "some description",
+                systemImage: "folder",
+                createdAt: .now,
+                dueDate: .now,
+                isCompleted: false,
+                goalID: UUID()
+            ),
+            count: 3)
     )
 }

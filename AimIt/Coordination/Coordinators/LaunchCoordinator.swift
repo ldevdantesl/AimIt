@@ -11,6 +11,8 @@ import SwiftUI
 final class LaunchCoordinator: ObservableObject, Coordinator {
     @Published var path: NavigationPath = NavigationPath()
     
+    @Published var sheet: LaunchSheets?
+    
     var onFinish: () -> ()
     
     init(onFinish: @escaping () -> Void) {
@@ -26,13 +28,17 @@ final class LaunchCoordinator: ObservableObject, Coordinator {
     @ViewBuilder
     func build(screen: LaunchScreens) -> some View {
         switch screen {
-        case .intro:
-            LaunchIntroView()
         case .addWorkspace:
             LaunchAddWorkspaceView(onFinish: onFinish)
                 .navigationBarBackButtonHidden()
+        case .addProfile:
+            LaunchAddProfileView()
+                .navigationBarBackButtonHidden()
         }
     }
+    
+    @ViewBuilder
+    func build(sheet: LaunchSheets) -> some View { }
     
     func push(to screen: LaunchScreens) {
         path.append(screen)

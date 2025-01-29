@@ -2,17 +2,14 @@
 //  Coordinator.swift
 //  AimIt
 //
-//  Created by Buzurg Rakhimzoda on 6.12.2024.
+//  Created by Buzurg Rakhimzoda on 2.01.2025.
 //
 
 import Foundation
 import SwiftUI
 
-protocol Coordinator{
-    associatedtype RootView: View
+protocol Coordinator {
+    associatedtype rootView: View
     
-    var path: NavigationPath { get set }
-    
-    @ViewBuilder
-    func start() -> RootView
+    func start() -> rootView
 }

@@ -13,8 +13,14 @@ final class EditGoalUseCaseImpl: EditGoalUseCase {
     init(repository: GoalRepository) {
         self.repository = repository
     }
-
-    func execute(_ goal: Goal, newTitle: String?, newDesc: String?, newDeadline: Date?) throws {
-        try repository.editGoal(goal, newTitle: newTitle, newDesc: newDesc, newDeadline: newDeadline)
+    
+    func execute(
+        _ goal: Goal,
+        newTitle: String?,
+        newDesc: String?,
+        newDeadline: Date?,
+        newMilestones: [Milestone]?
+    ) throws -> Goal {
+        return try repository.editGoal(goal, newTitle: newTitle, newDesc: newDesc, newDeadline: newDeadline, newMilestones: newMilestones)
     }
 }
