@@ -1,82 +1,86 @@
-# Goal Management App
+# AimIt — Goal Management for iOS
 
-## Overview
-This app is designed to help users manage their goals effectively by creating milestones, organizing tasks into workspaces, and tracking progress with a beautifully crafted user interface. It employs robust architecture and advanced Swift development practices to deliver an exceptional experience.
+A full-featured goal tracking app built with **SwiftUI**, **Core Data**, and **Clean Architecture**. Published on the App Store. Designed, architected, and developed solo.
+
+<!-- Swap these for your actual App Store / TestFlight links if available -->
+<!-- [![Download on the App Store](https://img.shields.io/badge/App_Store-Download-blue?logo=apple)](https://apps.apple.com/app/aimit/idXXXXXXXXX) -->
 
 ## Screenshots
-<img src="https://github.com/user-attachments/assets/7d0e3bfc-937b-4dae-984f-cb2815d0f7b5" alt="Description" width="200"/>
-<img src="https://github.com/user-attachments/assets/12f43f7c-110c-4a4b-8214-7f9e0c118a5c" alt="Description" width="200"/>
-<img src="https://github.com/user-attachments/assets/692ca384-e0dd-4a2f-ab4b-d74a71e7f63b" alt="Description" width="200"/>
-<img src="https://github.com/user-attachments/assets/e20d63b2-f786-4e6b-a4da-7df6c1f8926a" alt="Description" width="200"/>
-<img src="https://github.com/user-attachments/assets/4c433444-44cc-466f-9eb1-38f0f3f58bee" alt="Description" width="200"/>
-<img src="https://github.com/user-attachments/assets/aafe83c1-abc7-43f5-98ef-8bfba2e36408" alt="Description" width="200"/>
-<img src="https://github.com/user-attachments/assets/ff514f27-f8cf-444f-862d-7c24810b04cd" alt="Description" width="200"/>
-<img src="https://github.com/user-attachments/assets/0855a9cf-0219-4216-a143-e0dfd394906e" alt="Description" width="200"/>
-<img src="https://github.com/user-attachments/assets/415f1525-4c88-4119-a8ac-4a62f981fb6d" alt="Description" width="200"/>
-<img src="https://github.com/user-attachments/assets/f1abb86b-ba4a-4405-8604-b75e3a5e80b7" alt="Description" width="200"/>
 
+<p>
+  <img src="https://github.com/user-attachments/assets/7d0e3bfc-937b-4dae-984f-cb2815d0f7b5" width="180"/>
+  <img src="https://github.com/user-attachments/assets/12f43f7c-110c-4a4b-8214-7f9e0c118a5c" width="180"/>
+  <img src="https://github.com/user-attachments/assets/692ca384-e0dd-4a2f-ab4b-d74a71e7f63b" width="180"/>
+  <img src="https://github.com/user-attachments/assets/e20d63b2-f786-4e6b-a4da-7df6c1f8926a" width="180"/>
+  <img src="https://github.com/user-attachments/assets/4c433444-44cc-466f-9eb1-38f0f3f58bee" width="180"/>
+</p>
+<p>
+  <img src="https://github.com/user-attachments/assets/aafe83c1-abc7-43f5-98ef-8bfba2e36408" width="180"/>
+  <img src="https://github.com/user-attachments/assets/ff514f27-f8cf-444f-862d-7c24810b04cd" width="180"/>
+  <img src="https://github.com/user-attachments/assets/0855a9cf-0219-4216-a143-e0dfd394906e" width="180"/>
+  <img src="https://github.com/user-attachments/assets/415f1525-4c88-4119-a8ac-4a62f981fb6d" width="180"/>
+  <img src="https://github.com/user-attachments/assets/f1abb86b-ba4a-4405-8604-b75e3a5e80b7" width="180"/>
+</p>
 
-## Key Features
-- **Goal and Milestone Management:** Create, edit, and track goals with associated milestones.
-- **Workspaces:** Organize tasks and goals into dedicated workspaces.
-- **Custom Animations:** Smooth, visually appealing animations enhance the user experience.
-- **Charts:** Interactive visualizations to track progress.
-- **Notifications:** Integration with `UNUserNotifications` for reminders and alerts.
-- **Photo Library Usage:** Add images to tasks or goals for better visualization.
-- **Custom Illustrations:** Unique illustrations and button designs for a modern look.
-- **Introductory Views:** Onboarding screens to guide new users.
-- **Error Handling:** Comprehensive error management using async/await, `throws`, and completion handlers.
+## What It Does
 
-## Technical Highlights
-- **Architecture:** Clean Architecture + SOLID Principles + MVVM
-  - **Repositories:** Handle data access and management.
-  - **Use Cases:** Encapsulate business logic.
-  - **View Models:** Manage the state and provide data for SwiftUI views.
-  - **Managers:** Handle specific tasks (e.g., network, data, or notifications).
-- **SwiftUI with UIKit:** Main UI built with SwiftUI, with selective use of UIKit for advanced customizations.
-- **Core Data:** Persistent storage for goals, milestones, and user data.
-- **Dependency Injection (DI):** Applied via DI containers using the factory paradigm and `Actor` for thread-safe operations.
-- **Custom Reusable Components:** Modular and reusable UI elements for consistency and maintainability.
-- **Concurrency:** Extensive use of `async/await`, `withCheckedContinuation`, and multithreading for optimal performance.
+AimIt helps users break down long-term goals into milestones, organize work into dedicated workspaces, and track progress through interactive charts. It includes onboarding, push notifications for reminders, photo attachments, and custom illustrations throughout the UI.
 
-## Development Practices
-- **Error Handling:** User-friendly error messages using custom `LocalizedError` conformances.
-- **Testing:** Includes unit tests with `XCTest` to ensure reliability.
-- **Analytics:** Integrated analytics for user activity and app usage.
-- **Design:** Focus on modern and clean design principles, adhering to Apple’s HIG guidelines.
+## Tech Stack
 
-## How to Build
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ldevdantesl/AimIt.git
-   ```
-2. Open the project in Xcode:
-   ```bash
-   cd AimIt
-   open AimIt.xcodeproj
-   ```
-3. Install dependencies (if applicable, e.g., CocoaPods or Swift Package Manager).
-   ```bash
-   pod install
-   ```
-4. Run the app:
-   - Select the appropriate simulator/device.
-   - Press `Cmd + R` or click **Run** in Xcode.
+| Layer | Details |
+|-------|---------|
+| **UI** | SwiftUI + selective UIKit for advanced customizations |
+| **Architecture** | Clean Architecture, MVVM, SOLID |
+| **Persistence** | Core Data |
+| **Concurrency** | async/await, withCheckedContinuation, Actors |
+| **DI** | Custom DI container using Factory pattern with Actor-based thread safety |
+| **Testing** | XCTest unit tests |
+| **Notifications** | UNUserNotifications |
 
-## Requirements
-- **Xcode:** Version 14.0+
-- **iOS:** Version 15.0+
+## Architecture
 
-## Contributing
-Contributions are welcome! Feel free to fork the repo and submit a pull request. Please ensure all changes adhere to the app's architecture and coding standards.
+```
+Presentation        Domain             Data
+┌──────────┐    ┌──────────────┐    ┌──────────────┐
+│  SwiftUI │───▶│  Use Cases   │───▶│ Repositories │
+│  Views   │    │  (Business   │    │ (Core Data)  │
+│          │    │   Logic)     │    │              │
+│ ViewModels│◀──│              │◀───│              │
+└──────────┘    └──────────────┘    └──────────────┘
+```
+
+The app follows a strict dependency rule — outer layers depend on inner layers, never the reverse. ViewModels talk to Use Cases, Use Cases talk to Repository protocols, and the Data layer provides concrete implementations backed by Core Data.
+
+## Highlights
+
+**End-to-end ownership** — sole developer from concept to App Store release, including architecture decisions, UI/UX design, data modeling, and deployment.
+
+**Clean separation of concerns** — Repositories handle data access, Use Cases encapsulate business logic, ViewModels manage UI state. Each layer is independently testable.
+
+**Modern Swift concurrency** — async/await throughout the networking and data layers, with `withCheckedContinuation` to bridge callback-based APIs and Actor isolation for thread-safe shared state.
+
+**Custom DI system** — dependency injection container built on the Factory pattern, avoiding third-party DI frameworks while maintaining full testability.
+
+**Polished UI details** — custom animations, hand-crafted illustrations, reusable component library, and onboarding flow. Follows Apple's Human Interface Guidelines.
+
+## Getting Started
+
+```bash
+git clone https://github.com/ldevdantesl/AimIt.git
+cd AimIt
+open AimIt.xcodeproj
+# Cmd + R to build and run
+```
+
+Requires Xcode 14.0+ and targets iOS 15.0+.
 
 ## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
 
----
+This project is shared for portfolio and educational purposes only. All rights reserved.
 
-### Contact
-For any inquiries or feedback, please contact:
-- **Email:** ldevdantesl@gmail.com
-- **GitHub:** [ldevdantesl](https://github.com/ldevdantesl)
+You may view and fork this repository for reference, but you may not copy, modify, distribute, or use any part of this code in your own projects — personal or commercial — without explicit written permission from the author.
 
+## Contact
+
+Buzurgmehr Rahimzoda — [ldevdantesl@gmail.com](mailto:ldevdantesl@gmail.com) · [GitHub](https://github.com/ldevdantesl)
