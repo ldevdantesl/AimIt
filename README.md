@@ -8,18 +8,18 @@ A full-featured goal tracking app built with **SwiftUI**, **Core Data**, and **C
 ## Screenshots
 
 <p>
-  <img src="https://github.com/user-attachments/assets/7d0e3bfc-937b-4dae-984f-cb2815d0f7b5" width="180"/>
-  <img src="https://github.com/user-attachments/assets/12f43f7c-110c-4a4b-8214-7f9e0c118a5c" width="180"/>
-  <img src="https://github.com/user-attachments/assets/692ca384-e0dd-4a2f-ab4b-d74a71e7f63b" width="180"/>
-  <img src="https://github.com/user-attachments/assets/e20d63b2-f786-4e6b-a4da-7df6c1f8926a" width="180"/>
-  <img src="https://github.com/user-attachments/assets/4c433444-44cc-466f-9eb1-38f0f3f58bee" width="180"/>
+  <img src="https://github.com/user-attachments/assets/7d0e3bfc-937b-4dae-984f-cb2815d0f7b5" width="150"/>
+  <img src="https://github.com/user-attachments/assets/12f43f7c-110c-4a4b-8214-7f9e0c118a5c" width="150"/>
+  <img src="https://github.com/user-attachments/assets/692ca384-e0dd-4a2f-ab4b-d74a71e7f63b" width="150"/>
+  <img src="https://github.com/user-attachments/assets/e20d63b2-f786-4e6b-a4da-7df6c1f8926a" width="150"/>
+  <img src="https://github.com/user-attachments/assets/4c433444-44cc-466f-9eb1-38f0f3f58bee" width="150"/>
 </p>
 <p>
-  <img src="https://github.com/user-attachments/assets/aafe83c1-abc7-43f5-98ef-8bfba2e36408" width="180"/>
-  <img src="https://github.com/user-attachments/assets/ff514f27-f8cf-444f-862d-7c24810b04cd" width="180"/>
-  <img src="https://github.com/user-attachments/assets/0855a9cf-0219-4216-a143-e0dfd394906e" width="180"/>
-  <img src="https://github.com/user-attachments/assets/415f1525-4c88-4119-a8ac-4a62f981fb6d" width="180"/>
-  <img src="https://github.com/user-attachments/assets/f1abb86b-ba4a-4405-8604-b75e3a5e80b7" width="180"/>
+  <img src="https://github.com/user-attachments/assets/aafe83c1-abc7-43f5-98ef-8bfba2e36408" width="150"/>
+  <img src="https://github.com/user-attachments/assets/ff514f27-f8cf-444f-862d-7c24810b04cd" width="150"/>
+  <img src="https://github.com/user-attachments/assets/0855a9cf-0219-4216-a143-e0dfd394906e" width="150"/>
+  <img src="https://github.com/user-attachments/assets/415f1525-4c88-4119-a8ac-4a62f981fb6d" width="150"/>
+  <img src="https://github.com/user-attachments/assets/f1abb86b-ba4a-4405-8604-b75e3a5e80b7" width="150"/>
 </p>
 
 ## What It Does
