@@ -2,8 +2,8 @@
 
 A full-featured goal tracking app built with **SwiftUI**, **Core Data**, and **Clean Architecture**. Published on the App Store. Designed, architected, and developed solo.
 
-<!-- Swap these for your actual App Store / TestFlight links if available -->
-<!-- [![Download on the App Store](https://img.shields.io/badge/App_Store-Download-blue?logo=apple)](https://apps.apple.com/app/aimit/idXXXXXXXXX) -->
+
+[![Download on the App Store](https://img.shields.io/badge/App_Store-Download-blue?logo=apple)](https://apps.apple.com/us/app/aim-it/id6740979997)
 
 ## Screenshots
 
